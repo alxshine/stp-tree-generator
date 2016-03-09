@@ -4,17 +4,19 @@
 #include <cstdarg>
 #include <cstring>
 #include <cstdlib>
+#include <fstream>
+#include <iostream>
 
 #include <pcap.h>
 #include <netinet/if_ether.h>
 
 class Sniffer{
     private:
-        FILE *output;
-        inline void ERRCHECK(int condition, const char *format, va_list arg);
+        const char * const filename = "log.txt";
+        std::ofstream output;
         
     public:
-        Sniffer(const char* filename);
+        Sniffer();
         ~Sniffer();
         void start();
 };
