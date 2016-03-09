@@ -4,12 +4,12 @@ INCLUDES=-lpcap
 OBJFOLDER=obj
 OBJ=$(OBJFOLDER)/stp_sniffer.c
 DEPSFOLDER=inc
-DEPS=Bridge.hpp
+DEPS=$(DEPSFOLDER)/*
 SOURCEFOLDER=src
 BINFOLDER=bin
 
-$(OBJFOLDER)/%.o: $(SOURCEFOLDER)/%.c
+$(OBJFOLDER)/%.o: $(SOURCEFOLDER)/%.cpp
 	$(CC) -c $< $(CFLAGS) -o $@
 
-all: $(OBJFOLDER)/stp_sniffer.o
+all: $(OBJFOLDER)/main.o $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/Sniffer.o
 	$(CC) $(CFLAGS) $^ $(INCLUDES) -o $(BINFOLDER)/stpGen
