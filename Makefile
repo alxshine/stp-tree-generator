@@ -3,9 +3,9 @@ CFLAGS=-Werror -Wall -std=c++11
 INCLUDES=-lpcap
 OBJFOLDER=obj
 OBJ=$(OBJFOLDER)/stp_sniffer.c
-DEPSFOLDER=deps
+DEPSFOLDER=inc
 DEPS=Bridge.hpp
-SOURCEFOLDER=source
+SOURCEFOLDER=src
 BINFOLDER=bin
 
 $(OBJFOLDER)/%.o: $(SOURCEFOLDER)/%.c

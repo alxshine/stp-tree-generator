@@ -120,7 +120,7 @@ void process_packet(u_char *user, const struct pcap_pkthdr *header, const u_char
     psize-=2;
     LOG("\tidExtension: %X", sIdExtension);
 
-    //next 6 bytes is the root bridge id
+    //next 6 bytes is the bridge mac address
     char bridgeId[17];
     printMac(bridgeId, payload);
     payload+=6;
