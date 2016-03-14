@@ -30,8 +30,14 @@ void Sniffer::start(){
 
     pcap_if_t *device;
     Sniffer::output << "found devices:\n";
-    for(device = alldevs; device != NULL; device = device->next)
-        Sniffer::output << device->name << "-" <<  device->description;
+    for(device = alldevs; device != NULL; device = device->next){
+        if(device->name){
+            Sniffer::output << device->name;
+            if(device->description)
+                Sniffer::output << " - " << device->description;
+            Sniffer::output << std::endl;
+        }
+    }
 
     Sniffer::output << "selecting first named device\n";
     for(device = alldevs; device != NULL && device->name == NULL; device = device->next)
@@ -42,6 +48,7 @@ void Sniffer::start(){
     }
 
     Sniffer::output << "opening device " << device->name << " for sniffing" << std::endl;
+    Sniffer::output.flush();
     pcap_t *capture_handle = pcap_open_live(device->name, 65536, 1, 0, err);
     if(!capture_handle){
         Sniffer::output << "could not start capture" << std::endl;
@@ -113,7 +120,7 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     Bridge firsthop(bridgeMac, bPriority, messageAge);
 
     Sniffer::output << "Root: " << root << std::endl;
-//    Sniffer::output << "Next hop: " << firsthop << std::endl;
+    Sniffer::output << "Next hop: " << firsthop << std::endl;
 }
 
 Sniffer& Sniffer::getInstance()
