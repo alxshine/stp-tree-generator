@@ -1,4 +1,0 @@
-sniffer starting
-getting interfaces
-found devices:
-enp3s0 - (null)any - Pseudo-device that captures on all interfaceslo - (null)wlp4s0 - (null)bluetooth0 - Bluetooth adapter number 0bluetooth-monitor - Bluetooth Linux Monitornflog - Linux netfilter log (NFLOG) interfacenfqueue - Linux netfilter queue (NFQUEUE) interfaceusbmon1 - USB bus number 1usbmon2 - USB bus number 2usbmon3 - USB bus number 3usbmon4 - USB bus number 4selecting first named device

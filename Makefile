@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-Werror -Wall -std=c++11
+CFLAGS=-Werror -Wall -std=c++11 -g
 INCLUDES=-lpcap
 OBJFOLDER=obj
 OBJ=$(OBJFOLDER)/stp_sniffer.c

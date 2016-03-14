@@ -1,0 +1,10 @@
+sniffer starting
+getting interfaces
+found devices:
+enp3s0-sniffer starting
+getting interfaces
+found devices:
+enp3s0-sniffer starting
+getting interfaces
+found devices:
+enp3s0-

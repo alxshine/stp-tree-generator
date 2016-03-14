@@ -6,7 +6,7 @@ class Mac{
         unsigned char address[6];
 
     public:
-        Mac(const char * const orig);
+        Mac(const u_char * const orig);
         Mac(const Mac& other);
         Mac& operator=(const Mac& rhs);
         friend std::ostream& operator<<(std::ostream &out, const Mac& rhs);

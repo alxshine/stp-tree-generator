@@ -4,7 +4,7 @@ Mac::Mac(const Mac& other){
     std::memcpy(address, other.address, 6);
 }
 
-Mac::Mac(const char * const orig){
+Mac::Mac(const u_char * const orig){
     std::memcpy(address, orig, 6);
 }
 
