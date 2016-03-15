@@ -85,6 +85,7 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     unsigned short rPriority;
     //actual priority is 4 bits
     rPriority = *((short*)payload);
+    payload+=2;
     psize-=2;
     //next 6 bytes is the root bridge id
     Mac rootMac(payload);
@@ -99,6 +100,7 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     ////bridge priority is the next 2 bytes
     unsigned short bPriority;
     bPriority = *((short*)payload);
+    payload+=2;
     psize-=2;
     //next 6 bytes is the bridge mac address
     Mac bridgeMac(payload);
@@ -111,7 +113,7 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
 
     //next 2 bytes is message age
     short messageAge;
-    memcpy(&messageAge, payload, 2);
+    messageAge = *((short*)payload);
     payload+=2;
     psize-=2;
 

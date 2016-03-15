@@ -1,6 +1,8 @@
 #pragma once
 #include <cstring>
-#include<iostream>
+#include <iostream>
+#include <iomanip>
+
 class Mac{
     private:
         unsigned char address[6];

@@ -14,9 +14,8 @@ Mac& Mac::operator=(const Mac& rhs){
 }
 
 std::ostream& operator<<(std::ostream &out, const Mac& rhs){
-    out << std::hex;
     for(int i=0; i<5; i++)
-        out << rhs.address[i] << ":";
-    return out << rhs.address[5];
+        out << std::hex << std::setfill('0') << std::setw(2) <<  (int) rhs.address[i] << ":";
+    return out << std::hex << std::setfill('0') << std::setw(2) << (int) rhs.address[5];
 }
 
