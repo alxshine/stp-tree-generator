@@ -12,4 +12,5 @@ $(OBJFOLDER)/%.o: $(SOURCEFOLDER)/%.cpp
 	$(CC) -c $< $(CFLAGS) -o $@
 
 all: $(OBJFOLDER)/main.o $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/Sniffer.o
+	[ -d ./bin ] || mkdir $(BINFOLDER)
 	$(CC) $(CFLAGS) $^ $(INCLUDES) -o $(BINFOLDER)/stpGen
