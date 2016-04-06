@@ -12,5 +12,9 @@ class Bridge{
     public:
         Bridge(const Mac& m, const short p, const short mA);
         Bridge(const Bridge& other);
+        const Mac& getMac();
+        const short getPriority();
+        const short getMessageAge();
+
         friend std::ostream& operator<<(std::ostream &out, const Bridge& rhs);
 };

@@ -9,3 +9,18 @@ std::ostream& operator<<(std::ostream &out, const Bridge& rhs){
     return out << rhs.priority << " / " << rhs.mac << ", Message age: " << rhs.messageAge;
 }
 
+const Mac& Bridge::getMac()
+{
+    return mac;
+}
+
+const short Bridge::getMessageAge()
+{
+    return messageAge;
+}
+
+const short Bridge::getPriority()
+{
+    return priority;
+}
+
