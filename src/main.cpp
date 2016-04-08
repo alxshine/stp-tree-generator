@@ -5,6 +5,6 @@
 using namespace std;
 
 int main(int argc, char **args){
-    Sniffer s;
+    Sniffer& s = Sniffer::getInstance();
     s.start();
 }
