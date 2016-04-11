@@ -13,5 +13,8 @@ class SpanningTree{
         SpanningTree(const Bridge& r, std::vector<SpanningTree> c);
         ~SpanningTree();
         void addChild(SpanningTree& child);
-        friend SpanningTree operator+(SpanningTree& lhs, SpanningTree& rhs);
+        
+        friend SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs);
+        friend int operator==(const SpanningTree& lhs, const SpanningTree& rhs);
+        friend int operator!=(const SpanningTree& lhs, const SpanningTree& rhs);
 };
