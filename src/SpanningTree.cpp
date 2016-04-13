@@ -26,14 +26,14 @@ SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){
             }
 
             //if rightChild is contained in left (additions "downstream"), add it there
-            if(leftChild.contains(rightChild)){
+            if(leftChild.containsRoot(rightChild)){
                 SpanningTree combined = SpanningTree(leftChild);
                 leftChild.addSubTree(rightChild);
                 ret.addChild(combined);
             }
             
             //vice versa
-            if(rightChild.contains(leftChild)){
+            if(rightChild.containsRoot(leftChild)){
                 SpanningTree combined = SpanningTree(rightChild);
                 leftChild.addSubTree(leftChild);
                 ret.addChild(combined);
@@ -70,7 +70,7 @@ SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){
 }
 
 void SpanningTree::addChild(const SpanningTree& child){
-    children.push_back(child);
+    children.push_back(SpanningTree(child));
 }
 
 int operator==(const SpanningTree& lhs, const SpanningTree& rhs){
@@ -101,4 +101,61 @@ int operator==(const SpanningTree& lhs, const SpanningTree& rhs){
 
 int operator!=(const SpanningTree& lhs, const SpanningTree& rhs){
     return !(lhs==rhs);
+}
+
+SpanningTree::SpanningTree(const SpanningTree& other):root(other.root), children(other.children)
+{
+}
+
+int SpanningTree::addSubTree(const SpanningTree& other)
+{
+    if(!containsRoot(other))
+        return 0;
+
+    if(root == other.root){
+        //combine all similar children
+        for(SpanningTree leftChild : children){
+            for(SpanningTree rightChild : other.children){
+                if(leftChild.root == rightChild.root){
+                    leftChild.addSubTree(rightChild);
+                    break;
+                }
+            }
+        }
+
+        //add all missing right children to the tree
+        for(SpanningTree rightChild : other.children){
+            int contained = 0;
+            for(SpanningTree leftChild : children){
+                if(leftChild.root == rightChild.root){
+                    contained = 1;
+                    break;
+                }
+            }
+            if(!contained)
+                addChild(other);
+        }
+    }
+
+    return 1;
+}
+
+int SpanningTree::containsRoot(const SpanningTree& tree) const
+{
+    if(root==tree.root)
+        return 1;
+
+    for(SpanningTree st : children)
+        if(st.containsRoot(tree))
+                return 1;
+
+    return 0;
+}
+
+std::ostream& operator<<(std::ostream &out, const SpanningTree& rhs){
+    out << rhs.root << std::endl;
+    for(SpanningTree child : rhs.children)
+        out << "-" << child;
+
+    return out;
 }

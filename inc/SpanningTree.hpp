@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <cassert>
+#include <iostream>
 
 #include "Bridge.hpp"
 
@@ -16,9 +17,10 @@ class SpanningTree{
         ~SpanningTree();
         void addChild(const SpanningTree& child);
         int addSubTree(const SpanningTree& other);
-        int contains(const SpanningTree& tree) const;
+        int containsRoot(const SpanningTree& tree) const;
         
         friend SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs);
         friend int operator==(const SpanningTree& lhs, const SpanningTree& rhs);
         friend int operator!=(const SpanningTree& lhs, const SpanningTree& rhs);
+        friend std::ostream& operator<<(std::ostream &out, const SpanningTree& rhs);
 };
