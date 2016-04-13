@@ -19,12 +19,14 @@ std::ostream& operator<<(std::ostream &out, const Mac& rhs){
     return out << std::hex << std::setfill('0') << std::setw(2) << (int) rhs.address[5];
 }
 
-std::string Mac::getAddressString () const
-{
+std::string Mac::getAddressString () const{
     return std::string((const char*)address, 6);
 }
 
-int operator==(const Mac& lhs, const Mac& rhs)
-{
+int operator==(const Mac& lhs, const Mac& rhs){
     return lhs.getAddressString() == rhs.getAddressString();
+}
+
+int operator!=(const Mac& lhs, const Mac& rhs){
+    return lhs.getAddressString() != rhs.getAddressString();
 }

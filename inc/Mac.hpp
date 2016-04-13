@@ -15,4 +15,5 @@ class Mac{
         
         friend std::ostream& operator<<(std::ostream &out, const Mac& rhs);
         friend int operator==(const Mac& lhs, const Mac& rhs);       
+        friend int operator!=(const Mac& lhs, const Mac& rhs);       
 };
