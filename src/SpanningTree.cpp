@@ -176,3 +176,9 @@ std::ostream& operator<<(std::ostream &out, const SpanningTree& rhs){
 
     return out;
 }
+
+SpanningTree SpanningTree::operator=(const SpanningTree& other){
+    root = Bridge(other.root);
+    children = other.children;
+    return *this;
+}

@@ -23,4 +23,5 @@ class SpanningTree{
         friend int operator==(const SpanningTree& lhs, const SpanningTree& rhs);
         friend int operator!=(const SpanningTree& lhs, const SpanningTree& rhs);
         friend std::ostream& operator<<(std::ostream &out, const SpanningTree& rhs);
+        SpanningTree operator=(const SpanningTree& other);
 };

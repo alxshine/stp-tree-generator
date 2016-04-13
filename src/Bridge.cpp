@@ -31,3 +31,9 @@ int operator==(const Bridge& lhs, const Bridge& rhs){
 int operator!=(const Bridge& lhs, const Bridge& rhs){
     return lhs.priority != rhs.priority || lhs.messageAge != rhs.messageAge || lhs.mac != rhs.mac;
 }
+
+Bridge Bridge::operator=(const Bridge& other){
+    mac = other.mac;
+    messageAge = other.messageAge;
+    priority = other.priority;
+}

@@ -6,6 +6,7 @@ std::ofstream Sniffer::output;
 Sniffer* Sniffer::reference;
 
 Sniffer::Sniffer(){
+    bridges = std::vector<Bridge>();
     Sniffer::output.open(filename, std::ios::app);
     if(!Sniffer::output.is_open()){
         std::cout << "could not open file";
@@ -121,8 +122,30 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     Bridge root(rootMac, rPriority, 0);
     Bridge firsthop(bridgeMac, bPriority, messageAge);
 
-    Sniffer::output << "Root: " << root << std::endl;
-    Sniffer::output << "Next hop: " << firsthop << std::endl;
+    //add new nodes to list if they are not contained
+    int rootContained = 0, hopContained = 0;
+    for(Bridge b : bridges){
+        if(b == root)
+            rootContained = 1;
+        if(b == firsthop)
+            hopContained = 1;
+    }
+    if(!rootContained)
+        bridges.push_back(Bridge(root));
+    if(!hopContained)
+        bridges.push_back(Bridge(root));
+}
+
+SpanningTree Sniffer::getTree(){
+    std::sort(bridges.begin(), bridges.end(), [](Bridge a, Bridge b) {return a.getMessageAge() < b.getMessageAge();});
+    SpanningTree ret(bridges[0]);
+    for(auto it = bridges.end(); it != bridges.begin(); it--){
+        SpanningTree toAdd(*it);
+        if(it!=bridges.end())
+            toAdd.addChild(ret);
+        ret = toAdd;
+    }
+    return ret;
 }
 
 Sniffer& Sniffer::getInstance()
