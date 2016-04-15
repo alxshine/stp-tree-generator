@@ -4,6 +4,7 @@ const int Sniffer::STP_PROTOCOL = 9728;
 const char * const Sniffer::filename = "log.txt";
 std::ofstream Sniffer::output;
 Sniffer* Sniffer::reference;
+std::vector<Bridge> Sniffer::bridges;
 
 Sniffer::Sniffer(){
     bridges = std::vector<Bridge>();

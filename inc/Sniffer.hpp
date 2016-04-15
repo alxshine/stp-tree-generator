@@ -25,10 +25,10 @@ class Sniffer{
         static Sniffer * reference;
         static std::vector<Bridge> bridges;
         Sniffer();
-        ~Sniffer();
 
     public:
         static Sniffer& getInstance();
         void start();
         SpanningTree getTree();
+        ~Sniffer();
 };
