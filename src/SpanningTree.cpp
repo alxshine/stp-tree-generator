@@ -1,5 +1,7 @@
 #include "../inc/SpanningTree.hpp"
 
+SpanningTree::SpanningTree(){}
+
 SpanningTree::SpanningTree(const Bridge& r):root(r){
 }
 
@@ -176,6 +178,16 @@ int SpanningTree::containsRoot(const SpanningTree& tree) const
                 return 1;
 
     return 0;
+}
+
+SpanningTree SpanningTree::fromJson(const nlohmann::json buildFrom){
+    SpanningTree ret;
+    ret.root = Bridge::fromJson(buildFrom["root"]);
+    nlohmann::json childrenJson = buildFrom["children"];
+    for(nlohmann::json cj : childrenJson)
+        ret.children.push_back(SpanningTree::fromJson(cj));
+
+    return ret;
 }
 
 std::ostream& operator<<(std::ostream &out, const SpanningTree& rhs){

@@ -15,5 +15,8 @@ all: $(OBJFOLDER)/main.o $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/S
 	[ -d $(BINFOLDER) ] || mkdir $(BINFOLDER)
 	$(CC) $(CFLAGS) $^ $(INCLUDES) -o $(BINFOLDER)/stpGen
 
+json: $(OBJFOLDER)/json.o $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/SpanningTree.o
+	$(CC) $(CFLAGS) $^ -o $(BINFOLDER)/json
+
 clean:
 	rm -r $(BINFOLDER) $(OBJFOLDER)

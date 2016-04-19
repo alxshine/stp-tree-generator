@@ -1,15 +1,17 @@
 #include "../inc/Mac.hpp"
 
-Mac::Mac(const Mac& other){
-    std::memcpy(address, other.address, 6);
+Mac::Mac():address("AABBAA"){ }
+
+Mac::Mac(const Mac& other):address(other.address){
 }
 
-Mac::Mac(const u_char * const orig){
-    std::memcpy(address, orig, 6);
+Mac::Mac(const u_char * const orig):address((const char*) orig, 6){
 }
+
+Mac::Mac(const std::string a):address(a){ }
 
 Mac& Mac::operator=(const Mac& rhs){
-    std::memcpy(address, rhs.address, 6);
+    address = (rhs.address);
     return *this;
 }
 
@@ -19,20 +21,26 @@ std::ostream& operator<<(std::ostream &out, const Mac& rhs){
     return out << std::hex << std::setfill('0') << std::setw(2) << (int) rhs.address[5];
 }
 
-std::string Mac::getAddressString () const{
-    return std::string((const char*)address, 6);
+std::string Mac::getAddress () const{
+    return address;
 }
 
 nlohmann::json Mac::toJson() const{
     nlohmann::json ret;
-    ret["address"] = std::string((const char*)address, 6);
+    ret["address"] = address;
     return ret;
 }
 
 int operator==(const Mac& lhs, const Mac& rhs){
-    return lhs.getAddressString() == rhs.getAddressString();
+    return lhs.address == rhs.address;
 }
 
 int operator!=(const Mac& lhs, const Mac& rhs){
-    return lhs.getAddressString() != rhs.getAddressString();
+    return lhs.address != rhs.address;
+}
+
+Mac Mac::fromJson(const nlohmann::json buildFrom){
+    Mac ret;
+    ret.address = buildFrom["address"];
+    return ret;
 }

@@ -1,5 +1,8 @@
 #include "../inc/Bridge.hpp"
 
+Bridge::Bridge(){
+}
+
 Bridge::Bridge(const Bridge& other):mac(other.mac), priority(other.priority), messageAge(other.messageAge)
 { }
 
@@ -29,6 +32,14 @@ nlohmann::json Bridge::toJson() const{
     ret["mac"] = mac.toJson();
     ret["priority"] = priority;
     ret["messageAge"] = messageAge;
+    return ret;
+}
+
+Bridge Bridge::fromJson(const nlohmann::json buildFrom){
+    Bridge ret;
+    ret.mac = Mac::fromJson(buildFrom["mac"]);
+    ret.priority = buildFrom["priority"];
+    ret.messageAge = buildFrom["messageAge"];
     return ret;
 }
 
