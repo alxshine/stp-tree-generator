@@ -155,6 +155,17 @@ int SpanningTree::addSubTree(const SpanningTree& other)
     return 1;
 }
 
+nlohmann::json SpanningTree::toJson() const {
+    nlohmann::json ret, c;
+    ret["root"] = root.toJson();
+
+    for(SpanningTree tree : children)
+        c.push_back(tree.toJson());
+
+    ret["children"] = c;
+    return ret;
+}
+
 int SpanningTree::containsRoot(const SpanningTree& tree) const
 {
     if(root==tree.root)

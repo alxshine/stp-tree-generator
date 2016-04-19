@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "Mac.hpp"
+#include "../inc/json.hpp"
 
 class Bridge{
     private:
@@ -15,6 +16,7 @@ class Bridge{
         const Mac& getMac() const;
         const short getPriority() const ;
         const short getMessageAge() const;
+        nlohmann::json toJson() const;
 
         friend std::ostream& operator<<(std::ostream &out, const Bridge& rhs);
         friend int operator==(const Bridge& lhs, const Bridge& rhs);

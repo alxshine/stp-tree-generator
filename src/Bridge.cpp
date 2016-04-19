@@ -24,6 +24,14 @@ const short Bridge::getPriority() const
     return priority;
 }
 
+nlohmann::json Bridge::toJson() const{
+    nlohmann::json ret;
+    ret["mac"] = mac.toJson();
+    ret["priority"] = priority;
+    ret["messageAge"] = messageAge;
+    return ret;
+}
+
 int operator==(const Bridge& lhs, const Bridge& rhs){
     return lhs.priority == rhs.priority && lhs.messageAge == rhs.messageAge && lhs.mac == rhs.mac;
 }

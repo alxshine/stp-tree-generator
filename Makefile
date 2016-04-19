@@ -8,8 +8,12 @@ SOURCEFOLDER=src
 BINFOLDER=bin
 
 $(OBJFOLDER)/%.o: $(SOURCEFOLDER)/%.cpp
+	[ -d ./$(OBJFOLDER) ] || mkdir $(OBJFOLDER)
 	$(CC) -c $< $(CFLAGS) -o $@
 
 all: $(OBJFOLDER)/main.o $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/Sniffer.o $(OBJFOLDER)/SpanningTree.o
-	[ -d ./bin ] || mkdir $(BINFOLDER)
+	[ -d $(BINFOLDER) ] || mkdir $(BINFOLDER)
 	$(CC) $(CFLAGS) $^ $(INCLUDES) -o $(BINFOLDER)/stpGen
+
+clean:
+	rm -r $(BINFOLDER) $(OBJFOLDER)

@@ -23,6 +23,12 @@ std::string Mac::getAddressString () const{
     return std::string((const char*)address, 6);
 }
 
+nlohmann::json Mac::toJson() const{
+    nlohmann::json ret;
+    ret["address"] = std::string((const char*)address, 6);
+    return ret;
+}
+
 int operator==(const Mac& lhs, const Mac& rhs){
     return lhs.getAddressString() == rhs.getAddressString();
 }

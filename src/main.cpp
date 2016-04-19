@@ -9,5 +9,5 @@ int main(int argc, char **args){
     Sniffer s = Sniffer::getInstance();
     s.start();
     this_thread::sleep_for(chrono::seconds(3));
-    cout << s.getTree() << endl;
+cout << s.getTree() << endl;
 }
