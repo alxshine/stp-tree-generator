@@ -8,13 +8,14 @@ SpanningTree::SpanningTree(const Bridge& r):root(r){
 SpanningTree::SpanningTree(const Bridge& r, std::vector<SpanningTree> c): root(r), children(c){
 }
 
+SpanningTree::SpanningTree(const SpanningTree& other):root(other.root), children(other.children){
+}
+
 SpanningTree::~SpanningTree(){
 }
 
 SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){
-    std::cout << "operator+ called" << std::endl;
     if(lhs == rhs){
-        std::cout << "trees are equal" << std::endl;
         return SpanningTree(lhs);
     }
 
@@ -118,10 +119,6 @@ int operator==(const SpanningTree& lhs, const SpanningTree& rhs){
 
 int operator!=(const SpanningTree& lhs, const SpanningTree& rhs){
     return !(lhs==rhs);
-}
-
-SpanningTree::SpanningTree(const SpanningTree& other):root(other.root), children(other.children)
-{
 }
 
 int SpanningTree::addSubTree(const SpanningTree& other)

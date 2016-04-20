@@ -2,7 +2,8 @@
 
 Mac::Mac():address("AABBAA"){ }
 
-Mac::Mac(const Mac& other):address(other.address){
+Mac::Mac(const Mac& other){
+    address = other.address;
 }
 
 Mac::Mac(const u_char * const orig):address((const char*) orig, 6){

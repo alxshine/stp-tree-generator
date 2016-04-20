@@ -11,12 +11,15 @@ $(OBJFOLDER)/%.o: $(SOURCEFOLDER)/%.cpp
 	[ -d ./$(OBJFOLDER) ] || mkdir $(OBJFOLDER)
 	$(CC) -c $< $(CFLAGS) -o $@
 
-all: $(OBJFOLDER)/main.o $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/Sniffer.o $(OBJFOLDER)/SpanningTree.o
-	[ -d $(BINFOLDER) ] || mkdir $(BINFOLDER)
-	$(CC) $(CFLAGS) $^ $(INCLUDES) -o $(BINFOLDER)/stpGen
+all:	server client
 
-json: $(OBJFOLDER)/json.o $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/SpanningTree.o
-	$(CC) $(CFLAGS) $^ -o $(BINFOLDER)/json
+server: $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/SpanningTree.o $(OBJFOLDER)/Server.o $(OBJFOLDER)/serverMain.o
+	[ -d $(BINFOLDER) ] || mkdir $(BINFOLDER)
+	$(CC) $(CFLAGS) $^ -o $(BINFOLDER)/server
+
+client: $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/Sniffer.o $(OBJFOLDER)/SpanningTree.o $(OBJFOLDER)/Client.o $(OBJFOLDER)/clientMain.o
+	[ -d $(BINFOLDER) ] || mkdir $(BINFOLDER)
+	$(CC) $(CFLAGS) $^ $(INCLUDES) -o $(BINFOLDER)/client
 
 clean:
 	rm -r $(BINFOLDER) $(OBJFOLDER)

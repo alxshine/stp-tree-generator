@@ -1,10 +1,11 @@
 #include "../inc/Sniffer.hpp"
 
 const int Sniffer::STP_PROTOCOL = 9728;
-const char * const Sniffer::filename = "log.txt";
+const char * const Sniffer::filename = "sniffer.log";
 std::ofstream Sniffer::output;
 Sniffer* Sniffer::reference;
 std::vector<Bridge> Sniffer::bridges;
+Client Sniffer::client;
 
 Sniffer::Sniffer(){
     bridges = std::vector<Bridge>();
@@ -50,10 +51,10 @@ void Sniffer::start(){
     }
 
     Sniffer::output << "opening device " << device->name << " for sniffing" << std::endl;
-    Sniffer::output.flush();
     pcap_t *capture_handle = pcap_open_live(device->name, 65536, 1, 0, err);
     if(!capture_handle){
         Sniffer::output << "could not start capture" << std::endl;
+        Sniffer::output.flush();
         exit(-1);
     }
 
@@ -135,18 +136,29 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
         bridges.push_back(Bridge(root));
     if(!hopContained)
         bridges.push_back(Bridge(root));
+
+
+    SpanningTree currentTree = getTree();
+    output << "currentTree: " << std::endl << currentTree.toJson() << std::endl;
+    try{
+        client.send(getTree().toJson().dump());
+    }catch(const char * msg){
+        output << msg << std::endl;
+    }
 }
 
 SpanningTree Sniffer::getTree(){
-    std::sort(bridges.begin(), bridges.end(), [](Bridge a, Bridge b) {return a.getMessageAge() < b.getMessageAge();});
-    SpanningTree ret(bridges[0]);
-    for(auto it = bridges.end(); it != bridges.begin(); it--){
-        SpanningTree toAdd(*it);
-        if(it!=bridges.end())
-            toAdd.addChild(ret);
-        ret = toAdd;
-    }
-    return ret;
+    std::sort(bridges.begin(), bridges.end(), [](Bridge a, Bridge b) {return a.getMessageAge() > b.getMessageAge();});
+    return treeHelper(bridges.begin(), bridges.end());
+}
+
+SpanningTree Sniffer::treeHelper(std::vector<Bridge>::iterator current, std::vector<Bridge>::iterator end){
+    if(current == end-1)
+        return SpanningTree(*current);
+
+    SpanningTree newTree(*current);
+    newTree.addChild(treeHelper(++current, end));
+    return newTree;
 }
 
 Sniffer& Sniffer::getInstance()

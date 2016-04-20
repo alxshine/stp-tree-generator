@@ -8,13 +8,15 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <iterator>
 
 #include <pcap.h>
 #include <netinet/if_ether.h>
 
-#include "Bridge.hpp"
-#include "Mac.hpp"
-#include "SpanningTree.hpp"
+#include "../inc/Bridge.hpp"
+#include "../inc/Mac.hpp"
+#include "../inc/SpanningTree.hpp"
+#include "../inc/Client.hpp"
 
 class Sniffer{
     private:
@@ -24,11 +26,13 @@ class Sniffer{
         static void process_packet(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes);
         static Sniffer * reference;
         static std::vector<Bridge> bridges;
+        static Client client;
         Sniffer();
+        static SpanningTree getTree();
+        static SpanningTree treeHelper(std::vector<Bridge>::iterator current, std::vector<Bridge>::iterator begin);
 
     public:
         static Sniffer& getInstance();
         void start();
-        SpanningTree getTree();
         ~Sniffer();
 };
