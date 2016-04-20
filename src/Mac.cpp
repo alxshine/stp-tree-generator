@@ -6,7 +6,10 @@ Mac::Mac(const Mac& other){
     address = other.address;
 }
 
-Mac::Mac(const u_char * const orig):address((const char*) orig, 6){
+Mac::Mac(const u_char * const orig){
+    char buffer[17];
+    sprintf(buffer,"%.2X:%.2X:%.2X:%.2X:%.2X:%.2X", orig[0], orig[1], orig[2], orig[3], orig[4], orig[5]);
+    address = std::string(buffer, 17);
 }
 
 Mac::Mac(const std::string a):address(a){ }

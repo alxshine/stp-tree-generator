@@ -40,7 +40,7 @@ void Server::run(){
         int n = read(newsockfd,buffer,255);
         if(n<0)
             throw "error on read";
-
+        
         auto receivedJson = nlohmann::json::parse(buffer);
         std::cout << receivedJson << std::endl;
         SpanningTree newTree = SpanningTree::fromJson(receivedJson);

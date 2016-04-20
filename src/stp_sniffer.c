@@ -39,6 +39,7 @@ void process_packet(u_char *user, const struct pcap_pkthdr *header, const u_char
     //print ethernet header
     LOG("\nETHERNET HEADER");
     LOG("\t|-Destination Address:\t%.2X:%.2X:%.2X:%.2X:%.2X:%.2X", ethh->h_dest[0], ethh->h_dest[1], ethh->h_dest[2], ethh->h_dest[3], ethh->h_dest[4], ethh->h_dest[5]);
+    LOG("Destination String: %c%c%c%c%c%c", ethh->h_dest[0], ethh->h_dest[1], ethh->h_dest[2], ethh->h_dest[3], ethh->h_dest[4], ethh->h_dest[5]);
     LOG("\t|-Source Address:\t%.2X:%.2X:%.2X:%.2X:%.2X:%.2X", ethh->h_source[0], ethh->h_source[1], ethh->h_source[2], ethh->h_source[3], ethh->h_source[4], ethh->h_source[5]);
     LOG("\t|-Protocol:\t\t%u", ethh->h_proto);
 

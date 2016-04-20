@@ -19,8 +19,9 @@ void Client::send(std::string message){
     if(sockfd < 0)
         throw "could not create socket";
 
-    char buffer[message.length() +1];
+    char buffer[message.length()+1];
     message.copy(buffer, message.length(), 0);
+    buffer[message.length()] = 0;
 
     if(connect(sockfd, (struct sockaddr *) &serverAddress, sizeof(serverAddress)) < 0)
         throw "could not connect to server";

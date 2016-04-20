@@ -1,6 +1,5 @@
 #include "../inc/Sniffer.hpp"
 
-const int Sniffer::STP_PROTOCOL = 9728;
 const char * const Sniffer::filename = "sniffer.log";
 std::ofstream Sniffer::output;
 Sniffer* Sniffer::reference;
@@ -64,7 +63,9 @@ void Sniffer::start(){
 void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){
     struct ethhdr *ethh = (struct ethhdr*) bytes;
     
-    if(ethh->h_proto != Sniffer::STP_PROTOCOL)
+    char buffer[17];
+    sprintf(buffer,"%.2X:%.2X:%.2X:%.2X:%.2X:%.2X", ethh->h_dest[0], ethh->h_dest[1], ethh->h_dest[2], ethh->h_dest[3], ethh->h_dest[4], ethh->h_dest[5]);
+    if(std::string(buffer, 17) != "01:80:C2:00:00:00")
         return;
 
     //handle payload
@@ -139,9 +140,10 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
 
 
     SpanningTree currentTree = getTree();
-    output << "currentTree: " << std::endl << currentTree.toJson() << std::endl;
+    std::string message = currentTree.toJson().dump();
+    output << "currentTree: " << std::endl << message << std::endl;
     try{
-        client.send(getTree().toJson().dump());
+        client.send(message);
     }catch(const char * msg){
         output << msg << std::endl;
     }

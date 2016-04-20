@@ -21,5 +21,10 @@ client: $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/Sniffer.o $(OBJFOL
 	[ -d $(BINFOLDER) ] || mkdir $(BINFOLDER)
 	$(CC) $(CFLAGS) $^ $(INCLUDES) -o $(BINFOLDER)/client
 
+sniffer: $(SOURCEFOLDER)/stp_sniffer.c
+	[ -d $(BINFOLDER) ] || mkdir $(BINFOLDER)
+	$(CC) $(CFLAGS) $^ $(INCLUDES) -o $(BINFOLDER)/stp_sniffer
+
 clean:
 	rm -r $(BINFOLDER) $(OBJFOLDER)
+	rm -f log.txt sniffer.log server.log
