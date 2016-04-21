@@ -39,7 +39,6 @@ void Server::run(){
             throw "error on read";
         
         auto receivedJson = nlohmann::json::parse(buffer);
-        std::cout << receivedJson << std::endl;
         SpanningTree newTree = SpanningTree::fromJson(receivedJson);
   
         int contained = 0;
