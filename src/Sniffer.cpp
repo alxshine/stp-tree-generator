@@ -133,10 +133,15 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
         if(b == firsthop)
             hopContained = 1;
     }
-    if(!rootContained)
-        bridges.push_back(Bridge(root));
-    if(!hopContained)
-        bridges.push_back(Bridge(root));
+    if(root != root){
+        if(!rootContained)
+            bridges.push_back(Bridge(root));
+        if(!hopContained)
+            bridges.push_back(Bridge(root));
+    }else{
+        if(!rootContained)
+            bridges.push_back(Bridge(root));
+    }
 
 
     SpanningTree currentTree = getTree();
