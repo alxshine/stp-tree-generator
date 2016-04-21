@@ -12,7 +12,7 @@ class Mac{
     public:
         Mac();
         Mac(const u_char * const orig);
-        Mac(const std::__cxx11::string a);
+        Mac(const std::string a);
         Mac(const Mac& other);
         Mac& operator=(const Mac& rhs);
         std::string getAddress() const;
