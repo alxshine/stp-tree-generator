@@ -58,8 +58,9 @@ void Server::run(){
             currentTrees.push_back(newTree);
 
         output << "new data received, trees are now: " << std::endl;
+        Json::FastWriter writer;
         for(SpanningTree tree : currentTrees)
-            output << tree.toJson() << std::endl;
+            output << writer.write(tree.toJson()) << std::endl;
 
         close(newsockfd);
     }

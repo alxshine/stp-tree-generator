@@ -1,10 +1,9 @@
 sniffer starting
 getting interfaces
 found devices:
-wlp3s0
+enp0s25
 any - Pseudo-device that captures on all interfaces
 lo
-enp0s25
 bluetooth0 - Bluetooth adapter number 0
 bluetooth-monitor - Bluetooth Linux Monitor
 nflog - Linux netfilter log (NFLOG) interface
@@ -13,23 +12,19 @@ usbmon1 - USB bus number 1
 usbmon2 - USB bus number 2
 usbmon3 - USB bus number 3
 selecting first named device
-opening device wlp3s0 for sniffing
-sniffer starting
-getting interfaces
-found devices:
-wlp3s0
-any - Pseudo-device that captures on all interfaces
-lo
-enp0s25
-bluetooth0 - Bluetooth adapter number 0
-bluetooth-monitor - Bluetooth Linux Monitor
-nflog - Linux netfilter log (NFLOG) interface
-nfqueue - Linux netfilter queue (NFQUEUE) interface
-usbmon1 - USB bus number 1
-usbmon2 - USB bus number 2
-usbmon3 - USB bus number 3
-selecting first named device
-opening device wlp3s0 for sniffing
+opening device enp0s25 for sniffing
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
 sniffer starting
 getting interfaces
 found devices:
@@ -54,6 +49,139 @@ currentTree:
 currentTree: 
 {"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
 
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+sniffer starting
+getting interfaces
+found devices:
+enp0s25
+any - Pseudo-device that captures on all interfaces
+lo
+bluetooth0 - Bluetooth adapter number 0
+bluetooth-monitor - Bluetooth Linux Monitor
+nflog - Linux netfilter log (NFLOG) interface
+nfqueue - Linux netfilter queue (NFQUEUE) interface
+usbmon1 - USB bus number 1
+usbmon2 - USB bus number 2
+usbmon3 - USB bus number 3
+selecting first named device
+opening device enp0s25 for sniffing
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
+currentTree: 
+{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
+
+could not connect to server
 currentTree: 
 {"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
 
@@ -66,6 +194,4 @@ currentTree:
 currentTree: 
 {"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
 
-currentTree: 
-{"children":[{"children":null,"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}],"root":{"mac":{"address":"F4:F2:6D:7D:BF:BD"},"messageAge":0,"priority":128}}
-
+could not connect to server
