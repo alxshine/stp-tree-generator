@@ -20,14 +20,11 @@ Server::Server(){
     output.open(filename, std::ios::app);
     if(!output.is_open())
         throw "could not open output file";
-
-    currentTree = NULL;
 }
 
 Server::~Server(){
     close(sockfd);
     output.close();
-    delete[] currentTree;
 }
 
 void Server::run(){
@@ -44,13 +41,22 @@ void Server::run(){
         auto receivedJson = nlohmann::json::parse(buffer);
         std::cout << receivedJson << std::endl;
         SpanningTree newTree = SpanningTree::fromJson(receivedJson);
-        
-        if(!currentTree)
-            currentTree = new SpanningTree(newTree);
-        else
-            *currentTree = *currentTree + newTree;
-        output << "new data received,tree is now: " << std::endl;
-        output << currentTree->toJson() << std::endl;
+  
+        int contained = 0;
+        for(auto current = currentTrees.begin(); current != currentTrees.end(); ++current){
+            if(current->getRoot() == newTree.getRoot()){
+                *current = *current + newTree;
+                contained = 1;
+                break;
+            }
+        }
+
+        if(!contained)
+            currentTrees.push_back(newTree);
+
+        output << "new data received, trees are now: " << std::endl;
+        for(SpanningTree tree : currentTrees)
+            output << tree.toJson() << std::endl;
 
         close(newsockfd);
     }

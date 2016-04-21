@@ -21,6 +21,7 @@ class SpanningTree{
         int addSubTree(const SpanningTree& other);
         int containsRoot(const SpanningTree& tree) const;
         nlohmann::json toJson() const;
+        Bridge getRoot() const;
 
         static SpanningTree fromJson(const nlohmann::json buildFrom);
         

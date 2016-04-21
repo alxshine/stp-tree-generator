@@ -165,8 +165,7 @@ nlohmann::json SpanningTree::toJson() const {
     return ret;
 }
 
-int SpanningTree::containsRoot(const SpanningTree& tree) const
-{
+int SpanningTree::containsRoot(const SpanningTree& tree) const{
     if(root==tree.root)
         return 1;
 
@@ -175,6 +174,10 @@ int SpanningTree::containsRoot(const SpanningTree& tree) const
                 return 1;
 
     return 0;
+}
+
+Bridge SpanningTree::getRoot() const{
+    return Bridge(root);
 }
 
 SpanningTree SpanningTree::fromJson(const nlohmann::json buildFrom){

@@ -1,6 +1,7 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 #include <stdio.h>
 #include <unistd.h>
@@ -20,7 +21,7 @@ class Server{
 
         std::ofstream output;
         const char * const filename = "server.log";
-        SpanningTree *currentTree;
+        std::vector<SpanningTree> currentTrees;
 
     public:
         Server();
