@@ -154,12 +154,12 @@ int SpanningTree::addSubTree(const SpanningTree& other)
     return 1;
 }
 
-nlohmann::json SpanningTree::toJson() const {
-    nlohmann::json ret, c;
+Json::Value SpanningTree::toJson() const {
+    Json::Value ret, c;
     ret["root"] = root.toJson();
 
     for(SpanningTree tree : children)
-        c.push_back(tree.toJson());
+        c.append(tree.toJson());
 
     ret["children"] = c;
     return ret;
@@ -180,11 +180,11 @@ Bridge SpanningTree::getRoot() const{
     return Bridge(root);
 }
 
-SpanningTree SpanningTree::fromJson(const nlohmann::json buildFrom){
+SpanningTree SpanningTree::fromJson(const Json::Value buildFrom){
     SpanningTree ret;
     ret.root = Bridge::fromJson(buildFrom["root"]);
-    nlohmann::json childrenJson = buildFrom["children"];
-    for(nlohmann::json cj : childrenJson)
+    auto childrenJson = buildFrom["children"];
+    for(auto cj : childrenJson)
         ret.children.push_back(SpanningTree::fromJson(cj));
 
     return ret;

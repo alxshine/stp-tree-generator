@@ -1,7 +1,7 @@
 #include "../inc/Client.hpp"
 
 Client::Client(){
-    server = gethostbyname("gl1tch.mooo.com");
+    server = gethostbyname("localhost");
     if(!server)
         throw "could not resolve hostname";
 

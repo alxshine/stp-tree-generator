@@ -27,19 +27,19 @@ const short Bridge::getPriority() const
     return priority;
 }
 
-nlohmann::json Bridge::toJson() const{
-    nlohmann::json ret;
+Json::Value Bridge::toJson() const{
+    Json::Value ret;
     ret["mac"] = mac.toJson();
     ret["priority"] = priority;
     ret["messageAge"] = messageAge;
     return ret;
 }
 
-Bridge Bridge::fromJson(const nlohmann::json buildFrom){
+Bridge Bridge::fromJson(const Json::Value buildFrom){
     Bridge ret;
     ret.mac = Mac::fromJson(buildFrom["mac"]);
-    ret.priority = buildFrom["priority"];
-    ret.messageAge = buildFrom["messageAge"];
+    ret.priority = buildFrom["priority"].asInt();
+    ret.messageAge = buildFrom["messageAge"].asInt();
     return ret;
 }
 

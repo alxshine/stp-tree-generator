@@ -3,7 +3,8 @@
 #include <iostream>
 #include <iomanip>
 
-#include "../inc/json.hpp"
+#include "../inc/json/json.h"
+#include "../inc/json/json-forwards.h"
 
 class Mac{
     private:
@@ -16,9 +17,9 @@ class Mac{
         Mac(const Mac& other);
         Mac& operator=(const Mac& rhs);
         std::string getAddress() const;
-        nlohmann::json toJson() const;
+        Json::Value toJson() const;
 
-        static Mac fromJson(const nlohmann::json buildFrom);
+        static Mac fromJson(const Json::Value buildFrom);
         
         friend std::ostream& operator<<(std::ostream &out, const Mac& rhs);
         friend int operator==(const Mac& lhs, const Mac& rhs);       

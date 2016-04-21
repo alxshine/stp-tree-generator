@@ -20,6 +20,8 @@ Server::Server(){
     output.open(filename, std::ios::app);
     if(!output.is_open())
         throw "could not open output file";
+
+    output << "server established" << std::endl;
 }
 
 Server::~Server(){
@@ -38,7 +40,9 @@ void Server::run(){
         if(n<0)
             throw "error on read";
         
-        auto receivedJson = nlohmann::json::parse(buffer);
+        Json::Reader reader;
+        Json::Value receivedJson;
+        reader.parse(buffer, receivedJson);
         SpanningTree newTree = SpanningTree::fromJson(receivedJson);
   
         int contained = 0;

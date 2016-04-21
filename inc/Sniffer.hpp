@@ -17,6 +17,8 @@
 #include "../inc/Mac.hpp"
 #include "../inc/SpanningTree.hpp"
 #include "../inc/Client.hpp"
+#include "../inc/json/json.h"
+#include "../inc/json/json-forwards.h"
 
 class Sniffer{
     private:

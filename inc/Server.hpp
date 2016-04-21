@@ -10,7 +10,8 @@
 #include <netinet/in.h>
 
 #include "../inc/SpanningTree.hpp"
-#include "../inc/json.hpp"
+#include "../inc/json/json.h"
+#include "../inc/json/json-forwards.h"
 
 class Server{
     private:

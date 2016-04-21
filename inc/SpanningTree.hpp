@@ -4,7 +4,8 @@
 #include <iostream>
 
 #include "Bridge.hpp"
-#include "../inc/json.hpp"
+#include "../inc/json/json.h"
+#include "../inc/json/json-forwards.h"
 
 class SpanningTree{
     private:
@@ -20,10 +21,10 @@ class SpanningTree{
         void addChild(const SpanningTree& child);
         int addSubTree(const SpanningTree& other);
         int containsRoot(const SpanningTree& tree) const;
-        nlohmann::json toJson() const;
+        Json::Value toJson() const;
         Bridge getRoot() const;
 
-        static SpanningTree fromJson(const nlohmann::json buildFrom);
+        static SpanningTree fromJson(const Json::Value buildFrom);
         
         friend SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs);
         friend int operator==(const SpanningTree& lhs, const SpanningTree& rhs);

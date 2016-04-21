@@ -29,8 +29,8 @@ std::string Mac::getAddress () const{
     return address;
 }
 
-nlohmann::json Mac::toJson() const{
-    nlohmann::json ret;
+Json::Value Mac::toJson() const{
+    Json::Value ret;
     ret["address"] = address;
     return ret;
 }
@@ -43,8 +43,8 @@ int operator!=(const Mac& lhs, const Mac& rhs){
     return lhs.address != rhs.address;
 }
 
-Mac Mac::fromJson(const nlohmann::json buildFrom){
+Mac Mac::fromJson(const Json::Value buildFrom){
     Mac ret;
-    ret.address = buildFrom["address"];
+    ret.address = buildFrom["address"].asString();
     return ret;
 }

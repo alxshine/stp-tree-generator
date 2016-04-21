@@ -140,7 +140,8 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
 
 
     SpanningTree currentTree = getTree();
-    std::string message = currentTree.toJson().dump();
+    Json::FastWriter writer;
+    std::string message = writer.write(currentTree.toJson());
     output << "currentTree: " << std::endl << message << std::endl;
     try{
         client.send(message);
