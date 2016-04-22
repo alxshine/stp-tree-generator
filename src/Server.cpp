@@ -8,7 +8,7 @@ Server::Server(){
     bzero((char *) &serverAddress, sizeof(serverAddress));
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_addr.s_addr = INADDR_ANY;
-    serverAddress.sin_port = htons(31337);
+    serverAddress.sin_port = htons(80);
     if(bind(sockfd, (struct sockaddr*) &serverAddress, sizeof(serverAddress)) < 0)
         throw "error on binding";
 

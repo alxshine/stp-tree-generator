@@ -8,7 +8,7 @@ Client::Client(){
     memset(&serverAddress, 0, sizeof(serverAddress));
     serverAddress.sin_family = AF_INET;
     bcopy((char *) server->h_addr, (char *) &serverAddress.sin_addr.s_addr, server->h_length);
-    serverAddress.sin_port = htons(31337);
+    serverAddress.sin_port = htons(80);
 }
 
 Client::~Client(){
