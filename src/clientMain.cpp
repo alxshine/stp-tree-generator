@@ -4,7 +4,17 @@
 
 using namespace std;
 
-int main(void){
+int main(int argc, char **args){
+    if(argc > 1){
+        int c = 1;
+        while(c < argc-1){
+            auto param = std::string(args[c]);
+            if(param == "-f"){
+                auto filename = std::string(args[c+1]);
+                
+            }
+        }
+    }
     try{
         Sniffer s = Sniffer::getInstance();
         s.start();
