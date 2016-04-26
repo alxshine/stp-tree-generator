@@ -34,6 +34,6 @@ class Sniffer{
 
     public:
         static Sniffer& getInstance();
-        void start();
+        void start(const std::string filename);
         ~Sniffer();
 };

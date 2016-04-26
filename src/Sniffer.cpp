@@ -20,44 +20,52 @@ Sniffer::~Sniffer(){
     Sniffer::output.close();
 }
 
-void Sniffer::start(){
+void Sniffer::start(const std::string filename){
     Sniffer::output << "sniffer starting\n";
-    Sniffer::output << "getting interfaces\n";
-    pcap_if_t *alldevs;
-    char err[100];
-    if(pcap_findalldevs(&alldevs, err)){
-        Sniffer::output << "error while getting interfaces, error code: " << err << std::endl;
-        exit(-1);
-    }
-
-    pcap_if_t *device;
-    Sniffer::output << "found devices:\n";
-    for(device = alldevs; device != NULL; device = device->next){
-        if(device->name){
-            Sniffer::output << device->name;
-            if(device->description)
-                Sniffer::output << " - " << device->description;
-            Sniffer::output << std::endl;
+    char err[PCAP_ERRBUF_SIZE];
+    if(filename.size() == 0){
+        Sniffer::output << "getting interfaces\n";
+        pcap_if_t *alldevs;
+        if(pcap_findalldevs(&alldevs, err)){
+            Sniffer::output << "error while getting interfaces, error code: " << err << std::endl;
+            exit(-1);
         }
-    }
 
-    Sniffer::output << "selecting first named device\n";
-    for(device = alldevs; device != NULL && device->name == NULL; device = device->next)
-        ;
-    if(device == NULL){
-        Sniffer::output << "no named device found\n";
-        exit(-1);
-    }
+        pcap_if_t *device;
+        Sniffer::output << "found devices:\n";
+        for(device = alldevs; device != NULL; device = device->next){
+            if(device->name){
+                Sniffer::output << device->name;
+                if(device->description)
+                    Sniffer::output << " - " << device->description;
+                Sniffer::output << std::endl;
+            }
+        }
 
-    Sniffer::output << "opening device " << device->name << " for sniffing" << std::endl;
-    pcap_t *capture_handle = pcap_open_live(device->name, 65536, 1, 0, err);
-    if(!capture_handle){
-        Sniffer::output << "could not start capture" << std::endl;
-        Sniffer::output.flush();
-        exit(-1);
-    }
+        Sniffer::output << "selecting first named device\n";
+        for(device = alldevs; device != NULL && device->name == NULL; device = device->next)
+            ;
+        if(device == NULL){
+            Sniffer::output << "no named device found\n";
+            exit(-1);
+        }
 
-    pcap_loop(capture_handle, -1, process_packet, NULL);
+        Sniffer::output << "opening device " << device->name << " for sniffing" << std::endl;
+        pcap_t *capture_handle = pcap_open_live(device->name, 65536, 1, 0, err);
+        if(!capture_handle){
+            Sniffer::output << "could not start capture" << std::endl;
+            Sniffer::output.flush();
+            exit(-1);
+        }
+
+        pcap_loop(capture_handle, -1, process_packet, NULL);
+    }else{
+        pcap_t *pcap = pcap_open_offline(filename.c_str(), err);
+        struct pcap_pkthdr *header;
+        const u_char *data;
+        while(pcap_next_ex(pcap, &header, &data) >= 0)
+            process_packet(NULL, header, data);
+    }
 }
 
 void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){
