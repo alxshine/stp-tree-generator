@@ -133,11 +133,11 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
         if(b == firsthop)
             hopContained = 1;
     }
-    if(root != root){
+    if(root != firsthop){
         if(!rootContained)
             bridges.push_back(Bridge(root));
         if(!hopContained)
-            bridges.push_back(Bridge(root));
+            bridges.push_back(Bridge(firsthop));
     }else{
         if(!rootContained)
             bridges.push_back(Bridge(root));
