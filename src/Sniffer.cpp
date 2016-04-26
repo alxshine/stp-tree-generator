@@ -156,7 +156,7 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
 }
 
 SpanningTree Sniffer::getTree(){
-    std::sort(bridges.begin(), bridges.end(), [](Bridge a, Bridge b) {return a.getMessageAge() > b.getMessageAge();});
+    std::sort(bridges.begin(), bridges.end(), [](Bridge a, Bridge b) {return a.getMessageAge() - b.getMessageAge();});
     return treeHelper(bridges.begin(), bridges.end());
 }
 
