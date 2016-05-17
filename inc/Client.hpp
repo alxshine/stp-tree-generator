@@ -15,7 +15,7 @@ class Client{
        struct hostent *server;
 
     public:
-       Client();
+       Client(std::string hostname, int port);
         ~Client();
 
         void send(std::string);

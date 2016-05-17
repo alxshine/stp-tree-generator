@@ -30,5 +30,5 @@ test: $(SOURCEFOLDER)/test.cpp $(OBJFOLDER)/jsoncpp.o
 	$(CC) $(CFLAGS) $^ $(INCLUDES) -o $(BINFOLDER)/test
 
 clean:
-	rm -r $(BINFOLDER) $(OBJFOLDER)
-	rm -f log.txt sniffer.log server.log
+	[ -d $(BINFOLDER) ] && rm -r $(BINFOLDER) || echo "no $(BINFOLDER)"
+	[ -d $(OBJFOLDER) ] && rm -r $(OBJFOLDER) || echo "no $(OBJFOLDER)"

@@ -1,67 +1,72 @@
 #include "../inc/Sniffer.hpp"
 
-const char * const Sniffer::filename = "sniffer.log";
 std::ofstream Sniffer::output;
-Sniffer* Sniffer::reference;
 std::vector<Bridge> Sniffer::bridges;
-Client Sniffer::client;
+Client * Sniffer::client;
 
-Sniffer::Sniffer(){
+Sniffer::Sniffer(bool noConnect, std::string outputFileName, std::string hostname, int port){
     bridges = std::vector<Bridge>();
-    Sniffer::output.open(filename, std::ios::app);
+    Sniffer::output.open(outputFileName, std::ios::app);
     if(!Sniffer::output.is_open()){
         std::cout << "could not open file";
         exit(-1);
     }
+
+    if(noConnect){
+        client = NULL;
+    }else{
+        client = new Client(hostname, port);
+    }
 }
 
 Sniffer::~Sniffer(){
-    Sniffer::output.flush();
-    Sniffer::output.close();
+    output.flush();
+    output.close();
+    delete client;
 }
 
-void Sniffer::start(const std::string filename){
-    Sniffer::output << "sniffer starting\n";
+void Sniffer::start(const std::string inputFileName){
+    output << "sniffer starting\n";
     char err[PCAP_ERRBUF_SIZE];
-    if(filename.size() == 0){
-        Sniffer::output << "getting interfaces\n";
+    if(inputFileName.size() == 0){
+        output << "getting interfaces\n";
         pcap_if_t *alldevs;
         if(pcap_findalldevs(&alldevs, err)){
-            Sniffer::output << "error while getting interfaces, error code: " << err << std::endl;
+            output << "error while getting interfaces, error code: " << err << std::endl;
             exit(-1);
         }
 
         pcap_if_t *device;
-        Sniffer::output << "found devices:\n";
+        output << "found devices:\n";
         for(device = alldevs; device != NULL; device = device->next){
             if(device->name){
-                Sniffer::output << device->name;
+                output << device->name;
                 if(device->description)
-                    Sniffer::output << " - " << device->description;
-                Sniffer::output << std::endl;
+                    output << " - " << device->description;
+                output << std::endl;
             }
         }
 
-        Sniffer::output << "selecting first named device\n";
+        output << "selecting first named device\n";
         for(device = alldevs; device != NULL && device->name == NULL; device = device->next)
             ;
         if(device == NULL){
-            Sniffer::output << "no named device found\n";
+            output << "no named device found\n";
             exit(-1);
         }
 
-        Sniffer::output << "opening device " << device->name << " for sniffing" << std::endl;
+        output << "opening device " << device->name << " for sniffing" << std::endl;
         pcap_t *capture_handle = pcap_open_live(device->name, 65536, 1, 0, err);
         if(!capture_handle){
-            Sniffer::output << "could not start capture" << std::endl;
-            Sniffer::output.flush();
+            output << "could not start capture" << std::endl;
+            output.flush();
             exit(-1);
         }
 
         pcap_loop(capture_handle, -1, process_packet, NULL);
     }else{
         output << "reading from file\n";
-        pcap_t *pcap = pcap_open_offline(filename.c_str(), err);
+        pcap_t *pcap = pcap_open_offline(inputFileName.c_str(), err);
         struct pcap_pkthdr *header;
         const u_char *data;
         while(pcap_next_ex(pcap, &header, &data) >= 0)
@@ -158,7 +163,8 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     std::string message = writer.write(currentTree.toJson());
     output << "currentTree: " << std::endl << message << std::endl;
     try{
-        client.send(message);
+        if(client)
+            client->send(message);
     }catch(const char * msg){
         output << msg << std::endl;
     }
@@ -177,12 +183,3 @@ SpanningTree Sniffer::treeHelper(std::vector<Bridge>::iterator current, std::vec
     newTree.addChild(treeHelper(++current, end));
     return newTree;
 }
-
-Sniffer& Sniffer::getInstance()
-{
-    if(Sniffer::reference==NULL)
-        Sniffer::reference = new Sniffer();
-
-    return *Sniffer::reference;
-}
-

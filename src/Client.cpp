@@ -1,14 +1,14 @@
 #include "../inc/Client.hpp"
 
-Client::Client(){
-    server = gethostbyname("gl1tch.mooo.com");
+Client::Client(std::string hostname, int port){
+    server = gethostbyname(hostname.c_str());
     if(!server)
         throw "could not resolve hostname";
 
     memset(&serverAddress, 0, sizeof(serverAddress));
     serverAddress.sin_family = AF_INET;
     bcopy((char *) server->h_addr, (char *) &serverAddress.sin_addr.s_addr, server->h_length);
-    serverAddress.sin_port = htons(80);
+    serverAddress.sin_port = htons(port);
 }
 
 Client::~Client(){
