@@ -43,6 +43,10 @@ Bridge Bridge::fromJson(const Json::Value buildFrom){
     return ret;
 }
 
+Bridge::operator std::string() const {
+    return std::to_string(priority) + " - " + mac.getAddress() + ", " + std::to_string(messageAge);
+}
+
 int operator==(const Bridge& lhs, const Bridge& rhs){
     return lhs.priority == rhs.priority && lhs.messageAge == rhs.messageAge && lhs.mac == rhs.mac;
 }

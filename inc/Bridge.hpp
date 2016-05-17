@@ -22,6 +22,7 @@ class Bridge{
 
         static Bridge fromJson(const Json::Value buildFrom);
 
+        operator std::string() const;
         friend std::ostream& operator<<(std::ostream &out, const Bridge& rhs);
         friend int operator==(const Bridge& lhs, const Bridge& rhs);
         friend int operator!=(const Bridge& lhs, const Bridge& rhs);

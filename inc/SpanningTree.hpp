@@ -2,6 +2,7 @@
 #include <vector>
 #include <cassert>
 #include <iostream>
+#include <string>
 
 #include "Bridge.hpp"
 #include "../inc/json/json.h"
@@ -22,6 +23,9 @@ class SpanningTree{
         int addSubTree(const SpanningTree& other);
         int containsRoot(const SpanningTree& tree) const;
         Json::Value toJson() const;
+        std::string toTikz(double lowerX, double upperX, int Y, int yStep, int index) const;
+        int maxWidth() const;
+        int widthAtLevel(int levelsRemaining) const;
         Bridge getRoot() const;
 
         static SpanningTree fromJson(const Json::Value buildFrom);

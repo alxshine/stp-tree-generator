@@ -165,6 +165,50 @@ Json::Value SpanningTree::toJson() const {
     return ret;
 }
 
+std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep, int index) const {
+    std::string ret;
+
+    double dist = upperX - lowerX;
+    double x = lowerX + dist/2;
+ 
+    ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + ":" + std::to_string(y) + ") {" + std::string(root) +"}\n";
+
+    double xPerWidth = dist / maxWidth();
+    int initialIndex = index;
+    for(SpanningTree s : children){
+        upperX = lowerX + xPerWidth * s.maxWidth();
+        ret += s.toTikz(lowerX, upperX, y+yStep, yStep, ++index);
+        lowerX = upperX;
+    }
+
+    ret += "\\draw ";
+    for(int i = initialIndex+1; i <= index; i++)
+        ret += "(" + std::to_string(initialIndex) + ") -- (" + std::to_string(i) + ")\n";
+
+    ret += ";\n";
+    return ret;
+}
+
+int SpanningTree::maxWidth() const{
+    int max = 1;
+    for(int level = 0, currentWidth; (currentWidth = widthAtLevel(level)) > 0; level++)
+        max = max > currentWidth ? max : currentWidth;
+
+    return max;
+}
+
+int SpanningTree::widthAtLevel(int levelsRemaining) const{
+    if(levelsRemaining <= 0)
+        return 1;
+    if(levelsRemaining == 1)
+        return children.size();
+
+    int ret = 0;
+    for(SpanningTree s : children)
+        ret += s.widthAtLevel(levelsRemaining-1);
+    return ret;
+}
+
 int SpanningTree::containsRoot(const SpanningTree& tree) const{
     if(root==tree.root)
         return 1;
