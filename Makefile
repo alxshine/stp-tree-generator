@@ -11,7 +11,7 @@ $(OBJFOLDER)/%.o: $(SOURCEFOLDER)/%.cpp
 	[ -d ./$(OBJFOLDER) ] || mkdir $(OBJFOLDER)
 	$(CC) -c $< $(CFLAGS) -o $@
 
-all:	server client 
+all:	server client parser
 
 server: $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/SpanningTree.o $(OBJFOLDER)/Server.o $(OBJFOLDER)/serverMain.o $(OBJFOLDER)/jsoncpp.o
 	[ -d $(BINFOLDER) ] || mkdir $(BINFOLDER)
@@ -32,3 +32,4 @@ parser: $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/Sniffer.o $(OBJFOL
 clean:
 	[ -d $(BINFOLDER) ] && rm -r $(BINFOLDER) || echo "no $(BINFOLDER)"
 	[ -d $(OBJFOLDER) ] && rm -r $(OBJFOLDER) || echo "no $(OBJFOLDER)"
+	rm *.tikz

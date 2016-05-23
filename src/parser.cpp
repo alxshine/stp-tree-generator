@@ -1,26 +1,85 @@
 #include <iostream>
 #include <fstream>
 
+#include<unistd.h>
+#include<sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+
 #include "../inc/SpanningTree.hpp"
 
 using namespace std;
 
 int main(int argc, char ** args){
-    string test = "{\"children\":[{\"children\":null,\"root\":{\"mac\":{\"address\":\"00:26:F1:A7:CA:00\"},\"messageAge\":1,\"priority\":128}}],\"root\":{\"mac\":{\"address\":\"84:34:97:C8:A1:00\"},\"messageAge\":0,\"priority\":64}}";
-    Json::Reader reader;
-    Json::Value jsonValue;
-    reader.parse(test.c_str(), jsonValue);
-    SpanningTree testTree = SpanningTree::fromJson(jsonValue);
+    string hostname = "gl1tch.mooo.com";
+    int port = 80;
+    int buffersize = 4096;
 
-    ofstream outputFile("test.tikz", std::ios::out);
-    if(!outputFile.is_open()){
-        cout << "could not open test.tikz";
-        return -1;
+    for(int c = 1; c<argc; c++){
+        auto param = string(args[c]);
+        if(param == "-p")
+            port = atoi(args[++c]);
+        else if(param == "-h")
+            hostname = args[++c];
+        else if(param == "-bs")
+            buffersize = atoi(args[++c]);
     }
+    
+    try{
+        struct hostent *server = gethostbyname(hostname.c_str());
+        if(!server)
+            throw "could not resolve hostname";
 
-    outputFile << "\\begin{tikzpicture}[transform shape]" << endl;
-    outputFile << testTree.toTikz(0, 100, 0, 20, 0) << endl;
+        struct sockaddr_in serverAddress;
+        memset(&serverAddress, 0, sizeof(serverAddress));
+        serverAddress.sin_family = AF_INET;
+        bcopy((char *) server->h_addr, (char *) &serverAddress.sin_addr.s_addr, server->h_length);
+        serverAddress.sin_port = htons(port);
+        
+        int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+        if(sockfd<0)
+            throw "could not create socket";
 
-    outputFile << "\\end{tikzpicture}";
-    outputFile.close();
+        if(connect(sockfd, (struct sockaddr *) &serverAddress, sizeof(serverAddress)) < 0)
+            throw "could not connect to server";
+
+        Json::Value toSend;
+        toSend["messagetype"] = "report";
+        Json::FastWriter writer;
+        string sendMessage = writer.write(toSend);
+        char sendBuffer[sendMessage.length()+1];
+        sendMessage.copy(sendBuffer, sendMessage.length(), 0);
+        sendBuffer[sendMessage.length()] = 0;
+
+        if(write(sockfd, sendBuffer, strlen(sendBuffer))<0)
+            throw "could not write to server";
+
+        char receiveBuffer[buffersize];
+        if(read(sockfd, receiveBuffer, buffersize) < 0)
+            throw "could not read from server";
+
+        Json::Reader reader;
+        Json::Value jsonValue;
+        reader.parse(receiveBuffer, jsonValue);
+        
+        for(Json::Value treejson : jsonValue){
+            SpanningTree currentTree = SpanningTree::fromJson(treejson);
+
+            string filename = currentTree.getRoot().getMac().getAddress();
+            ofstream outputFile(filename + ".tikz", std::ios::out);
+            if(!outputFile.is_open()){
+                cout << "could not open " + filename + ".tikz";
+                return -1;
+            }
+
+            outputFile << "\\begin{tikzpicture}[transform shape]" << endl;
+            outputFile << currentTree.toTikz(0, 100, 0, 20, 0) << endl;
+
+            outputFile << "\\end{tikzpicture}";
+            outputFile.close();
+        }
+    }catch(string s){
+        cout << s << std::endl;
+    }
 }

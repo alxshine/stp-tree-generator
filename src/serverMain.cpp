@@ -6,7 +6,7 @@ using namespace std;
 
 int main(int argc, char **args){
     try{
-        int port = 111;
+        int port = 80;
         
         for(int c = 1; c<argc; c++){
             auto param = string(args[c]);

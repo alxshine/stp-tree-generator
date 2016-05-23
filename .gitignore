@@ -2,5 +2,6 @@ log.txt
 bin
 obj
 server.log
-sniffer.log
+client.log
 log.txt
+*.tikz

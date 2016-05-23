@@ -7,7 +7,7 @@ using namespace std;
 
 int main(int argc, char **args){
     string inputFileName, outputFileName = "client.log", hostname = "gl1tch.mooo.com";
-    int port = 111;
+    int port = 80;
     bool noConnect = false;
 
     for(int c = 1; c<argc; c++){
