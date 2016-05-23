@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-Werror -Wall -std=c++11 -g
+CFLAGS=-Werror -Wall -g -std=c++11
 INCLUDES=-lpcap
 OBJFOLDER=obj
 DEPSFOLDER=inc
