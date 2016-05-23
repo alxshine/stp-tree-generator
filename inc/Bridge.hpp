@@ -19,10 +19,10 @@ class Bridge{
         const short getPriority() const ;
         const short getMessageAge() const;
         Json::Value toJson() const;
+        std::string toTikz() const;
 
         static Bridge fromJson(const Json::Value buildFrom);
 
-        operator std::string() const;
         friend std::ostream& operator<<(std::ostream &out, const Bridge& rhs);
         friend int operator==(const Bridge& lhs, const Bridge& rhs);
         friend int operator!=(const Bridge& lhs, const Bridge& rhs);

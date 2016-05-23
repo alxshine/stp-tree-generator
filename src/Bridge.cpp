@@ -35,16 +35,16 @@ Json::Value Bridge::toJson() const{
     return ret;
 }
 
+std::string Bridge::toTikz() const{
+    return std::to_string(priority) + " - " + mac.getAddress() + ", " + std::to_string(messageAge);
+}
+
 Bridge Bridge::fromJson(const Json::Value buildFrom){
     Bridge ret;
     ret.mac = Mac::fromJson(buildFrom["mac"]);
     ret.priority = buildFrom["priority"].asInt();
     ret.messageAge = buildFrom["messageAge"].asInt();
     return ret;
-}
-
-Bridge::operator std::string() const {
-    return std::to_string(priority) + " - " + mac.getAddress() + ", " + std::to_string(messageAge);
 }
 
 int operator==(const Bridge& lhs, const Bridge& rhs){

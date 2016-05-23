@@ -171,7 +171,7 @@ std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep,
     double dist = upperX - lowerX;
     double x = lowerX + dist/2;
  
-    ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + ":" + std::to_string(y) + ") {" + std::string(root) +"}\n";
+    ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + ":" + std::to_string(y) + ") {" + root.toTikz() +"}\n";
 
     double xPerWidth = dist / maxWidth();
     int initialIndex = index;
