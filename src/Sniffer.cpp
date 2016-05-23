@@ -160,8 +160,11 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
 
     SpanningTree currentTree = getTree();
     Json::FastWriter writer;
-    std::string message = writer.write(currentTree.toJson());
-    output << "currentTree: " << std::endl << message << std::endl;
+    Json::Value toSend;
+    toSend["messagetype"] = "push";
+    toSend["tree"] = currentTree.toJson();
+    std::string message = writer.write(toSend);
+    output << "sniffer is sending: " << std::endl << message << std::endl;
     try{
         if(client)
             client->send(message);

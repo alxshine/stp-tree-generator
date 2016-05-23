@@ -6,20 +6,20 @@ using namespace std;
 
 
 int main(int argc, char **args){
-    std::string inputFileName, outputFileName = "client.log", hostname = "gl1tch.mooo.com";
+    string inputFileName, outputFileName = "client.log", hostname = "gl1tch.mooo.com";
     int port = 1337;
     bool noConnect = false;
 
     for(int c = 1; c<argc; c++){
-        auto param = std::string(args[c]);
+        auto param = string(args[c]);
         if(param == "-if"){
-            inputFileName = std::string(args[c+1]);
+            inputFileName = std::string(args[++c]);
         }else if(param == "--no-connect" || param == "-n"){
             noConnect = true;
         }else if(param == "-of"){
-            outputFileName = std::string(args[c+1]);
+            outputFileName = std::string(args[++c]);
         }else if(param == "-p"){
-            port = atoi(args[c+1]);
+            port = atoi(args[++c]);
         }
     }
     try{

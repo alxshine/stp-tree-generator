@@ -25,7 +25,7 @@ class Server{
         std::vector<SpanningTree> currentTrees;
 
     public:
-        Server();
+        Server(int port);
         ~Server();
         void run();
 };
