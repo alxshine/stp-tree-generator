@@ -23,7 +23,7 @@ class SpanningTree{
         int addSubTree(const SpanningTree& other);
         int containsRoot(const SpanningTree& tree) const;
         Json::Value toJson() const;
-        std::string toTikz(double lowerX, double upperX, int Y, int yStep, int index) const;
+        std::string toTikz(double lowerX, double upperX, int Y, int yStep, int oldMessageAge, int index) const;
         int maxWidth() const;
         int widthAtLevel(int levelsRemaining) const;
         Bridge getRoot() const;

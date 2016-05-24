@@ -74,7 +74,7 @@ int main(int argc, char ** args){
             }
 
             outputFile << "\\begin{tikzpicture}[transform shape]" << endl;
-            outputFile << currentTree.toTikz(0, 100, 0, 20, 0) << endl;
+            outputFile << currentTree.toTikz(0, 100, 0, 20, 0, 0) << endl;
 
             outputFile << "\\end{tikzpicture}";
             outputFile.close();

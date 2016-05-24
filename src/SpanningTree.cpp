@@ -165,27 +165,31 @@ Json::Value SpanningTree::toJson() const {
     return ret;
 }
 
-std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep, int index) const {
+std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {
     std::string ret;
 
     double dist = upperX - lowerX;
     double x = lowerX + dist/2;
- 
-    ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + ":" + std::to_string(y) + ") {" + root.toTikz() +"}\n";
 
-    double xPerWidth = dist / maxWidth();
-    int initialIndex = index;
-    for(SpanningTree s : children){
-        upperX = lowerX + xPerWidth * s.maxWidth();
-        ret += s.toTikz(lowerX, upperX, y+yStep, yStep, ++index);
-        lowerX = upperX;
+    if(root.getMessageAge() > oldMessageAge+1){
+        ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + ":" + std::to_string(y) + ") {}\n";
+        ret += toTikz(lowerX, upperX, y+yStep, yStep, oldMessageAge+1, index+1);
+        ret += "\\draw (" + std::to_string(index) + ") -- (" + std::to_string(index+1) + ")\n";
+    }else{
+        ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + ":" + std::to_string(y) + ") {" + root.toTikz() +"}\n";
+
+        double xPerWidth = dist / maxWidth();
+        int initialIndex = index;
+        for(SpanningTree s : children){
+            upperX = lowerX + xPerWidth * s.maxWidth();
+            ret += s.toTikz(lowerX, upperX, y+yStep, yStep, oldMessageAge+1, ++index);
+            lowerX = upperX;
+        }
+        ret += "\\draw ";
+        for(int i = initialIndex+1; i <= index; i++)
+            ret += "(" + std::to_string(initialIndex) + ") -- (" + std::to_string(i) + ")\n";
     }
 
-    ret += "\\draw ";
-    for(int i = initialIndex+1; i <= index; i++)
-        ret += "(" + std::to_string(initialIndex) + ") -- (" + std::to_string(i) + ")\n";
-
-    ret += ";\n";
     return ret;
 }
 
