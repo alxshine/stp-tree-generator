@@ -32,4 +32,5 @@ parser: $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/Sniffer.o $(OBJFOL
 clean:
 	[ -d $(BINFOLDER) ] && rm -r $(BINFOLDER) || echo "no $(BINFOLDER)"
 	[ -d $(OBJFOLDER) ] && rm -r $(OBJFOLDER) || echo "no $(OBJFOLDER)"
-	rm *.tikz
+	[ -f *.tikz ] && rm *.tikz || echo "no .tikz files"
+	[ -f .pid ] && rm *.pid || echo "no .pid files"

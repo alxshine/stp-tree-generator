@@ -21,11 +21,10 @@ class Server{
         struct sockaddr_in serverAddress, clientAddress;
 
         std::ofstream output;
-        const char * const filename = "server.log";
         std::vector<SpanningTree> currentTrees;
 
     public:
-        Server(int port);
+        Server(int port, std::string outputFileName, bool createPidFile);
         ~Server();
         void run();
 };

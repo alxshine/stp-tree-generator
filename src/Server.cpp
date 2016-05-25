@@ -1,6 +1,6 @@
 #include "../inc/Server.hpp"
 
-Server::Server(int port){
+Server::Server(int port, std::string outputFileName, bool createPidFile){
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if(sockfd<0)
         throw "error opening socket";
@@ -17,11 +17,20 @@ Server::Server(int port){
 
     clientLength = sizeof(clientAddress);
 
-    output.open(filename, std::ios::app);
+    output.open(outputFileName, std::ios::app);
     if(!output.is_open())
         throw "could not open output file";
 
     output << "server established" << std::endl;
+
+    //generate pid file
+    if(createPidFile){
+        pid_t id = getpid();
+        std::ofstream pidOutput;
+        pidOutput.open("server.pid");
+        pidOutput << id << std::endl;
+        pidOutput.close();
+    }
 }
 
 Server::~Server(){
