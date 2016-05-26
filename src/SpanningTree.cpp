@@ -23,21 +23,16 @@ SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){
     SpanningTree ret = SpanningTree(lhs.root);
 
     //add all similar children
-    std::cout << "checking for similar children" << std::endl;
     for(SpanningTree leftChild : lhs.children){
-        std::cout << "leftChild: " << leftChild << std::endl;
         for(SpanningTree rightChild : rhs.children){
-            std::cout << "rightChild: " << rightChild << std::endl;
             //if they have the same root, add the combination
             if(leftChild.root == rightChild.root){
-                std::cout << "same root" << std::endl;
                 ret.addChild(leftChild + rightChild);
                 break;
             }
 
             //if rightChild is contained in left (additions "downstream"), add it there
             if(leftChild.containsRoot(rightChild)){
-                std::cout << "right contained in left" << std::endl;
                 SpanningTree combined = SpanningTree(leftChild);
                 leftChild.addSubTree(rightChild);
                 ret.addChild(combined);
@@ -45,7 +40,6 @@ SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){
             
             //vice versa
             if(rightChild.containsRoot(leftChild)){
-                std::cout << "left contained in right" << std::endl;
                 SpanningTree combined = SpanningTree(rightChild);
                 leftChild.addSubTree(leftChild);
                 ret.addChild(combined);
@@ -54,7 +48,6 @@ SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){
     }
 
     //add all remaining children of lhs
-    std::cout << "adding remaining children of lhs" << std::endl;
     for(SpanningTree leftChild : lhs.children){
         int contained = 0;
         for(SpanningTree added : ret.children){
@@ -64,12 +57,10 @@ SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){
             }
         }
         if(!contained){
-            std::cout << "left child not contained, adding" << std::endl;
             ret.addChild(leftChild);
         }
     }
     //add all remaining children of rhs
-    std::cout << "adding remaining children of rhs" << std::endl;
     for(SpanningTree rightChild : rhs.children){
         int contained = 0;
         for(SpanningTree added : ret.children){
@@ -79,7 +70,6 @@ SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){
             }
         }
         if(!contained){
-            std::cout << "right child not contained, adding" << std::endl;
             ret.addChild(rightChild);
         }
     }
@@ -172,11 +162,11 @@ std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep,
     double x = lowerX + dist/2;
 
     if(root.getMessageAge() > oldMessageAge+1){
-        ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + ":" + std::to_string(y) + ") {}\n";
+        ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + ":" + std::to_string(y) + ") {};\n";
         ret += toTikz(lowerX, upperX, y+yStep, yStep, oldMessageAge+1, index+1);
-        ret += "\\draw (" + std::to_string(index) + ") -- (" + std::to_string(index+1) + ")\n";
+        ret += "\\draw (" + std::to_string(index) + ") -- (" + std::to_string(index+1) + ");\n";
     }else{
-        ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + ":" + std::to_string(y) + ") {" + root.toTikz() +"}\n";
+        ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + ":" + std::to_string(y) + ") {" + root.toTikz() +"};\n";
 
         double xPerWidth = dist / maxWidth();
         int initialIndex = index;
@@ -185,9 +175,12 @@ std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep,
             ret += s.toTikz(lowerX, upperX, y+yStep, yStep, oldMessageAge+1, ++index);
             lowerX = upperX;
         }
-        ret += "\\draw ";
-        for(int i = initialIndex+1; i <= index; i++)
-            ret += "(" + std::to_string(initialIndex) + ") -- (" + std::to_string(i) + ")\n";
+        if(children.size() >0){
+            ret += "\\draw ";
+            for(int i = initialIndex+1; i <= index; i++)
+                ret += "\n(" + std::to_string(initialIndex) + ") -- (" + std::to_string(i) + ")";
+            ret += ";\n";
+        }
     }
 
     return ret;
