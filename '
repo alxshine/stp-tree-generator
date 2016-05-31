@@ -3,7 +3,7 @@
 std::ofstream Sniffer::output;
 std::vector<Bridge> Sniffer::bridges;
 Client * Sniffer::client;
-bool Sniffer::hadTC;
+bool hadTC;
 
 Sniffer::Sniffer(bool noConnect, std::string outputFileName, std::string hostname, int port){
     bridges = std::vector<Bridge>();
