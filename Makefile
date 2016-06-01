@@ -33,4 +33,5 @@ clean:
 	[ -d $(BINFOLDER) ] && rm -r $(BINFOLDER) || echo "no $(BINFOLDER)"
 	[ -d $(OBJFOLDER) ] && rm -r $(OBJFOLDER) || echo "no $(OBJFOLDER)"
 	[ -f *.tikz ] && rm *.tikz || echo "no .tikz files"
-	[ -f .pid ] && rm *.pid || echo "no .pid files"
+	[ -f *.pid ] && rm *.pid || echo "no .pid files"
+	[ -f *.log ] && rm *.log || echo "no .log files"

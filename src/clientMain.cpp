@@ -28,6 +28,6 @@ int main(int argc, char **args){
         Sniffer s(noConnect, outputFileName, hostname, port);
         s.start(inputFileName);
     }catch (char const *c){
-        cout << c << endl;
+        cerr << c << endl;
     }
 }

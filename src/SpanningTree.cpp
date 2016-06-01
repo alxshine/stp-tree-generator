@@ -162,17 +162,17 @@ std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep,
     double x = lowerX + dist/2;
 
     if(root.getMessageAge() > oldMessageAge+1){
-        ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + ":" + std::to_string(y) + ") {};\n";
+        ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + "," + std::to_string(y) + ") {};\n";
         ret += toTikz(lowerX, upperX, y+yStep, yStep, oldMessageAge+1, index+1);
         ret += "\\draw (" + std::to_string(index) + ") -- (" + std::to_string(index+1) + ");\n";
     }else{
-        ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + ":" + std::to_string(y) + ") {" + root.toTikz() +"};\n";
+        ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + "," + std::to_string(y) + ") {" + root.toTikz() +"};\n";
 
         double xPerWidth = dist / maxWidth();
         int initialIndex = index;
         for(SpanningTree s : children){
             upperX = lowerX + xPerWidth * s.maxWidth();
-            ret += s.toTikz(lowerX, upperX, y+yStep, yStep, oldMessageAge+1, ++index);
+            ret += s.toTikz(lowerX, upperX, y-yStep, yStep, oldMessageAge+1, ++index);
             lowerX = upperX;
         }
         if(children.size() >0){

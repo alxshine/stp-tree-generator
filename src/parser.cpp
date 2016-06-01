@@ -15,6 +15,9 @@ int main(int argc, char ** args){
     string hostname = "gl1tch.mooo.com";
     int port = 80;
     int buffersize = 4096;
+    int yStep = 2;
+    int totalWidth = 14;
+    int totalHeight = 20;
 
     for(int c = 1; c<argc; c++){
         auto param = string(args[c]);
@@ -24,6 +27,12 @@ int main(int argc, char ** args){
             hostname = args[++c];
         else if(param == "-bs")
             buffersize = atoi(args[++c]);
+        else if(param == "-w")
+            totalWidth = atoi(args[++c]);
+        else if(param == "-h")
+            totalHeight = atoi(args[++c]);
+        else if(param == "-s")
+            yStep = atoi(args[++c]);
     }
     
     try{
@@ -73,8 +82,8 @@ int main(int argc, char ** args){
                 return -1;
             }
 
-            outputFile << "\\begin{tikzpicture}[transform shape]" << endl;
-            outputFile << currentTree.toTikz(0, 100, 0, 20, 0, 0) << endl;
+            outputFile << "\\begin{tikzpicture}[]" << endl;
+            outputFile << currentTree.toTikz(0,totalWidth,totalHeight,yStep,0,0);
 
             outputFile << "\\end{tikzpicture}";
             outputFile.close();

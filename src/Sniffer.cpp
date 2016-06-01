@@ -9,7 +9,7 @@ Sniffer::Sniffer(bool noConnect, std::string outputFileName, std::string hostnam
     bridges = std::vector<Bridge>();
     Sniffer::output.open(outputFileName, std::ios::app);
     if(!Sniffer::output.is_open()){
-        std::cout << "could not open file";
+        std::cerr << "could not open file" << std::endl;
         exit(-1);
     }
 
