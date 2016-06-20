@@ -1,7 +1,7 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include <map>
 
 #include <stdio.h>
 #include <unistd.h>
@@ -21,7 +21,7 @@ class Server{
         struct sockaddr_in serverAddress, clientAddress;
 
         std::ofstream output;
-        std::vector<SpanningTree> currentTrees;
+        std::map<int, SpanningTree> clientData;
 
     public:
         Server(int port, std::string outputFileName, bool createPidFile);

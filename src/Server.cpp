@@ -54,29 +54,20 @@ void Server::run(){
         reader.parse(buffer, receivedJson);
         if(receivedJson["messagetype"] == "push"){
             SpanningTree newTree = SpanningTree::fromJson(receivedJson["tree"]);
+            int id = receivedJson["id"].asInt();
       
-            int contained = 0;
-            for(auto current = currentTrees.begin(); current != currentTrees.end(); ++current){
-                if(current->getRoot() == newTree.getRoot()){
-                    *current = *current + newTree;
-                    contained = 1;
-                    break;
-                }
-            }
-
-            if(!contained)
-                currentTrees.push_back(newTree);
+            clientData[id] = newTree;
 
             output << "new data received, trees are now: " << std::endl;
             Json::FastWriter writer;
-            for(SpanningTree tree : currentTrees)
-                output << writer.write(tree.toJson()) << std::endl;
+            for(auto iterator = clientData.begin(); iterator != clientData.end(); iterator++)
+                output << writer.write(iterator->second.toJson()) << std::endl;
 
             close(newsockfd);
         }else if(receivedJson["messagetype"] == "report"){
             Json::Value trees;
-            for(SpanningTree tree : currentTrees)
-                trees.append(tree.toJson());
+            for(auto iterator = clientData.begin(); iterator != clientData.end(); iterator++)
+                trees.append(iterator->second.toJson());
             output << "trees requested" << std::endl;
             Json::FastWriter writer;
             std::string message = writer.write(trees);
@@ -85,6 +76,23 @@ void Server::run(){
             buffer[message.length()] = 0;
             if(write(newsockfd, buffer, strlen(buffer))<0)
                 throw "could not respond to client";
+            close(newsockfd);
+        }else if(receivedJson["messagetype"] == "register"){
+            int id=0;
+            for(; clientData.find(id) == clientData.end(); id++)
+                ;
+            Json::Value retJson;
+            retJson["id"] = id;
+            
+            output << "client registered" << std::endl;
+            Json::FastWriter writer;
+            std::string message = writer.write(retJson);
+            char buffer[message.length()+1];
+            message.copy(buffer, message.length(), 0);
+            buffer[message.length()] = 0;
+            if(write(newsockfd, buffer, strlen(buffer))<0)
+                throw "could not respond to client";
+            close(newsockfd);
         }
     }
 }
