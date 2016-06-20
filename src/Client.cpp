@@ -11,10 +11,29 @@ Client::Client(std::string hostname, int port){
     serverAddress.sin_port = htons(port);
 }
 
+void Client::regServer(){
+    Json::Value regMessage;
+    regMessage["messagetype"] = "register";
+    Json::FastWriter writer;
+    send(writer.write(regMessage));
+    char buffer[256];
+    if(read(sockfd, buffer, 255) < 0)
+        throw "error on read";
+
+    Json::Reader reader;
+    Json::Value recVal;
+    reader.parse(buffer, recVal);
+    id = recVal["id"].asInt();
+}
+
 Client::~Client(){
 }
 
-void Client::send(std::string message){
+void Client::send(Json::Value value){
+    value["id"] = id;
+    Json::FastWriter writer;
+    std::string message = writer.write(value);
+
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if(sockfd < 0)
         throw "could not create socket";

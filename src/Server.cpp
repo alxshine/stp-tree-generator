@@ -60,17 +60,31 @@ void Server::run(){
 
             output << "new data received, trees are now: " << std::endl;
             Json::FastWriter writer;
-            for(auto iterator = clientData.begin(); iterator != clientData.end(); iterator++)
-                output << writer.write(iterator->second.toJson()) << std::endl;
+            for(auto mapIt = clientData.begin(); mapIt != clientData.end(); mapIt++)
+                output << writer.write(mapIt->second.toJson()) << std::endl;
 
             close(newsockfd);
         }else if(receivedJson["messagetype"] == "report"){
-            Json::Value trees;
-            for(auto iterator = clientData.begin(); iterator != clientData.end(); iterator++)
-                trees.append(iterator->second.toJson());
+            std::vector<SpanningTree> trees;
+            for(auto mapIt = clientData.begin(); mapIt != clientData.end(); mapIt++){
+                bool contained = false;
+                for(auto treeIt = trees.begin(); treeIt != trees.end(); treeIt++){
+                    if(treeIt->containsRoot(mapIt->second) && *treeIt != mapIt->second){
+                        *treeIt = *treeIt + mapIt->second;
+                        contained = true;
+                        break;
+                    }
+                }
+                if(!contained)
+                    trees.push_back(mapIt->second);
+            }
+
+            Json::Value jsonTrees;
+            for(SpanningTree tree : trees)
+                jsonTrees.append(tree.toJson());
             output << "trees requested" << std::endl;
             Json::FastWriter writer;
-            std::string message = writer.write(trees);
+            std::string message = writer.write(jsonTrees);
             char buffer[message.length()+1];
             message.copy(buffer, message.length(), 0);
             buffer[message.length()] = 0;

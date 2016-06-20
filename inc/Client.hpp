@@ -8,15 +8,20 @@
 #include <netinet/in.h>
 #include <netdb.h>
 
+#include "../inc/json/json.h"
+
 class Client{
     private:
        int sockfd;
+       int id;
        struct sockaddr_in serverAddress;
        struct hostent *server;
+
+       void regServer();
 
     public:
        Client(std::string hostname, int port);
         ~Client();
 
-        void send(std::string);
+        void send(Json::Value value);
 };

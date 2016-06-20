@@ -174,11 +174,10 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     Json::Value toSend;
     toSend["messagetype"] = "push";
     toSend["tree"] = currentTree.toJson();
-    std::string message = writer.write(toSend);
-    output << "sniffer is sending: " << std::endl << message << std::endl;
+    output << "sniffer is sending: " << std::endl << writer.write(toSend) << std::endl;
     try{
         if(client)
-            client->send(message);
+            client->send(toSend);
     }catch(const char * msg){
         output << msg << std::endl;
     }
