@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <time.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -19,12 +20,14 @@ class Server{
         socklen_t clientLength;
         char buffer[256];
         struct sockaddr_in serverAddress, clientAddress;
+        time_t timeout;
 
         std::ofstream output;
         std::map<int, SpanningTree> clientData;
+        std::map<int, time_t> timestamps;
 
     public:
-        Server(int port, std::string outputFileName, bool createPidFile);
+        Server(int port, std::string outputFileName, bool createPidFile, time_t to);
         ~Server();
         void run();
 };

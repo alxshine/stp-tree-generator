@@ -1,6 +1,6 @@
 #include "../inc/Server.hpp"
 
-Server::Server(int port, std::string outputFileName, bool createPidFile){
+Server::Server(int port, std::string outputFileName, bool createPidFile, time_t to){
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if(sockfd<0)
         throw "error opening socket";
@@ -31,6 +31,8 @@ Server::Server(int port, std::string outputFileName, bool createPidFile){
         pidOutput << id << std::endl;
         pidOutput.close();
     }
+
+    timeout = to;
 }
 
 Server::~Server(){
@@ -52,11 +54,24 @@ void Server::run(){
         Json::Reader reader;
         Json::Value receivedJson;
         reader.parse(buffer, receivedJson);
+
+        time_t currentTime = time(NULL);
+        std::vector<int> toRemove;
+        for(auto timeIt = timestamps.begin(); timeIt != timestamps.end(); timeIt++)
+            if(timeIt->second < currentTime-timeout)
+                toRemove.push_back(timeIt->first);
+
+        for(int rId : toRemove){
+            timestamps.erase(rId);
+            clientData.erase(rId);
+        }
+
         if(receivedJson["messagetype"] == "push"){
             SpanningTree newTree = SpanningTree::fromJson(receivedJson["tree"]);
             int id = receivedJson["id"].asInt();
       
             clientData[id] = newTree;
+            timestamps[id] = time(NULL);
 
             output << "new data received, trees are now: " << std::endl;
             Json::FastWriter writer;
