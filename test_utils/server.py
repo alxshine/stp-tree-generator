@@ -20,6 +20,4 @@ print "socket listening"
 
 connection, addr = servSock.accept()
 
-os.system('mv /etc/config/network /etc/config/network_no_stp')
-os.system('mv /etc/config/network_stp /etc/config/network')
-os.system('/etc/init.d/network restart')
+os.system('/etc/set_stp')

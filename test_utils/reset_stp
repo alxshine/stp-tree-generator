@@ -1,0 +1,4 @@
+#!/bin/ash
+
+cp /etc/config/network_no_stp /etc/config/network
+/etc/init.d/network restart

@@ -1,0 +1,6 @@
+#!/bin/ash
+
+cp /etc/config/network_stp /etc/config/network
+/etc/init.d/network restart &&
+sleep 2 &&
+brctl setbridgeprio br-lan 8192
