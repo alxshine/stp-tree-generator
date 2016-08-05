@@ -4,7 +4,7 @@ import os
 HOST = ''
 PORT = 9999
 
-servSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
+servSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM);
 print 'Socket created'
 
 try:
@@ -15,9 +15,7 @@ except socket.error, msg:
 
 print "socket bind complete"
 
-servSock.listen(1)
-print "socket listening"
+data, addr = servSock.recvfrom(1024)
+print "received data: " + data
 
-connection, addr = servSock.accept()
-
-os.system('/etc/set_stp')
+#os.system('/etc/set_stp')
