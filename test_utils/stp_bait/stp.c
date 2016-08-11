@@ -91,7 +91,7 @@ int main(int argc, char ** argv){
     BYTE taf[1] = { 0xf0 };
     //stp identifiers
     //priority (at default values)
-    BYTE pri[1] = { 0x00 };
+    BYTE pri[1] = { 0x20 };
     BYTE ext[1] = { 0x00 };
     BYTE pth[4] = { 0x00, 0x00, 0x00, 0x00 };
 
