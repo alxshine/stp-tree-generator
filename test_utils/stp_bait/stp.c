@@ -56,7 +56,7 @@ int create_socket(char *device, int *sockfd, BYTE *mac){
     return 0;
 }
 
-void generateSTP(BYTE *packet, BYTE *src, BYTE *btype, BYTE *bflags, BYTE *prio, BYTE *ext, BYTE *cost, BYTE *port, BYTE *age, BYTE *max, BYTE *hlt, BYTE *fwd){
+void generateSTP(BYTE *packet, BYTE *src, BYTE *btype, BYTE *bflags, BYTE *prio, BYTE *ext, BYTE *cost, BYTE *port, BYTE *age, BYTE *max, BYTE *hlt, BYTE *fwd, int padding){
     BYTE dst[6] = { 0x01, 0x80, 0xc2, 0x00, 0x00, 0x00 };
     BYTE len[2] = { 0x00, 0x26 };
     //logical link control
@@ -91,7 +91,7 @@ int main(int argc, char ** argv){
     BYTE taf[1] = { 0xf0 };
     //stp identifiers
     //priority (at default values)
-    BYTE pri[1] = { 0x20 };
+    BYTE pri[1] = { 0x00 };
     BYTE ext[1] = { 0x00 };
     BYTE pth[4] = { 0x00, 0x00, 0x00, 0x00 };
 
@@ -99,7 +99,7 @@ int main(int argc, char ** argv){
     BYTE age[2] = { 0x00, 0x00 };
     BYTE mxa[2] = { 0x14, 0x00 };
     BYTE hlt[2] = { 0x02, 0x00 };
-    BYTE fwd[2] = { 0x02, 0x00 };
+    BYTE fwd[2] = { 0x0f, 0x00 };
 
 
     while(1){
@@ -109,23 +109,23 @@ int main(int argc, char ** argv){
         printf("(3): Send TCA Package\n");
         printf("(4): Send conf Package\n");
 
-        BYTE packet[60];
+        BYTE packet[64];
         int val;
         scanf("%d", &val);
         switch(val){
         case 1:
-            generateSTP(packet, src, cnf, tcf, pri, ext, pth, prt, age, mxa, hlt, fwd);
+            generateSTP(packet, src, cnf, tcf, pri, ext, pth, prt, age, mxa, hlt, fwd, 4);
             break;
         case 2:
-            generateSTP(packet, src, tcn, tcf, pri, ext, pth, prt, age, mxa, hlt, fwd);
+            generateSTP(packet, src, tcn, tcf, pri, ext, pth, prt, age, mxa, hlt, fwd, 4);
             break;
         case 4:
-            generateSTP(packet, src, cnf, taf, pri, ext, pth, prt, age, mxa, hlt, fwd);
+            generateSTP(packet, src, cnf, taf, pri, ext, pth, prt, age, mxa, hlt, fwd, 4);
             break;
         case 5:
-            generateSTP(packet, src, cnf, nfg, pri, ext, pth, prt, age, mxa, hlt, fwd);
+            generateSTP(packet, src, cnf, nfg, pri, ext, pth, prt, age, mxa, hlt, fwd, 4);
             break;
         }
-        write(sockfd, packet, 60);
+        write(sockfd, packet, sizeof(packet));
     }
 }
