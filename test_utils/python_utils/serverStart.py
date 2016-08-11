@@ -14,8 +14,8 @@ except socket.error, msg:
     sys.exit()
 
 print "socket bind complete"
+while 1:
+    data, addr = servSock.recvfrom(1024)
+    print "received data: " + data
 
-data, addr = servSock.recvfrom(1024)
-print "received data: " + data
-
-#os.system('/etc/set_stp')
+    os.system('/etc/set_stp')
