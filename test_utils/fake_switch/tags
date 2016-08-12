@@ -1,0 +1,30 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BLOCKING	stp.c	/^    BLOCKING } PortState;$/;"	e	enum:port_state	file:
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-Werror -Wall -g$/;"	m
+DEDICATED	stp.c	/^    DEDICATED,$/;"	e	enum:port_state	file:
+PortState	stp.c	/^    BLOCKING } PortState;$/;"	t	typeref:enum:port_state	file:
+ROOT	stp.c	/^    ROOT,$/;"	e	enum:port_state	file:
+addresses	stp.c	/^unsigned char **addresses;$/;"	v
+create_socket	stp.c	/^int create_socket(char *device, int *sockfd, unsigned char *mac){$/;"	f
+firstTcTime	stp.c	/^time_t firstTcTime;$/;"	v
+forwardDelay	stp.c	/^int forwardDelay;$/;"	v
+generateSTP	stp.c	/^void generateSTP(unsigned char *packet, unsigned char *src, unsigned char *btype, unsigned char *bflags, unsigned char *prio, unsigned char *ext, unsigned char *cost, unsigned char *port, unsigned char *age, unsigned char *max, unsigned char *hlt, unsigned char *fwd, int padding){$/;"	f
+hadTc	stp.c	/^int hadTc;$/;"	v
+helloTime	stp.c	/^int helloTime;$/;"	v
+main	stp.c	/^int main(int argc, char ** argv){$/;"	f
+maxAge	stp.c	/^int maxAge;$/;"	v
+n	stp.c	/^int n;$/;"	v
+names	stp.c	/^char **names;$/;"	v
+neighbours	stp.c	/^unsigned char **neighbours;$/;"	v
+portCost	stp.c	/^int portCost;$/;"	v
+port_state	stp.c	/^typedef enum port_state {$/;"	g	file:
+processPacket	stp.c	/^void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){$/;"	f
+rootPathCost	stp.c	/^int rootPathCost;$/;"	v
+states	stp.c	/^PortState *states;$/;"	v
+timestamps	stp.c	/^time_t *timestamps;$/;"	v
