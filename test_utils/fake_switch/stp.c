@@ -4,6 +4,7 @@
 #include <string.h>
 #include <time.h>
 
+#include <pthread.h>
 #include <netinet/in.h>
 #include <netpacket/packet.h>
 #include <sys/socket.h>
@@ -22,8 +23,8 @@ typedef enum port_state {
     DEDICATED,
     BLOCKING } PortState;
 
-//some dirty global variables because pcap wants it thusly
-//TODO: change to shared memory
+//global variables for thread shared memory
+pthread_mutex_t ifaceMutex;
 int n;
 char **names;
 unsigned char **neighbours;
@@ -35,6 +36,7 @@ int hadTc;
 int rootPathCost;
 unsigned char root[6];
 unsigned char bridgeId[6];
+pthread_t *ifaceThreads;
 
 //global config variables
 int helloTime;
@@ -91,25 +93,15 @@ void generateSTP(unsigned char *packet, unsigned char *src, unsigned char *btype
 
 void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){
     struct ethhdr *ethh = (struct ethhdr*) bytes;
-    
-    char buffer[17];
-    sprintf(buffer,"%.2X:%.2X:%.2X:%.2X:%.2X:%.2X", ethh->h_dest[0], ethh->h_dest[1], ethh->h_dest[2], ethh->h_dest[3], ethh->h_dest[4], ethh->h_dest[5]);
-    int currentIndex = -1;
-    for(int i=0; i<n; i++){
-        if(strcmp((char *) user, names[i]) == 0){
-            currentIndex = i;
-            break;
-        }
-    }
-    if(currentIndex < 0){
-        perror("Error: not any of the saved interfaces");
-        exit(-1);
-    }
 
+    int currentIndex = *(int *) user;
+   
     if(memcmp(ethh->h_source, bridgeId, 6) == 0){
         return; 
-    }
+    } 
 
+    char buffer[17];
+    sprintf(buffer,"%.2X:%.2X:%.2X:%.2X:%.2X:%.2X", ethh->h_dest[0], ethh->h_dest[1], ethh->h_dest[2], ethh->h_dest[3], ethh->h_dest[4], ethh->h_dest[5]);
     if(strncmp(buffer, "01:80:C2:00:00:00", 17) != 0){
         //handle payload
         const u_char *payload = bytes+sizeof(struct ethhdr);
@@ -127,27 +119,30 @@ void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char 
         payload+=2;
         psize-=2;
 
+        pthread_mutex_lock(&ifaceMutex);
         unsigned char tcSet = *payload++;
-        if(!hadTc && tcSet)
+        if(!hadTc && tcSet){
             firstTcTime = time(0);
+        }
         hadTc = tcSet;
+        pthread_mutex_unlock(&ifaceMutex);
         psize--;
 
         //root identifier
         //bridge priority is the next 2 bytes
-    //    unsigned short rPriority;
+//        unsigned short rPriority;
         //actual priority is 4 bits
-    //    rPriority = *((short*)payload);
+//        rPriority = *((short*)payload);
         payload+=2;
         psize-=2;
         //next 6 bytes is the root bridge id
-        unsigned char rootMac[6];
-        memcpy(rootMac, payload, 6);
+//        unsigned char rootMac[6];
+//        memcpy(rootMac, payload, 6);
         payload+=6;
         psize-=6;
 
         //root path cost (4 bytes)
-    //    int pathCost = *(int*) payload;
+//        int pathCost = *(int*) payload;
         payload+=4;
         psize-=4;
 
@@ -158,8 +153,9 @@ void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char 
         payload+=2;
         psize-=2;
         //next 6 bytes is the bridge mac address
-        unsigned char neighbourMac[6];
-        memcpy(neighbourMac, payload, 6);
+        pthread_mutex_lock(&ifaceMutex);
+        memcpy(neighbours[currentIndex], payload, 6);
+        pthread_mutex_unlock(&ifaceMutex);
         payload+=6;
         psize-=6;
     //    if(rootPathCost > pathCost){
@@ -184,37 +180,72 @@ void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char 
         psize-=2;
     }
 
-    //bpdu types
-//    unsigned char tcn[1] = { 0x80 };
-    unsigned char cnf[1] = { 0x00 };
 
-    if(timestamps[currentIndex] + helloTime > time(0))
-        return;
-
-    //flags
-    unsigned char tcf[1] = { 0x01 };
-//    unsigned char taf[1] = { 0xf0 };
-    //stp identifiers
-    //priority (at default values)
-    unsigned char pri[1] = { 0x00 };
-    unsigned char ext[1] = { 0x00 };
-    unsigned char pth[4] = { 0x00, 0x00, 0x00, 0x00 };
-
-    unsigned char prt[2] = { 0x80, 0x01 };
-    unsigned char age[2] = { 0x00, 0x00 };
-    unsigned char mxa[2] = { 0x14, 0x00 };
-    unsigned char hlt[2] = { 0x02, 0x00 };
-    unsigned char fwd[2] = { 0x0f, 0x00 };
-
-    unsigned char packet[64];
-
-    unsigned char flags[1] = { 0 };
-    if(firstTcTime + forwardDelay > time(0))
-        flags[0] += tcf[0];
     
-    generateSTP(packet, bridgeId, cnf, tcf, pri, ext, pth, prt, age, mxa, hlt, fwd, 4);
-    write(socks[currentIndex], packet, 64);
-    timestamps[currentIndex] = time(0);
+}
+
+void *senderThread(void *arg){
+    int currentIndex = *(int *) arg;
+    pthread_mutex_unlock(&ifaceMutex);
+    while(1){
+        pthread_mutex_lock(&ifaceMutex);
+        //bpdu types
+        //unsigned char tcn[1] = { 0x80 };
+        unsigned char cnf[1] = { 0x00 };
+
+        //flags
+        unsigned char tcf[1] = { 0x01 };
+        //unsigned char taf[1] = { 0xf0 };
+        //stp identifiers
+        //priority (at default values)
+        unsigned char pri[1] = { 0x00 };
+        unsigned char ext[1] = { 0x00 };
+        unsigned char pth[4] = { 0x00, 0x00, 0x00, 0x00 };
+
+        unsigned char prt[2] = { 0x80, 0x01 };
+        unsigned char age[2] = { 0x00, 0x00 };
+        unsigned char mxa[2] = { 0x14, 0x00 };
+        unsigned char hlt[2] = { 0x02, 0x00 };
+        unsigned char fwd[2] = { 0x0f, 0x00 };
+
+        unsigned char packet[64];
+
+        unsigned char flags[1] = { 0 };
+        if(firstTcTime + forwardDelay > time(0))
+            flags[0] += tcf[0];
+        
+        generateSTP(packet, bridgeId, cnf, tcf, pri, ext, pth, prt, age, mxa, hlt, fwd, 4);
+        printf("Sending packet on interface %s\n", names[currentIndex]);
+        write(socks[currentIndex], packet, 64);
+        timestamps[currentIndex] = time(0);     
+        pthread_mutex_unlock(&ifaceMutex);
+        
+        sleep(2);
+    }
+}
+
+void *interFaceThread(void *arg){
+    int currentIndex = *(int *) arg;
+    pthread_t sender;
+    if(pthread_create(&sender, NULL, senderThread, arg) < 0){
+        perror("Could not create sender thread");
+        exit(-1);
+    }
+    printf("Created sender thread for interface %s\n", names[currentIndex]);
+
+    char err[PCAP_ERRBUF_SIZE];
+    pthread_mutex_lock(&ifaceMutex);
+    pcap_t *captureHandle = pcap_open_live(names[currentIndex], 65536, 1, 0, err);
+    if(!captureHandle){
+        fprintf(stdout, "Could not start capture on device %s\n", names[0]);
+        return NULL;
+    }
+    printf("Capture handle on interface %s created\n", names[currentIndex]);
+    pthread_mutex_unlock(&ifaceMutex);
+    pcap_loop(captureHandle, -1, processPacket, (u_char *) &currentIndex);
+    pthread_join(sender, NULL);
+
+    return NULL;
 }
 
 int main(int argc, char ** argv){
@@ -242,23 +273,51 @@ int main(int argc, char ** argv){
     states = (PortState *) calloc(n, sizeof(PortState));
     timestamps = (time_t *) calloc(n, sizeof(time_t));
     socks = (int *) calloc(n, sizeof(int));
+    ifaceThreads = (pthread_t *) calloc(n, sizeof(pthread_t));
     for(int i=0; i<n; i++){
         names[i] = (char *) calloc(strlen(argv[c+i]), sizeof(char));
         strcpy(names[i], argv[c+i]);
         neighbours[i] = (unsigned char *) calloc(6, sizeof(char));
+        for(int j=0; j<6; j++)
+            neighbours[i][j] = 0xff;
         timestamps[i] = 0;
         firstTcTime = time(0);
     }
+    //initialize mutex
+    pthread_mutex_init(&ifaceMutex, NULL);
 
-    for(int i=0; i<n; i++)
-        if(create_socket(argv[c+i], socks+i, bridgeId) < 0){ perror("could not create socket"); return -1;}
+    int indices[n];
+    for(int i=0; i<n; i++){
+        indices[i] = i;
 
-    char err[PCAP_ERRBUF_SIZE];
-    pcap_t *captureHandle = pcap_open_live(names[0], 65536, 1, 0, err);
-    if(!captureHandle){
-        fprintf(stderr, "Could not start capture on device %s\n", names[0]);
-        return -1;
+        if(create_socket(argv[c+i], socks+i, bridgeId) < 0){
+            perror("could not create socket"); return -1;
+        }
+        //the indices solution is not pretty, but it keeps the loop from running away with i
+        //(resulting in segfaults)
+        if(pthread_create(&ifaceThreads[i], NULL, &interFaceThread, &indices[i]) < 0){
+            perror("Could not create interface thread");
+            exit(-1);
+        }else{
+            printf("Created interface thread for interface %s\n", names[i]);
+        }
     }
+    for(int i=0; i<n; i++)
+        pthread_join(ifaceThreads[i], NULL);
 
-    pcap_loop(captureHandle, -1, processPacket, (u_char *) names[0]);
+    printf("Main done waiting\n");
+
+    //free shared variables
+    //note that the pthread_join will never stop blocking, but if all pcap_loops are cancelled we can free this
+    //and it's good form
+    for(int i=0; i<n; i++){
+        free(names[i]);
+        free(neighbours[i]);
+    }
+    free(names);
+    free(neighbours);
+    free(states);
+    free(timestamps);
+    free(socks);
+    free(ifaceThreads);
 }
