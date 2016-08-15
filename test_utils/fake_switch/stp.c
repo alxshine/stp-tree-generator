@@ -73,7 +73,7 @@ int create_socket(char *device, int *sockfd, unsigned char *mac){
     return 0;
 }
 
-void generateSTP(unsigned char *packet, unsigned char *btype, unsigned char *bflags, unsigned char *port, unsigned char *max, unsigned char *hlt, unsigned char *fwd, int padding){
+void generateSTP(unsigned char *packet, unsigned char *btype, unsigned char *bflags, unsigned char *port, int padding){
     unsigned char dst[6] = { 0x01, 0x80, 0xc2, 0x00, 0x00, 0x00 };
     unsigned char len[2] = { 0x00, 0x26 };
     //logical link control
@@ -84,7 +84,14 @@ void generateSTP(unsigned char *packet, unsigned char *btype, unsigned char *bfl
     //version identifier
     unsigned char vid[1] = { 0x00 };
 
-    unsigned char *ptrs[] = {dst, bridgeId, len, llc, pid, vid, btype, bflags, &rootPriority, &rootExtension, root, (unsigned char *) &rootPathCost, &priority, &extension, bridgeId, port, (unsigned char *) &messageAge, max, hlt, fwd};
+    //prepare variables for network byte order
+    int netPath = htonl(rootPathCost);
+    short netAge = htons(messageAge);
+    short netMax = htons(maxAge);
+    short netHlt = htons(helloTime);
+    short netFwd = htons(forwardDelay);
+
+    unsigned char *ptrs[] = {dst, bridgeId, len, llc, pid, vid, btype, bflags, &rootPriority, &rootExtension, root, (unsigned char *) &netPath, &priority, &extension, bridgeId, port, (unsigned char *) &netAge, (unsigned char *) &netMax, (unsigned char *) &netHlt, (unsigned char *) &netFwd};
     int sizes[] = {6, 6, 2, 3, 2, 1, 1, 1, 1, 1, 6, 4, 1, 1, 6, 2, 2, 2, 2, 2};
     int offset = 0;
     for(int i=0; i<sizeof(ptrs)/sizeof(unsigned char*); i++){
@@ -104,9 +111,6 @@ void sendSTP(int index){
     //unsigned char taf[1] = { 0xf0 };
     //stp identifiers
     unsigned char prt[2] = { 0x80, 0x01 };
-    unsigned char mxa[2] = { 0x14, 0x00 };
-    unsigned char hlt[2] = { 0x02, 0x00 };
-    unsigned char fwd[2] = { 0x0f, 0x00 };
 
     unsigned char packet[64];
 
@@ -114,11 +118,69 @@ void sendSTP(int index){
     if(firstTcTime + forwardDelay > time(0))
         flags[0] += tcf[0];
     
-    generateSTP(packet, cnf, flags, prt, mxa, hlt, fwd, 4);
+    generateSTP(packet, cnf, flags, prt, 4);
     write(socks[index], packet, 64);
     timestamps[index] = time(0);     
     pthread_mutex_unlock(&ifaceMutex);
 
+}
+
+int compareBridges(unsigned char aPrio, unsigned char aExt, unsigned char *aMac, unsigned char bPrio, unsigned char bExt, unsigned char *bMac){
+    if(aPrio == bPrio)
+        if(aExt == bExt)
+            return memcmp(aMac, bMac, 6);
+        else
+            return aExt - bExt;
+    else
+        return aPrio - bPrio;
+}
+
+void updatePortStates(int currentIndex, unsigned char rPriority, unsigned char rExtension, unsigned char *rMac, unsigned int pathCost, unsigned char age, unsigned char bPriority, unsigned char bExtension){
+    pthread_mutex_lock(&ifaceMutex);
+    //check for a root change
+    if(compareBridges(rPriority, rExtension, rMac, rootPriority, rootExtension, root) < 0){
+        memcpy(root, rMac, 6);
+        rootPriority = rPriority;
+        rootExtension = rExtension;
+        rootPathCost = pathCost + portCost;
+        messageAge = age;
+
+        for(int i=0; i<n; i++)
+            if(states[i] == ROOT)
+                states[i] = DEDICATED;
+
+        states[currentIndex] = ROOT;
+    }
+
+    //check if we would be the correct root
+    if(compareBridges(priority, extension, bridgeId, rootPriority, rootExtension, root) < 0){
+        memcpy(root, bridgeId, 6);
+        rootPriority = priority;
+        rootExtension = extension;
+        rootPathCost = 0;
+
+        for(int i=0; i<n; i++)
+            states[i] = DEDICATED;
+    }
+
+    //if a port is in the BLOCKING state but shouldn't be, change it
+    if(states[currentIndex] == BLOCKING){
+        //if our root is the correct one, set the port to dedicated
+        if(compareBridges(rootPriority, rootExtension, root, rPriority, rExtension, rMac) < 0)
+            states[currentIndex] = DEDICATED;
+
+        //if we have the same root, but we have should be preferred, make us root
+        if(compareBridges(rootPriority, rootExtension, root, rPriority, rExtension, rMac) == 0 &&
+            (rootPathCost < pathCost + portCost || (rootPathCost == pathCost + portCost && compareBridges(priority, extension, bridgeId, bPriority, bExtension, neighbours[currentIndex]) < 0)))
+                states[currentIndex] = DEDICATED;
+    }
+
+    //if a port should is DEDICATED but shouldn't be, change it
+    //only possibility should be same root different path cost
+    if(states[currentIndex] == DEDICATED && rootPathCost > pathCost + portCost)
+        states[currentIndex] = BLOCKING;
+
+    pthread_mutex_unlock(&ifaceMutex);
 }
 
 void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){
@@ -157,11 +219,11 @@ void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char 
         }
         hadTc = tcSet;
         psize--;
+        pthread_mutex_unlock(&ifaceMutex);
 
         //root identifier
         //bridge priority is the next 2 bytes
         //one for priority, one for id extension
-        //together they function as a priority, so we can just store them together in a short
         unsigned char rPriority = *payload++;
         unsigned char rExtension = *payload++;
         psize-=2;
@@ -176,12 +238,13 @@ void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char 
         payload+=4;
         psize-=4;
 
-        //bridge identifier (but we don't care about that, so skip it)
+        //bridge identifier 
         //priority
         unsigned char bPriority = *payload++;
         unsigned char bExtension = *payload++;
         psize-=2;
         //next 6 bytes is the bridge mac address
+        pthread_mutex_lock(&ifaceMutex);
         memcpy(neighbours[currentIndex], payload, 6);
         pthread_mutex_unlock(&ifaceMutex);
         payload+=6;
@@ -194,57 +257,11 @@ void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char 
 
         //next 2 bytes is message age
         short age = *(short *) payload;
-
-        //check for a root change
-        if(rPriority < rootPriority ||
-                (rPriority == rootPriority && rExtension < rootExtension) ||
-                (rPriority == rootPriority && rExtension == extension && memcmp(rootMac, root, 6) < 0) ||
-                (rPriority == rootPriority && rExtension == extension && memcmp(rootMac, root, 6) == 0 && pathCost + portCost > rootPathCost)){
-            memcpy(root, rootMac, 6);
-            rootPriority = rPriority;
-            rootExtension = rExtension;
-            rootPathCost = pathCost + portCost;
-            messageAge = age;
-
-            for(int i=0; i<n; i++)
-                if(states[i] == ROOT)
-                    states[i] = DEDICATED;
-
-            states[currentIndex] = ROOT;
-        }
-
-        //check if we would be the correct root
-        if(priority < rootPriority ||
-                (priority == rootPriority && extension < rootExtension) ||
-                (priority == rootPriority && extension == rootExtension && memcmp(bridgeId, root, 6) < 0)){
-            memcpy(root, bridgeId, 6);
-            rootPriority = priority;
-            rootExtension = extension;
-            rootPathCost = pathCost;
-
-            for(int i=0; i<n; i++)
-                states[i] = DEDICATED;
-        }
- 
-        //if a port is in the BLOCKING state but shouldn't be, send an STP packet on it
-        if(states[currentIndex] == BLOCKING && 
-                (bPriority > priority || (bPriority == priority && bExtension > extension) || 
-                 (bPriority == priority && bExtension == extension && memcmp(neighbours[currentIndex], bridgeId, 6) > 0))){
-            sendSTP(currentIndex);
-            states[currentIndex] = DEDICATED;
-        }
-
-        //if a port should be BLOCKING but isn't, make it
-        if(states[currentIndex] == DEDICATED && (bPriority < priority || 
-                (bPriority == priority && bExtension < extension) ||
-                 (bPriority == priority && bExtension == extension && memcmp(neighbours[currentIndex], bridgeId, 6) < 0))){
-            states[currentIndex] = BLOCKING;
-        }
-
+        
         payload+=2;
         psize-=2;
     
-        pthread_mutex_unlock(&ifaceMutex);
+        updatePortStates(currentIndex, rPriority, rExtension, rootMac, pathCost, age, bPriority, bExtension);
     }
 
 }
@@ -345,6 +362,7 @@ int main(int argc, char ** argv){
     rootPriority = priority;
     rootExtension = extension;
     messageAge = 0;pthread_mutex_unlock(&ifaceMutex);
+    rootPathCost = 0;
 
     int indices[n];
     for(int i=0; i<n; i++){
