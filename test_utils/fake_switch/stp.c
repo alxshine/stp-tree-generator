@@ -35,14 +35,16 @@ time_t firstTcTime;
 int hadTc;
 int rootPathCost;
 unsigned char root[6];
+unsigned char rootPriority, rootExtension;
 unsigned char bridgeId[6];
-pthread_t *ifaceThreads;
+unsigned short messageAge;
 
 //global config variables
 int helloTime;
 int maxAge;
 int forwardDelay;
 int portCost;
+unsigned char priority, extension;
 
 int create_socket(char *device, int *sockfd, unsigned char *mac){
     int sock;
@@ -71,7 +73,7 @@ int create_socket(char *device, int *sockfd, unsigned char *mac){
     return 0;
 }
 
-void generateSTP(unsigned char *packet, unsigned char *src, unsigned char *btype, unsigned char *bflags, unsigned char *prio, unsigned char *ext, unsigned char *cost, unsigned char *port, unsigned char *age, unsigned char *max, unsigned char *hlt, unsigned char *fwd, int padding){
+void generateSTP(unsigned char *packet, unsigned char *btype, unsigned char *bflags, unsigned char *port, unsigned char *max, unsigned char *hlt, unsigned char *fwd, int padding){
     unsigned char dst[6] = { 0x01, 0x80, 0xc2, 0x00, 0x00, 0x00 };
     unsigned char len[2] = { 0x00, 0x26 };
     //logical link control
@@ -82,7 +84,7 @@ void generateSTP(unsigned char *packet, unsigned char *src, unsigned char *btype
     //version identifier
     unsigned char vid[1] = { 0x00 };
 
-    unsigned char *ptrs[] = {dst, src, len, llc, pid, vid, btype, bflags, prio, ext, src, cost, prio, ext, src, port, age, max, hlt, fwd};
+    unsigned char *ptrs[] = {dst, bridgeId, len, llc, pid, vid, btype, bflags, &rootPriority, &rootExtension, root, (unsigned char *) &rootPathCost, &priority, &extension, bridgeId, port, (unsigned char *) &messageAge, max, hlt, fwd};
     int sizes[] = {6, 6, 2, 3, 2, 1, 1, 1, 1, 1, 6, 4, 1, 1, 6, 2, 2, 2, 2, 2};
     int offset = 0;
     for(int i=0; i<sizeof(ptrs)/sizeof(unsigned char*); i++){
@@ -91,18 +93,47 @@ void generateSTP(unsigned char *packet, unsigned char *src, unsigned char *btype
     }
 }
 
+void sendSTP(int index){
+    pthread_mutex_lock(&ifaceMutex);
+    //bpdu types
+//    unsigned char tcn[1] = { 0x80 };
+    unsigned char cnf[1] = { 0x00 };
+
+    //flags
+    unsigned char tcf[1] = { 0x01 };
+    //unsigned char taf[1] = { 0xf0 };
+    //stp identifiers
+    unsigned char prt[2] = { 0x80, 0x01 };
+    unsigned char mxa[2] = { 0x14, 0x00 };
+    unsigned char hlt[2] = { 0x02, 0x00 };
+    unsigned char fwd[2] = { 0x0f, 0x00 };
+
+    unsigned char packet[64];
+
+    unsigned char flags[1] = { 0 };
+    if(firstTcTime + forwardDelay > time(0))
+        flags[0] += tcf[0];
+    
+    generateSTP(packet, cnf, flags, prt, mxa, hlt, fwd, 4);
+    write(socks[index], packet, 64);
+    timestamps[index] = time(0);     
+    pthread_mutex_unlock(&ifaceMutex);
+
+}
+
 void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){
     struct ethhdr *ethh = (struct ethhdr*) bytes;
 
     int currentIndex = *(int *) user;
    
-    if(memcmp(ethh->h_source, bridgeId, 6) == 0){
-        return; 
-    } 
 
     char buffer[17];
     sprintf(buffer,"%.2X:%.2X:%.2X:%.2X:%.2X:%.2X", ethh->h_dest[0], ethh->h_dest[1], ethh->h_dest[2], ethh->h_dest[3], ethh->h_dest[4], ethh->h_dest[5]);
-    if(strncmp(buffer, "01:80:C2:00:00:00", 17) != 0){
+    if(strncmp(buffer, "01:80:C2:00:00:00", 17) == 0){
+        if(memcmp(ethh->h_source, bridgeId, 6) == 0){
+            return; 
+        }
+
         //handle payload
         const u_char *payload = bytes+sizeof(struct ethhdr);
         int psize = header->len - sizeof(struct ethhdr);
@@ -125,114 +156,121 @@ void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char 
             firstTcTime = time(0);
         }
         hadTc = tcSet;
-        pthread_mutex_unlock(&ifaceMutex);
         psize--;
 
         //root identifier
         //bridge priority is the next 2 bytes
-//        unsigned short rPriority;
-        //actual priority is 4 bits
-//        rPriority = *((short*)payload);
-        payload+=2;
+        //one for priority, one for id extension
+        //together they function as a priority, so we can just store them together in a short
+        unsigned char rPriority = *payload++;
+        unsigned char rExtension = *payload++;
         psize-=2;
         //next 6 bytes is the root bridge id
-//        unsigned char rootMac[6];
-//        memcpy(rootMac, payload, 6);
+        unsigned char rootMac[6];
+        memcpy(rootMac, payload, 6);
         payload+=6;
         psize-=6;
 
         //root path cost (4 bytes)
-//        int pathCost = *(int*) payload;
+        int pathCost = *(int*) payload;
         payload+=4;
         psize-=4;
 
         //bridge identifier (but we don't care about that, so skip it)
-        ////bridge priority is the next 2 bytes
-    //    unsigned short bPriority;
-    //    bPriority = *((short*)payload);
-        payload+=2;
+        //priority
+        unsigned char bPriority = *payload++;
+        unsigned char bExtension = *payload++;
         psize-=2;
         //next 6 bytes is the bridge mac address
-        pthread_mutex_lock(&ifaceMutex);
         memcpy(neighbours[currentIndex], payload, 6);
         pthread_mutex_unlock(&ifaceMutex);
         payload+=6;
         psize-=6;
-    //    if(rootPathCost > pathCost){
-    //        for(int i=0; i<n; i++){
-    //            if(states[i] == ROOT && currentIndex != i){
-    //                if(pathCost + portCost < rootPathCost)
-    //                    states[i] = DEDICATED;
-    //                else
-    //                    states[i] = BLOCKING;
-    //            }
-    //        }
-    //    }
+
 
         //next 2 bytes are port identifier
         payload+=2;
         psize-=2;
 
         //next 2 bytes is message age
-    //    short messageAge;
-    //    messageAge = *((short*)payload);
+        short age = *(short *) payload;
+
+        //check for a root change
+        if(rPriority < rootPriority ||
+                (rPriority == rootPriority && rExtension < rootExtension) ||
+                (rPriority == rootPriority && rExtension == extension && memcmp(rootMac, root, 6) < 0) ||
+                (rPriority == rootPriority && rExtension == extension && memcmp(rootMac, root, 6) == 0 && pathCost + portCost > rootPathCost)){
+            memcpy(root, rootMac, 6);
+            rootPriority = rPriority;
+            rootExtension = rExtension;
+            rootPathCost = pathCost + portCost;
+            messageAge = age;
+
+            for(int i=0; i<n; i++)
+                if(states[i] == ROOT)
+                    states[i] = DEDICATED;
+
+            states[currentIndex] = ROOT;
+        }
+
+        //check if we would be the correct root
+        if(priority < rootPriority ||
+                (priority == rootPriority && extension < rootExtension) ||
+                (priority == rootPriority && extension == rootExtension && memcmp(bridgeId, root, 6) < 0)){
+            memcpy(root, bridgeId, 6);
+            rootPriority = priority;
+            rootExtension = extension;
+            rootPathCost = pathCost;
+
+            for(int i=0; i<n; i++)
+                states[i] = DEDICATED;
+        }
+ 
+        //if a port is in the BLOCKING state but shouldn't be, send an STP packet on it
+        if(states[currentIndex] == BLOCKING && 
+                (bPriority > priority || (bPriority == priority && bExtension > extension) || 
+                 (bPriority == priority && bExtension == extension && memcmp(neighbours[currentIndex], bridgeId, 6) > 0))){
+            sendSTP(currentIndex);
+            states[currentIndex] = DEDICATED;
+        }
+
+        //if a port should be BLOCKING but isn't, make it
+        if(states[currentIndex] == DEDICATED && (bPriority < priority || 
+                (bPriority == priority && bExtension < extension) ||
+                 (bPriority == priority && bExtension == extension && memcmp(neighbours[currentIndex], bridgeId, 6) < 0))){
+            states[currentIndex] = BLOCKING;
+        }
+
         payload+=2;
         psize-=2;
+    
+        pthread_mutex_unlock(&ifaceMutex);
     }
 
-
-    
 }
 
 void *senderThread(void *arg){
-    int currentIndex = *(int *) arg;
-    pthread_mutex_unlock(&ifaceMutex);
     while(1){
-        pthread_mutex_lock(&ifaceMutex);
-        //bpdu types
-        //unsigned char tcn[1] = { 0x80 };
-        unsigned char cnf[1] = { 0x00 };
-
-        //flags
-        unsigned char tcf[1] = { 0x01 };
-        //unsigned char taf[1] = { 0xf0 };
-        //stp identifiers
-        //priority (at default values)
-        unsigned char pri[1] = { 0x00 };
-        unsigned char ext[1] = { 0x00 };
-        unsigned char pth[4] = { 0x00, 0x00, 0x00, 0x00 };
-
-        unsigned char prt[2] = { 0x80, 0x01 };
-        unsigned char age[2] = { 0x00, 0x00 };
-        unsigned char mxa[2] = { 0x14, 0x00 };
-        unsigned char hlt[2] = { 0x02, 0x00 };
-        unsigned char fwd[2] = { 0x0f, 0x00 };
-
-        unsigned char packet[64];
-
-        unsigned char flags[1] = { 0 };
-        if(firstTcTime + forwardDelay > time(0))
-            flags[0] += tcf[0];
-        
-        generateSTP(packet, bridgeId, cnf, tcf, pri, ext, pth, prt, age, mxa, hlt, fwd, 4);
-        printf("Sending packet on interface %s\n", names[currentIndex]);
-        write(socks[currentIndex], packet, 64);
-        timestamps[currentIndex] = time(0);     
-        pthread_mutex_unlock(&ifaceMutex);
-        
+        for(int i=0; i<n; i++){
+            switch(states[i]){
+                case DEDICATED:
+                    printf("interface %s is DEDICATED, sending packet\n", names[i]);
+                    sendSTP(i);
+                    break;
+                case BLOCKING:
+                    printf("interface %s is BLOCKING, not sending\n", names[i]);
+                    break;
+                case ROOT:
+                    printf("interface %s is ROOT, not sending\n", names[i]);
+                    break;
+            }
+        }
         sleep(2);
     }
 }
 
 void *interFaceThread(void *arg){
     int currentIndex = *(int *) arg;
-    pthread_t sender;
-    if(pthread_create(&sender, NULL, senderThread, arg) < 0){
-        perror("Could not create sender thread");
-        exit(-1);
-    }
-    printf("Created sender thread for interface %s\n", names[currentIndex]);
-
     char err[PCAP_ERRBUF_SIZE];
     pthread_mutex_lock(&ifaceMutex);
     pcap_t *captureHandle = pcap_open_live(names[currentIndex], 65536, 1, 0, err);
@@ -243,7 +281,6 @@ void *interFaceThread(void *arg){
     printf("Capture handle on interface %s created\n", names[currentIndex]);
     pthread_mutex_unlock(&ifaceMutex);
     pcap_loop(captureHandle, -1, processPacket, (u_char *) &currentIndex);
-    pthread_join(sender, NULL);
 
     return NULL;
 }
@@ -254,6 +291,8 @@ int main(int argc, char ** argv){
     maxAge = 20;
     forwardDelay = 15;
     portCost = 20000;
+    priority = 0x80;
+    extension = 0x01;
 
     //configure globals
     int c=1;
@@ -263,8 +302,14 @@ int main(int argc, char ** argv){
         if(strcmp(argv[c], "--") == 0){
             c++;
             break;
+        }else if(strcmp(argv[c], "-p") == 0){
+            priority = atoi(argv[++c]);
+        }else if(strcmp(argv[c], "-e") == 0){
+            extension = atoi(argv[++c]);
         }
     }
+
+    printf("configuration variables:\nhelloTime:\t%d\nmaxAge:\t%d\nforwardDelay:\t%d\nportCost:\t%d\npriority:\t%d\nextension:\t%d\n", helloTime, maxAge, forwardDelay, portCost, priority, extension);
 
     //initialize shared variables
     n = argc - c;
@@ -273,7 +318,6 @@ int main(int argc, char ** argv){
     states = (PortState *) calloc(n, sizeof(PortState));
     timestamps = (time_t *) calloc(n, sizeof(time_t));
     socks = (int *) calloc(n, sizeof(int));
-    ifaceThreads = (pthread_t *) calloc(n, sizeof(pthread_t));
     for(int i=0; i<n; i++){
         names[i] = (char *) calloc(strlen(argv[c+i]), sizeof(char));
         strcpy(names[i], argv[c+i]);
@@ -281,18 +325,31 @@ int main(int argc, char ** argv){
         for(int j=0; j<6; j++)
             neighbours[i][j] = 0xff;
         timestamps[i] = 0;
-        firstTcTime = time(0);
+        states[i] = DEDICATED;
     }
+
     //initialize mutex
     pthread_mutex_init(&ifaceMutex, NULL);
+
+    pthread_t ifaceThreads[n];
+    for(int i=0; i<n; i++){
+        if(create_socket(argv[c+i], socks+i, bridgeId) < 0){
+            perror("could not create socket"); return -1;
+        }
+    }
+
+    //configure default root
+    pthread_mutex_lock(&ifaceMutex);
+    memcpy(root, bridgeId, 6);
+    firstTcTime = time(0);
+    rootPriority = priority;
+    rootExtension = extension;
+    messageAge = 0;pthread_mutex_unlock(&ifaceMutex);
 
     int indices[n];
     for(int i=0; i<n; i++){
         indices[i] = i;
 
-        if(create_socket(argv[c+i], socks+i, bridgeId) < 0){
-            perror("could not create socket"); return -1;
-        }
         //the indices solution is not pretty, but it keeps the loop from running away with i
         //(resulting in segfaults)
         if(pthread_create(&ifaceThreads[i], NULL, &interFaceThread, &indices[i]) < 0){
@@ -302,8 +359,17 @@ int main(int argc, char ** argv){
             printf("Created interface thread for interface %s\n", names[i]);
         }
     }
+
+    //create sender
+    pthread_t sender;
+    if(pthread_create(&sender, NULL, senderThread, NULL) < 0){
+        perror("Could not create sender thread");
+        exit(-1);
+    }
+
     for(int i=0; i<n; i++)
         pthread_join(ifaceThreads[i], NULL);
+    pthread_join(sender, NULL);
 
     printf("Main done waiting\n");
 
