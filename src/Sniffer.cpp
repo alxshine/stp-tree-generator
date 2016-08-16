@@ -27,7 +27,7 @@ Sniffer::~Sniffer(){
     delete client;
 }
 
-void Sniffer::start(const std::string inputFileName){
+void Sniffer::start(const std::string inputFileName, const std::string deviceName){
     output << "sniffer starting\n";
     char err[PCAP_ERRBUF_SIZE];
     if(inputFileName.size() == 0){
@@ -49,12 +49,21 @@ void Sniffer::start(const std::string inputFileName){
             }
         }
 
-        output << "selecting first named device\n";
-        for(device = alldevs; device != NULL && device->name == NULL; device = device->next)
-            ;
-        if(device == NULL){
-            output << "no named device found\n";
-            exit(-1);
+        if(deviceName == ""){
+            output << "selecting first named device\n";
+            for(device = alldevs; device != NULL && device->name == NULL; device = device->next)
+                ;
+            if(device == NULL){
+                output << "no named device found\n";
+                exit(-1);
+            }
+        }else{
+            for(device = alldevs; device != NULL && device->name != deviceName; device = device->next)
+                ;
+            if(device == NULL){
+                output << "desired device not found\n";
+                exit(-1);
+            }
         }
 
         output << "opening device " << device->name << " for sniffing" << std::endl;

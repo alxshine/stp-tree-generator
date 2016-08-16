@@ -6,7 +6,7 @@ using namespace std;
 
 
 int main(int argc, char **args){
-    string inputFileName, outputFileName = "client.log", hostname = "gl1tch.mooo.com";
+    string inputFileName, outputFileName = "client.log", hostname = "gl1tch.mooo.com", deviceName = "";
     int port = 80;
     bool noConnect = false;
 
@@ -34,7 +34,8 @@ int main(int argc, char **args){
             else if(parameter == "noconnect"){
                 transform(value.begin(), value.end(), value.begin(), ::tolower);
                 noConnect = value == "true";
-            }
+            }else if(parameter == "devicename")
+                deviceName = value;
         }
     }catch(int i){
         cerr << "Error on reading config file";
@@ -52,6 +53,8 @@ int main(int argc, char **args){
             port = atoi(args[++c]);
         else if(param == "-h")
             hostname = args[++c];
+        else if(param == "-dn")
+            deviceName = args[++c];
         
     }
     if(!configRead.is_open()){
@@ -69,7 +72,7 @@ int main(int argc, char **args){
 
     try{
         Sniffer s(noConnect, outputFileName, hostname, port);
-        s.start(inputFileName);
+        s.start(inputFileName, deviceName);
     }catch (char const *c){
         cerr << c << endl;
     }

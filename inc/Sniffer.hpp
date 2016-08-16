@@ -33,6 +33,6 @@ class Sniffer{
 
     public:
         Sniffer(bool noConnect, std::string outputFileName, std::string hostname, int port);
-        void start(const std::string filename);
+        void start(const std::string filename, const std::string deviceName);
         ~Sniffer();
 };
