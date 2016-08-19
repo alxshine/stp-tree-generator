@@ -88,7 +88,7 @@ int main(int argc, char ** args){
             outputFile << "\\end{tikzpicture}";
             outputFile.close();
         }
-    }catch(string s){
+    }catch(const char* s){
         cout << s << std::endl;
     }
 }
