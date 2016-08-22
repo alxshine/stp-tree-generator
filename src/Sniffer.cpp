@@ -158,14 +158,14 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
 
     //generate Bridge objects
     Bridge root(rootMac, rPriority, 0);
-    Bridge firsthop(bridgeMac, bPriority, messageAge);
+    Bridge firstHop(bridgeMac, bPriority, messageAge);
 
     //check if the two nodes are contained
     int rootContained = 0, oldHopMa = -1;
     for(Bridge b : bridges){
         if(b == root)
             rootContained = 1;
-        if(b == firsthop)
+        if(b == firstHop)
             oldHopMa = b.getMessageAge();
     }
 
@@ -173,11 +173,9 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     if(rootContained){
         if(oldHopMa >= 0){
             //both contained
-            if(oldHopMa != firsthop.getMessageAge()){
+            if(oldHopMa != firstHop.getMessageAge()){
                 //i don't know when this would happen
-                bridges.clear();
-                bridges.push_back(firsthop);
-                bridges.push_back(root);
+                clearAndAdd(firstHop, root);
             }else{
                 //everything is as it was
             }
@@ -188,30 +186,24 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
             //we don't know how long we were disconnected, so reregister the client
             if(!noConnect)
                 client->regServer();
-            bridges.clear();
-            bridges.push_back(firsthop);
-            bridges.push_back(root);
+            clearAndAdd(firstHop, root);
         }
     }else{
         //root not contained
         if(oldHopMa >= 0){
             //if the first hop was contained this means there were some changes upstream
-            if(oldHopMa == firsthop.getMessageAge() - 1){
+            if(oldHopMa == firstHop.getMessageAge() - 1){
                 std::cout << "root moved away\n";
                 //this means we have to increase every message age and add the new root
                 for(Bridge &b : bridges)
                     b.setMessageAge(b.getMessageAge() + 1);
                 bridges.push_back(root);
             }else{
-                bridges.clear();
-                bridges.push_back(firsthop);
-                bridges.push_back(root);
+                clearAndAdd(firstHop, root);
             }
         }else{
             //entirely new setup
-            bridges.clear();
-            bridges.push_back(firsthop);
-            bridges.push_back(root);
+            clearAndAdd(firstHop, root);
         }
     }
 
@@ -232,6 +224,13 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
 SpanningTree Sniffer::getTree(){
     std::sort(bridges.begin(), bridges.end(), [](Bridge a, Bridge b) {return a.getMessageAge() < b.getMessageAge();});
     return treeHelper(bridges.begin(), bridges.end());
+}
+
+void Sniffer::clearAndAdd(Bridge firstHop, Bridge root){
+    bridges.clear();
+    if(firstHop != root)
+        bridges.push_back(root);
+    bridges.push_back(firstHop);
 }
 
 SpanningTree Sniffer::treeHelper(std::vector<Bridge>::iterator current, std::vector<Bridge>::iterator end){
