@@ -69,14 +69,14 @@ void Server::run(){
 
         if(receivedJson["messagetype"] == "push"){
             SpanningTree newTree = SpanningTree::fromJson(receivedJson["tree"]);
-            std::cout << "received: " << newTree << std::endl;
+            Json::FastWriter writer;
+            std::cout << "received: " << writer.write(receivedJson) << std::endl;
             int id = receivedJson["id"].asInt();
       
             clientData[id] = newTree;
             timestamps[id] = time(NULL);
 
             output << "new data received, trees are now: " << std::endl;
-            Json::FastWriter writer;
             for(auto mapIt = clientData.begin(); mapIt != clientData.end(); mapIt++)
                 output << mapIt->first << ": " << writer.write(mapIt->second.toJson()) << std::endl;
 
