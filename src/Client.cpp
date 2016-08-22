@@ -30,8 +30,6 @@ void Client::regServer(){
     if(write(sockfd, buffer, strlen(buffer))<0)
         throw "could not write to server";
 
-    close(sockfd);
-
     //reset buffer
     for(int i=0; i<256; i++)
         buffer[i] = 0;
