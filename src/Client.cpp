@@ -42,6 +42,7 @@ void Client::regServer(){
     reader.parse(buffer, recVal);
     id = recVal["id"].asInt();
     std::cout << "client id is: " << id << std::endl;
+    close(sockfd);
 }
 
 Client::~Client(){
