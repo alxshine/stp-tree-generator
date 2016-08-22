@@ -109,8 +109,8 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     payload+=2;
     psize-=2;
 
-    //check for tc flag
-    bool tcSet = *payload++ & 1;
+    //tc flag
+    payload++;
     psize--;
 
     //root identifier
@@ -154,11 +154,6 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     Bridge root(rootMac, rPriority, 0);
     Bridge firsthop(bridgeMac, bPriority, messageAge);
 
-    //empty list if new tc flag
-    if(tcSet && !hadTC)
-        bridges.clear();
-    hadTC = tcSet;
-
     //check if the two nodes are contained
     int rootContained = 0, oldHopMa = -1;
     for(Bridge b : bridges){
@@ -167,25 +162,47 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
         if(b == firsthop)
             oldHopMa = b.getMessageAge();
     }
-    //if the first hop now has a messageAge 1 higher than before and the new root is different is different than before
-    //we can assume the root moved away from us
-    //TODO: add parameter to make this optional?
-    //note that the oldHopMa >= 0 is required in case the new age is 0
-    if(!rootContained && oldHopMa >= 0 && oldHopMa == firsthop.getMessageAge() - 1){
-        std::cout << "aoeu\n";
-        //this means we have to increase every message age and add the new root
-        for(Bridge &b : bridges)
-            b.setMessageAge(b.getMessageAge() + 1);
-        bridges.push_back(root);
-    }else{
-        if(root != firsthop){
-            if(!rootContained)
-                bridges.push_back(Bridge(root));
-            if(oldHopMa < 0)
-                bridges.push_back(Bridge(firsthop));
+
+    //handle network changes
+    if(rootContained){
+        if(oldHopMa >= 0){
+            //both contained
+            if(oldHopMa != firsthop.getMessageAge()){
+                //i don't know when this would happen
+                bridges.clear();
+                bridges.push_back(firsthop);
+                bridges.push_back(root);
+            }else{
+                //everything is as it was
+            }
         }else{
-            if(!rootContained)
-                bridges.push_back(Bridge(root));
+            //first hop not contained
+            //this means that the node was plugged in on a different bridge
+            //(most likely)
+            bridges.clear();
+            bridges.push_back(firsthop);
+            bridges.push_back(root);
+        }
+    }else{
+        //root not contained
+        if(oldHopMa >= 0){
+            //if the first hop was contained this means there were some changes upstream
+            if(oldHopMa == firsthop.getMessageAge() - 1){
+                std::cout << "root moved away\n";
+                //this means we have to increase every message age and add the new root
+                for(Bridge &b : bridges)
+                    b.setMessageAge(b.getMessageAge() + 1);
+                bridges.push_back(root);
+            }else{
+                bridges.clear();
+                bridges.push_back(firsthop);
+                bridges.push_back(root);
+            }
+        }else{
+            //entirely new setup
+            bridges.clear();
+            bridges.push_back(firsthop);
+            bridges.push_back(root);
         }
     }
 
