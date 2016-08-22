@@ -4,8 +4,9 @@ std::ofstream Sniffer::output;
 std::vector<Bridge> Sniffer::bridges;
 Client * Sniffer::client;
 bool Sniffer::hadTC;
+bool Sniffer::noConnect;
 
-Sniffer::Sniffer(bool noConnect, std::string outputFileName, std::string hostname, int port){
+Sniffer::Sniffer(bool nC, std::string outputFileName, std::string hostname, int port){
     bridges = std::vector<Bridge>();
     Sniffer::output.open(outputFileName, std::ios::app);
     if(!Sniffer::output.is_open()){
@@ -13,6 +14,7 @@ Sniffer::Sniffer(bool noConnect, std::string outputFileName, std::string hostnam
         exit(-1);
     }
 
+    noConnect = nC;
     if(noConnect){
         client = NULL;
     }else{
@@ -29,6 +31,10 @@ Sniffer::~Sniffer(){
 
 void Sniffer::start(const std::string inputFileName, const std::string deviceName){
     output << "sniffer starting\n";
+    if(!noConnect){
+        output << "registering client\n";
+        client->regServer();
+    }
     char err[PCAP_ERRBUF_SIZE];
     if(inputFileName.size() == 0){
         output << "getting interfaces\n";
@@ -179,6 +185,9 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
             //first hop not contained
             //this means that the node was plugged in on a different bridge
             //(most likely)
+            //we don't know how long we were disconnected, so reregister the client
+            if(!noConnect)
+                client->regServer();
             bridges.clear();
             bridges.push_back(firsthop);
             bridges.push_back(root);

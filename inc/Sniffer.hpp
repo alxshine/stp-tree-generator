@@ -25,6 +25,7 @@ class Sniffer{
         static const char * const filename;
         static std::ofstream output;
         static bool hadTC;
+        static bool noConnect;
         static std::vector<Bridge> bridges;
         static Client * client;
         static void process_packet(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes);

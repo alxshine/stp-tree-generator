@@ -17,11 +17,10 @@ class Client{
        struct sockaddr_in serverAddress;
        struct hostent *server;
 
-       void regServer();
-
     public:
        Client(std::string hostname, int port);
         ~Client();
 
+        void regServer();
         void send(Json::Value value);
 };
