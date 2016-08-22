@@ -114,6 +114,9 @@ void Server::run(){
             retJson["id"] = id;
             
             std::cout << "first free id is: " << id <<std::endl;
+            SpanningTree empty;
+            clientData[id] = empty;
+            timestamps[id] = time(NULL);
             output << "client registered" << std::endl;
             Json::FastWriter writer;
             std::string message = writer.write(retJson);
