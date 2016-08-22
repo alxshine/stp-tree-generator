@@ -108,12 +108,12 @@ void Server::run(){
             close(newsockfd);
         }else if(receivedJson["messagetype"] == "register"){
             int id=0;
-            std::cout << "register received\n";
-            for(; clientData.find(id) == clientData.end(); id++)
+            for(; clientData.find(id) != clientData.end(); id++)
                 ;
             Json::Value retJson;
             retJson["id"] = id;
             
+            std::cout << "first free id is: " << id <<std::endl;
             output << "client registered" << std::endl;
             Json::FastWriter writer;
             std::string message = writer.write(retJson);
