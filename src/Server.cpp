@@ -108,6 +108,7 @@ void Server::run(){
             close(newsockfd);
         }else if(receivedJson["messagetype"] == "register"){
             int id=0;
+            std::cout << "register received\n";
             for(; clientData.find(id) == clientData.end(); id++)
                 ;
             Json::Value retJson;

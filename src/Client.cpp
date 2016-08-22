@@ -15,8 +15,27 @@ void Client::regServer(){
     Json::Value regMessage;
     regMessage["messagetype"] = "register";
     Json::FastWriter writer;
-    send(writer.write(regMessage));
+    std::string message = writer.write(regMessage);
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if(sockfd < 0)
+        throw "could not create socket";
+
     char buffer[256];
+    message.copy(buffer, message.length(), 0);
+    buffer[message.length()] = 0;
+
+    if(connect(sockfd, (struct sockaddr *) &serverAddress, sizeof(serverAddress)) < 0)
+        throw "could not connect to server";
+
+    if(write(sockfd, buffer, strlen(buffer))<0)
+        throw "could not write to server";
+
+    close(sockfd);
+
+    //reset buffer
+    for(int i=0; i<256; i++)
+        buffer[i] = 0;
+    
     if(read(sockfd, buffer, 255) < 0)
         throw "error on read";
 
