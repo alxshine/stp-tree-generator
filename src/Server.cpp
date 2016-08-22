@@ -55,6 +55,7 @@ void Server::run(){
         Json::Reader reader;
         Json::Value receivedJson;
         reader.parse(buffer, receivedJson);
+        std::cout << "received: " << buffer << std::endl;
 
         time_t currentTime = time(NULL);
         std::vector<int> toRemove;
@@ -69,13 +70,12 @@ void Server::run(){
 
         if(receivedJson["messagetype"] == "push"){
             SpanningTree newTree = SpanningTree::fromJson(receivedJson["tree"]);
-            Json::FastWriter writer;
-            std::cout << "received: " << writer.write(receivedJson) << std::endl;
             int id = receivedJson["id"].asInt();
       
             clientData[id] = newTree;
             timestamps[id] = time(NULL);
 
+            Json::FastWriter writer;
             output << "new data received, trees are now: " << std::endl;
             for(auto mapIt = clientData.begin(); mapIt != clientData.end(); mapIt++)
                 output << mapIt->first << ": " << writer.write(mapIt->second.toJson()) << std::endl;

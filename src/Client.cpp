@@ -61,7 +61,6 @@ void Client::send(Json::Value value){
     message.copy(buffer, message.length(), 0);
     buffer[message.length()] = 0;
 
-    std::cout << "sending: " << message << std::endl;
 
     if(connect(sockfd, (struct sockaddr *) &serverAddress, sizeof(serverAddress)) < 0)
         throw "could not connect to server";
@@ -69,5 +68,6 @@ void Client::send(Json::Value value){
     if(write(sockfd, buffer, strlen(buffer))<0)
         throw "could not write to server";
 
+    std::cout << "sending: " << buffer << std::endl;
     close(sockfd);
 }
