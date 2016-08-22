@@ -72,7 +72,7 @@ int main(int argc, char **args){
 
     try{
         Sniffer s(noConnect, outputFileName, hostname, port);
-        if(inputFileName.length() > 0)
+        if(deviceName.length() > 0)
             cout << "starting Sniffer on device: " << deviceName << endl;
         s.start(inputFileName, deviceName);
     }catch (char const *c){
