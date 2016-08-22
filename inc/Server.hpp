@@ -18,7 +18,7 @@ class Server{
     private:
         int sockfd, newsockfd;
         socklen_t clientLength;
-        char buffer[256];
+        char buffer[1024];
         struct sockaddr_in serverAddress, clientAddress;
         time_t timeout;
         int id;

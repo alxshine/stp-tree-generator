@@ -47,15 +47,14 @@ void Server::run(){
         if(newsockfd <0)
             throw "error on accept";
 
-        bzero(buffer, 256);
-        int n = read(newsockfd,buffer,255);
+        bzero(buffer, 1024);
+        int n = read(newsockfd,buffer,1024);
         if(n<0)
             throw "error on read";
         
         Json::Reader reader;
         Json::Value receivedJson;
         reader.parse(buffer, receivedJson);
-        std::cout << "received: " << buffer << std::endl;
 
         time_t currentTime = time(NULL);
         std::vector<int> toRemove;
