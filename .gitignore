@@ -1,7 +1,5 @@
-log.txt
 bin
 obj
-server.log
-client.log
-log.txt
+*.log
+*.conf
 *.tikz
