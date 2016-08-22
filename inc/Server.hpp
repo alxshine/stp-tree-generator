@@ -21,6 +21,7 @@ class Server{
         char buffer[256];
         struct sockaddr_in serverAddress, clientAddress;
         time_t timeout;
+        int id;
 
         std::ofstream output;
         std::map<int, SpanningTree> clientData;

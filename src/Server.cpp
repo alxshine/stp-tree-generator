@@ -4,6 +4,7 @@ Server::Server(int port, std::string outputFileName, bool createPidFile, time_t 
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if(sockfd<0)
         throw "error opening socket";
+    id = 0;
 
     bzero((char *) &serverAddress, sizeof(serverAddress));
     serverAddress.sin_family = AF_INET;
@@ -107,13 +108,10 @@ void Server::run(){
                 throw "could not respond to client";
             close(newsockfd);
         }else if(receivedJson["messagetype"] == "register"){
-            int id=0;
-            for(; clientData.find(id) != clientData.end(); id++)
-                ;
             Json::Value retJson;
-            retJson["id"] = id;
+            retJson["id"] = id++;
             
-            std::cout << "first free id is: " << id <<std::endl;
+            std::cout << "first free id is: " << id-1 <<std::endl;
             SpanningTree empty;
             clientData[id] = empty;
             timestamps[id] = time(NULL);
