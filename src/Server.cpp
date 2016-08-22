@@ -69,6 +69,7 @@ void Server::run(){
 
         if(receivedJson["messagetype"] == "push"){
             SpanningTree newTree = SpanningTree::fromJson(receivedJson["tree"]);
+            std::cout << "received: " << newTree << std::endl;
             int id = receivedJson["id"].asInt();
       
             clientData[id] = newTree;
