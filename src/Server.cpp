@@ -76,7 +76,7 @@ void Server::run(){
             output << "new data received, trees are now: " << std::endl;
             Json::FastWriter writer;
             for(auto mapIt = clientData.begin(); mapIt != clientData.end(); mapIt++)
-                output << writer.write(mapIt->second.toJson()) << std::endl;
+                output << mapIt->first << ": " << writer.write(mapIt->second.toJson()) << std::endl;
 
             close(newsockfd);
         }else if(receivedJson["messagetype"] == "report"){

@@ -24,6 +24,7 @@ void Client::regServer(){
     Json::Value recVal;
     reader.parse(buffer, recVal);
     id = recVal["id"].asInt();
+    std::cout << "client id is: " << id << std::endl;
 }
 
 Client::~Client(){
