@@ -159,24 +159,35 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
         bridges.clear();
     hadTC = tcSet;
 
-    //add new nodes to list if they are not contained
-    int rootContained = 0, hopContained = 0;
+    //check if the two nodes are contained
+    int rootContained = 0, oldHopMa = -1;
     for(Bridge b : bridges){
         if(b == root)
             rootContained = 1;
         if(b == firsthop)
-            hopContained = 1;
+            oldHopMa = b.getMessageAge();
     }
-    if(root != firsthop){
-        if(!rootContained)
-            bridges.push_back(Bridge(root));
-        if(!hopContained)
-            bridges.push_back(Bridge(firsthop));
+    //if the first hop now has a messageAge 1 higher than before and the new root is different is different than before
+    //we can assume the root moved away from us
+    //TODO: add parameter to make this optional?
+    //note that the oldHopMa >= 0 is required in case the new age is 0
+    if(!rootContained && oldHopMa >= 0 && oldHopMa == firsthop.getMessageAge() - 1){
+        std::cout << "aoeu\n";
+        //this means we have to increase every message age and add the new root
+        for(Bridge &b : bridges)
+            b.setMessageAge(b.getMessageAge() + 1);
+        bridges.push_back(root);
     }else{
-        if(!rootContained)
-            bridges.push_back(Bridge(root));
+        if(root != firsthop){
+            if(!rootContained)
+                bridges.push_back(Bridge(root));
+            if(oldHopMa < 0)
+                bridges.push_back(Bridge(firsthop));
+        }else{
+            if(!rootContained)
+                bridges.push_back(Bridge(root));
+        }
     }
-
 
     SpanningTree currentTree = getTree();
     Json::FastWriter writer;

@@ -18,6 +18,7 @@ class Bridge{
         const Mac& getMac() const;
         const short getPriority() const ;
         const short getMessageAge() const;
+        void setMessageAge(short mA);
         Json::Value toJson() const;
         std::string toTikz() const;
 

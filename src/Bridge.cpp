@@ -22,6 +22,10 @@ const short Bridge::getMessageAge() const
     return messageAge;
 }
 
+void Bridge::setMessageAge(short mA) {
+    messageAge = mA;
+}
+
 const short Bridge::getPriority() const
 {
     return priority;
@@ -48,7 +52,7 @@ Bridge Bridge::fromJson(const Json::Value buildFrom){
 }
 
 int operator==(const Bridge& lhs, const Bridge& rhs){
-    return lhs.priority == rhs.priority && lhs.messageAge == rhs.messageAge && lhs.mac == rhs.mac;
+    return lhs.priority == rhs.priority && lhs.mac == rhs.mac;
 }
 
 int operator!=(const Bridge& lhs, const Bridge& rhs){
