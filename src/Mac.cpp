@@ -19,12 +19,6 @@ Mac& Mac::operator=(const Mac& rhs){
     return *this;
 }
 
-std::ostream& operator<<(std::ostream &out, const Mac& rhs){
-    for(int i=0; i<5; i++)
-        out << std::hex << std::setfill('0') << std::setw(2) <<  (int) rhs.address[i] << ":";
-    return out << std::hex << std::setfill('0') << std::setw(2) << (int) rhs.address[5];
-}
-
 std::string Mac::getAddress () const{
     return address;
 }

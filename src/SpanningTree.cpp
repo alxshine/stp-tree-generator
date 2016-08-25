@@ -162,23 +162,35 @@ std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep,
     double x = lowerX + dist/2;
 
     if(root.getMessageAge() > oldMessageAge+1){
+        //if there is an unknown node between the previous node and this one create an empty node
         ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + "," + std::to_string(y) + ") {};\n";
         ret += toTikz(lowerX, upperX, y+yStep, yStep, oldMessageAge+1, index+1);
         ret += "\\draw (" + std::to_string(index) + ") -- (" + std::to_string(index+1) + ");\n";
     }else{
+        //draw this node
         ret += "\\node (" + std::to_string(index) + ") at (" + std::to_string(x) + "," + std::to_string(y) + ") {" + root.toTikz() +"};\n";
 
+        //draw children
         double xPerWidth = dist / maxWidth();
-        int initialIndex = index;
+        //the indices of the children have to be calculated
+        //the required indices for a subtree equals its size
+        int childIndex = index+1;
         for(SpanningTree s : children){
             upperX = lowerX + xPerWidth * s.maxWidth();
-            ret += s.toTikz(lowerX, upperX, y-yStep, yStep, oldMessageAge+1, ++index);
+            ret += s.toTikz(lowerX, upperX, y-yStep, yStep, oldMessageAge+1, childIndex);
             lowerX = upperX;
+            childIndex += s.size();
         }
+
+        //draw lines to children
         if(children.size() >0){
             ret += "\\draw ";
-            for(int i = initialIndex+1; i <= index; i++)
-                ret += "\n(" + std::to_string(initialIndex) + ") -- (" + std::to_string(i) + ")";
+            //same indices calculation
+            childIndex = index+1;
+            for(SpanningTree child : children){
+                ret += "\n(" + std::to_string(index) + ") -- (" + std::to_string(childIndex) + ")";
+                childIndex += child.size();
+            }
             ret += ";\n";
         }
     }
@@ -206,6 +218,14 @@ int SpanningTree::widthAtLevel(int levelsRemaining) const{
     return ret;
 }
 
+int SpanningTree::size() const{
+    int size = 1;
+    for(SpanningTree child : children)
+        size += child.size();
+    
+    return size;
+}
+
 int SpanningTree::containsRoot(const SpanningTree& tree) const{
     if(root==tree.root)
         return 1;
@@ -229,16 +249,6 @@ SpanningTree SpanningTree::fromJson(const Json::Value buildFrom){
         ret.children.push_back(SpanningTree::fromJson(cj));
 
     return ret;
-}
-
-std::ostream& operator<<(std::ostream &out, const SpanningTree& rhs){
-    out << rhs.root << std::endl;
-    out << "children: " << std::endl;
-    for(SpanningTree child : rhs.children)
-        out << "-" << child;
-    out << std::endl;
-
-    return out;
 }
 
 SpanningTree SpanningTree::operator=(const SpanningTree& other){

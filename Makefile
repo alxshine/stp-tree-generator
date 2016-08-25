@@ -11,7 +11,7 @@ $(OBJFOLDER)/%.o: $(SOURCEFOLDER)/%.cpp
 	[ -d ./$(OBJFOLDER) ] || mkdir $(OBJFOLDER)
 	$(CC) -c $< $(CFLAGS) -o $@
 
-all:	server client parser
+all:	server client parser test
 
 server: $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/SpanningTree.o $(OBJFOLDER)/Server.o $(OBJFOLDER)/serverMain.o $(OBJFOLDER)/jsoncpp.o
 	[ -d $(BINFOLDER) ] || mkdir $(BINFOLDER)
@@ -28,6 +28,10 @@ sniffer: $(SOURCEFOLDER)/stp_sniffer.c
 parser: $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/Sniffer.o $(OBJFOLDER)/SpanningTree.o $(OBJFOLDER)/Client.o $(OBJFOLDER)/parser.o $(OBJFOLDER)/jsoncpp.o
 	[ -d $(BINFOLDER) ] || mkdir $(BINFOLDER)
 	$(CC) $(CFLAGS) $^ $(INCLUDES) -o $(BINFOLDER)/parser
+
+test: $(OBJFOLDER)/Mac.o $(OBJFOLDER)/Bridge.o $(OBJFOLDER)/Sniffer.o $(OBJFOLDER)/SpanningTree.o $(OBJFOLDER)/Client.o $(OBJFOLDER)/jsoncpp.o $(OBJFOLDER)/test.o
+	[ -d $(BINFOLDER) ] || mkdir $(BINFOLDER)
+	$(CC) $(CFLAGS) $^ $(INCLUDES) -o $(BINFOLDER)/test
 
 clean:
 	[ -d $(BINFOLDER) ] && rm -r $(BINFOLDER) || echo "no $(BINFOLDER)"

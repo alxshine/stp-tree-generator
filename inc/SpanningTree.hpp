@@ -26,6 +26,7 @@ class SpanningTree{
         std::string toTikz(double lowerX, double upperX, int Y, int yStep, int oldMessageAge, int index) const;
         int maxWidth() const;
         int widthAtLevel(int levelsRemaining) const;
+        int size() const;
         Bridge getRoot() const;
 
         static SpanningTree fromJson(const Json::Value buildFrom);
@@ -33,6 +34,5 @@ class SpanningTree{
         friend SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs);
         friend int operator==(const SpanningTree& lhs, const SpanningTree& rhs);
         friend int operator!=(const SpanningTree& lhs, const SpanningTree& rhs);
-        friend std::ostream& operator<<(std::ostream &out, const SpanningTree& rhs);
         SpanningTree operator=(const SpanningTree& other);
 };
