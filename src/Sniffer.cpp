@@ -144,7 +144,7 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     psize-=2;
 
     //tc flag
-    payload++;
+    int tc = *(payload++);
     psize--;
 
     //root identifier
@@ -206,6 +206,10 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
                 clearAndAdd(firstHop, root);
             }else{
                 //everything is as it was
+                //if something changed upstream a tc flag will be sent
+                //->reset
+                if(tc)
+                    clearAndAdd(firstHop, root);
             }
         }else{
             //first hop not contained
