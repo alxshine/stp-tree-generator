@@ -68,6 +68,6 @@ void Client::send(Json::Value value){
     if(write(sockfd, buffer, strlen(buffer))<0)
         throw "could not write to server";
 
-    std::cout << "sending: " << buffer << std::endl;
+    std::cout << time(0) << " sending: " << buffer << std::endl;
     close(sockfd);
 }
