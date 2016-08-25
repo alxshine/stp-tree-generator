@@ -144,7 +144,7 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     psize-=2;
 
     //tc flag
-    int tc = *(payload++);
+    bool tc = *(payload++);
     psize--;
 
     //root identifier
@@ -208,7 +208,7 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
                 //everything is as it was
                 //if something changed upstream a tc flag will be sent
                 //->reset
-                if(tc)
+                if(tc && !hadTC)
                     clearAndAdd(firstHop, root);
             }
         }else{
@@ -238,6 +238,7 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
             clearAndAdd(firstHop, root);
         }
     }
+    hadTC = tc;
 
     SpanningTree currentTree = getTree();
     Json::FastWriter writer;
