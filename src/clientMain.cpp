@@ -45,7 +45,7 @@ int main(int argc, char **args){
         auto param = string(args[c]);
         if(param == "-if")
             inputFileName = std::string(args[++c]);
-        else if(param == "--no-connect" || param == "-n")
+        else if(param == "--no-connect" || param == "-nc")
             noConnect = true;
         else if(param == "-of")
             outputFileName = std::string(args[++c]);

@@ -72,15 +72,43 @@ void Sniffer::start(const std::string inputFileName, const std::string deviceNam
             }
         }
 
+        //save device name for restart
+        std::string devname = std::string(device->name);
+
         output << "opening device " << device->name << " for sniffing" << std::endl;
         pcap_t *capture_handle = pcap_open_live(device->name, 65536, 1, 0, err);
         if(!capture_handle){
             output << "could not start capture" << std::endl;
-            output.flush();
             exit(-1);
         }
 
-        pcap_loop(capture_handle, -1, process_packet, NULL);
+        while(1){
+            pcap_loop(capture_handle, -1, process_packet, NULL);
+            output << "interface disconnected, closing capture\n";
+            pcap_close(capture_handle);
+            capture_handle = NULL;
+
+            output << "trying to find device " << devname << " again\n";
+            while(capture_handle == NULL){
+                sleep(2);
+                pcap_if_t *alldevs;
+                if(pcap_findalldevs(&alldevs, err)){
+                    output << "error while getting interfaces, error code: " << err << std::endl;
+                    exit(-1);
+                }
+
+                for(device = alldevs; device != NULL && device->name != devname; device = device->next)
+                    ;
+                if(device != NULL){
+                    capture_handle = pcap_open_live(device->name, 65536, 1, 0, err);
+                    if(!capture_handle){
+                        output << "could not start capture" << std::endl;
+                        exit(-1);
+                    }
+                }
+            }
+            output << "device found, restarting capture\n";
+        }
     }else{
         output << "reading from file\n";
         pcap_t *pcap = pcap_open_offline(inputFileName.c_str(), err);
