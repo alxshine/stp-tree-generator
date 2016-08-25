@@ -1,0 +1,65 @@
+[{
+    "children" : 
+    [
+        {
+            "children" : 
+            [
+                {
+                    "children" : null,
+                    "root" : 
+                    {
+                        "mac" : 
+                        {
+                            "address" : "F4:F2:6D:7D:BF:BD"
+                        },
+                        "messageAge" : 2,
+                        "priority" : 240
+                    }
+                }
+            ],
+            "root" : 
+            {
+                "mac" : 
+                {
+                    "address" : "00:09:6B:93:28:2E"
+                },
+                "messageAge" : 1,
+                "priority" : 384
+            }
+        },
+        {
+            "children" : null,
+            "root" : 
+            {
+                "mac" : 
+                {
+                    "address" : "50:7B:9D:0C:9F:CD"
+                },
+                "messageAge" : 1,
+                "priority" : 384
+            }
+        }
+    ],
+    "root" : 
+    {
+        "mac" : 
+        {
+            "address" : "BC:AE:C5:EB:7D:B6"
+        },
+        "messageAge" : 0,
+        "priority" : 128
+    }
+},
+{
+    "children" : null,
+    "root" : 
+    {
+        "mac" : 
+        {
+            "address" : "BC:AE:C5:EB:7D:B6"
+        },
+        "messageAge" : 0,
+        "priority" : 128
+    }
+}]
+
