@@ -1,9 +1,0 @@
-\begin{thebibliography}{1}
-
-\bibitem{perlman85}
-Radia Perlman.
-\newblock An algorithm for distributed computation of a spanningtree in an
-  extended lan.
-\newblock {\em SIGCOMM Comput. Commun. Rev.}, 15(4):44--53, September 1985.
-
-\end{thebibliography}

@@ -3,3 +3,4 @@ obj
 *.log
 *.conf
 *.tikz
+thesis/latex-build
