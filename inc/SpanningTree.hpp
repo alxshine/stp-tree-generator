@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iostream>
 #include <string>
+#include <utility>
 
 #include "Bridge.hpp"
 #include "../inc/json/json.h"
@@ -12,6 +13,7 @@ class SpanningTree{
     private:
         Bridge root;
         std::vector<SpanningTree> children;
+        std::pair<std::string, int> toTikzHelper(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const;
 
     public:
         SpanningTree();
