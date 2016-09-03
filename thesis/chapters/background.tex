@@ -10,7 +10,18 @@ The Generator described in this paper uses only STP, thus not needing SNMP capab
 
 \section{Technologies used}
 \subsection{STP}
+\subsubsection{Port States}
+The most important part of the STP is the way ports act and react.
+Depending on the topology and respective configuration of the Bridges, ports can be in one of the following three states:
+\begin{itemize}
+    \item \textbf{Root}: The port leading to the root of the tree.
+    \item \textbf{Dedicated}: Dedicated Ports are ports where packets are sent.
+    \item \textbf{Blocking}: No packets are sent via a Blocking Port.
+        If no superior STP packets are received on a Blocking Port for a set amount of time it transitions to Dedicated State.
+\end{itemize}
+%TODO: add graphic explaining port states
 \subsubsection{STP Packets}
+\label{stp_packet}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{stp_bpdu.png}
@@ -26,12 +37,43 @@ In this section we will explain the parts of an STP Bridge Protocol Data Unit (B
             \item System ID Extension (12 Bits): Used for keeping the Bridge ID unique if multiple VLANs are configured for a Bridge
             \item Bridge MAC (6 Byte): The MAC address of the Bridge
         \end{itemize}
-        The Identifier is used to determine the Root of the tree, as well as port statuses between Bridges sharing the same distance from the Root.
+        The conjunction of these three parts is used in comparisons as one large 8 Byte number.
     \item \textbf{Root Path Cost}: The Root Path Cost is the sum of all Port Costs (which can be configured in the Bridge) along the current path. The Root Path Cost in packets sent by the Root is 0.
     \item \textbf{Message Age}: The Message Age is the number of Bridges that have been passed (in addition to the Root) along the current path.
+    \item \textbf{Forward Delay}: After this time, if no superior packet was received, a Root, or Blocking Port will transition to Dedicated.
+        Note that if a Root Port transitions to Dedicated state that means the Bridge now assumes it is the Root.
 \end{itemize}
-\subsubsection{Building the Tree} 
+\subsubsection{Spanning Tree Algorithm}
+STP enabled Bridges run through the following algorithm on a received packet:
 How does STP work?
+\begin{algorithm}
+    \DontPrintSemicolon
+    \KwData{\\
+    $received$ = received packet\;
+    $current$ = data of the current Bridge\;
+    }
+    \;
+    \If{$received.rootId < current.rootId$}{
+        \tcc{There is a new Root in the network}
+        $current.rootId=other.rootId$\;
+        set receiving port as Root-Port\;
+        set other ports to Dedicated\;
+    }{
+        \uIf{$received.rootPathCost<current.rootPathCost$}{
+            \tcc{This means that the path via the other Bridge is shorter, so this should be our new Root-Path}
+            set receiving port as Root-Port\;
+            set other ports to Dedicated\;
+        }
+        \ElseIf{$received.rootPathCost==current.rootPathCost \land received.bridgeId<current.bridgeId$}{
+            \tcc{Both Bridges are equidistant from the Root, but the other Bridge has a lower Bridge Identifier and should be the Dedicated Bridge on the connection}
+            set receiving port as Blocking Port\;
+        }
+        \tcc{Finally check if the transitions described in section \ref{stp_packet} on \textbf{STP Packets} is necessary}
+        doPacketTimeOutTransitions()\;
+    }
+    
+    \caption{Spanning Tree Bridge Algorithm}
+\end{algorithm}
 \subsection{PCAP}
 PCAP 
 \subsection{JSON}
