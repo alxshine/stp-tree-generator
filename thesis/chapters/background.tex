@@ -8,6 +8,9 @@ LoriotPro and L2Discover use the SNMP for their topology discovery.
 STP is only used to discover unused and duplicate links.
 The Generator described in this paper uses only STP, thus not needing SNMP capable devices.
 
+TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.
+%TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.
+
 \section{Technologies used}
 \subsection{STP}
 \subsubsection{Port States}
@@ -17,9 +20,16 @@ Depending on the topology and respective configuration of the Bridges, ports can
     \item \textbf{Root}: The port leading to the root of the tree.
     \item \textbf{Dedicated}: Dedicated Ports are ports where packets are sent.
     \item \textbf{Blocking}: No packets are sent via a Blocking Port.
-        If no superior STP packets are received on a Blocking Port for a set amount of time it transitions to Dedicated State.
+        This state is used to disable alternate paths to the Root.
 \end{itemize}
-%TODO: add graphic explaining port states
+If no superior STP packets are received on a Blocking or Root Port for a set amount of time (called the Forward Transition Delay) it transitions to Dedicated State.
+An explanation can be found in Figure~\ref{fig:port_states}.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{port_states.png}
+    \caption{An example of the three STP port states}
+    \label{fig:port_states}
+\end{figure}
 \subsubsection{STP Packets}
 \label{stp_packet}
 \begin{figure}[h]
@@ -75,6 +85,30 @@ How does STP work?
     \caption{Spanning Tree Bridge Algorithm}
 \end{algorithm}
 \subsection{PCAP}
-PCAP 
+PCAP is a shortening of packet capture.
+It is a part of the \textit{tcpdump} tool, and was pulled into it's own library.
+We used the UNIX version \textit{libpcap} for this project.
+\textit{Libpcap} is a C library and can be directly linked with C and C++ whithout using a wrapper.
+\textit{Libpcap} provides functions for opening live network devices and \textit{.pcapng} files.
+Afetr starting a live capture on a device, \textit{libpcap} will call a callback function for every packet received on the opened interface.
+The prototype of the callback function looks as follows:
+\begin{lstlisting}
+typedef void (*pcap_handler)(u_char *user, const struct pcap_pkthdr *h,
+const u_char *bytes);
+\end{lstlisting}
+Where the parameters are:
+\begin{itemize}
+    \item \textbf{u\_char *user}: This parameter is used to pass user defined parameters.
+    \item \textbf{pcap\_pkthdr *h}: The header contains useful information about the packet, like source and destination addresses and size.
+    \item \textbf{u\_char *bytes}: This array contains the actual (binary) data of the packet.
+\end{itemize}
+
+Usage of this function will be covered more in-depth in the chapter on the tool itself (Chapter~\ref{stp_gen}).
 \subsection{JSON}
-JSON very brief
+JSON stands for Java Script Object Notation and was used for two reasons:
+\begin{enumerate}
+    \item It keeps the network communication independent from any and all programming languages used.
+    \item Utility libraries for JSON are easily available for most programming and scripting languages, saving us the work of inventing and implementing our own notation.
+\end{enumerate}
+
+The JSON library used in this project is \textit{jsoncpp}\cite{jsoncpp}.

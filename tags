@@ -87,7 +87,6 @@ Int64	inc/json/json.h	/^typedef long long int Int64;$/;"	t	namespace:Json
 Introduction	thesis/chapters/introduction.tex	/^\\chapter{Introduction}$/;"	c
 IsHeaderFile	.ycm_extra_conf.py	/^def IsHeaderFile( filename ):$/;"	f
 IsIntegral	src/jsoncpp.cpp	/^static bool IsIntegral(double d) {$/;"	f	namespace:Json
-JSON	thesis/chapters/background.tex	/^PCAP $/;"	u
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	160;"	d
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	199;"	d
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	201;"	d
@@ -245,7 +244,7 @@ RuntimeError	src/jsoncpp.cpp	/^RuntimeError::RuntimeError(JSONCPP_STRING const& 
 SOURCEFOLDER	Makefile	/^SOURCEFOLDER=src$/;"	m
 SOURCE_EXTENSIONS	.ycm_extra_conf.py	/^SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]$/;"	v
 STP	thesis/chapters/background.tex	/^\\section{Technologies used}$/;"	u
-STP Packets	thesis/chapters/background.tex	/^\\end{itemize}$/;"	b
+STP Packets	thesis/chapters/background.tex	/^\\end{figure}$/;"	b
 STP Tree Generator	thesis/chapters/stp-tree-gen.tex	/^\\chapter{STP Tree Generator}$/;"	c
 STP_PROTOCOL	src/stp_sniffer.c	10;"	d	file:
 SecureAllocator	inc/json/json.h	/^		SecureAllocator() {}$/;"	f	class:Json::SecureAllocator
@@ -281,7 +280,7 @@ StyledStreamWriter	inc/json/json.h	/^class JSON_API StyledStreamWriter {$/;"	c	n
 StyledStreamWriter	src/jsoncpp.cpp	/^StyledStreamWriter::StyledStreamWriter(JSONCPP_STRING indentation)$/;"	f	class:Json::StyledStreamWriter
 StyledWriter	inc/json/json.h	/^class JSON_API StyledWriter : public Writer {$/;"	c	namespace:Json
 StyledWriter	src/jsoncpp.cpp	/^StyledWriter::StyledWriter()$/;"	f	class:Json::StyledWriter
-Technologies used	thesis/chapters/background.tex	/^The Generator described in this paper uses only STP, thus not needing SNMP capable devices.$/;"	s
+Technologies used	thesis/chapters/background.tex	/^TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.$/;"	s
 Testing	thesis/chapters/testing.tex	/^\\chapter{Testing}$/;"	c
 Tests	thesis/chapters/testing.tex	/^\\end{figure}$/;"	s
 Token	inc/json/json.h	/^  class Token {$/;"	c	class:Json::Reader
