@@ -2,34 +2,38 @@
 \section{Existing alternatives}
 As of writing this paper, only very few tools support monitoring of STP topologies.
 The ones we found are LoriotPro\cite{LoriotPro}, LiveAction\cite{LiveAction} and L2Discover\cite{L2Discover}.
-Only the source code for L2Discover is openly available, the other two are proprietary software.
-The company SolarWinds has an open vote on their website on whether or not to include this feature in the future since 2014\cite{thwackSW}.
-LoriotPro and L2Discover use the SNMP for their topology discovery.
-STP is only used to discover unused and duplicate links.
-The Generator described in this paper uses only STP, thus not needing SNMP capable devices.
+Of these three network monitoring tools, only L2Discover has its source code openly available.
+The company SolarWinds has an open vote on their website on whether or not to include this feature in their monitoring software since 2014\cite{thwackSW}.
+LoriotPro and L2Discover use the SNMP for their topology discovery, with STP only being used to discover duplicate and unused links.
+The Generator described in this paper uses only STP, thus not needing the networking hardware being SNMP capable.
 
 TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.
+Update (Mittwoch): Der Uni VPN ist mega langsam, ich kann die ieee-papers nicht lesen...
 %TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.
 
 \section{Technologies used}
 \subsection{STP}
 \subsubsection{Port States}
-The most important part of the STP is the way ports act and react.
-Depending on the topology and respective configuration of the Bridges, ports can be in one of the following three states:
+The most important part of STP is its introduction of Port States.
+These Port States ensure that the spanning tree does not contain loops.
+Ports can be in one of three states (they can also be seen in Figure~\ref{fig:port_states}):
 \begin{itemize}
-    \item \textbf{Root}: The port leading to the root of the tree.
-    \item \textbf{Dedicated}: Dedicated Ports are ports where packets are sent.
+    \item \textbf{Root}: The port leading to the root or "upwards" in the tree.
+    \item \textbf{Dedicated}: Dedicated Ports are ports where packets are sent. These are the ports leading "downward" in the tree.
     \item \textbf{Blocking}: No packets are sent via a Blocking Port.
-        This state is used to disable alternate paths to the Root.
+        This state is used to disable alternate paths to the Root or "sideways" in the tree.
 \end{itemize}
+In the original STP paper, the term Local Area Network (LAN) referred to any connection to a Bridge, as well as between Bridges.
+Because the STP information must be propagated to every LAN, there needs to be exactly one Dedicated Port in a LAN.
+This can be seen in the connection between the bottom Bridges in Figure~\ref{fig:port_states}.
 If no superior STP packets are received on a Blocking or Root Port for a set amount of time (called the Forward Transition Delay) it transitions to Dedicated State.
-An explanation can be found in Figure~\ref{fig:port_states}.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{port_states.png}
     \caption{An example of the three STP port states}
     \label{fig:port_states}
 \end{figure}
+
 \subsubsection{STP Packets}
 \label{stp_packet}
 \begin{figure}[h]
@@ -41,7 +45,7 @@ An explanation can be found in Figure~\ref{fig:port_states}.
 In this section we will explain the parts of an STP Bridge Protocol Data Unit (BPDU), as seen in Figure~\ref{fig:stp_bpdu}, used in this project.
 \begin{itemize}
     \item \textbf{Flags}: The Flags Byte is used for the \textit{Topology Change} and \textit{Topology Change Acknowledgement} flags.
-    \item \textbf{Root/Bridge Identifier}: The Identifier conists of three parts and has the same layout for the Root and regular bridges:
+    \item \textbf{Root/Bridge Identifier}: The Identifier consists of three parts and has the same layout for the Root and regular bridges:
         \begin{itemize}
             \item Priority (4 Bits): A value between 0 and 61440 configurable in increments of 4096
             \item System ID Extension (12 Bits): Used for keeping the Bridge ID unique if multiple VLANs are configured for a Bridge
@@ -53,10 +57,12 @@ In this section we will explain the parts of an STP Bridge Protocol Data Unit (B
     \item \textbf{Forward Delay}: After this time, if no superior packet was received, a Root, or Blocking Port will transition to Dedicated.
         Note that if a Root Port transitions to Dedicated state that means the Bridge now assumes it is the Root.
 \end{itemize}
+
 \subsubsection{Spanning Tree Algorithm}
-STP enabled Bridges run through the following algorithm on a received packet:
-How does STP work?
-\begin{algorithm}
+STP enabled Bridges run through Algorithm~\ref{alg:stp} when receiving an STP packet.
+It ensures that information on the global Root is kept up to date and that Ports that receive a superior STP BPDU are disabled.
+
+\begin{algorithm}[h]
     \DontPrintSemicolon
     \KwData{\\
     $received$ = received packet\;
@@ -83,14 +89,15 @@ How does STP work?
     }
     
     \caption{Spanning Tree Bridge Algorithm}
+    \label{alg:stp}
 \end{algorithm}
 \subsection{PCAP}
 PCAP is a shortening of packet capture.
-It is a part of the \textit{tcpdump} tool, and was pulled into it's own library.
+It used to be a part of the \textit{tcpdump} tool before it was pulled into it's own library.
 We used the UNIX version \textit{libpcap} for this project.
-\textit{Libpcap} is a C library and can be directly linked with C and C++ whithout using a wrapper.
-\textit{Libpcap} provides functions for opening live network devices and \textit{.pcapng} files.
-Afetr starting a live capture on a device, \textit{libpcap} will call a callback function for every packet received on the opened interface.
+\textit{Libpcap} is a C library and can be directly linked with C and C++ without using a wrapper.
+It provides functions for opening live network devices and \textit{.pcapng} files.
+After starting a live capture on a device, \textit{libpcap} will call a callback function for every packet received on the opened interface.
 The prototype of the callback function looks as follows:
 \begin{lstlisting}
 typedef void (*pcap_handler)(u_char *user, const struct pcap_pkthdr *h,
@@ -102,6 +109,7 @@ Where the parameters are:
     \item \textbf{pcap\_pkthdr *h}: The header contains useful information about the packet, like source and destination addresses and size.
     \item \textbf{u\_char *bytes}: This array contains the actual (binary) data of the packet.
 \end{itemize}
+The \textbf{typedef void} (*pcap\_handler) part of the prototype just means that the function has no return value.
 
 Usage of this function will be covered more in-depth in the chapter on the tool itself (Chapter~\ref{stp_gen}).
 \subsection{JSON}
@@ -110,5 +118,14 @@ JSON stands for Java Script Object Notation and was used for two reasons:
     \item It keeps the network communication independent from any and all programming languages used.
     \item Utility libraries for JSON are easily available for most programming and scripting languages, saving us the work of inventing and implementing our own notation.
 \end{enumerate}
+JSON has a simple notation for declaring objects and arrays, as well as primitive data types.
+It is explained in Figure~\ref{fig:json}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{json.png}
+    \caption{An example of JSON}
+    \label{fig:json}
+\end{figure}
 
 The JSON library used in this project is \textit{jsoncpp}\cite{jsoncpp}.

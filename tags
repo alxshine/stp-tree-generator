@@ -280,7 +280,7 @@ StyledStreamWriter	inc/json/json.h	/^class JSON_API StyledStreamWriter {$/;"	c	n
 StyledStreamWriter	src/jsoncpp.cpp	/^StyledStreamWriter::StyledStreamWriter(JSONCPP_STRING indentation)$/;"	f	class:Json::StyledStreamWriter
 StyledWriter	inc/json/json.h	/^class JSON_API StyledWriter : public Writer {$/;"	c	namespace:Json
 StyledWriter	src/jsoncpp.cpp	/^StyledWriter::StyledWriter()$/;"	f	class:Json::StyledWriter
-Technologies used	thesis/chapters/background.tex	/^TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.$/;"	s
+Technologies used	thesis/chapters/background.tex	/^Update (Mittwoch): Der Uni VPN ist mega langsam, ich kann die ieee-papers nicht lesen...$/;"	s
 Testing	thesis/chapters/testing.tex	/^\\chapter{Testing}$/;"	c
 Tests	thesis/chapters/testing.tex	/^\\end{figure}$/;"	s
 Token	inc/json/json.h	/^  class Token {$/;"	c	class:Json::Reader
