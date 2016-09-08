@@ -27,10 +27,10 @@ In the original STP paper, the term Local Area Network (LAN) referred to any con
 Because the STP information must be propagated to every LAN, there needs to be exactly one Dedicated Port in a LAN.
 This can be seen in the connection between the bottom Bridges in Figure~\ref{fig:port_states}.
 If no superior STP packets are received on a Blocking or Root Port for a set amount of time (called the Forward Transition Delay) it transitions to Dedicated State.
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{port_states.png}
-    \caption{An example of the three STP port states}
+    \caption{An example of STP port states}
     \label{fig:port_states}
 \end{figure}
 
@@ -57,6 +57,11 @@ In this section we will explain the parts of an STP Bridge Protocol Data Unit (B
     \item \textbf{Forward Delay}: After this time, if no superior packet was received, a Root, or Blocking Port will transition to Dedicated.
         Note that if a Root Port transitions to Dedicated state that means the Bridge now assumes it is the Root.
 \end{itemize}
+A BPDU only contains information about the root and the bridge that sent the package.
+This means that if there is a bridge between these two, we will not know about it's id.
+We will however still know that it is there, because of the message age.
+During the buildup of the tree it is possible to obtain information on immediate nodes.
+This possibility is explained more in-depth in the section on packet handling (Section~\ref{packet_handling}).
 
 \subsubsection{Spanning Tree Algorithm}
 STP enabled Bridges run through Algorithm~\ref{alg:stp} when receiving an STP packet.

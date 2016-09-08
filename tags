@@ -42,6 +42,7 @@ ChildValues	inc/json/json.h	/^  typedef std::vector<JSONCPP_STRING> ChildValues;
 ChildValues	src/jsoncpp.cpp	/^  typedef std::vector<JSONCPP_STRING> ChildValues;$/;"	t	struct:Json::BuiltStyledStreamWriter	file:
 Client	inc/Client.hpp	/^class Client{$/;"	c
 Client	src/Client.cpp	/^Client::Client(std::string hostname, int port){$/;"	f	class:Client
+Client-Server Communication	thesis/chapters/stp-tree-gen.tex	/^\\end{figure}$/;"	s
 CommentInfo	inc/json/json.h	/^  struct CommentInfo {$/;"	s	class:Json::Value
 CommentInfo	src/jsoncpp.cpp	/^Value::CommentInfo::CommentInfo() : comment_(0)$/;"	f	class:Json::Value::CommentInfo
 CommentPlacement	inc/json/json.h	/^enum CommentPlacement {$/;"	g	namespace:Json
@@ -87,6 +88,7 @@ Int64	inc/json/json.h	/^typedef long long int Int64;$/;"	t	namespace:Json
 Introduction	thesis/chapters/introduction.tex	/^\\chapter{Introduction}$/;"	c
 IsHeaderFile	.ycm_extra_conf.py	/^def IsHeaderFile( filename ):$/;"	f
 IsIntegral	src/jsoncpp.cpp	/^static bool IsIntegral(double d) {$/;"	f	namespace:Json
+JSON	thesis/chapters/background.tex	/^Usage of this function will be covered more in-depth in the chapter on the tool itself (Chapter~\\ref{stp_gen}).$/;"	u
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	160;"	d
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	199;"	d
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	201;"	d
@@ -218,7 +220,6 @@ OurCharReader	src/jsoncpp.cpp	/^class OurCharReader : public CharReader {$/;"	c	
 OurFeatures	src/jsoncpp.cpp	/^class OurFeatures {$/;"	c	namespace:Json	file:
 OurReader	src/jsoncpp.cpp	/^OurReader::OurReader(OurFeatures const& features)$/;"	f	class:Json::OurReader
 OurReader	src/jsoncpp.cpp	/^class OurReader {$/;"	c	namespace:Json	file:
-PCAP	thesis/chapters/background.tex	/^\\end{algorithm}$/;"	u
 PORT	test_utils/python_utils/serverStart.py	/^PORT = 9999$/;"	v
 PORT	test_utils/python_utils/serverStop.py	/^PORT = 10000$/;"	v
 PORT	test_utils/python_utils/start.py	/^PORT = 9999$/;"	v
@@ -255,12 +256,12 @@ SelfType	inc/json/json.h	/^  typedef ValueIterator SelfType;$/;"	t	class:Json::V
 SelfType	inc/json/json.h	/^  typedef ValueIteratorBase SelfType;$/;"	t	class:Json::ValueIteratorBase
 Server	inc/Server.hpp	/^class Server{$/;"	c
 Server	src/Server.cpp	/^Server::Server(int port, std::string outputFileName, bool createPidFile, time_t to){$/;"	f	class:Server
+Setup	thesis/chapters/stp-tree-gen.tex	/^Afterwards it will parse the combined data to a \\textit{.tikz} file.$/;"	s
 Setup	thesis/chapters/testing.tex	/^\\chapter{Testing}$/;"	s
 Slow Dynamic Change Test	thesis/chapters/testing.tex	/^The new path through which Node \\textit{C} is connected to the root must be correctly identified.$/;"	u
 Sniffer	inc/Sniffer.hpp	/^class Sniffer{$/;"	c
 Sniffer	src/Sniffer.cpp	/^Sniffer::Sniffer(bool nC, std::string outputFileName, std::string hostname, int port){$/;"	f	class:Sniffer
 Software Switch Testing Utility	thesis/chapters/soft-switch.tex	/^\\chapter{Software Switch Testing Utility}$/;"	c
-Spanning Tree Algorithm	thesis/chapters/background.tex	/^\\end{itemize}$/;"	b
 SpanningTree	inc/SpanningTree.hpp	/^class SpanningTree{$/;"	c
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(){}$/;"	f	class:SpanningTree
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(const Bridge& r):root(r){$/;"	f	class:SpanningTree
