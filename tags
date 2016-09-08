@@ -256,7 +256,7 @@ SelfType	inc/json/json.h	/^  typedef ValueIterator SelfType;$/;"	t	class:Json::V
 SelfType	inc/json/json.h	/^  typedef ValueIteratorBase SelfType;$/;"	t	class:Json::ValueIteratorBase
 Server	inc/Server.hpp	/^class Server{$/;"	c
 Server	src/Server.cpp	/^Server::Server(int port, std::string outputFileName, bool createPidFile, time_t to){$/;"	f	class:Server
-Setup	thesis/chapters/stp-tree-gen.tex	/^Afterwards it will parse the combined data to a \\textit{.tikz} file.$/;"	s
+Setup	thesis/chapters/stp-tree-gen.tex	/^\\label{stp_gen}$/;"	s
 Setup	thesis/chapters/testing.tex	/^\\chapter{Testing}$/;"	s
 Slow Dynamic Change Test	thesis/chapters/testing.tex	/^The new path through which Node \\textit{C} is connected to the root must be correctly identified.$/;"	u
 Sniffer	inc/Sniffer.hpp	/^class Sniffer{$/;"	c
