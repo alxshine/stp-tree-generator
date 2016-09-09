@@ -9,22 +9,19 @@
 \usepackage{url}
 \graphicspath{{images/}}
 
+\usetikzlibrary{positioning, arrows, decorations.markings}
 \tikzset{%label colors for port states
     port/.style={draw, circle},
-    dedicated/.style={interface, fill=blue!50},
+    dedicated/.style={port, fill=blue!50},
     root/.style={port, fill=green!50},
     blocking/.style={port, fill=red!50}
 }
-\newcommand*{\switch}{
+
+\newcommand{\switch}{
     \begin{tikzpicture}
-        \coordinate (ll) at (-3,0.5);
-        \coordinate (lr) at (3, 0.5);
-        \coordinate (ul) at (-3, 2);
-        \coordinate (ur) at (3, 2+;
-        \includegraphics{switch.eps}
+        \node {\includegraphics{switch.pdf}};
     \end{tikzpicture}
 }
-
 \author{Alexander Schloegl, Matr Nr. 1315020}
 \title{stp-tree-generator}
 \begin{document}

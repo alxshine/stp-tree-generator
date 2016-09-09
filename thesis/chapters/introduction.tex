@@ -1,49 +1,146 @@
 \chapter{Introduction}
 As networks grow larger and more complex, redundancy becomes desirable and necessary.
-With layer 2 (the data link layer in the OSI model, where we have MAC addresses but no IP addresses) redundancy also brings loops and the danger of so called Broadcast Storms (where broadcast messages are bounced back and forth between network nodes).
+Adding redundant links always introduces loops to the network.
+Switches and hubs, respond to broadcast messages by sending them over every port (except for the one the packet was received on).
+In conjunction with loops, this behaviour leads to broadcast messages being repeated indefinitely.
+With the right network setup, these messages can also multiply exponentially. 
+These conditions are called broadcast storms\cite{bstorm}.
+Figure~\ref{fig:bc_storm} shows an example of a broadcast storm.
 Because of this the Spannning Tree Protocol (STP)\cite{perlman85} was created.
-The STP creates an overlay network, which has the properties of a tree.
-An example is shown in Figure~\ref{fig:stp_example}
+It creates an overlay network, in the shape of a tree, to remove loops from the network.
+In this overlay, broadcast storms are not possible anymore.
+An example for broadcast propagation in an STP overlay network in Figure~\ref{fig:stp_example}.
+
 
 \begin{figure}[h]
     \begin{center}
-    \begin{subfigure}[b]{0.4\textwidth}
-    \begin{tikzpicture}
-    \node (A) at (2,4) {A};
-    \node (B) at (1,3) {B};
-    \node (C) at (3,3) {C};
-    \node (D) at (2,2) {D};
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (root) at (4,8) {\switch};
+                \node (B) at (2,6) {\switch};
+                \node (C) at (6,6) {\switch};
+                \node (D) at (4,4) {\switch};
 
-    \draw
-    (A) -- (B)
-    (A) -- (C)
-    (B) -- (C)
-    (B) -- (D)
-    (C) -- (D);
-    \end{tikzpicture}
-    \caption{Physical topology}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[b]{0.4\textwidth}
-    \begin{tikzpicture}
-    \node (root) at (2,4) {A};
-    \node (B) at (1,3) {B};
-    \node (C) at (3,3) {C};
-    \node (D) at (2,2) {D};
+                \draw
+                (B) -- (C)
+                (B) -- (D)
+                (C) -- (D);
 
-    \draw
-    (root) -- (B)
-    (root) -- (C)
-    (B) -- (D);
-    \end{tikzpicture}
-    \caption{Logical topology}
-    \end{subfigure}
+                \draw[green, thick, ->] 
+                (root) edge (B)
+                (root) edge (C);
+            \end{tikzpicture}
+            \caption{Broadcast is sent}
+        \end{subfigure}
+        \hspace{1cm}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (root) at (4,8) {\switch};
+                \node (B) at (2,6) {\switch};
+                \node (C) at (6,6) {\switch};
+                \node (D) at (4,4) {\switch};
+
+                \draw 
+                (root) -- (B)
+                (root) -- (C);
+
+                \draw[green, thick, ->] 
+                %TODO: find out what the hell is wrong with arrows from b
+                (B) -- (D)
+                (C) -- (D);
+
+                \draw[red, thick, <->]
+                (B) -- (C);
+            \end{tikzpicture}
+            \caption{Broadcast is propagated}
+        \end{subfigure}
     \end{center}
-    \caption{An example of how STP changes the logical network topology}
-    \label{fig:stp_example}
+    
+    \begin{center}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (root) at (4,8) {\switch};
+                \node (B) at (2,6) {\switch};
+                \node (C) at (6,6) {\switch};
+                \node (D) at (4,4) {\switch};
+
+                \draw
+                (B) -- (C);
+
+                \draw[green, thick, ->]
+                (B) -- (root)
+                (C) -- (root);
+
+                \draw[red, thick, <->]
+                (B) -- (D)
+                (C) -- (D);
+
+            \end{tikzpicture}
+        \caption{Broadcasts start multiplying}
+        \end{subfigure}
+        \hspace{1cm}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (root) at (4,8) {\switch};
+                \node (B) at (2,6) {\switch};
+                \node (C) at (6,6) {\switch};
+                \node (D) at (4,4) {\switch};
+
+                \draw[red, thick, <->]
+                (root) -- (B)
+                (root) -- (C)
+                (B) -- (C)
+                (B) -- (D)
+                (C) -- (D);
+
+            \end{tikzpicture}
+        \caption{Broadcast storm}
+        \end{subfigure}
+    \end{center}
+    \caption{An example of a broadcast storm}
+    \label{fig:bc_storm}
 \end{figure}
 
-Only switches will be considered for this thesis.
+\begin{figure}
+    \begin{centering}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (root) at (4,8) {\switch};
+                \node (B) at (2,6) {\switch};
+                \node (C) at (6,6) {\switch};
+                \node (D) at (4,4) {\switch};
+
+                \draw[green, thick, ->]
+                (root) -- (B)
+                (root) -- (C);
+
+                \draw
+                (B) -- (D);
+            \end{tikzpicture}
+            \caption{Broadcast is sent}
+        \end{subfigure}
+        \hspace{1cm}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (root) at (4,8) {\switch};
+                \node (B) at (2,6) {\switch};
+                \node (C) at (6,6) {\switch};
+                \node (D) at (4,4) {\switch};
+
+                \draw[green, thick, ->]
+                (B) -- (D);
+
+                \draw
+                (root) -- (B)
+                (root) -- (C);
+            \end{tikzpicture}
+            \caption{Broadcast propagation done}
+        \end{subfigure}    
+    \end{centering}
+    \caption{Broadcast propagation in an STP network}
+    \label{fig:stp_example}
+\end{figure}
+For this thesis, we will only talk about switches.
 Hubs, while still existent, are hardly ever used and not STP capable.
 We will also refer to switches as bridges, in order to be compliant with STP nomenclature.\\
 
@@ -52,7 +149,7 @@ Additionally, changes and outages are hidden by STP and redundant links in the n
 This can make it hard to keep track of the current network layout.
 Debugging STP configurations is also a difficult and time consuming task.
 It is possible to check STP configurations via the Simple Network Management Protocol (SNMP).
-However, this requires an administrator to connect to every single bridge and jot down the STP information on their own.
+However, this requires an administrator to connect to every single bridge and collect the STP information manually.
 While there are tools to automate this, they rely primarily on SNMP, which may not be supported by all bridges in the network.\\
 
 The aim of this project was to create a versatile tool for STP visualization.
@@ -66,5 +163,4 @@ This tool had the following requirements:
     \item \textbf{No maintenance}: once set up, the tool must not require any maintenance (except when updating to a new version)
 \end{itemize}
 
-We decided to write the tool in C++.
-%TODO: finish implementation idea
+%TODO: do overview
