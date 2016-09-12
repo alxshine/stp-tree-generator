@@ -17,10 +17,18 @@
     blocking/.style={port, fill=red!50}
 }
 
-\newcommand{\switch}{
-    \begin{tikzpicture}
-        \node {\includegraphics{switch.pdf}};
-    \end{tikzpicture}
+\tikzset{%used for "invisible" stuff
+    invisible/.style={draw=white}
+    visible/.style={draw=black}
+}
+
+\newcommand{\switch}[2]{
+    \scalebox{#1}{
+        \begin{tikzpicture}
+            \node at (0,0) {\includegraphics{switch.pdf}};
+            \node at (0,-0.6) {#2};
+        \end{tikzpicture}
+    }
 }
 \author{Alexander Schloegl, Matr Nr. 1315020}
 \title{stp-tree-generator}

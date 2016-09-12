@@ -1,44 +1,63 @@
 \chapter{STP Tree Generator}
 \label{stp_gen}
-\section{Setup}
-Our STP Tree Generator itself is made up of three different executables:
-\begin{enumerate}
-    \item The client uses the data from the received BPDUs and combines them into its path to the root.
-    \item The server registers the clients and stores their information.
-    \item The parser is used to obtain the finished visualization from the server.
-\end{enumerate}
-%TODO: rewrite this garbage
-The intended way of using this tool is having multiple clients connect to a central server.
-If there is a client connected to every bridge in the network, all of them will be in the report.
-However, this does not mean that all connections are in the report as well, as connection information can only be obtained during tree buildup (see Section~\ref{packet_handling}).
-An example setup can be seen in Figure~\ref{fig:example_setup}.
+\section{Structure}
+We split the application in three parts:
+\begin{itemize}
+    \item \textbf{Client}: collects STP information and sends it to the server.
+        The client also handles piecing together the packets into paths.
+    \item \textbf{Server}: saves the data from the clients and combines them into one tree.
+    \item \textbf{Parser}: contacts the server to receive the tree and converts it into output format.
+\end{itemize}
+The intended form of usage is to have multiple clients in the network connecting to one server.
+This naturally increases the amount of information obtainable.
+STP uses only local data, which means that bridges have no knowledge of the network, except for their own port states.
+Unfortunately for us, this means that it is hard to find connections between bridges.
+The only way to obtain this information is to capture packets during the tree build up.
+Because bridges use the default parameters they use (see Section~\ref{stp}), they will think of themselves as root.
+Therefore they will propagate this information, which we can then capture.
+Using the root identifier in conjunction with the message age, we can gain information about the tree structure.
+An explanation of this can be found in Figures \ref{fig:build_up} and \ref{fig:information_loss}.
+\begin{figure}
+    \begin{centering}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (a) at (4,4) {\switch{0.8}{A}};
+                \node (b) at (4,2) {\switch{0.8}{B}};
+                \node (client) at (4,0) {Client};
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{example_setup.png}
-    \caption{An example STP tree generator setup}
-    \label{fig:example_setup}
+                \draw
+                (a) -- node [left] {message age: 0} ++ (b);
+
+                \draw[green, thick, ->]
+                (b) -- node [left] {message age: 0} ++ (client);
+
+            \end{tikzpicture}
+            \caption{B thinks it is root}
+        \end{subfigure}
+        \hspace{1cm}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \node (a) at (4,4) {\switch{0.8}{A}};
+                \node (b) at (4,2) {\switch{0.8}{B}};
+                \node (client) at (4,0) {Client};
+
+                \draw[green, thick, ->]
+                (a) -- node [right] {message age: 0} ++ (b);
+                \draw[green, thick, ->]
+                (b) -- node [right] {message age: 1} ++ (client);
+            \end{tikzpicture}
+            \caption{Root information updated}
+        \end{subfigure}
+    \end{centering}
+    \caption{Information gained on STP build up}
+    \label{fig:build_up}
 \end{figure}
+Unfortunately, this works only if the message age increases by one.
+If any other change occurs, the client has to clear its data.
+This is because in these cases we cannot guarantee that no other changes occured.
+More on this can be found in the section on packet handling (Section~\ref{packet_handling}).
 
-\section{Client-Server Communication}
-For the communication we used Transmission Control Protocol (TCP) sockets.
-TCP was used because it utilizes sessions, and takes care of guaranteeing correct transmission of the data.
-An alternative would have been the User Datagram Protocol (UDP).
-This would have slightly reduced the amount of network traffic.
-It would however also have required us to implement some sort of message acknowledgement scheme, to ensure data is transmitted correctly.
-There are three different message types in the packets we send:
-\begin{enumerate}
-    \item \textbf{register}: Clients send these message types to the server in order to receive an id.
-    \item \textbf{push}: Clients send these message types when they push new tree information to the server.
-    \item \textbf{report}: The parser sends this message type when requesting a visualization.
-\end{enumerate}
-
-Client ids are used in the server to differentiate information from different clients.
-Once a push message with a certain client id is received, its contained data is stored along with the id.
-If a message with the same id is received, this data is overwritten.
-The clients take care of preserving and updating their respective information as necessary.
-The timestamp for the last package, that a client sent to the server, is also associated with the id.
-
-The server then uses these timestamps to identify and remove clients that are no longer connecting.
-Path information pushed by these clients is also removed.
-The timeout delay can be configured, as described in the section on configuration (Section~\ref{configuration}).
+\section{Communication}
+\section{Details}
+\section{Installation \& Usage}

@@ -8,8 +8,8 @@ LoriotPro and L2Discover use the SNMP for their topology discovery, with STP onl
 The Generator described in this paper uses only STP, thus not needing the networking hardware being SNMP capable.
 
 TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.
-Update (Mittwoch): Der Uni VPN ist mega langsam, ich kann die ieee-papers nicht lesen...
 %TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.
+%TODO: maybe talk about alternative bridging protocols
 
 \section{Technologies used}
 \subsection{STP}
@@ -32,9 +32,11 @@ If no superior STP packets are received on a Blocking or Root Port for a set amo
     \includegraphics[width=0.7\textwidth]{port_states.png}
     \caption{An example of STP port states}
     \label{fig:port_states}
+    %TODO: redo in tikz
 \end{figure}
 
 \subsubsection{STP Packets}
+%TODO: rewrite (must include default configuration)
 \label{stp_packet}
 \begin{figure}[h]
     \centering
@@ -58,9 +60,9 @@ In this section we will explain the parts of an STP Bridge Protocol Data Unit (B
         Note that if a Root Port transitions to Dedicated state that means the Bridge now assumes it is the Root.
 \end{itemize}
 A BPDU only contains information about the root and the bridge that sent the package.
-This means that if there is a bridge between these two, we will not know about it's id.
+This means that if there is a bridge between these two, we will not know about its id.
 We will however still know that it is there, because of the message age.
-During the buildup of the tree it is possible to obtain information on immediate nodes.
+During the buildup of the tree it is possible to obtain information on intermediate nodes.
 This possibility is explained more in-depth in the section on packet handling (Section~\ref{packet_handling}).
 
 \subsubsection{Spanning Tree Algorithm}

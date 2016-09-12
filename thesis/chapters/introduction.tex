@@ -16,15 +16,15 @@ An example for broadcast propagation in an STP overlay network in Figure~\ref{fi
     \begin{center}
         \begin{subfigure}[b]{0.4\textwidth}
             \begin{tikzpicture}
-                \node (root) at (4,8) {\switch};
-                \node (B) at (2,6) {\switch};
-                \node (C) at (6,6) {\switch};
-                \node (D) at (4,4) {\switch};
+                \node (root) at (4,8) {\switch{0.8}{A}};
+                \node (B) at (2,6) {\switch{0.8}{B}};
+                \node (C) at (6,6) {\switch{0.8}{C}};
+                \node (D) at (4,4) {\switch{0.8}{D}};
 
                 \draw
-                (B) -- (C)
-                (B) -- (D)
-                (C) -- (D);
+                (B) edge (C)
+                (B) edge (D)
+                (C) edge (D);
 
                 \draw[green, thick, ->] 
                 (root) edge (B)
@@ -35,22 +35,21 @@ An example for broadcast propagation in an STP overlay network in Figure~\ref{fi
         \hspace{1cm}
         \begin{subfigure}[b]{0.4\textwidth}
             \begin{tikzpicture}
-                \node (root) at (4,8) {\switch};
-                \node (B) at (2,6) {\switch};
-                \node (C) at (6,6) {\switch};
-                \node (D) at (4,4) {\switch};
+                \node (root) at (4,8) {\switch{0.8}{A}};
+                \node (B) at (2,6) {\switch{0.8}{B}};
+                \node (C) at (6,6) {\switch{0.8}{C}};
+                \node (D) at (4,4) {\switch{0.8}{D}};
 
                 \draw 
-                (root) -- (B)
-                (root) -- (C);
+                (root) edge (B)
+                (root) edge (C);
 
                 \draw[green, thick, ->] 
-                %TODO: find out what the hell is wrong with arrows from b
-                (B) -- (D)
-                (C) -- (D);
+                (B) edge (D)
+                (C) edge (D);
 
                 \draw[red, thick, <->]
-                (B) -- (C);
+                (B) edge (C);
             \end{tikzpicture}
             \caption{Broadcast is propagated}
         \end{subfigure}
@@ -59,21 +58,21 @@ An example for broadcast propagation in an STP overlay network in Figure~\ref{fi
     \begin{center}
         \begin{subfigure}[b]{0.4\textwidth}
             \begin{tikzpicture}
-                \node (root) at (4,8) {\switch};
-                \node (B) at (2,6) {\switch};
-                \node (C) at (6,6) {\switch};
-                \node (D) at (4,4) {\switch};
+                \node (root) at (4,8) {\switch{0.8}{A}};
+                \node (B) at (2,6) {\switch{0.8}{B}};
+                \node (C) at (6,6) {\switch{0.8}{C}};
+                \node (D) at (4,4) {\switch{0.8}{D}};
 
                 \draw
-                (B) -- (C);
+                (B) edge (C);
 
                 \draw[green, thick, ->]
-                (B) -- (root)
-                (C) -- (root);
+                (B) edge (root)
+                (C) edge (root);
 
                 \draw[red, thick, <->]
-                (B) -- (D)
-                (C) -- (D);
+                (B) edge (D)
+                (C) edge (D);
 
             \end{tikzpicture}
         \caption{Broadcasts start multiplying}
@@ -81,18 +80,17 @@ An example for broadcast propagation in an STP overlay network in Figure~\ref{fi
         \hspace{1cm}
         \begin{subfigure}[b]{0.4\textwidth}
             \begin{tikzpicture}
-                \node (root) at (4,8) {\switch};
-                \node (B) at (2,6) {\switch};
-                \node (C) at (6,6) {\switch};
-                \node (D) at (4,4) {\switch};
+                \node (root) at (4,8) {\switch{0.8}{A}};
+                \node (B) at (2,6) {\switch{0.8}{B}};
+                \node (C) at (6,6) {\switch{0.8}{C}};
+                \node (D) at (4,4) {\switch{0.8}{D}};
 
                 \draw[red, thick, <->]
-                (root) -- (B)
-                (root) -- (C)
-                (B) -- (C)
-                (B) -- (D)
-                (C) -- (D);
-
+                (root) edge (B)
+                (root) edge (C)
+                (B) edge (C)
+                (B) edge (D)
+                (C) edge (D);
             \end{tikzpicture}
         \caption{Broadcast storm}
         \end{subfigure}
@@ -105,34 +103,34 @@ An example for broadcast propagation in an STP overlay network in Figure~\ref{fi
     \begin{centering}
         \begin{subfigure}[b]{0.4\textwidth}
             \begin{tikzpicture}
-                \node (root) at (4,8) {\switch};
-                \node (B) at (2,6) {\switch};
-                \node (C) at (6,6) {\switch};
-                \node (D) at (4,4) {\switch};
+                \node (root) at (4,8) {\switch{0.8}{A}};
+                \node (B) at (2,6) {\switch{0.8}{B}};
+                \node (C) at (6,6) {\switch{0.8}{C}};
+                \node (D) at (4,4) {\switch{0.8}{D}};
 
                 \draw[green, thick, ->]
-                (root) -- (B)
-                (root) -- (C);
+                (root) edge (B)
+                (root) edge (C);
 
                 \draw
-                (B) -- (D);
+                (B) edge (D);
             \end{tikzpicture}
             \caption{Broadcast is sent}
         \end{subfigure}
         \hspace{1cm}
         \begin{subfigure}[b]{0.4\textwidth}
             \begin{tikzpicture}
-                \node (root) at (4,8) {\switch};
-                \node (B) at (2,6) {\switch};
-                \node (C) at (6,6) {\switch};
-                \node (D) at (4,4) {\switch};
+                \node (root) at (4,8) {\switch{0.8}{A}};
+                \node (B) at (2,6) {\switch{0.8}{B}};
+                \node (C) at (6,6) {\switch{0.8}{C}};
+                \node (D) at (4,4) {\switch{0.8}{D}};
 
                 \draw[green, thick, ->]
-                (B) -- (D);
+                (B) edge (D);
 
                 \draw
-                (root) -- (B)
-                (root) -- (C);
+                (root) edge (B)
+                (root) edge (C);
             \end{tikzpicture}
             \caption{Broadcast propagation done}
         \end{subfigure}    
@@ -161,6 +159,7 @@ This tool had the following requirements:
     \item \textbf{Distributed}: the tool is to be run on multiple nodes, to send information to a central server where everything is pieced together
     \item \textbf{Low hardware load}: the tool must run on simplistic hardware (e.g. a Raspberry Pi) or on a regular PC without slowing it down noticeably
     \item \textbf{No maintenance}: once set up, the tool must not require any maintenance (except when updating to a new version)
+    \label{requirements}
 \end{itemize}
 
 %TODO: do overview
