@@ -26,10 +26,10 @@ An explanation of this can be found in Figures \ref{fig:build_up} and \ref{fig:i
                 \node (client) at (4,0) {Client};
 
                 \draw
-                (a) -- node [left] {message age: 0} ++ (b);
+                (a) -- node [left] {root: A} ++ (b);
 
                 \draw[green, thick, ->]
-                (b) -- node [left] {message age: 0} ++ (client);
+                (b) -- node [left] {root: B} ++ (client);
 
             \end{tikzpicture}
             \caption{B thinks it is root}
@@ -42,16 +42,55 @@ An explanation of this can be found in Figures \ref{fig:build_up} and \ref{fig:i
                 \node (b) at (4,2) {\switch{0.8}{B}};
                 \node (client) at (4,0) {Client};
 
+                \draw[green, thick]
+                (a) -- node [right] {root: A} ++ (b);
                 \draw[green, thick, ->]
-                (a) -- node [right] {message age: 0} ++ (b);
-                \draw[green, thick, ->]
-                (b) -- node [right] {message age: 1} ++ (client);
+                (b) -- node [right] {root: A} ++ (client);
             \end{tikzpicture}
             \caption{Root information updated}
         \end{subfigure}
     \end{centering}
     \caption{Information gained on STP build up}
     \label{fig:build_up}
+\end{figure}
+\begin{figure}
+    \begin{centering}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (a) at (4,6) {\switch{0.8}{A}};
+                \node (b) at (2,4) {\switch{0.8}{B}};
+                \node (c) at (6,4) {\switch{0.8}{C}};
+                \node (d) at (4,2) {\switch{0.8}{D}};
+                \node (client) at (4,0) {Client};
+                \draw
+                (a) -- (c)
+                (c) -- (d);
+                \draw[green, thick]
+                (b) -- node [left] {root: B} ++ (d)
+                (d) -- node [left] {root: B} ++ (client);
+            \end{tikzpicture}
+            \caption{Some information known}
+        \end{subfigure}
+        \hspace{1cm}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (a) at (4,6) {\switch{0.8}{A}};
+                \node (b) at (2,4) {\switch{0.8}{B}};
+                \node (c) at (6,4) {\switch{0.8}{C}};
+                \node (d) at (4,2) {\switch{0.8}{D}};
+                \node (client) at (4,0) {Client};
+                \draw
+                (b) -- (d);
+                \draw[green, thick]
+                (d) -- node [right] {root: A} ++ (client);
+                \draw[red, thick]
+                (c) -- node [right] {root: A} ++ (d)
+                (a) -- node [right] {root: A} ++ (c);
+            \end{tikzpicture}
+            \caption{Previous information lost}
+        \end{subfigure}
+        \caption{Information lost during tree build up}
+    \end{centering}
 \end{figure}
 Unfortunately, this works only if the message age increases by one.
 If any other change occurs, the client has to clear its data.
