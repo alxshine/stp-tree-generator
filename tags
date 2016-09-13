@@ -392,7 +392,7 @@ clearAndAdd	src/Sniffer.cpp	/^void Sniffer::clearAndAdd(Bridge firstHop, Bridge 
 client	inc/Sniffer.hpp	/^        static Client * client;$/;"	m	class:Sniffer
 client	src/Sniffer.cpp	/^Client * Sniffer::client;$/;"	m	class:Sniffer	file:
 clientAddress	inc/Server.hpp	/^        struct sockaddr_in serverAddress, clientAddress;$/;"	m	class:Server	typeref:struct:Server::
-clientData	inc/Server.hpp	/^        std::map<int, SpanningTree> clientData;$/;"	m	class:Server
+clientData	inc/Server.hpp	/^        std::map<int, std::vector<Bridge>> clientData;$/;"	m	class:Server
 clientLength	inc/Server.hpp	/^        socklen_t clientLength;$/;"	m	class:Server
 codePointToUTF8	src/jsoncpp.cpp	/^static inline JSONCPP_STRING codePointToUTF8(unsigned int cp) {$/;"	f	namespace:Json
 collectComments_	inc/json/json.h	/^  bool collectComments_;$/;"	m	class:Json::Reader
@@ -510,7 +510,7 @@ getRoot	src/SpanningTree.cpp	/^Bridge SpanningTree::getRoot() const{$/;"	f	class
 getString	src/jsoncpp.cpp	/^bool Value::getString(char const** str, char const** cend) const {$/;"	f	class:Json::Value
 getStructuredErrors	src/jsoncpp.cpp	/^std::vector<OurReader::StructuredError> OurReader::getStructuredErrors() const {$/;"	f	class:Json::OurReader
 getStructuredErrors	src/jsoncpp.cpp	/^std::vector<Reader::StructuredError> Reader::getStructuredErrors() const {$/;"	f	class:Json::Reader
-getTree	src/Sniffer.cpp	/^SpanningTree Sniffer::getTree(){$/;"	f	class:Sniffer
+getTrees	src/Server.cpp	/^std::vector<SpanningTree> Server::getTrees(){$/;"	f	class:Server
 getValidReaderKeys	src/jsoncpp.cpp	/^static void getValidReaderKeys(std::set<JSONCPP_STRING>* valid_keys)$/;"	f	namespace:Json
 getValidWriterKeys	src/jsoncpp.cpp	/^static void getValidWriterKeys(std::set<JSONCPP_STRING>* valid_keys)$/;"	f	namespace:Json
 good	src/jsoncpp.cpp	/^bool OurReader::good() const {$/;"	f	class:Json::OurReader
@@ -879,7 +879,7 @@ tokenTrue	inc/json/json.h	/^    tokenTrue,$/;"	e	enum:Json::Reader::TokenType
 tokenTrue	src/jsoncpp.cpp	/^    tokenTrue,$/;"	e	enum:Json::OurReader::TokenType	file:
 token_	inc/json/json.h	/^    Token token_;$/;"	m	class:Json::Reader::ErrorInfo
 token_	src/jsoncpp.cpp	/^    Token token_;$/;"	m	class:Json::OurReader::ErrorInfo	file:
-treeHelper	src/Sniffer.cpp	/^SpanningTree Sniffer::treeHelper(std::vector<Bridge>::iterator current, std::vector<Bridge>::iterator end){$/;"	f	class:Sniffer
+treeHelper	src/Server.cpp	/^SpanningTree Server::treeHelper(std::vector<Bridge>::iterator current, std::vector<Bridge>::iterator end){$/;"	f	class:Server
 type	src/jsoncpp.cpp	/^ValueType Value::type() const { return type_; }$/;"	f	class:Json::Value
 type_	inc/json/json.h	/^    TokenType type_;$/;"	m	class:Json::Reader::Token
 type_	src/jsoncpp.cpp	/^    TokenType type_;$/;"	m	class:Json::OurReader::Token	file:

@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <vector>
+#include <algorithm>
 
 #include <stdio.h>
 #include <unistd.h>
@@ -24,8 +26,10 @@ class Server{
         int id;
 
         std::ofstream output;
-        std::map<int, SpanningTree> clientData;
+        std::map<int, std::vector<Bridge>> clientData;
         std::map<int, time_t> timestamps;
+        std::vector<SpanningTree> getTrees();
+        SpanningTree treeHelper(std::vector<Bridge>::iterator current, std::vector<Bridge>::iterator end);
 
     public:
         Server(int port, std::string outputFileName, bool createPidFile, time_t to);
