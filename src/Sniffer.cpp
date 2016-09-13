@@ -240,11 +240,13 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     }
     hadTC = tc;
 
-    SpanningTree currentTree = getTree();
     Json::FastWriter writer;
     Json::Value toSend;
     toSend["messagetype"] = "push";
-    toSend["tree"] = currentTree.toJson();
+    Json::Value jsonBridges = Json::arrayValue;
+    for(Bridge b : bridges)
+        jsonBridges.append(b.toJson());
+    toSend["bridges"] = jsonBridges;
     output << "sniffer is sending: " << std::endl << writer.write(toSend) << std::endl;
     try{
         if(client)
@@ -254,23 +256,9 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     }
 }
 
-SpanningTree Sniffer::getTree(){
-    std::sort(bridges.begin(), bridges.end(), [](Bridge a, Bridge b) {return a.getMessageAge() < b.getMessageAge();});
-    return treeHelper(bridges.begin(), bridges.end());
-}
-
 void Sniffer::clearAndAdd(Bridge firstHop, Bridge root){
     bridges.clear();
     if(firstHop != root)
         bridges.push_back(root);
     bridges.push_back(firstHop);
-}
-
-SpanningTree Sniffer::treeHelper(std::vector<Bridge>::iterator current, std::vector<Bridge>::iterator end){
-    if(current == end-1)
-        return SpanningTree(*current);
-
-    SpanningTree newTree(*current);
-    newTree.addChild(treeHelper(++current, end));
-    return newTree;
 }

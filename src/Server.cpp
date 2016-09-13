@@ -41,6 +41,75 @@ Server::~Server(){
     output.close();
 }
 
+std::vector<SpanningTree> Server::getTrees(){
+    //remove invalid entries before creating SpanningTree
+    //check every received vector against every other
+    for(auto mapIt1 = clientData.begin(); mapIt1 != clientData.end(); ++mapIt1){
+        std::vector<Bridge> vec1 = mapIt1->second;
+        for(auto mapIt2 = clientData.begin(); mapIt2 != clientData.end(); ++mapIt2){
+            if(mapIt1 == mapIt2)
+                continue;
+            std::vector<Bridge> vec2 = mapIt2->second;
+            for(auto vecIt1 = vec1.begin(); vecIt1 != vec1.end(); ++vecIt1){
+                for(auto vecIt2 = vec2.begin(); vecIt2 != vec2.end(); ++vecIt2){
+                    //check every bridge against every other
+                    //if one has a smaller message age, it is incorrect and needs to be removed
+                    //this might overlook some errors if the number of clients is insufficient
+                    if(vecIt1->getMessageAge() < vecIt2->getMessageAge()){
+                        //remove bridge
+                        vecIt1=vec1.erase(vecIt1);
+                        //decrement vecIt1 to have it at the correct position in the next loop iteration
+                        --vecIt1;
+                        //continue with outer loop (vec1 iteration)
+                        break;
+                    }else if(vecIt2->getMessageAge() < vecIt1->getMessageAge()){
+                        vecIt2=vec2.erase(vecIt2);
+                        --vecIt2;
+                        //no break needed -> next step is inner loop (vec2 iteration)
+                    }
+                }
+            }
+        }
+    }
+
+    //now that the incorrect entries are removed, we assume that everything else is correct
+    //WHICH MAY STILL BE WRONG
+    //create SpanningTrees like in Sniffer
+    std::vector<SpanningTree> indivTrees = std::vector<SpanningTree>();
+    for(auto mapIt = clientData.begin(); mapIt != clientData.end(); ++mapIt){
+        auto vec = mapIt->second;
+        std::sort(vec.begin(), vec.end(), [](Bridge a, Bridge b) {return a.getMessageAge() < b.getMessageAge();});
+        indivTrees.push_back(treeHelper(vec.begin(), vec.end()));
+    }
+
+    //now combine these trees
+    std::vector<SpanningTree> ret;
+    for(auto indivIt = indivTrees.begin(); indivIt != indivTrees.end(); ++indivIt){
+        bool contained = false;
+        for(auto treeIt = ret.begin(); treeIt != ret.end(); ++treeIt){
+            if(treeIt->containsRoot(*indivIt) && *treeIt != *indivIt){
+                *treeIt = *treeIt + *indivIt;
+                contained = true;
+                break;
+            }
+        }
+        if(!contained)
+            ret.push_back(*indivIt);
+    }
+    
+    return ret;
+}
+
+SpanningTree Server::treeHelper(std::vector<Bridge>::iterator current, std::vector<Bridge>::iterator end){
+    if(current == end-1)
+        return SpanningTree(*current);
+
+    SpanningTree newTree(*current);
+    newTree.addChild(treeHelper(++current, end));
+    return newTree;
+}
+
+
 void Server::run(){
     while(1){
         newsockfd = accept(sockfd, (struct sockaddr*) &clientAddress, &clientLength);
@@ -68,32 +137,24 @@ void Server::run(){
         }
 
         if(receivedJson["messagetype"] == "push"){
-            SpanningTree newTree = SpanningTree::fromJson(receivedJson["tree"]);
             int id = receivedJson["id"].asInt();
+            Json::Value jsonBridges = receivedJson["bridges"];
+            clientData[id].clear();
+            for(auto newbridge : jsonBridges)
+                clientData[id].push_back(Bridge::fromJson(newbridge));
       
-            clientData[id] = newTree;
             timestamps[id] = time(NULL);
 
             Json::FastWriter writer;
-            output << "new data received, trees are now: " << std::endl;
-            for(auto mapIt = clientData.begin(); mapIt != clientData.end(); mapIt++)
-                output << mapIt->first << ": " << writer.write(mapIt->second.toJson()) << std::endl;
-
+            output << "new data received, data is now: " << std::endl;
+            for(auto mapIt = clientData.begin(); mapIt != clientData.end(); mapIt++){
+                output << mapIt->first << ": ";
+                for(Bridge b : mapIt->second)
+                    output << writer.write(b.toJson());
+            }
             close(newsockfd);
         }else if(receivedJson["messagetype"] == "report"){
-            std::vector<SpanningTree> trees;
-            for(auto mapIt = clientData.begin(); mapIt != clientData.end(); mapIt++){
-                bool contained = false;
-                for(auto treeIt = trees.begin(); treeIt != trees.end(); treeIt++){
-                    if(treeIt->containsRoot(mapIt->second) && *treeIt != mapIt->second){
-                        *treeIt = *treeIt + mapIt->second;
-                        contained = true;
-                        break;
-                    }
-                }
-                if(!contained)
-                    trees.push_back(mapIt->second);
-            }
+            std::vector<SpanningTree> trees = getTrees();
 
             Json::Value jsonTrees;
             for(SpanningTree tree : trees)
@@ -112,8 +173,7 @@ void Server::run(){
             retJson["id"] = id++;
             
             std::cout << "first free id is: " << id-1 <<std::endl;
-            SpanningTree empty;
-            clientData[id] = empty;
+            clientData[id] = std::vector<Bridge>();
             timestamps[id] = time(NULL);
             output << "client registered" << std::endl;
             Json::FastWriter writer;
