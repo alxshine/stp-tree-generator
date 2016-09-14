@@ -202,7 +202,7 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
         if(oldHopMa >= 0){
             //both contained
             if(oldHopMa != firstHop.getMessageAge()){
-                //i don't know when this would happen
+                //upstream changes
                 clearAndAdd(firstHop, root);
             }else{
                 //everything is as it was
@@ -224,6 +224,7 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
         //root not contained
         if(oldHopMa >= 0){
             //if the first hop was contained this means there were some changes upstream
+            //TODO: maybe add parameter to disable unsafe assumptions (this would make the entire tool useless though)
             if(oldHopMa == firstHop.getMessageAge() - 1){
                 std::cout << "root moved away\n";
                 //this means we have to increase every message age and add the new root
