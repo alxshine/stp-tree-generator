@@ -42,12 +42,12 @@ ChildValues	inc/json/json.h	/^  typedef std::vector<JSONCPP_STRING> ChildValues;
 ChildValues	src/jsoncpp.cpp	/^  typedef std::vector<JSONCPP_STRING> ChildValues;$/;"	t	struct:Json::BuiltStyledStreamWriter	file:
 Client	inc/Client.hpp	/^class Client{$/;"	c
 Client	src/Client.cpp	/^Client::Client(std::string hostname, int port){$/;"	f	class:Client
-Combining the data	thesis/chapters/stp-tree-gen.tex	/^As discussed in the background section (Section~\\ref{json}) wer are using JSON for the client server communication.$/;"	u
+Combining the data	thesis/chapters/stp-tree-gen.tex	/^\\end{figure}$/;"	u
 CommentInfo	inc/json/json.h	/^  struct CommentInfo {$/;"	s	class:Json::Value
 CommentInfo	src/jsoncpp.cpp	/^Value::CommentInfo::CommentInfo() : comment_(0)$/;"	f	class:Json::Value::CommentInfo
 CommentPlacement	inc/json/json.h	/^enum CommentPlacement {$/;"	g	namespace:Json
 CommentStyle	src/jsoncpp.cpp	/^struct CommentStyle {$/;"	s	namespace:Json	file:
-Communication	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting{..\/listings\/stp\/update.c}$/;"	u
+Communication	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Bridge data update, label=lst:update]{..\/listings\/stp\/update.c}$/;"	u
 Conclusion	thesis/chapters/conclusion.tex	/^\\chapter{Conclusion}$/;"	c
 DEPS	Makefile	/^DEPS=$(DEPSFOLDER)\/*$/;"	m
 DEPSFOLDER	Makefile	/^DEPSFOLDER=inc$/;"	m
@@ -79,7 +79,7 @@ HOST	test_utils/python_utils/serverStop.py	/^HOST = ''$/;"	v
 INCLUDES	Makefile	/^INCLUDES=-lpcap$/;"	m
 InArgs	inc/json/json.h	/^  typedef std::vector<const PathArgument*> InArgs;$/;"	t	class:Json::Path
 InRange	src/jsoncpp.cpp	/^static inline bool InRange(double d, T min, U max) {$/;"	f	namespace:Json
-Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\label{unsafe_assumptions}$/;"	s
+Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\label{combining_data}$/;"	s
 Int	inc/json/json-forwards.h	/^typedef int Int;$/;"	t	namespace:Json
 Int	inc/json/json.h	/^  typedef Json::Int Int;$/;"	t	class:Json::Value
 Int	inc/json/json.h	/^typedef int Int;$/;"	t	namespace:Json
@@ -303,7 +303,7 @@ UInt64	inc/json/json.h	/^  typedef Json::UInt64 UInt64;$/;"	t	class:Json::Value
 UInt64	inc/json/json.h	/^typedef unsigned __int64 UInt64;$/;"	t	namespace:Json
 UInt64	inc/json/json.h	/^typedef unsigned long long int UInt64;$/;"	t	namespace:Json
 UIntToStringBuffer	src/jsoncpp.cpp	/^typedef char UIntToStringBuffer[uintToStringBufferSize];$/;"	t	namespace:Json	file:
-Unsafe Assumptions	thesis/chapters/stp-tree-gen.tex	/^\\label{combining_data}$/;"	u
+Unsafe Assumptions	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Server-Parser Transmission, label=lst:treeJson]{..\/listings\/json\/serverParser.json}$/;"	u
 Usage Test	thesis/chapters/testing.tex	/^\\section{Tests}$/;"	u
 Value	inc/json/json.h	/^class JSON_API Value {$/;"	c	namespace:Json
 Value	src/jsoncpp.cpp	/^Value::Value(Int value) {$/;"	f	class:Json::Value

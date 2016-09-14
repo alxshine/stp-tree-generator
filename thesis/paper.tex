@@ -9,37 +9,15 @@
 \usepackage{url}
 \graphicspath{{images/}}
 
-\usetikzlibrary{positioning, arrows, decorations.markings}
-\tikzset{%label colors for port states
-    port/.style={draw, circle},
-    dedicated/.style={port, fill=blue!50},
-    root/.style={port, fill=green!50},
-    blocking/.style={port, fill=red!50}
-}
+\input{conf/tikz.tex}
+\input{conf/listings.tex}
+\input{conf/c++.tex}    
 
-\tikzset{%used for "invisible" stuff
-    invisible/.style={draw=white}
-    visible/.style={draw=black}
-}
+% end of preamble
 
-\newcommand{\switch}[2]{
-    \scalebox{#1}{
-        \begin{tikzpicture}
-            \node at (0,0) {\includegraphics{switch.pdf}};
-            \node at (0,-0.6) {#2};
-        \end{tikzpicture}
-    }
-}
-\author{Alexander Schloegl, Matr Nr. 1315020}
 \title{stp-tree-generator}
 \begin{document}
 %\raggedright
-\lstset{language=C++,
-            basicstyle=\ttfamily,
-            keywordstyle=\color{blue}\ttfamily,
-            stringstyle=\color{red}\ttfamily,
-            commentstyle=\color{magenta}\ttfamily,
-}
 \maketitle
 \tableofcontents
 %TODO: maybe extract tikz images to own folder for easier presentation building

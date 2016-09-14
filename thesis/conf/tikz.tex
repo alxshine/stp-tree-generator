@@ -1,0 +1,21 @@
+\usetikzlibrary{positioning, arrows, decorations.markings}
+\tikzset{%label colors for port states
+    port/.style={draw, circle},
+    dedicated/.style={port, fill=blue!50},
+    root/.style={port, fill=green!50},
+    blocking/.style={port, fill=red!50}
+}
+
+\tikzset{%used for "invisible" stuff
+    invisible/.style={draw=white}
+    visible/.style={draw=black}
+}
+
+\newcommand{\switch}[2]{
+    \scalebox{#1}{
+        \begin{tikzpicture}
+            \node at (0,0) {\includegraphics{switch.pdf}};
+            \node at (0,-0.6) {#2};
+        \end{tikzpicture}
+    }
+}

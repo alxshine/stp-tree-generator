@@ -110,35 +110,107 @@ A detailed explanation of how this tool handles incoming STP packets can be foun
 \subsection{Saving the Data}
 \label{data}
 %TODO: explain how the sniffer saves data before sending it
-%TODO: explain what clearAndAdd does
 \subsection{Packet Handling}
 \label{packet_handling}
-Packets are handled by the Sniffer class.
+Packets are handled by the sniffer class.
 While most of the function that handles incoming STP packets just skip fields that are not used, here we will discuss the more important parts.
-In order to check if the packet is actually an STP packet, we use the Ethernet destination address:
-\lstinputlisting[language=C++]{../listings/stp/stpFilter.c}
-Where bytes is provided by the required \textit{pcap} callback prototype (see Section~\ref{pcap}: PCAP).
-This is computationally more expensive than saving the destination in binary format and comparing memory.
+In order to check if the packet is actually an STP packet, we use the Ethernet destination address.
+Listing~\ref{lst:filter} shows how that is done.
+\textit{Bytes} is provided by the required \textit{pcap} callback prototype (see Section~\ref{pcap}: PCAP).
+This way is computationally more expensive than saving the destination in binary format and comparing memory.
 It is however also more readable and a lot easier to change should the need arise.
+%TODO: check capitalization in captions
+\lstinputlisting[caption=Filtering for STP packets, label=lst:filter]{../listings/stp/stpFilter.c}
 
 \textit{Pcap} provides us with a pointer to the binary packet data.
-We can go through the packet by incrementing this pointer by set amounts (after skipping to the STP data):
-\lstinputlisting{../listings/stp/payload.c}
+We can go through the packet by incrementing this pointer by set amounts (after skipping to the STP data).
 This repeats for the bridge identifier, as well as other fields.
+Listing~\ref{lst:payload} shows the beginning of the payload handling.
+\lstinputlisting[caption=Going Through the Payload, label=lst:payload]{../listings/stp/payload.c}
 
 After the data is extracted from the packet, it is constructed into our custom classes.
-We then check if the two bridges (root and first hop) were previously known:
-\lstinputlisting{../listings/stp/contained.c}
+We then check if the two bridges (root and first hop) were previously known, as seen in Listing~\ref{lst:contained}.
 Concerning the root, knowing whether or not it was previously known is enough.
 For the first hop, we also require knowledge about the old message age.
+\lstinputlisting[caption=Checking for previously known information, label= lst:contained]{../listings/stp/contained.c}
 
-Finally we can update the saved information in the Sniffer:
-\lstinputlisting{../listings/stp/update.c}
+Listing~\ref{lst:update} shows how we update the bridge information in the sniffer.
+The \textit{clearAndAdd} function is just a shorthand to clear the bridge vector before adding the two bridges to it.
+\lstinputlisting[caption=Bridge data update, label=lst:update]{../listings/stp/update.c}
 \subsection{Communication}
 \label{communication}
 As discussed in the background section (Section~\ref{json}) wer are using JSON for the client server communication.
-\subsection{Combining the data}
-\label{combining_data}
+To inform all involved components about the purpose of a JSON message, we use a \textit{messagetype} field.
+The possibilities for \textit{messagetypes} are as follows:
+\begin{itemize}
+    \item \textbf{Register}: before they can send data to the server, the clients need to register to receive an identifier.
+        These unique identifiers are used to keep the data from different clients separated.
+    \item \textbf{Push}: clients send \textit{push} messages when they transmit their data to the server.
+        These messages contain lists of bridges.
+        They are transmitted the same way that they are stored in the sniffer, without modifications.
+    \item \textbf{Report}: the parser sends a message to the server containing this \textit{messagetype} and nothing else.
+        The server then combines the client data and transmits it to the parser.
+\end{itemize}
+Bridge data is transmitted from the client to the server in standard JSON array notation.
+When the data is transmitted from the server to the parser, it is transmitted as a full tree.
+We added conversion functions to and from JSON to all our custom data classes, to keep this transmission simple.
+Listing~\ref{lst:arrayJson} shows an example transmission from client to server, and Listing~\ref{lst:treeJson} shows a transmission from server to parser.
+The JSON tree shown in Listing~\ref{lst:treeJson} the tree resulting from our test runs.
+It shows how the tool can use changing packets to gather information about bridge connections.
+\lstinputlisting[caption=Client-Server Transmission, label=lst:arrayJson]{../listings/json/clientServer.json}
+%TODO: check positioning of listings on pages (especially large json)
+\lstinputlisting[caption=Server-Parser Transmission, label=lst:treeJson]{../listings/json/serverParser.json}
+
 \subsection{Unsafe Assumptions}
 \label{unsafe_assumptions}
+As previously said, the assumptions we make about bridge connections are not necessarily true.
+They can be wrong, for certain cases, one of which is shown in Figure~\ref{fig:false_example}.
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.4\textwidth}
+        \begin{tikzpicture}
+            \node (A) at (4,8) {\switch{0.8}{A}};
+            \node (B) at (2,6) {\switch{0.8}{B}};
+            \node (C) at (6,6) {\switch{0.8}{C}};
+            \node (D) at (4,4) {\switch{0.8}{D}};
+            \node (client) at (4,2) {Client};
+
+            \draw
+            (A) -- (C)
+            (C) -- (D);
+
+            \draw[green, thick]
+            (B) -- node [left] {Root: B} ++ (D)
+            (D) -- node [left] {Root: B} ++ (client);
+        \end{tikzpicture}
+        \caption{Correct information}
+    \end{subfigure}
+    \hspace{1cm}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \begin{tikzpicture}
+            \node (A) at (4,8) {\switch{0.8}{A}};
+            \node (B) at (2,6) {\switch{0.8}{B}};
+            \node (C) at (6,6) {\switch{0.8}{C}};
+            \node (D) at (4,4) {\switch{0.8}{D}};
+            \node (client) at (4,2) {Client};
+
+            \draw
+            (A) -- (C)
+            (C) -- (D);
+
+            \draw[red, thick]
+            (B) -- node [left] {Root: A} ++ (D)
+            (D) -- node [left] {Root: A} ++ (client);
+
+            \draw[red, thick, dashed]
+            (A) -- node [left] {Root: A} ++ (B);
+        \end{tikzpicture}
+        \caption{False assumption}
+    \end{subfigure}
+
+    \caption{An example case of false assumptions about network structure}
+    \label{fig:false_example}
+\end{figure}
+
+\subsection{Combining the data}
+\label{combining_data}
 \section{Installation \& Usage}

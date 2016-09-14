@@ -109,7 +109,7 @@ We used the UNIX version \textit{libpcap} for this project.
 It provides functions for opening live network devices and \textit{.pcapng} files.
 After starting a live capture on a device, \textit{libpcap} will call a callback function for every packet received on the opened interface.
 The prototype of the callback function looks as follows:
-\begin{lstlisting}
+\begin{lstlisting}[caption=Pcap Callback Prototype]
 typedef void (*pcap_handler)(u_char *user, 
 const struct pcap_pkthdr *h,
 const u_char *bytes);
@@ -131,13 +131,6 @@ JSON stands for Java Script Object Notation and was used for two reasons:
     \item Utility libraries for JSON are easily available for most programming and scripting languages, saving us the work of inventing and implementing our own notation.
 \end{enumerate}
 JSON has a simple notation for declaring objects and arrays, as well as primitive data types.
-It is explained in Figure~\ref{fig:json}.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{json.png}
-    \caption{An example of JSON}
-    \label{fig:json}
-\end{figure}
-
+An example is shown in Listing~\ref{lst:json}.
+\lstinputlisting[caption=JSON example, label=lst:json]{../listings/json/example.json}
 The JSON library used in this project is \textit{jsoncpp}\cite{jsoncpp}.
