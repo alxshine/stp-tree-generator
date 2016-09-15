@@ -210,7 +210,67 @@ They can be wrong, for certain cases, one of which is shown in Figure~\ref{fig:f
     \caption{An example case of false assumptions about network structure}
     \label{fig:false_example}
 \end{figure}
+We did not find an alternate way to gather information about connections in the network, so we tried to reduce errors created by our method.
+To this end we combine information gathered by multiple clients to identify and remove false information.
+If a client makes a false assumption about a bridge, the message age for that bridge will be lower than its actual messge age.
+An example can be seen in Figure~\ref{fig:message_ages}.
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.4\textwidth}
+        \begin{tikzpicture}
+            \node (A) at (4,8) {\switch{0.8}{A:0}};
+            \node (B) at (2,6) {\switch{0.8}{B:1}};
+            \node (C) at (6,6) {\switch{0.8}{C:1}};
+            \node (D) at (4,4) {\switch{0.8}{D:2}};
+            \node (client) at (4,2) {Client};
 
+            \draw
+            (A) -- (C)
+            (C) -- (D)
+            (B) -- (D)
+            (D) -- (client);
+
+            \draw [red, thick, dashed]
+            (A) -- (B);
+
+        \end{tikzpicture}
+        \caption{Assumed message ages}
+    \end{subfigure}
+    \hspace{1cm}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \begin{tikzpicture}
+            \node (A) at (4,8) {\switch{0.8}{A: 0}};
+            \node (B) at (2,6) {\switch{0.8}{B: 4}};
+            \node (C) at (6,6) {\switch{0.8}{C: 2}};
+            \node (D) at (4,4) {\switch{0.8}{D: 3}};
+            \node (client) at (4,2) {Client};
+
+            \draw
+            (A) -- (C)
+            (C) -- (D)
+            (B) -- (D)
+            (D) -- (client);
+
+        \end{tikzpicture}
+        \caption{Actual message ages}
+    \end{subfigure}
+
+    \caption{Assumed and actual message ages}
+    \label{fig:message_ages}
+\end{figure}
+By comparing bridge data from multiple clients we can find and remove bridges whose message age is lower than it should be.
+The code for doing this is shown in Listing~\ref{lst:remove}.
+\lstinputlisting[caption=Removing false bridge data, label=lst:remove]{../listings/stp/remove.c} %TODO: maybe do better formatting
+The bridges are removed from the vector they each are in.
+This way any connection information that is not proven wrong is retained.
 \subsection{Combining the data}
 \label{combining_data}
+After false information is removed, the bridge data is combined into one SpanningTree object.
+Creating large SpanningTree objects is done in multiple steps.
+First, we combine the bridge vectors to individual trees.
+These trees each represent a path from a client to the root.
+After the individual trees are obtained, we combine the ones with the same root.
+The code for this can be seen in Listing~\ref{lst:combine}.
+\lstinputlisting[caption=Combining the bridge data, label=lst:combine]{../listings/stp/combination.c}
+
 \section{Installation \& Usage}
+

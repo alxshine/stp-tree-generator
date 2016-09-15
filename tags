@@ -42,7 +42,7 @@ ChildValues	inc/json/json.h	/^  typedef std::vector<JSONCPP_STRING> ChildValues;
 ChildValues	src/jsoncpp.cpp	/^  typedef std::vector<JSONCPP_STRING> ChildValues;$/;"	t	struct:Json::BuiltStyledStreamWriter	file:
 Client	inc/Client.hpp	/^class Client{$/;"	c
 Client	src/Client.cpp	/^Client::Client(std::string hostname, int port){$/;"	f	class:Client
-Combining the data	thesis/chapters/stp-tree-gen.tex	/^\\end{figure}$/;"	u
+Combining the data	thesis/chapters/stp-tree-gen.tex	/^This way any connection information that is not proven wrong is retained.$/;"	u
 CommentInfo	inc/json/json.h	/^  struct CommentInfo {$/;"	s	class:Json::Value
 CommentInfo	src/jsoncpp.cpp	/^Value::CommentInfo::CommentInfo() : comment_(0)$/;"	f	class:Json::Value::CommentInfo
 CommentPlacement	inc/json/json.h	/^enum CommentPlacement {$/;"	g	namespace:Json
@@ -79,7 +79,7 @@ HOST	test_utils/python_utils/serverStop.py	/^HOST = ''$/;"	v
 INCLUDES	Makefile	/^INCLUDES=-lpcap$/;"	m
 InArgs	inc/json/json.h	/^  typedef std::vector<const PathArgument*> InArgs;$/;"	t	class:Json::Path
 InRange	src/jsoncpp.cpp	/^static inline bool InRange(double d, T min, U max) {$/;"	f	namespace:Json
-Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\label{combining_data}$/;"	s
+Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Combining the bridge data, label=lst:combine]{..\/listings\/stp\/combination.c}$/;"	s
 Int	inc/json/json-forwards.h	/^typedef int Int;$/;"	t	namespace:Json
 Int	inc/json/json.h	/^  typedef Json::Int Int;$/;"	t	class:Json::Value
 Int	inc/json/json.h	/^typedef int Int;$/;"	t	namespace:Json
@@ -543,6 +543,7 @@ index	src/jsoncpp.cpp	/^ArrayIndex Value::CZString::index() const { return index
 index	src/jsoncpp.cpp	/^UInt ValueIteratorBase::index() const {$/;"	f	class:Json::ValueIteratorBase
 index_	inc/json/json.h	/^      ArrayIndex index_;$/;"	m	union:Json::Value::CZString::__anon1
 index_	inc/json/json.h	/^  ArrayIndex index_;$/;"	m	class:Json::PathArgument
+indivTrees	thesis/listings/stp/combination.c	/^std::vector<SpanningTree> indivTrees = std::vector<SpanningTree>();$/;"	v
 initBasic	src/jsoncpp.cpp	/^void Value::initBasic(ValueType vtype, bool allocated) {$/;"	f	class:Json::Value
 intValue	inc/json/json.h	/^  intValue,      \/\/\/< signed integer value$/;"	e	enum:Json::ValueType
 int_	inc/json/json.h	/^    LargestInt int_;$/;"	m	union:Json::Value::ValueHolder
@@ -784,6 +785,7 @@ resolve	src/jsoncpp.cpp	/^Value Path::resolve(const Value& root, const Value& de
 resolve	src/jsoncpp.cpp	/^const Value& Path::resolve(const Value& root) const {$/;"	f	class:Json::Path
 resolveReference	src/jsoncpp.cpp	/^Value& Value::resolveReference(char const* key, char const* cend)$/;"	f	class:Json::Value
 resolveReference	src/jsoncpp.cpp	/^Value& Value::resolveReference(const char* key) {$/;"	f	class:Json::Value
+ret	thesis/listings/stp/combination.c	/^std::vector<SpanningTree> ret;$/;"	v
 rightMargin_	inc/json/json.h	/^  unsigned int rightMargin_;$/;"	m	class:Json::StyledStreamWriter
 rightMargin_	inc/json/json.h	/^  unsigned int rightMargin_;$/;"	m	class:Json::StyledWriter
 rightMargin_	src/jsoncpp.cpp	/^  unsigned int rightMargin_;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
