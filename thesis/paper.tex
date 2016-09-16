@@ -7,21 +7,24 @@
 \usepackage{algorithmicx}
 \usepackage{listings}
 \usepackage{url}
+\usepackage[utf8]{inputenc}
 \graphicspath{{images/}}
 
 \input{conf/tikz.tex}
 \input{conf/listings.tex}
 \input{conf/c++.tex}    
 
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{bera}
 % end of preamble
 
-\title{stp-tree-generator}
 \begin{document}
 %\raggedright
-\maketitle
+\input{chapters/titlepage.tex}
 \tableofcontents
 %TODO: maybe extract tikz images to own folder for easier presentation building
 %TODO: check for image positioning
+%TODO: check for italics consistency
 \input{chapters/introduction.tex}
 \input{chapters/background.tex}
 \input{chapters/stp-tree-gen.tex}

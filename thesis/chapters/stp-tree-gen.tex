@@ -27,9 +27,6 @@ Figure~\ref{fig:build_up} shows a rudimentary example of information gained duri
                 \node (b) at (4,2) {\switch{0.8}{B}};
                 \node (client) at (4,0) {Client};
 
-                \draw
-                (a) -- node [left] {root: A} ++ (b);
-
                 \draw[green, thick]
                 (b) -- node [left] {root: B} ++ (client);
 
@@ -73,8 +70,7 @@ A detailed explanation of how this tool handles incoming STP packets can be foun
                 \node (client) at (4,0) {Client};
                 \draw
                 (a) -- (b)
-                (b) -- (c)
-                (c) -- (e);
+                (b) -- (c);
                 \draw[green, thick]
                 (d) -- node [left] {root: D} ++ (e)
                 (e) -- node [left] {root: D} ++ (client);
@@ -107,16 +103,33 @@ A detailed explanation of how this tool handles incoming STP packets can be foun
 \end{figure}
 
 \section{Details}
-\subsection{Saving the Data}
+\subsection{Class Structure}
 \label{data}
+We created multiple classes to make saving the STP data easier, as well as reduce the effort needed to generate \textit{JSON} and \textit{TikZ} output.
+There are classes to represent MAC addresses, bridges, and complete spanning trees.
+All these classes have conversion functions from and to \textit{JSON} format, as well as a function to generate \textit{TikZ} output.
+Altogether the following classes were created:
+\begin{itemize}
+    \item \textbf{Mac}: A container class for MAC addresses.
+        It is used to store the address in nicer format.
+    \item \textbf{Bridge}: Stores a \textbf{MAC} object in conjunction with the priority and message age.
+    \item \textbf{SpanningTree}: This class represents an entire tree.
+        It has functions for creating the \textit{TikZ} export as well as combining and manipulating subtrees.
+    \item \textbf{Sniffer}: Does the actual packet sniffing.
+    \item \textbf{Client}: Handle the client side communication.
+    \item \textbf{Server}: Handles the server side communication, as well as combining the trees and removing incorrect information.
+\end{itemize}
+The STP data is saved in the \textbf{Sniffer} as a vector.
+This is easier than storing them in a fixed size array, and already combining them into a \textbf{SpanningTree} object would keep the server from performing the steps described in Section~\ref{unsafe_assumptions}
+
 %TODO: explain how the sniffer saves data before sending it
 \subsection{Packet Handling}
 \label{packet_handling}
 Packets are handled by the sniffer class.
-While most of the function that handles incoming STP packets just skip fields that are not used, here we will discuss the more important parts.
+While the function mostly skips unused fields in the STP packet, here we will take a close look at the more important parts.
 In order to check if the packet is actually an STP packet, we use the Ethernet destination address.
 Listing~\ref{lst:filter} shows how that is done.
-\textit{Bytes} is provided by the required \textit{pcap} callback prototype (see Section~\ref{pcap}: PCAP).
+The \textit{bytes} variable is provided by the required \textit{pcap} callback prototype (see Section~\ref{pcap}: PCAP).
 This way is computationally more expensive than saving the destination in binary format and comparing memory.
 It is however also more readable and a lot easier to change should the need arise.
 %TODO: check capitalization in captions
@@ -239,9 +252,9 @@ An example can be seen in Figure~\ref{fig:message_ages}.
     \begin{subfigure}[b]{0.4\textwidth}
         \begin{tikzpicture}
             \node (A) at (4,8) {\switch{0.8}{A: 0}};
-            \node (B) at (2,6) {\switch{0.8}{B: 4}};
-            \node (C) at (6,6) {\switch{0.8}{C: 2}};
-            \node (D) at (4,4) {\switch{0.8}{D: 3}};
+            \node (B) at (2,6) {\switch{0.8}{B: 3}};
+            \node (C) at (6,6) {\switch{0.8}{C: 1}};
+            \node (D) at (4,4) {\switch{0.8}{D: 2}};
             \node (client) at (4,2) {Client};
 
             \draw
@@ -273,4 +286,10 @@ The code for this can be seen in Listing~\ref{lst:combine}.
 \lstinputlisting[caption=Combining the bridge data, label=lst:combine]{../listings/stp/combination.c}
 
 \section{Installation \& Usage}
+%TODO: extend this section?
+%TODO: talk about the fact that it is C++
+The tool requires \textit{pcap} and \textit{jsoncpp} at build time.
+We packaged the version of \textit{jsoncpp} we use, so to build the tool only \textit{pcap} needs to be installed.
+The library can be found in the repository for most package managers, as well as on GitHub\cite{tcpdump_git}.
 
+For a manual on configuration files and launch parameters please consult the README file found in our git\cite{stp_git}.

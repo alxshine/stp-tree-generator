@@ -1,4 +1,8 @@
+\usepackage{varwidth}
+
 \usetikzlibrary{positioning, arrows, decorations.markings}
+\usetikzlibrary{shapes}
+
 \tikzset{%label colors for port states
     port/.style={draw, circle},
     dedicated/.style={port, fill=blue!50},
@@ -19,3 +23,16 @@
         \end{tikzpicture}
     }
 }
+
+\definecolor{bottomcol}{RGB}{222,222,222}
+\tikzstyle{class}=[
+    rectangle,
+    draw=black,
+    anchor=north,
+    text=black,
+    text width=3cm,
+    shading=axis,
+    bottom color=bottomcol,top color=white,shading angle=45,
+    execute at begin node={\begin{varwidth}{15em}},
+    execute at end node={\end{varwidth}}
+]

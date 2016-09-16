@@ -40,6 +40,7 @@ CharReaderPtr	src/jsoncpp.cpp	/^typedef std::unique_ptr<CharReader> CharReaderPt
 ChildValues	inc/json/json.h	/^  typedef std::vector<JSONCPP_STRING> ChildValues;$/;"	t	class:Json::StyledStreamWriter
 ChildValues	inc/json/json.h	/^  typedef std::vector<JSONCPP_STRING> ChildValues;$/;"	t	class:Json::StyledWriter
 ChildValues	src/jsoncpp.cpp	/^  typedef std::vector<JSONCPP_STRING> ChildValues;$/;"	t	struct:Json::BuiltStyledStreamWriter	file:
+Class Structure	thesis/chapters/stp-tree-gen.tex	/^\\section{Details}$/;"	u
 Client	inc/Client.hpp	/^class Client{$/;"	c
 Client	src/Client.cpp	/^Client::Client(std::string hostname, int port){$/;"	f	class:Client
 Combining the data	thesis/chapters/stp-tree-gen.tex	/^This way any connection information that is not proven wrong is retained.$/;"	u
@@ -227,7 +228,7 @@ PORT	test_utils/python_utils/serverStart.py	/^PORT = 9999$/;"	v
 PORT	test_utils/python_utils/serverStop.py	/^PORT = 10000$/;"	v
 PORT	test_utils/python_utils/start.py	/^PORT = 9999$/;"	v
 PORT	test_utils/python_utils/stop.py	/^PORT = 10000$/;"	v
-Packet Handling	thesis/chapters/stp-tree-gen.tex	/^\\label{data}$/;"	u
+Packet Handling	thesis/chapters/stp-tree-gen.tex	/^This is easier than storing them in a fixed size array, and already combining them into a \\textbf{SpanningTree} object would keep the server from performing the steps described in Section~\\ref{unsafe_assumptions}$/;"	u
 Path	inc/json/json.h	/^class JSON_API Path {$/;"	c	namespace:Json
 Path	src/jsoncpp.cpp	/^Path::Path(const JSONCPP_STRING& path,$/;"	f	class:Json::Path
 PathArgument	inc/json/json.h	/^class JSON_API PathArgument {$/;"	c	namespace:Json
@@ -252,7 +253,6 @@ STP	thesis/chapters/background.tex	/^\\section{Technologies used}$/;"	u
 STP Packets	thesis/chapters/background.tex	/^\\end{figure}$/;"	b
 STP Tree Generator	thesis/chapters/stp-tree-gen.tex	/^\\chapter{STP Tree Generator}$/;"	c
 STP_PROTOCOL	src/stp_sniffer.c	10;"	d	file:
-Saving the Data	thesis/chapters/stp-tree-gen.tex	/^\\section{Details}$/;"	u
 SecureAllocator	inc/json/json.h	/^		SecureAllocator() {}$/;"	f	class:Json::SecureAllocator
 SecureAllocator	inc/json/json.h	/^		template<typename U> SecureAllocator(const SecureAllocator<U>&) {}$/;"	f	class:Json::SecureAllocator
 SecureAllocator	inc/json/json.h	/^class SecureAllocator {$/;"	c	namespace:Json
@@ -272,6 +272,7 @@ SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(){}$/;"	f	class:S
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(const Bridge& r):root(r){$/;"	f	class:SpanningTree
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(const Bridge& r, std::vector<SpanningTree> c): root(r), children(c){$/;"	f	class:SpanningTree
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(const SpanningTree& other):root(other.root), children(other.children){$/;"	f	class:SpanningTree
+SpanningTree	thesis/listings/stp/spanningTree.cpp	/^class SpanningTree{$/;"	c	file:
 StaticString	inc/json/json.h	/^  explicit StaticString(const char* czstring) : c_str_(czstring) {}$/;"	f	class:Json::StaticString
 StaticString	inc/json/json.h	/^class JSON_API StaticString {$/;"	c	namespace:Json
 StreamWriter	inc/json/json.h	/^class JSON_API StreamWriter {$/;"	c	namespace:Json
@@ -391,6 +392,7 @@ childValues_	inc/json/json.h	/^  ChildValues childValues_;$/;"	m	class:Json::Sty
 childValues_	inc/json/json.h	/^  ChildValues childValues_;$/;"	m	class:Json::StyledWriter
 childValues_	src/jsoncpp.cpp	/^  ChildValues childValues_;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
 children	inc/SpanningTree.hpp	/^        std::vector<SpanningTree> children;$/;"	m	class:SpanningTree
+children	thesis/listings/stp/spanningTree.cpp	/^        std::vector<SpanningTree> children;$/;"	m	class:SpanningTree	file:
 clear	src/jsoncpp.cpp	/^void Value::clear() {$/;"	f	class:Json::Value
 clearAndAdd	src/Sniffer.cpp	/^void Sniffer::clearAndAdd(Bridge firstHop, Bridge root){$/;"	f	class:Sniffer
 client	inc/Sniffer.hpp	/^        static Client * client;$/;"	m	class:Sniffer
@@ -790,6 +792,7 @@ rightMargin_	inc/json/json.h	/^  unsigned int rightMargin_;$/;"	m	class:Json::St
 rightMargin_	inc/json/json.h	/^  unsigned int rightMargin_;$/;"	m	class:Json::StyledWriter
 rightMargin_	src/jsoncpp.cpp	/^  unsigned int rightMargin_;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
 root	inc/SpanningTree.hpp	/^        Bridge root;$/;"	m	class:SpanningTree
+root	thesis/listings/stp/spanningTree.cpp	/^        Bridge root;$/;"	m	class:SpanningTree	file:
 rootContained	thesis/listings/stp/contained.c	/^int rootContained = 0, oldHopMa = -1;$/;"	v
 run	src/Server.cpp	/^void Server::run(){$/;"	f	class:Server
 send	src/Client.cpp	/^void Client::send(Json::Value value){$/;"	f	class:Client

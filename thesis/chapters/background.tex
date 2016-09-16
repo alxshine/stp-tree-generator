@@ -120,7 +120,7 @@ Where the parameters are:
     \item \textbf{pcap\_pkthdr *h}: The header contains useful information about the packet, like source and destination addresses and size.
     \item \textbf{u\_char *bytes}: This array contains the actual (binary) data of the packet.
 \end{itemize}
-The \textbf{typedef void} (*pcap\_handler) part of the prototype just means that the function has no return value.
+The \textbf{typedef void} (*pcap\_handler) part of the prototype just means that the function returns a \textbf{void *}.
 
 Usage of this function will be covered more in-depth in the chapter on the tool itself (Chapter~\ref{stp_gen}).
 \subsection{JSON}
@@ -134,3 +134,11 @@ JSON has a simple notation for declaring objects and arrays, as well as primitiv
 An example is shown in Listing~\ref{lst:json}.
 \lstinputlisting[caption=JSON example, label=lst:json]{../listings/json/example.json}
 The JSON library used in this project is \textit{jsoncpp}\cite{jsoncpp}.
+
+\subsection{TikZ}
+We chose TikZ ist kein Zeichenprogramm (TikZ) as the file format for our output.
+This choice fell to it because it would be very easy to create TikZ code programatically.
+It is also easy to modify after creation and very easy to include in a \LaTeX\ paper.
+While TikZ is very powerful and therefore complex, the parts we use are fairly simple.
+Listing~\ref{lst:tikz_example} shows the TikZ code for Figure~\ref{fig:bc_storm_b}.
+\lstinputlisting[caption=A TikZ example, label=lst:tikz_example]{../listings/tikzExample.tex} %TODO: check positioning
