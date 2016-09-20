@@ -1,4 +1,5 @@
 \chapter{Testing}
+%TODO: redo all tests and include final tikz as test result
 \section{Setup}
 The original paper discussing STP is openly available.
 However, it does not dictate exact implementation details.
@@ -14,6 +15,7 @@ Additionally using \textit{Wireshark} allowed us to check the actual packages in
 The server for our tool was run on Node \textit{A}.
 Test results were checked for their correctness by checking the report provided by the tool.
 
+%TODO: redo figures using switch macro
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
@@ -27,8 +29,6 @@ Test results were checked for their correctness by checking the report provided 
     \draw 
     (root) -- (a)
     (root) -- (b)
-    (a) -- (b)
-    (a) -- (b)
     (a) -- (c)
     (b) -- (c)
     (a) -- (na)

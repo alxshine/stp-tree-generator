@@ -11,6 +11,7 @@ ArrayIndex	inc/json/json-forwards.h	/^typedef unsigned int ArrayIndex;$/;"	t	nam
 ArrayIndex	inc/json/json.h	/^  typedef Json::ArrayIndex ArrayIndex;$/;"	t	class:Json::Value
 ArrayIndex	inc/json/json.h	/^typedef unsigned int ArrayIndex;$/;"	t	namespace:Json
 BINFOLDER	Makefile	/^BINFOLDER=bin$/;"	m
+BLOCKING	thesis/listings/switch/full.c	/^    BLOCKING } PortState;$/;"	e	enum:port_state	file:
 Background	thesis/chapters/background.tex	/^\\chapter{Background}$/;"	c
 Bridge	inc/Bridge.hpp	/^class Bridge{$/;"	c
 Bridge	src/Bridge.cpp	/^Bridge::Bridge(){$/;"	f	class:Bridge
@@ -49,7 +50,8 @@ CommentInfo	src/jsoncpp.cpp	/^Value::CommentInfo::CommentInfo() : comment_(0)$/;
 CommentPlacement	inc/json/json.h	/^enum CommentPlacement {$/;"	g	namespace:Json
 CommentStyle	src/jsoncpp.cpp	/^struct CommentStyle {$/;"	s	namespace:Json	file:
 Communication	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Bridge data update, label=lst:update]{..\/listings\/stp\/update.c}$/;"	u
-Conclusion	thesis/chapters/conclusion.tex	/^\\chapter{Conclusion}$/;"	c
+Conclusion	thesis/chapters/conclusion.tex	/^\\chapter*{Conclusion}$/;"	c
+DEDICATED	thesis/listings/switch/full.c	/^    DEDICATED,$/;"	e	enum:port_state	file:
 DEPS	Makefile	/^DEPS=$(DEPSFOLDER)\/*$/;"	m
 DEPSFOLDER	Makefile	/^DEPSFOLDER=inc$/;"	m
 Details	thesis/chapters/stp-tree-gen.tex	/^\\end{figure}$/;"	s
@@ -77,7 +79,10 @@ FlagsForFile	.ycm_extra_conf.py	/^def FlagsForFile( filename, **kwargs ):$/;"	f
 GetCompilationInfoForFile	.ycm_extra_conf.py	/^def GetCompilationInfoForFile( filename ):$/;"	f
 HOST	test_utils/python_utils/serverStart.py	/^HOST = ''$/;"	v
 HOST	test_utils/python_utils/serverStop.py	/^HOST = ''$/;"	v
+Handling Non STP Packets	thesis/chapters/soft-switch.tex	/^\\lstinputlisting[caption=Updating Port States, label=lst:portStates]{..\/listings\/switch\/portStates.c}$/;"	u
+Handling STP Packets and Port States	thesis/chapters/soft-switch.tex	/^We need to synchronize these accesses to keep the different threads from corrupting data due to concurrent writes.$/;"	u
 INCLUDES	Makefile	/^INCLUDES=-lpcap$/;"	m
+Implementation	thesis/chapters/soft-switch.tex	/^It was written in C, in contrast to the stp-tree-generator which was written in C++.$/;"	s
 InArgs	inc/json/json.h	/^  typedef std::vector<const PathArgument*> InArgs;$/;"	t	class:Json::Path
 InRange	src/jsoncpp.cpp	/^static inline bool InRange(double d, T min, U max) {$/;"	f	namespace:Json
 Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Combining the bridge data, label=lst:combine]{..\/listings\/stp\/combination.c}$/;"	s
@@ -223,7 +228,7 @@ OurCharReader	src/jsoncpp.cpp	/^class OurCharReader : public CharReader {$/;"	c	
 OurFeatures	src/jsoncpp.cpp	/^class OurFeatures {$/;"	c	namespace:Json	file:
 OurReader	src/jsoncpp.cpp	/^OurReader::OurReader(OurFeatures const& features)$/;"	f	class:Json::OurReader
 OurReader	src/jsoncpp.cpp	/^class OurReader {$/;"	c	namespace:Json	file:
-PCAP	thesis/chapters/background.tex	/^\\end{algorithm}$/;"	u
+PCAP	thesis/chapters/background.tex	/^\\section{Technologies used}$/;"	u
 PORT	test_utils/python_utils/serverStart.py	/^PORT = 9999$/;"	v
 PORT	test_utils/python_utils/serverStop.py	/^PORT = 10000$/;"	v
 PORT	test_utils/python_utils/start.py	/^PORT = 9999$/;"	v
@@ -241,7 +246,9 @@ Performing the test	thesis/chapters/testing.tex	/^The logical topology is the sa
 Performing the test	thesis/chapters/testing.tex	/^This test makes sure that capability is given.$/;"	b
 Performing the test	thesis/chapters/testing.tex	/^To test whether the tool can handle bridges being added to the network during runtime, we start the tool on all nodes before the establishment of the spanning tree, and check for correct identification afterwards.$/;"	b
 Performing the test	thesis/chapters/testing.tex	/^\\end{figure}$/;"	b
-Port States	thesis/chapters/background.tex	/^\\label{stp}$/;"	b
+Port States	thesis/chapters/background.tex	/^\\label{stp}$/;"	u
+PortState	thesis/listings/switch/full.c	/^    BLOCKING } PortState;$/;"	t	typeref:enum:port_state	file:
+ROOT	thesis/listings/switch/full.c	/^    ROOT,$/;"	e	enum:port_state	file:
 Reader	inc/json/json.h	/^class JSON_API Reader {$/;"	c	namespace:Json
 Reader	src/jsoncpp.cpp	/^Reader::Reader()$/;"	f	class:Json::Reader
 Reader	src/jsoncpp.cpp	/^Reader::Reader(const Features& features)$/;"	f	class:Json::Reader
@@ -249,10 +256,12 @@ RuntimeError	inc/json/json.h	/^class JSON_API RuntimeError : public Exception {$
 RuntimeError	src/jsoncpp.cpp	/^RuntimeError::RuntimeError(JSONCPP_STRING const& msg)$/;"	f	class:Json::RuntimeError
 SOURCEFOLDER	Makefile	/^SOURCEFOLDER=src$/;"	m
 SOURCE_EXTENSIONS	.ycm_extra_conf.py	/^SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]$/;"	v
-STP	thesis/chapters/background.tex	/^\\section{Technologies used}$/;"	u
-STP Packets	thesis/chapters/background.tex	/^\\end{figure}$/;"	b
+STP	thesis/chapters/background.tex	/^TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.$/;"	s
+STP Packets	thesis/chapters/background.tex	/^\\end{figure}$/;"	u
+STP Parameters	thesis/chapters/soft-switch.tex	/^\\lstinputlisting[caption=Handling non-STP packets, label=lst:nonStp]{..\/listings\/switch\/forwarding.c}$/;"	u
 STP Tree Generator	thesis/chapters/stp-tree-gen.tex	/^\\chapter{STP Tree Generator}$/;"	c
 STP_PROTOCOL	src/stp_sniffer.c	10;"	d	file:
+Saving Switching Data	thesis/chapters/soft-switch.tex	/^\\section{Implementation}$/;"	u
 SecureAllocator	inc/json/json.h	/^		SecureAllocator() {}$/;"	f	class:Json::SecureAllocator
 SecureAllocator	inc/json/json.h	/^		template<typename U> SecureAllocator(const SecureAllocator<U>&) {}$/;"	f	class:Json::SecureAllocator
 SecureAllocator	inc/json/json.h	/^class SecureAllocator {$/;"	c	namespace:Json
@@ -266,7 +275,7 @@ Slow Dynamic Change Test	thesis/chapters/testing.tex	/^The new path through whic
 Sniffer	inc/Sniffer.hpp	/^class Sniffer{$/;"	c
 Sniffer	src/Sniffer.cpp	/^Sniffer::Sniffer(bool nC, std::string outputFileName, std::string hostname, int port){$/;"	f	class:Sniffer
 Software Switch Testing Utility	thesis/chapters/soft-switch.tex	/^\\chapter{Software Switch Testing Utility}$/;"	c
-Spanning Tree Algorithm	thesis/chapters/background.tex	/^This possibility is explained more in-depth in the section on packet handling (Section~\\ref{packet_handling}).$/;"	b
+Spanning Tree Algorithm	thesis/chapters/background.tex	/^This possibility is explained more in-depth in the section on packet handling (Section~\\ref{packet_handling}).$/;"	u
 SpanningTree	inc/SpanningTree.hpp	/^class SpanningTree{$/;"	c
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(){}$/;"	f	class:SpanningTree
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(const Bridge& r):root(r){$/;"	f	class:SpanningTree
@@ -287,7 +296,7 @@ StyledStreamWriter	inc/json/json.h	/^class JSON_API StyledStreamWriter {$/;"	c	n
 StyledStreamWriter	src/jsoncpp.cpp	/^StyledStreamWriter::StyledStreamWriter(JSONCPP_STRING indentation)$/;"	f	class:Json::StyledStreamWriter
 StyledWriter	inc/json/json.h	/^class JSON_API StyledWriter : public Writer {$/;"	c	namespace:Json
 StyledWriter	src/jsoncpp.cpp	/^StyledWriter::StyledWriter()$/;"	f	class:Json::StyledWriter
-Technologies used	thesis/chapters/background.tex	/^TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.$/;"	s
+Technologies used	thesis/chapters/background.tex	/^\\end{algorithm}$/;"	s
 Testing	thesis/chapters/testing.tex	/^\\chapter{Testing}$/;"	c
 Tests	thesis/chapters/testing.tex	/^\\end{figure}$/;"	s
 Token	inc/json/json.h	/^  class Token {$/;"	c	class:Json::Reader
@@ -382,6 +391,8 @@ begin_	inc/json/json.h	/^  Location begin_;$/;"	m	class:Json::Reader
 begin_	src/jsoncpp.cpp	/^  Location begin_;$/;"	m	class:Json::OurReader	file:
 bool_	inc/json/json.h	/^    bool bool_;$/;"	m	union:Json::Value::ValueHolder
 booleanValue	inc/json/json.h	/^  booleanValue,  \/\/\/< bool value$/;"	e	enum:Json::ValueType
+bridgeId	thesis/listings/switch/data.c	/^unsigned char *bridgeId;$/;"	v
+bridgeId	thesis/listings/switch/full.c	/^unsigned char *bridgeId;$/;"	v
 bridges	inc/Sniffer.hpp	/^        static std::vector<Bridge> bridges;$/;"	m	class:Sniffer
 bridges	src/Sniffer.cpp	/^std::vector<Bridge> Sniffer::bridges;$/;"	m	class:Sniffer	file:
 buffer	inc/Server.hpp	/^        char buffer[1024];$/;"	m	class:Server
@@ -413,6 +424,7 @@ commentsBefore_	inc/json/json.h	/^  JSONCPP_STRING commentsBefore_;$/;"	m	class:
 commentsBefore_	src/jsoncpp.cpp	/^  JSONCPP_STRING commentsBefore_;$/;"	m	class:Json::OurReader	file:
 comments_	inc/json/json.h	/^  CommentInfo* comments_;$/;"	m	class:Json::Value
 compare	src/jsoncpp.cpp	/^int Value::compare(const Value& other) const {$/;"	f	class:Json::Value
+compareBridges	thesis/listings/switch/full.c	/^int compareBridges(unsigned char aPrio, unsigned char aExt, unsigned char *aMac, unsigned char bPrio, unsigned char bExt, unsigned char *bMac){$/;"	f
 compilation_database_folder	.ycm_extra_conf.py	/^compilation_database_folder = ''$/;"	v
 computeDistance	src/jsoncpp.cpp	/^ValueIteratorBase::computeDistance(const SelfType& other) const {$/;"	f	class:Json::ValueIteratorBase
 const_iterator	inc/json/json.h	/^  typedef ValueConstIterator const_iterator;$/;"	t	class:Json::Value
@@ -422,6 +434,7 @@ containsControlCharacter0	src/jsoncpp.cpp	/^static bool containsControlCharacter
 containsNewLine	src/jsoncpp.cpp	/^static bool containsNewLine(Reader::Location begin, Reader::Location end) {$/;"	f	namespace:Json
 containsRoot	src/SpanningTree.cpp	/^int SpanningTree::containsRoot(const SpanningTree& tree) const{$/;"	f	class:SpanningTree
 copy	src/jsoncpp.cpp	/^void ValueIteratorBase::copy(const SelfType& other) {$/;"	f	class:Json::ValueIteratorBase
+create_socket	thesis/listings/switch/full.c	/^int create_socket(char *device, int *sockfd, unsigned char *mac){$/;"	f
 cs_	src/jsoncpp.cpp	/^  CommentStyle::Enum cs_;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
 cstr_	inc/json/json.h	/^    char const* cstr_;  \/\/ actually, a prefixed string, unless policy is noDup$/;"	m	class:Json::Value::CZString
 currentValue	src/jsoncpp.cpp	/^Value& OurReader::currentValue() { return *(nodes_.top()); }$/;"	f	class:Json::OurReader
@@ -462,6 +475,7 @@ document_	inc/json/json.h	/^  JSONCPP_STRING document_;$/;"	m	class:Json::Styled
 document_	src/jsoncpp.cpp	/^  JSONCPP_STRING document_;$/;"	m	class:Json::OurReader	file:
 dropNullPlaceholders	src/jsoncpp.cpp	/^void FastWriter::dropNullPlaceholders() { dropNullPlaceholders_ = true; }$/;"	f	class:Json::FastWriter
 dropNullPlaceholders_	inc/json/json.h	/^  bool dropNullPlaceholders_;$/;"	m	class:Json::FastWriter
+dumpMacTable	thesis/listings/switch/full.c	/^void dumpMacTable(){$/;"	f
 duplicate	inc/json/json.h	/^      duplicate,$/;"	e	enum:Json::Value::CZString::DuplicationPolicy
 duplicateAndPrefixStringValue	src/jsoncpp.cpp	/^static inline char* duplicateAndPrefixStringValue($/;"	f	namespace:Json
 duplicateOnCopy	inc/json/json.h	/^      duplicateOnCopy$/;"	e	enum:Json::Value::CZString::DuplicationPolicy
@@ -478,6 +492,7 @@ endingLineFeedSymbol_	src/jsoncpp.cpp	/^  JSONCPP_STRING endingLineFeedSymbol_;$
 errors_	inc/json/json.h	/^  Errors errors_;$/;"	m	class:Json::Reader
 errors_	src/jsoncpp.cpp	/^  Errors errors_;$/;"	m	class:Json::OurReader	file:
 ethh	thesis/listings/stp/stpFilter.c	/^struct ethhdr *ethh = (struct ethhdr*) bytes;$/;"	v	typeref:struct:ethhdr
+extension	thesis/listings/switch/full.c	/^unsigned char priority, extension;$/;"	v
 extra_	inc/json/json.h	/^    Location extra_;$/;"	m	class:Json::Reader::ErrorInfo
 extra_	src/jsoncpp.cpp	/^    Location extra_;$/;"	m	class:Json::OurReader::ErrorInfo	file:
 failIfExtra_	src/jsoncpp.cpp	/^  bool failIfExtra_;$/;"	m	class:Json::OurFeatures	file:
@@ -485,11 +500,15 @@ features_	inc/json/json.h	/^  Features features_;$/;"	m	class:Json::Reader
 features_	src/jsoncpp.cpp	/^  OurFeatures const features_;$/;"	m	class:Json::OurReader	file:
 filename	inc/Sniffer.hpp	/^        static const char * const filename;$/;"	m	class:Sniffer
 find	src/jsoncpp.cpp	/^Value const* Value::find(char const* key, char const* cend) const$/;"	f	class:Json::Value
+firstTcTime	thesis/listings/switch/full.c	/^time_t firstTcTime;$/;"	v
 fixNumericLocale	src/jsoncpp.cpp	/^static inline void fixNumericLocale(char* begin, char* end) {$/;"	f	namespace:Json
 flags	.ycm_extra_conf.py	/^flags = [$/;"	v
+forwardDelay	thesis/listings/switch/full.c	/^int forwardDelay;$/;"	v
+found	thesis/listings/switch/forwarding.c	/^int found = 0;$/;"	v
 fromJson	src/Bridge.cpp	/^Bridge Bridge::fromJson(const Json::Value buildFrom){$/;"	f	class:Bridge
 fromJson	src/Mac.cpp	/^Mac Mac::fromJson(const Json::Value buildFrom){$/;"	f	class:Mac
 fromJson	src/SpanningTree.cpp	/^SpanningTree SpanningTree::fromJson(const Json::Value buildFrom){$/;"	f	class:SpanningTree
+generateSTP	thesis/listings/switch/full.c	/^void generateSTP(unsigned char *packet, unsigned char *btype, unsigned char *bflags, unsigned char *port, int padding){$/;"	f
 get	src/jsoncpp.cpp	/^Value Value::get(ArrayIndex index, const Value& defaultValue) const {$/;"	f	class:Json::Value
 get	src/jsoncpp.cpp	/^Value Value::get(JSONCPP_STRING const& key, Value const& defaultValue) const$/;"	f	class:Json::Value
 get	src/jsoncpp.cpp	/^Value Value::get(char const* key, Value const& defaultValue) const$/;"	f	class:Json::Value
@@ -524,12 +543,16 @@ good	src/jsoncpp.cpp	/^bool OurReader::good() const {$/;"	f	class:Json::OurReade
 good	src/jsoncpp.cpp	/^bool Reader::good() const {$/;"	f	class:Json::Reader
 hadTC	inc/Sniffer.hpp	/^        static bool hadTC;$/;"	m	class:Sniffer
 hadTC	src/Sniffer.cpp	/^bool Sniffer::hadTC;$/;"	m	class:Sniffer	file:
+hadTc	thesis/listings/switch/full.c	/^int hadTc;$/;"	v
 hasComment	src/jsoncpp.cpp	/^bool Value::hasComment(CommentPlacement placement) const {$/;"	f	class:Json::Value
 hasCommentForValue	src/jsoncpp.cpp	/^bool BuiltStyledStreamWriter::hasCommentForValue(const Value& value) {$/;"	f	class:Json::BuiltStyledStreamWriter
 hasCommentForValue	src/jsoncpp.cpp	/^bool StyledStreamWriter::hasCommentForValue(const Value& value) {$/;"	f	class:Json::StyledStreamWriter
 hasCommentForValue	src/jsoncpp.cpp	/^bool StyledWriter::hasCommentForValue(const Value& value) {$/;"	f	class:Json::StyledWriter
+helloTime	thesis/listings/switch/full.c	/^int helloTime;$/;"	v
 id	inc/Client.hpp	/^       int id;$/;"	m	class:Client
 id	inc/Server.hpp	/^        int id;$/;"	m	class:Server
+ifaceMutex	thesis/listings/switch/data.c	/^pthread_mutex_t ifaceMutex;$/;"	v
+ifaceMutex	thesis/listings/switch/full.c	/^pthread_mutex_t ifaceMutex;$/;"	v
 increment	src/jsoncpp.cpp	/^void ValueIteratorBase::increment() {$/;"	f	class:Json::ValueIteratorBase
 indent	src/jsoncpp.cpp	/^void BuiltStyledStreamWriter::indent() { indentString_ += indentation_; }$/;"	f	class:Json::BuiltStyledStreamWriter
 indent	src/jsoncpp.cpp	/^void StyledStreamWriter::indent() { indentString_ += indentation_; }$/;"	f	class:Json::StyledStreamWriter
@@ -551,6 +574,9 @@ intValue	inc/json/json.h	/^  intValue,      \/\/\/< signed integer value$/;"	e	e
 int_	inc/json/json.h	/^    LargestInt int_;$/;"	m	union:Json::Value::ValueHolder
 integerToDouble	src/jsoncpp.cpp	/^static inline double integerToDouble(Json::UInt64 value) {$/;"	f	namespace:Json
 integerToDouble	src/jsoncpp.cpp	/^template <typename T> static inline double integerToDouble(T value) {$/;"	f	namespace:Json
+interFaceThread	thesis/listings/switch/full.c	/^void *interFaceThread(void *arg){$/;"	f
+interfaces	thesis/listings/switch/data.c	/^unsigned char **interfaces;$/;"	v
+interfaces	thesis/listings/switch/full.c	/^unsigned char **interfaces;$/;"	v
 invalidPath	src/jsoncpp.cpp	/^void Path::invalidPath(const JSONCPP_STRING& \/*path*\/, int \/*location*\/) {$/;"	f	class:Json::Path
 isArray	src/jsoncpp.cpp	/^bool Value::isArray() const { return type_ == arrayValue; }$/;"	f	class:Json::Value
 isBool	src/jsoncpp.cpp	/^bool Value::isBool() const { return type_ == booleanValue; }$/;"	f	class:Json::Value
@@ -597,16 +623,23 @@ length	src/jsoncpp.cpp	/^unsigned Value::CZString::length() const { return stora
 length_	inc/json/json.h	/^      unsigned length_: 30; \/\/ 1GB max$/;"	m	struct:Json::Value::CZString::StringStorage
 limit_	inc/json/json.h	/^  ptrdiff_t limit_;$/;"	m	class:Json::Value
 mac	inc/Bridge.hpp	/^        Mac mac;$/;"	m	class:Bridge
+macIndices	thesis/listings/switch/data.c	/^int *macIndices;$/;"	v
+macIndices	thesis/listings/switch/full.c	/^int *macIndices;$/;"	v
+macTable	thesis/listings/switch/data.c	/^unsigned char ***macTable;$/;"	v
+macTable	thesis/listings/switch/full.c	/^unsigned char ***macTable;$/;"	v
+macTableSize	thesis/listings/switch/full.c	/^int macTableSize;$/;"	v
 main	src/clientMain.cpp	/^int main(int argc, char **args){$/;"	f
 main	src/parser.cpp	/^int main(int argc, char ** args){$/;"	f
 main	src/serverMain.cpp	/^int main(int argc, char **args){$/;"	f
 main	src/stp_sniffer.c	/^int main(int argc, char **args){$/;"	f
 main	src/test.cpp	/^int main(int argc, char **argv){$/;"	f
+main	thesis/listings/switch/full.c	/^int main(int argc, char ** argv){$/;"	f
 make	src/jsoncpp.cpp	/^Value& Path::make(Value& root) const {$/;"	f	class:Json::Path
 makePath	src/jsoncpp.cpp	/^void Path::makePath(const JSONCPP_STRING& path, const InArgs& in) {$/;"	f	class:Json::Path
 map_	inc/json/json.h	/^    ObjectValues* map_;$/;"	m	union:Json::Value::ValueHolder
 match	src/jsoncpp.cpp	/^bool OurReader::match(Location pattern, int patternLength) {$/;"	f	class:Json::OurReader
 match	src/jsoncpp.cpp	/^bool Reader::match(Location pattern, int patternLength) {$/;"	f	class:Json::Reader
+maxAge	thesis/listings/switch/full.c	/^int maxAge;$/;"	v
 maxInt	inc/json/json.h	/^  static const Int maxInt;$/;"	m	class:Json::Value
 maxInt	src/jsoncpp.cpp	/^const Int Value::maxInt = Int(UInt(-1) \/ 2);$/;"	m	class:Json::Value	file:
 maxInt64	inc/json/json.h	/^  static const Int64 maxInt64;$/;"	m	class:Json::Value
@@ -627,6 +660,7 @@ memberName	src/jsoncpp.cpp	/^char const* ValueIteratorBase::memberName(char cons
 message	inc/json/json.h	/^    JSONCPP_STRING message;$/;"	m	struct:Json::Reader::StructuredError
 message	src/jsoncpp.cpp	/^    JSONCPP_STRING message;$/;"	m	struct:Json::OurReader::StructuredError	file:
 messageAge	inc/Bridge.hpp	/^        short messageAge;$/;"	m	class:Bridge
+messageAge	thesis/listings/switch/full.c	/^unsigned short messageAge;$/;"	v
 message_	inc/json/json.h	/^    JSONCPP_STRING message_;$/;"	m	class:Json::Reader::ErrorInfo
 message_	src/jsoncpp.cpp	/^    JSONCPP_STRING message_;$/;"	m	class:Json::OurReader::ErrorInfo	file:
 minInt	inc/json/json.h	/^  static const Int minInt;$/;"	m	class:Json::Value
@@ -636,7 +670,13 @@ minInt64	src/jsoncpp.cpp	/^const Int64 Value::minInt64 = Int64(~(UInt64(-1) \/ 2
 minLargestInt	inc/json/json.h	/^  static const LargestInt minLargestInt;$/;"	m	class:Json::Value
 minLargestInt	src/jsoncpp.cpp	/^const LargestInt Value::minLargestInt = LargestInt(~(LargestUInt(-1) \/ 2));$/;"	m	class:Json::Value	file:
 msg_	inc/json/json.h	/^  JSONCPP_STRING msg_;$/;"	m	class:Json::Exception
+n	thesis/listings/switch/data.c	/^int n;$/;"	v
+n	thesis/listings/switch/full.c	/^int n;$/;"	v
 name	src/jsoncpp.cpp	/^JSONCPP_STRING ValueIteratorBase::name() const {$/;"	f	class:Json::ValueIteratorBase
+names	thesis/listings/switch/data.c	/^char **names;$/;"	v
+names	thesis/listings/switch/full.c	/^char **names;$/;"	v
+neighbours	thesis/listings/switch/data.c	/^unsigned char **neighbours;$/;"	v
+neighbours	thesis/listings/switch/full.c	/^unsigned char **neighbours;$/;"	v
 newCharReader	src/jsoncpp.cpp	/^CharReader* CharReaderBuilder::newCharReader() const$/;"	f	class:Json::CharReaderBuilder
 newStreamWriter	src/jsoncpp.cpp	/^StreamWriter* StreamWriterBuilder::newStreamWriter() const$/;"	f	class:Json::StreamWriterBuilder
 newsockfd	inc/Server.hpp	/^        int sockfd, newsockfd;$/;"	m	class:Server
@@ -652,6 +692,7 @@ nullRef	inc/json/json.h	/^  static const Value& nullRef;  \/\/\/< just a kludge 
 nullRef	src/jsoncpp.cpp	/^const Value& Value::nullRef = null;$/;"	m	class:Json::Value	file:
 nullSymbol_	src/jsoncpp.cpp	/^  JSONCPP_STRING nullSymbol_;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
 nullValue	inc/json/json.h	/^  nullValue = 0, \/\/\/< 'null' value$/;"	e	enum:Json::ValueType
+numPackages	thesis/listings/switch/full.c	/^int numPackages;$/;"	v
 numberOfCommentPlacement	inc/json/json.h	/^  numberOfCommentPlacement$/;"	e	enum:Json::CommentPlacement
 objectValue	inc/json/json.h	/^  objectValue    \/\/\/< object value (collection of name\/value pairs).$/;"	e	enum:Json::ValueType
 offset_limit	inc/json/json.h	/^    ptrdiff_t offset_limit;$/;"	m	struct:Json::Reader::StructuredError
@@ -721,6 +762,7 @@ output	inc/Server.hpp	/^        std::ofstream output;$/;"	m	class:Server
 output	inc/Sniffer.hpp	/^        static std::ofstream output;$/;"	m	class:Sniffer
 output	src/Sniffer.cpp	/^std::ofstream Sniffer::output;$/;"	m	class:Sniffer	file:
 output	src/stp_sniffer.c	/^FILE *output;$/;"	v
+packageIndex	thesis/listings/switch/full.c	/^int packageIndex;$/;"	v
 parse	src/jsoncpp.cpp	/^Reader::parse(const std::string& document, Value& root, bool collectComments) {$/;"	f	class:Json::Reader
 parse	src/jsoncpp.cpp	/^bool OurReader::parse(const char* beginDoc,$/;"	f	class:Json::OurReader
 parse	src/jsoncpp.cpp	/^bool Reader::parse(const char* beginDoc,$/;"	f	class:Json::Reader
@@ -730,9 +772,13 @@ payload	thesis/listings/stp/payload.c	/^const u_char *payload = bytes+sizeof(str
 pointer	inc/json/json.h	/^  typedef Value* pointer;$/;"	t	class:Json::ValueIterator
 pointer	inc/json/json.h	/^  typedef const Value* pointer;$/;"	t	class:Json::ValueConstIterator
 policy_	inc/json/json.h	/^      unsigned policy_: 2;$/;"	m	struct:Json::Value::CZString::StringStorage
+portCost	thesis/listings/switch/full.c	/^int portCost;$/;"	v
+port_state	thesis/listings/switch/full.c	/^typedef enum port_state {$/;"	g	file:
 precision_	src/jsoncpp.cpp	/^  unsigned int precision_;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
 printMac	src/stp_sniffer.c	/^void printMac(char *string, const u_char *bytes){$/;"	f
 priority	inc/Bridge.hpp	/^        short priority;$/;"	m	class:Bridge
+priority	thesis/listings/switch/full.c	/^unsigned char priority, extension;$/;"	v
+processPacket	thesis/listings/switch/full.c	/^void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){$/;"	f
 process_packet	src/Sniffer.cpp	/^void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){$/;"	f	class:Sniffer
 process_packet	src/stp_sniffer.c	/^void process_packet(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){$/;"	f
 psize	thesis/listings/stp/payload.c	/^int psize = header->len - sizeof(struct ethhdr);$/;"	v
@@ -793,9 +839,17 @@ rightMargin_	inc/json/json.h	/^  unsigned int rightMargin_;$/;"	m	class:Json::St
 rightMargin_	src/jsoncpp.cpp	/^  unsigned int rightMargin_;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
 root	inc/SpanningTree.hpp	/^        Bridge root;$/;"	m	class:SpanningTree
 root	thesis/listings/stp/spanningTree.cpp	/^        Bridge root;$/;"	m	class:SpanningTree	file:
+root	thesis/listings/switch/full.c	/^unsigned char root[6];$/;"	v
 rootContained	thesis/listings/stp/contained.c	/^int rootContained = 0, oldHopMa = -1;$/;"	v
+rootExtension	thesis/listings/switch/full.c	/^unsigned char rootPriority, rootExtension;$/;"	v
+rootPathCost	thesis/listings/switch/full.c	/^int rootPathCost;$/;"	v
+rootPriority	thesis/listings/switch/full.c	/^unsigned char rootPriority, rootExtension;$/;"	v
 run	src/Server.cpp	/^void Server::run(){$/;"	f	class:Server
 send	src/Client.cpp	/^void Client::send(Json::Value value){$/;"	f	class:Client
+sendSTP	thesis/listings/switch/full.c	/^void sendSTP(int index){$/;"	f
+sendTCN	thesis/listings/switch/full.c	/^void sendTCN(int index){$/;"	f
+senderThread	thesis/listings/switch/full.c	/^void *senderThread(void *arg){$/;"	f
+sentPackages	thesis/listings/switch/full.c	/^unsigned char **sentPackages;$/;"	v
 servSock	test_utils/python_utils/serverStart.py	/^servSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM);$/;"	v
 servSock	test_utils/python_utils/serverStop.py	/^servSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM);$/;"	v
 server	inc/Client.hpp	/^       struct hostent *server;$/;"	m	class:Client	typeref:struct:Client::hostent
@@ -827,6 +881,7 @@ sock	test_utils/python_utils/start.py	/^sock = socket.socket(socket.AF_INET, soc
 sock	test_utils/python_utils/stop.py	/^sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)$/;"	v
 sockfd	inc/Client.hpp	/^       int sockfd;$/;"	m	class:Client
 sockfd	inc/Server.hpp	/^        int sockfd, newsockfd;$/;"	m	class:Server
+socks	thesis/listings/switch/full.c	/^int *socks;$/;"	v
 sout_	inc/json/json.h	/^  JSONCPP_OSTREAM* sout_;  \/\/ not owned; will not delete$/;"	m	class:Json::StreamWriter
 sscanf	src/jsoncpp.cpp	226;"	d	file:
 stackDepth_	src/jsoncpp.cpp	/^  int stackDepth_;$/;"	m	class:Json::OurReader	file:
@@ -837,6 +892,7 @@ start	src/Sniffer.cpp	/^void Sniffer::start(const std::string inputFileName, con
 start_	inc/json/json.h	/^    Location start_;$/;"	m	class:Json::Reader::Token
 start_	inc/json/json.h	/^  ptrdiff_t start_;$/;"	m	class:Json::Value
 start_	src/jsoncpp.cpp	/^    Location start_;$/;"	m	class:Json::OurReader::Token	file:
+states	thesis/listings/switch/full.c	/^PortState *states;$/;"	v
 std	inc/json/json.h	/^namespace std {$/;"	n
 storage_	inc/json/json.h	/^      StringStorage storage_;$/;"	m	union:Json::Value::CZString::__anon1
 strictMode	src/jsoncpp.cpp	/^Features Features::strictMode() {$/;"	f	class:Json::Features
@@ -850,11 +906,14 @@ swap	inc/json/json.h	/^inline void swap(Json::Value& a, Json::Value& b) { a.swap
 swap	src/jsoncpp.cpp	/^void Value::CZString::swap(CZString& other) {$/;"	f	class:Json::Value::CZString
 swap	src/jsoncpp.cpp	/^void Value::swap(Value& other) {$/;"	f	class:Json::Value
 swapPayload	src/jsoncpp.cpp	/^void Value::swapPayload(Value& other) {$/;"	f	class:Json::Value
+targetIndex	thesis/listings/switch/forwarding.c	/^int targetIndex = -1;$/;"	v
 tc	thesis/listings/stp/payload.c	/^bool tc = *(payload++);$/;"	v
+tca	thesis/listings/switch/full.c	/^int tca;$/;"	v
 throwLogicError	src/jsoncpp.cpp	/^JSONCPP_NORETURN void throwLogicError(JSONCPP_STRING const& msg)$/;"	f	namespace:Json
 throwRuntimeError	src/jsoncpp.cpp	/^JSONCPP_NORETURN void throwRuntimeError(JSONCPP_STRING const& msg)$/;"	f	namespace:Json
 timeout	inc/Server.hpp	/^        time_t timeout;$/;"	m	class:Server
 timestamps	inc/Server.hpp	/^        std::map<int, time_t> timestamps;$/;"	m	class:Server
+timestamps	thesis/listings/switch/full.c	/^time_t *timestamps;$/;"	v
 toJson	src/Bridge.cpp	/^Json::Value Bridge::toJson() const{$/;"	f	class:Bridge
 toJson	src/Mac.cpp	/^Json::Value Mac::toJson() const{$/;"	f	class:Mac
 toJson	src/SpanningTree.cpp	/^Json::Value SpanningTree::toJson() const {$/;"	f	class:SpanningTree
@@ -906,6 +965,8 @@ uint_	inc/json/json.h	/^    LargestUInt uint_;$/;"	m	union:Json::Value::ValueHol
 unindent	src/jsoncpp.cpp	/^void BuiltStyledStreamWriter::unindent() {$/;"	f	class:Json::BuiltStyledStreamWriter
 unindent	src/jsoncpp.cpp	/^void StyledStreamWriter::unindent() {$/;"	f	class:Json::StyledStreamWriter
 unindent	src/jsoncpp.cpp	/^void StyledWriter::unindent() {$/;"	f	class:Json::StyledWriter
+updatePortStates	thesis/listings/switch/full.c	/^void updatePortStates(int currentIndex, unsigned char rPriority, unsigned char rExtension, unsigned char *rMac, unsigned int pathCost, unsigned char age, unsigned char bPriority, unsigned char bExtension){$/;"	f
+updatePortStates	thesis/listings/switch/portStates.c	/^void updatePortStates(int currentIndex, unsigned char rPriority, unsigned char rExtension, unsigned char *rMac, unsigned int pathCost, unsigned char age, unsigned char bPriority, unsigned char bExtension){$/;"	f
 useSpecialFloats_	src/jsoncpp.cpp	/^  bool useSpecialFloats_ : 1;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
 validate	src/jsoncpp.cpp	/^bool CharReaderBuilder::validate(Json::Value* invalid) const$/;"	f	class:Json::CharReaderBuilder
 validate	src/jsoncpp.cpp	/^bool StreamWriterBuilder::validate(Json::Value* invalid) const$/;"	f	class:Json::StreamWriterBuilder

@@ -1,6 +1,17 @@
-\chapter{Conclusion}
-What did we learn?
-What can be expanded?
-- stp-t-g
-- s-s
+\chapter*{Conclusion}
+Gaining information about bridges in the network is easy.
+Gaining information about the connections in between is a lot harder, and only possible under certain conditions.
+By observing changes to the packets sent during buildup of the spanning tree, we can the tree has a certain shape.
+These assumptions, however, are not correct in every case.
+We can only try to minimize these errors by combining data sent from multiple clients.
+This means that the usefulness of the tool discussed increases greatly with the number of clients running on a network.
+Unfortunately we did not find any other general method of checking assumed topologies.
+The lack of mechanics like a hop count on the Data Link layer keeps us from implementing something like a \textit{traceroute}, which we could use to check our assumptions manually.
 
+Future extensions of this tool could include features to increase usability, like a GUI, as well as other output formats.
+The \textit{README} in the git should also be extended to include the parts of this thesis paper that are vital to using the tool.
+\newline
+
+The software-switch utility could also be extended and tested, in order to make it usable as a general purpose switching utility.
+Other extensions of this thesis include work on the \textit{OpenWrt} and \textit{dd-wrt} projects in order to find a viable method to keep the STP implementation consistent with other hardware.
+%TODO:extend? compare to other papers

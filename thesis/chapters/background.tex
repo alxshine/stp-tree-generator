@@ -11,10 +11,9 @@ TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Paper
 %TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.
 %TODO: maybe talk about alternative bridging protocols
 
-\section{Technologies used}
-\subsection{STP}
+\section{STP}
 \label{stp}
-\subsubsection{Port States}
+\subsection{Port States}
 The most important part of STP is its introduction of Port States.
 These Port States ensure that the spanning tree does not contain loops.
 Ports can be in one of three states (they can also be seen in Figure~\ref{fig:port_states}):
@@ -36,9 +35,10 @@ If no superior STP packets are received on a Blocking or Root Port for a set amo
     %TODO: redo in tikz
 \end{figure}
 
-\subsubsection{STP Packets}
+\subsection{STP Packets}
 %TODO: rewrite (must include default configuration)
 \label{stp_packet}
+%TODO: redo in tikz
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{stp_bpdu.png}
@@ -66,7 +66,7 @@ We will however still know that it is there, because of the message age.
 During the buildup of the tree it is possible to obtain information on intermediate nodes.
 This possibility is explained more in-depth in the section on packet handling (Section~\ref{packet_handling}).
 
-\subsubsection{Spanning Tree Algorithm}
+\subsection{Spanning Tree Algorithm}
 %TODO: fix algorithm placement and explain constraints required by original paper, and how this fulfills them
 STP enabled Bridges run through Algorithm~\ref{alg:stp} when receiving an STP packet.
 It ensures that information on the global Root is kept up to date and that Ports that receive a superior STP BPDU are disabled.
@@ -100,6 +100,8 @@ It ensures that information on the global Root is kept up to date and that Ports
     \caption{Spanning Tree Bridge Algorithm}
     \label{alg:stp}
 \end{algorithm}
+
+\section{Technologies used}
 \subsection{PCAP}
 \label{pcap}
 PCAP is a shortening of packet capture.
