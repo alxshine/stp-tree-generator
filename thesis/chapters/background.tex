@@ -1,4 +1,5 @@
 \chapter{Background}
+\label{background}
 \section{Existing alternatives}
 As of writing this paper, only very few tools support monitoring of STP topologies.
 The ones we found are LoriotPro\cite{LoriotPro}, LiveAction\cite{LiveAction} and L2Discover\cite{L2Discover}.
@@ -29,10 +30,26 @@ This can be seen in the connection between the bottom Bridges in Figure~\ref{fig
 If no superior STP packets are received on a Blocking or Root Port for a set amount of time (called the Forward Transition Delay) it transitions to Dedicated State.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{port_states.png}
+    \begin{tikzpicture}
+        \node (root) at (2,2) {\switch{0.8}{Root}};
+        \node (a) at (0,0) {\switch{0.8}{A}};
+        \node (b) at (4,0) {\switch{0.8}{B}};
+
+        \draw
+        (root) -- node[dedicated, at start]{} node[root, at end]{} (a)
+        (root) -- node[dedicated, at start]{} node[root, at end]{} (b)
+        (a) -- node[dedicated, at start]{} node[blocking, at end]{} (b);
+
+        \begin{customlegend}[legend cell align=left, legend entries={Root Port,Dedicated Port,Blocking Port},
+            legend image post style={scale=2.3},
+            legend style={at={(8,2)},font=\footnotesize}]
+            \addlegendimage{white,mark=*,fill=green}
+            \addlegendimage{white,mark=*,fill=blue!80}
+            \addlegendimage{white,mark=*,fill=red}
+        \end{customlegend}
+    \end{tikzpicture}
     \caption{An example of STP port states}
     \label{fig:port_states}
-    %TODO: redo in tikz
 \end{figure}
 
 \subsection{STP Packets}

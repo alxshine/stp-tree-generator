@@ -65,7 +65,7 @@ Errors	inc/json/json.h	/^  typedef std::deque<ErrorInfo> Errors;$/;"	t	class:Jso
 Errors	src/jsoncpp.cpp	/^  typedef std::deque<ErrorInfo> Errors;$/;"	t	class:Json::OurReader	file:
 Exception	inc/json/json.h	/^class JSON_API Exception : public std::exception {$/;"	c	namespace:Json
 Exception	src/jsoncpp.cpp	/^Exception::Exception(JSONCPP_STRING const& msg)$/;"	f	class:Json::Exception
-Existing alternatives	thesis/chapters/background.tex	/^\\chapter{Background}$/;"	s
+Existing alternatives	thesis/chapters/background.tex	/^\\label{background}$/;"	s
 Expected Result	thesis/chapters/testing.tex	/^\\end{enumerate}$/;"	b
 Expected Result	thesis/chapters/testing.tex	/^\\end{figure}$/;"	b
 Factory	inc/json/json.h	/^  class JSON_API Factory {$/;"	c	class:Json::CharReader
@@ -270,7 +270,7 @@ SelfType	inc/json/json.h	/^  typedef ValueIterator SelfType;$/;"	t	class:Json::V
 SelfType	inc/json/json.h	/^  typedef ValueIteratorBase SelfType;$/;"	t	class:Json::ValueIteratorBase
 Server	inc/Server.hpp	/^class Server{$/;"	c
 Server	src/Server.cpp	/^Server::Server(int port, std::string outputFileName, bool createPidFile, time_t to){$/;"	f	class:Server
-Setup	thesis/chapters/testing.tex	/^\\chapter{Testing}$/;"	s
+Setup	thesis/chapters/testing.tex	/^\\label{testing}$/;"	s
 Slow Dynamic Change Test	thesis/chapters/testing.tex	/^The new path through which Node \\textit{C} is connected to the root must be correctly identified.$/;"	u
 Sniffer	inc/Sniffer.hpp	/^class Sniffer{$/;"	c
 Sniffer	src/Sniffer.cpp	/^Sniffer::Sniffer(bool nC, std::string outputFileName, std::string hostname, int port){$/;"	f	class:Sniffer

@@ -1,4 +1,5 @@
 \chapter{Software Switch Testing Utility}
+\label{switch}
 The original plan for testing the tool was to use cheap routers running \textit{OpenWrt}\cite{OpenWrt} with STP enabled.
 This did not work for multiple reasons.
 \begin{itemize}
@@ -37,7 +38,7 @@ The \textit{ifaceMutex} (mutex stands for mutual exclusion) is used to synchroni
 We use two threads per interface.
 One to handle and forward incoming packets, as well as update our STP port states.
 The other one sends the STP packets every \textit{helloTime} seconds.
-Sharing memory between \textit{pthreads} (the C thread implementation we used) does not require any setup, as all heap memory is shared. %TODO: source?
+Sharing memory between \textit{pthreads} (the C thread implementation we used) does not require any setup, as all heap memory is shared\cite{pthreads}.
 We need to synchronize these accesses to keep the different threads from corrupting data due to concurrent writes.
 
 \subsection{Handling STP Packets and Port States}
