@@ -37,7 +37,7 @@ This is due to us saving MAC adrresses as \textbf{char} arrays as well.
 The \textit{ifaceMutex} (mutex stands for mutual exclusion) is used to synchronize our different threads.
 We use two threads per interface.
 One to handle and forward incoming packets, as well as update our STP port states.
-The other one sends the STP packets every \textit{helloTime} seconds.
+The other one sends the STP packets every $helloTime$ seconds.
 Sharing memory between \textit{pthreads} (the C thread implementation we used) does not require any setup, as all heap memory is shared\cite{pthreads}.
 We need to synchronize these accesses to keep the different threads from corrupting data due to concurrent writes.
 
@@ -58,7 +58,13 @@ As packets to unknown MAC addresses are broadcast by default, we do not need spe
 \lstinputlisting[caption=Handling non-STP packets, label=lst:nonStp]{../listings/switch/forwarding.c}
 
 \subsection{STP Parameters}
-%TODO: keep helloTime and forwardDelay spelling consistent
-STP parameters like the \textit{helloTime} and the \textit{forwardDelay}, as well as priorities can be set on launch.
+STP parameters like the $helloTime$ and the \textit{forward delay}, as well as priorities can be set on launch.
+This is can be done via command line parameters or by using a config file.
+If no config file exists in the working directory on launch, the software-switch will generate one.
+Default parameters are overwritten by any parametrs found in the config file.
+These parameters are then in turn overwritten by any command line parameters.
+We found this to be the most useful order of precedence for testing.
+%TODO: keep software-switch italics and bold stuff consistent
+
 Any interfaces the tool is to be run on can be passed as well.
 %TODO: do something useful with empty space?
