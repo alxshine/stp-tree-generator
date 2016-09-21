@@ -82,7 +82,7 @@ HOST	test_utils/python_utils/serverStop.py	/^HOST = ''$/;"	v
 Handling Non STP Packets	thesis/chapters/soft-switch.tex	/^\\lstinputlisting[caption=Updating Port States, label=lst:portStates]{..\/listings\/switch\/portStates.c}$/;"	u
 Handling STP Packets and Port States	thesis/chapters/soft-switch.tex	/^We need to synchronize these accesses to keep the different threads from corrupting data due to concurrent writes.$/;"	u
 INCLUDES	Makefile	/^INCLUDES=-lpcap$/;"	m
-Implementation	thesis/chapters/soft-switch.tex	/^It was written in C, in contrast to the stp-tree-generator which was written in C++.$/;"	s
+Implementation	thesis/chapters/soft-switch.tex	/^It was written in C, in contrast to the \\textit{stp-tree-generator} which was written in C++.$/;"	s
 InArgs	inc/json/json.h	/^  typedef std::vector<const PathArgument*> InArgs;$/;"	t	class:Json::Path
 InRange	src/jsoncpp.cpp	/^static inline bool InRange(double d, T min, U max) {$/;"	f	namespace:Json
 Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Combining the bridge data, label=lst:combine]{..\/listings\/stp\/combination.c}$/;"	s

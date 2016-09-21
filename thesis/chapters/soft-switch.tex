@@ -16,9 +16,9 @@ Unfortunately, it shares the same behaviour with \textit{OpenWrt} and we did not
 
 In order to be able to stay withing the time limit while still testing our tool, we decided to implement a bridge capable of STP.
 It uses \textit{pcap} to handle incoming packets and react to STP packets.
-Our software-switch can be run on any number of interfaces, however, it has not been tested on more than two.
-The source code for the software-switch can be found in its git\cite{software-switch}.
-It was written in C, in contrast to the stp-tree-generator which was written in C++.
+Our \textit{software-switch} can be run on any number of interfaces, however, it has not been tested on more than two.
+The source code for the \textit{software-switch} can be found in its git\cite{software-switch}.
+It was written in C, in contrast to the \textit{stp-tree-generator} which was written in C++.
 
 \section{Implementation}
 \subsection{Saving Switching Data}
@@ -29,7 +29,7 @@ They store the local interface names (as seen in \textit{ifconfig}), the connect
 As basic C does not have strings, these are arrays of \textbf{char} arrays.
 In C, arrays are saved as pointers to the first element, with the other elements following sequentially after that.
 This makes \textit{names}, \textit{neighbours} and \textit{interfaces} pointers to pointers.
-Because the software-switch can be run on multiple interfaces we need to keep track of the number of interfaces it is running on, which we do in \textit{n}.
+Because the \textit{software-switch} can be run on multiple interfaces we need to keep track of the number of interfaces it is running on, which we do in \textit{n}.
 To know which interface to forward a packet on, switches keep a so-called MAC table.
 We keep a list of MAC addresses for every interface, making \textit{macTable} an array of arrays of \textbf{char} arrays.
 This is due to us saving MAC adrresses as \textbf{char} arrays as well.
@@ -60,11 +60,10 @@ As packets to unknown MAC addresses are broadcast by default, we do not need spe
 \subsection{STP Parameters}
 STP parameters like the $helloTime$ and the \textit{forward delay}, as well as priorities can be set on launch.
 This is can be done via command line parameters or by using a config file.
-If no config file exists in the working directory on launch, the software-switch will generate one.
+If no config file exists in the working directory on launch, the \textit{software-switch} will generate one.
 Default parameters are overwritten by any parametrs found in the config file.
 These parameters are then in turn overwritten by any command line parameters.
 We found this to be the most useful order of precedence for testing.
-%TODO: keep software-switch italics and bold stuff consistent
 
 Any interfaces the tool is to be run on can be passed as well.
 %TODO: do something useful with empty space?
