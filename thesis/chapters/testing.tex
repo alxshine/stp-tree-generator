@@ -16,17 +16,16 @@ Additionally using \textit{Wireshark} allowed us to check the actual packages in
 The server for our tool was run on Node \textit{A}.
 Test results were checked for their correctness by checking the report provided by the tool.
 
-%TODO: redo figures using switch macro
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
-    \node (root) at (2, 4) {Root};
-    \node (a) at (0.5, 2.5) {Bridge A};
-    \node (na) at (0, 1.7) {Node A};
-    \node (b) at (3.5, 2.5) {Bridge B};
-    \node (nb) at (4, 1.7) {Node B};
-    \node (c) at (2, 1) {Bridge C};
-    \node (nc) at (2, 0.3) {Node C};
+        \node (root) at (2, 4) {\switch{0.8}{Root}};
+        \node (a) at (0, 2) {\switch{0.8}{Bridge A}};
+        \node (na) at (0, 1) {Node A};
+        \node (b) at (4, 2) {\switch{0.8}{Bridge B}};
+        \node (nb) at (4, 1) {Node B};
+        \node (c) at (2, 0) {\switch{0.8}{Bridge C}};
+        \node (nc) at (2, -1) {Node C};
     \draw 
     (root) -- (a)
     (root) -- (b)
@@ -59,6 +58,7 @@ If the spanning tree were more than 2 layers deep and we were using less nodes t
 \end{enumerate}
 \subsubsection{Expected Result}
 With the limited size of the test network all bridges can and must be identified correctly for this test to be counted as successful.
+If the bridges in the network behave as they should, the tool should not be able to gather information about connections between the bridges.
 
 \subsection{Tree Establishment Test}
 \label{tree_est_test}
@@ -74,6 +74,7 @@ To test whether the tool can handle bridges being added to the network during ru
 
 \subsubsection{Expected Result}
 Again all the bridges can and must be correctly identified.
+Additionally, this time the identification of bridge connections is possible, and the topology should therefore be fully identified.
 
 \subsection{Bridge Removal Test}
 \label{removal_test}
@@ -88,7 +89,7 @@ This test makes sure that capability is given.
 \end{enumerate}
 
 \subsubsection{Expected Result}
-The new path through which Node \textit{C} is connected to the root must be correctly identified.
+Bridge \textit{B} must correctly be removed from the topology visualization.
 
 \subsection{Slow Dynamic Change Test}
 \label{slow_dynamic_test}
@@ -100,40 +101,47 @@ Therefore the logical topology will look like either one of the figures in Figur
 In our case bridge \textit{C} was logically connected to bridge \textit{A} as that was the possible connection to the root with the smaller MAC address.
 
 \begin{figure}[hp]
-    \centering
-    \begin{tikzpicture}
-    \node (root) at (2, 4) {Root};
-    \node (a) at (0.5, 2.5) {Bridge A};
-    \node (na) at (0, 1.7) {Node A};
-    \node (b) at (3.5, 2.5) {Bridge B};
-    \node (nb) at (4, 1.7) {Node B};
-    \node (c) at (2, 1) {Bridge C};
-    \node (nc) at (2, 0.3) {Node C};
-    \draw 
-    (root) -- (a)
-    (root) -- (b)
-    (a) -- (c)
-    (a) -- (na)
-    (b) -- (nb)
-    (c) -- (nc);
-    \end{tikzpicture}
-    \hspace{1cm}
-    \begin{tikzpicture}
-    \node (root) at (2, 4) {Root};
-    \node (a) at (0.5, 2.5) {Bridge A};
-    \node (na) at (0, 1.7) {Node A};
-    \node (b) at (3.5, 2.5) {Bridge B};
-    \node (nb) at (4, 1.7) {Node B};
-    \node (c) at (2, 1) {Bridge C};
-    \node (nc) at (2, 0.3) {Node C};
-    \draw 
-    (root) -- (a)
-    (root) -- (b)
-    (b) -- (c)
-    (a) -- (na)
-    (b) -- (nb)
-    (c) -- (nc);
-    \end{tikzpicture}
+    \begin{centering}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (root) at (2, 4) {\switch{0.8}{Root}};
+                \node (a) at (0, 2) {\switch{0.8}{Bridge A}};
+                \node (na) at (0, 1) {Node A};
+                \node (b) at (4, 2) {\switch{0.8}{Bridge B}};
+                \node (nb) at (4, 1) {Node B};
+                \node (c) at (2, 0) {\switch{0.8}{Bridge C}};
+                \node (nc) at (2, -1) {Node C};
+                \draw 
+                (root) -- (a)
+                (root) -- (b)
+                (a) -- (c)
+                (a) -- (na)
+                (b) -- (nb)
+                (c) -- (nc);
+            \end{tikzpicture}
+            \caption{Path via Bridge A}
+        \end{subfigure}
+        \hspace{1cm}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (root) at (2, 4) {\switch{0.8}{Root}};
+                \node (a) at (0, 2) {\switch{0.8}{Bridge A}};
+                \node (na) at (0, 1) {Node A};
+                \node (b) at (4, 2) {\switch{0.8}{Bridge B}};
+                \node (nb) at (4, 1) {Node B};
+                \node (c) at (2, 0) {\switch{0.8}{Bridge C}};
+                \node (nc) at (2, -1) {Node C};
+                \draw 
+                (root) -- (a)
+                (root) -- (b)
+                (b) -- (c)
+                (a) -- (na)
+                (b) -- (nb)
+                (c) -- (nc);
+            \end{tikzpicture}
+            \caption{Path via Bridge B}
+       \end{subfigure}
+    \end{centering}
     \caption{The 2 possible paths to the root from node \textit{C}}
     \label{fig:possible_topologies}
 \end{figure}
@@ -142,36 +150,62 @@ In our case bridge \textit{C} was logically connected to bridge \textit{A} as th
 \begin{enumerate}
     \item We set up all the nodes and waited for a stable tree to be generated by the bridges like before (sections \ref{usage_test}, \ref{tree_est_test} and \ref{removal_test}).
     \item We disconnected bridge \textit{A} from the root, leaving us with a 2 bridge subtree.
-    \item The connection between bridges \textit{A} and \textit{B} was also severed, as well as the connection between bridge \textit{C} and \textit{B}.
+    \item The connection between bridges \textit{B} and \textit{C} was also severed, leaving bridges \textit{A} and \textit{C} in a disconnected subtree.
     \item We waited for the spanning tree to stabilize after the removal.
     \item Bridges \textit{A} and \textit{C} were connected to bridge \textit{B} yielding the physical topology shown in Figure~\ref{fig:deep_topology}.
     \item After the tree had stabilized we checked the report output for correctness.
 \end{enumerate}
 
 \begin{figure}[hp]
-    \centering
-    \begin{tikzpicture}
-    \node (root) at (2, 4) {Root};
-    \node (b) at (2, 3) {Bridge B};
-    \node (nb) at (0.5, 2.3) {Node B};
-    \node (a) at (2, 2) {Bridge A};
-    \node (na) at (0.5, 1.3) {Node A};
-    \node (c) at (2, 1) {Bridge C};
-    \node (nc) at (0.5, 0.3) {Node C};
-    \draw 
-    (root) -- (b)
-    (b) -- (a)
-    (a) -- (c)
-    (a) -- (na)
-    (b) -- (nb)
-    (c) -- (nc);
-    \end{tikzpicture}
-    \caption{The physical network after performing the steps described in the Slow Dynamic Change Test \ref{slow_dynamic_test}}
+    \begin{centering}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (root) at (2, 4) {\switch{0.8}{Root}};
+                \node (a) at (0, 2) {\switch{0.8}{Bridge A}};
+                \node (na) at (0, 1) {Node A};
+                \node (b) at (4, 2) {\switch{0.8}{Bridge B}};
+                \node (nb) at (4, 1) {Node B};
+                \node (c) at (2, 0) {\switch{0.8}{Bridge C}};
+                \node (nc) at (2, -1) {Node C};
+                \draw 
+                (root) -- (a)
+                (root) -- (b)
+                (a) -- (c)
+                (a) -- (na)
+                (b) -- (nb)
+                (c) -- (nc);
+            \end{tikzpicture}
+            \caption{The topology before the test}
+        \end{subfigure}
+        \hspace{1cm}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (root) at (2, 4) {\switch{0.8}{Root}};
+                \node (a) at (0, 2) {\switch{0.8}{Bridge A}};
+                \node (na) at (0, 1) {Node A};
+                \node (b) at (4, 2) {\switch{0.8}{Bridge B}};
+                \node (nb) at (4, 1) {Node B};
+                \node (c) at (2, 0) {\switch{0.8}{Bridge C}};
+                \node (nc) at (2, -1) {Node C};
+
+                \draw 
+                (root) -- (b)
+                (b) -- (a)
+                (a) -- (c)
+                (a) -- (na)
+                (b) -- (nb)
+                (c) -- (nc);
+            \end{tikzpicture}
+            \caption{The topology after the test}
+       \end{subfigure}
+    \end{centering}
+    \caption{The topology before and after performing the Slow Dynamic Change Test}
     \label{fig:deep_topology}
 \end{figure}
 
 \subsubsection{Expected Result}
-The tool must correctly identify the new topology.
+Because we wait for the small subtree to stabilize, establishing bridge \textit{A} as root, the subtree should be correctly identified.
+%TODO: think about accepting subtree adds (moving the oldMa == messageAge-1 to a parameter)
 
 \subsection{Fast Dynamic Change Test}
 \label{fast_dynamic_test}

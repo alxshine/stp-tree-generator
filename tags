@@ -17,7 +17,7 @@ Bridge	inc/Bridge.hpp	/^class Bridge{$/;"	c
 Bridge	src/Bridge.cpp	/^Bridge::Bridge(){$/;"	f	class:Bridge
 Bridge	src/Bridge.cpp	/^Bridge::Bridge(Mac& m, const short p, const short mA):mac(m), priority(p), messageAge(mA){ }$/;"	f	class:Bridge
 Bridge	src/Bridge.cpp	/^Bridge::Bridge(const Bridge& other):mac(other.mac), priority(other.priority), messageAge(other.messageAge)$/;"	f	class:Bridge
-Bridge Removal Test	thesis/chapters/testing.tex	/^Again all the bridges can and must be correctly identified.$/;"	u
+Bridge Removal Test	thesis/chapters/testing.tex	/^Additionally, this time the identification of bridge connections is possible, and the topology should therefore be fully identified.$/;"	u
 BuiltStyledStreamWriter	src/jsoncpp.cpp	/^BuiltStyledStreamWriter::BuiltStyledStreamWriter($/;"	f	class:Json::BuiltStyledStreamWriter
 BuiltStyledStreamWriter	src/jsoncpp.cpp	/^struct BuiltStyledStreamWriter : public StreamWriter$/;"	s	namespace:Json	file:
 CC	Makefile	/^CC=g++$/;"	m
@@ -70,7 +70,7 @@ Expected Result	thesis/chapters/testing.tex	/^\\end{enumerate}$/;"	b
 Expected Result	thesis/chapters/testing.tex	/^\\end{figure}$/;"	b
 Factory	inc/json/json.h	/^  class JSON_API Factory {$/;"	c	class:Json::CharReader
 Factory	inc/json/json.h	/^  class JSON_API Factory {$/;"	c	class:Json::StreamWriter
-Fast Dynamic Change Test	thesis/chapters/testing.tex	/^The tool must correctly identify the new topology.$/;"	u
+Fast Dynamic Change Test	thesis/chapters/testing.tex	/^Because we wait for the small subtree to stabilize, establishing bridge \\textit{A} as root, the subtree should be correctly identified.$/;"	u
 FastWriter	inc/json/json.h	/^class JSON_API FastWriter : public Writer {$/;"	c	namespace:Json
 FastWriter	src/jsoncpp.cpp	/^FastWriter::FastWriter()$/;"	f	class:Json::FastWriter
 Features	inc/json/json.h	/^class JSON_API Features {$/;"	c	namespace:Json
@@ -271,7 +271,7 @@ SelfType	inc/json/json.h	/^  typedef ValueIteratorBase SelfType;$/;"	t	class:Jso
 Server	inc/Server.hpp	/^class Server{$/;"	c
 Server	src/Server.cpp	/^Server::Server(int port, std::string outputFileName, bool createPidFile, time_t to){$/;"	f	class:Server
 Setup	thesis/chapters/testing.tex	/^\\label{testing}$/;"	s
-Slow Dynamic Change Test	thesis/chapters/testing.tex	/^The new path through which Node \\textit{C} is connected to the root must be correctly identified.$/;"	u
+Slow Dynamic Change Test	thesis/chapters/testing.tex	/^Bridge \\textit{B} must correctly be removed from the topology visualization.$/;"	u
 Sniffer	inc/Sniffer.hpp	/^class Sniffer{$/;"	c
 Sniffer	src/Sniffer.cpp	/^Sniffer::Sniffer(bool nC, std::string outputFileName, std::string hostname, int port){$/;"	f	class:Sniffer
 Software Switch Testing Utility	thesis/chapters/soft-switch.tex	/^\\chapter{Software Switch Testing Utility}$/;"	c
@@ -303,7 +303,7 @@ Token	inc/json/json.h	/^  class Token {$/;"	c	class:Json::Reader
 Token	src/jsoncpp.cpp	/^  class Token {$/;"	c	class:Json::OurReader	file:
 TokenType	inc/json/json.h	/^  enum TokenType {$/;"	g	class:Json::Reader
 TokenType	src/jsoncpp.cpp	/^  enum TokenType {$/;"	g	class:Json::OurReader	file:
-Tree Establishment Test	thesis/chapters/testing.tex	/^With the limited size of the test network all bridges can and must be identified correctly for this test to be counted as successful.$/;"	u
+Tree Establishment Test	thesis/chapters/testing.tex	/^If the bridges in the network behave as they should, the tool should not be able to gather information about connections between the bridges.$/;"	u
 UInt	inc/json/json-forwards.h	/^typedef unsigned int UInt;$/;"	t	namespace:Json
 UInt	inc/json/json.h	/^  typedef Json::UInt UInt;$/;"	t	class:Json::Value
 UInt	inc/json/json.h	/^typedef unsigned int UInt;$/;"	t	namespace:Json
