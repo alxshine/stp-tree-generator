@@ -102,8 +102,7 @@ A detailed explanation of how this tool handles incoming STP packets can be foun
     \end{centering}
 \end{figure}
 
-\section{Details}
-\subsection{Class Structure}
+\section{Class Structure}
 \label{data}
 We created multiple classes to make saving the STP data easier, as well as reduce the effort needed to generate \textit{JSON} and \textit{TikZ} output.
 There are classes to represent MAC addresses, bridges, and complete spanning trees.
@@ -122,7 +121,7 @@ Altogether the following classes were created:
 The STP data is saved in the \textbf{Sniffer} as a vector.
 This is easier than storing them in a fixed size array, and already combining them into a \textbf{SpanningTree} object would keep the server from performing the steps described in Section~\ref{unsafe_assumptions}
 
-\subsection{Packet Handling}
+\section{Packet Handling}
 \label{packet_handling}
 Packets are handled by the sniffer class.
 While the function mostly skips unused fields in the STP packet, here we will take a close look at the more important parts.
@@ -149,7 +148,7 @@ For the first hop, we also require knowledge about the old message age.
 Listing~\ref{lst:update} shows how we update the bridge information in the sniffer.
 The \textit{clearAndAdd} function is just a shorthand to clear the bridge vector before adding the two bridges to it.
 \lstinputlisting[caption=Bridge data update, label=lst:update]{../listings/stp/update.c}
-\subsection{Communication}
+\section{Communication}
 \label{communication}
 As discussed in the background section (Section~\ref{json}) wer are using JSON for the client server communication.
 To inform all involved components about the purpose of a JSON message, we use a \textit{messagetype} field.
@@ -173,7 +172,7 @@ It shows how the tool can use changing packets to gather information about bridg
 %TODO: check positioning of listings on pages (especially large json)
 \lstinputlisting[caption=Server-Parser Transmission, label=lst:treeJson]{../listings/json/serverParser.json}
 
-\subsection{Unsafe Assumptions}
+\section{Unsafe Assumptions}
 \label{unsafe_assumptions}
 As previously said, the assumptions we make about bridge connections are not necessarily true.
 They can be wrong, for certain cases, one of which is shown in Figure~\ref{fig:false_example}.
@@ -274,7 +273,7 @@ The code for doing this is shown in Listing~\ref{lst:remove}.
 \lstinputlisting[caption=Removing false bridge data, label=lst:remove]{../listings/stp/remove.c} %TODO: maybe do better formatting
 The bridges are removed from the vector they each are in.
 This way any connection information that is not proven wrong is retained.
-\subsection{Combining the data}
+\section{Combining the data}
 \label{combining_data}
 After false information is removed, the bridge data is combined into one SpanningTree object.
 Creating large SpanningTree objects is done in multiple steps.
@@ -285,10 +284,86 @@ The code for this can be seen in Listing~\ref{lst:combine}.
 \lstinputlisting[caption=Combining the bridge data, label=lst:combine]{../listings/stp/combination.c}
 
 \section{Installation \& Usage}
-%TODO: extend this section?
-%TODO: talk about the fact that it is C++
-The tool requires \textit{pcap} and \textit{jsoncpp} at build time.
-We packaged the version of \textit{jsoncpp} we use, so to build the tool only \textit{pcap} needs to be installed.
-The library can be found in the repository for most package managers, as well as on GitHub\cite{tcpdump_git}.
+The tool was written in C++ and requires a compiler capable of C++11 to compile.
+Usage of the included Makefile is strongly advised.
+We included the version of \textit{jsoncpp} we used, so only the pcap library needs to be installed at build time.
+Available build targets are \textbf{client}, \textbf{server}, \textbf{parser} for single components and \textbf{all} for all components.
+An \textbf{install} target for global installation is not provided.
+\subsection*{Client Launch Parameters}
+\paragraph{-if \textit{inputFile}} is  used to specify the name of an input file which is written in \textit{.pcapng} format.
+If specified packets will not be captured live, but instead taken from the input file.
+For easier usage with this parameter, launching the server with a higher timeout duration is recommended.
+The server will remove data from this client, as it is not programmed to resend data taken from input files.
+%TODO: change client to send file data only once?
 
-For a manual on configuration files and launch parameters please consult the README file found in our git\cite{stp_git}.
+\paragraph{-of \textit{outputFile}} is used to specify a different output file.
+Output files are used for logging data.
+Logging directly to \textbf{STDOUT} is currently not possible.
+
+\paragraph{--no-connect / -nc} will stop the client from connecting to a server.
+This was used for debugging the client, but remains in the current version.
+
+\paragraph{-h \textit{hostname}} will tell the client which hostname to connect to.
+IPv4 addresses in dot notation, as well as hostnames (including URLs) are accepted.
+For more information on accepted formats please refer to the man page for \textbf{gethostbyname}.
+
+\paragraph{-p \textit{port}} specifies the port on which to connect.
+
+\paragraph{-dn} tells the client the device name of the interface to use.
+The names can be obtained using commands such as \textbf{ifconfig} or \textbf{ip addr show}.
+
+\subsection*{Server Launch Parameters}
+\paragraph{-p \textit{port}} specifies on which port to listen.
+
+\paragraph{-of} specifies the filename for the output file, which is used for logging incoming data, as well as the current state.
+
+\paragraph{-np} disables the creation of a \textit{.pid} file containing the process id.
+In cases the server is meant to be launched automatically in the background this file provides an easy means of accessing the process id.
+
+\paragraph{-t} tells the server how large the timeout time should be before removing a client's data.
+
+\subsection*{Parser Launch Parameters}
+\paragraph{-p \textit{port}} specifies the port to connect on.
+
+\paragraph{-h \textit{hostname}} specifies the hostname to connect to.
+
+\paragraph{-pw \textit{pictureWidth}} specifies the width of the resulting TikZ picture.
+Note that if a width of 20cm is specified but only 10 are used, the picture will be snipped automatically
+
+\paragraph{-ph \textit{pictureHeigth}} specifies the height of the resulting TikZ picture.
+The same snipping occurs as for the width.
+
+\paragraph{-s \textit{yStep}} defines the vertical distance between layers.
+
+\subsection*{Default Parameters}
+\paragraph{Client} parameters default to the following values:
+\begin{itemize}
+    \item \textbf{-if}: defaults to nothing, live capture is used
+    \item \textbf{-of}: client.log in the current working directory
+    \item \textbf{-nc}: not set
+    \item \textbf{-h}: \textit{localhost}
+    \item \textbf{-p}: 80
+    \item \textbf{-dn}: first named device
+\end{itemize}
+
+\paragraph{Server} parameters default as follows:
+\begin{itemize}
+    \item \textbf{-p}: 80
+    \item \textbf{-of}: server.log in the current working directory
+    \item \textbf{-np}: not set
+    \item \textbf{-t}: 10
+\end{itemize}
+
+\paragraph{Parser} parameters default to the following values:
+\begin{itemize}
+    \item \textbf{-p}: 80
+    \item \textbf{-h}: \textit{localhost}
+    \item \textbf{-s}: 2
+    \item \textbf{-ph}: 20
+    \item \textbf{-pw}: 14
+\end{itemize}
+
+\subsection*{Configuration Files}
+The binaries all create configuration files with their current configuration if none exist.
+On subsequent launches they will take their configuration from these files.
+Command line parameters take precedence over configuration files, which in turn take precedence over default parameters.

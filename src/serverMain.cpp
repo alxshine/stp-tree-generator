@@ -34,7 +34,8 @@ int main(int argc, char **args){
                 else if(parameter == "createPidFile"){
                     transform(value.begin(), value.end(), value.begin(), ::tolower);
                     createPidFile = value == "true";
-                }
+                }else if(parameter == "timeout")
+                    timeout = stoi(value);
             }
         }catch(int a){
             cerr << "Error on reading config file";

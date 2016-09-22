@@ -8,13 +8,15 @@ The company SolarWinds has an open vote on their website on whether or not to in
 LoriotPro and L2Discover use the SNMP for their topology discovery, with STP only being used to discover duplicate and unused links.
 The Generator described in this paper uses only STP, thus not needing the networking hardware being SNMP capable.
 
+\subsection*{Scientific Papers}
+
 TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.
 %TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.
 %TODO: maybe talk about alternative bridging protocols
 
 \section{STP}
 \label{stp}
-\subsection{Port States}
+\subsection*{Port States}
 The most important part of STP is its introduction of Port States.
 These Port States ensure that the spanning tree does not contain loops.
 Ports can be in one of three states (they can also be seen in Figure~\ref{fig:port_states}):
@@ -52,8 +54,7 @@ If no superior STP packets are received on a Blocking or Root Port for a set amo
     \label{fig:port_states}
 \end{figure}
 
-\subsection{STP Packets}
-%TODO: rewrite (must include default configuration)
+\subsection*{STP Packets}
 \label{stp_packet}
 %TODO: redo in tikz
 \begin{figure}[h]
@@ -62,7 +63,7 @@ If no superior STP packets are received on a Blocking or Root Port for a set amo
     \caption{An STP BPDU}
     \label{fig:stp_bpdu}
 \end{figure}
-In this section we will explain the parts of an STP Bridge Protocol Data Unit (BPDU), as seen in Figure~\ref{fig:stp_bpdu}, used in this project.
+In this section we will explain the individual fields in an STP Bridge Protocol Data Unit (BPDU), as seen in Figure~\ref{fig:stp_bpdu}.
 \begin{itemize}
     \item \textbf{Flags}: The Flags Byte is used for the \textit{Topology Change} and \textit{Topology Change Acknowledgement} flags.
     \item \textbf{Root/Bridge Identifier}: The Identifier consists of three parts and has the same layout for the Root and regular bridges:
@@ -72,10 +73,13 @@ In this section we will explain the parts of an STP Bridge Protocol Data Unit (B
             \item Bridge MAC (6 Byte): The MAC address of the Bridge
         \end{itemize}
         The conjunction of these three parts is used in comparisons as one large 8 Byte number.
-    \item \textbf{Root Path Cost}: The Root Path Cost is the sum of all Port Costs (which can be configured in the Bridge) along the current path. The Root Path Cost in packets sent by the Root is 0.
-    \item \textbf{Message Age}: The Message Age is the number of Bridges that have been passed (in addition to the Root) along the current path.
-    \item \textbf{Forward Delay}: After this time, if no superior packet was received, a Root, or Blocking Port will transition to Dedicated.
-        Note that if a Root Port transitions to Dedicated state that means the Bridge now assumes it is the Root.
+    \item \textbf{Root Path Cost}: The root path cost is the sum of all Port Costs (which can be configured in the Bridge) along the current path. The root path cost in packets sent by the Root is 0.
+    \item \textbf{Message Age}: The message age is the number of Bridges that have been passed (in addition to the Root) along the current path.
+    \item \textbf{Max Age}: If the message age surpasses this maximum, packages are not forwarded any more.
+    \item \textbf{Hello Time}: The delay in seconds between sent \textit{Hello} BPDUs.
+        \textit{Hello} BPDUs have the form shown in Figure~\ref{fig:stp_bpdu}.
+    \item \textbf{Forward Delay}: After this time, if no superior packet was received, a root, or blocking port will transition to dedicated.
+        Note that if a root port transitions to dedicated state that means the bridge now assumes it is the root.
 \end{itemize}
 A BPDU only contains information about the root and the bridge that sent the package.
 This means that if there is a bridge between these two, we will not know about its id.
@@ -83,10 +87,22 @@ We will however still know that it is there, because of the message age.
 During the buildup of the tree it is possible to obtain information on intermediate nodes.
 This possibility is explained more in-depth in the section on packet handling (Section~\ref{packet_handling}).
 
-\subsection{Spanning Tree Algorithm}
-%TODO: fix algorithm placement and explain constraints required by original paper, and how this fulfills them
-STP enabled Bridges run through Algorithm~\ref{alg:stp} when receiving an STP packet.
-It ensures that information on the global Root is kept up to date and that Ports that receive a superior STP BPDU are disabled.
+\subsubsection*{Default Parameters}
+The parameters discussed default to the following values:
+\begin{itemize}
+    \item \textbf{Priority}: 32768
+    \item \textbf{System Id Extension}: 0
+    \item \textbf{Max Age}: 20
+    \item \textbf{Forward Delay}: 15
+    \item \textbf{Hello Time}: 2
+        %TODO:cite http://www.brocade.com/content/html/en/configuration-guide/FI_08030_L2/GUID-256DE2C6-C2DC-4DE0-A0C2-A96DDF0C3406.html
+\end{itemize}
+
+\subsection*{Spanning Tree Algorithm}
+The original paper does not describe an algorithm itself, it merely lists constraints that have to be fulfilled.
+Algorithm~\ref{alg:stp} shows the algorithm we use in our own \textit{software-switch} testing tool.
+We use a reduced number of port states, ignoring the transition states, by utilizing the timestamps of received BPDUs.
+The algorithm's purpose is to keep information about the global Root is kept up to date and that Ports that receive a superior STP BPDU are disabled.
 
 \begin{algorithm}[h]
     \DontPrintSemicolon
@@ -119,7 +135,7 @@ It ensures that information on the global Root is kept up to date and that Ports
 \end{algorithm}
 
 \section{Technologies used}
-\subsection{PCAP}
+\subsection*{PCAP}
 \label{pcap}
 PCAP is a shortening of packet capture.
 It used to be a part of the \textit{tcpdump} tool before it was pulled into it's own library.
@@ -142,7 +158,7 @@ Where the parameters are:
 The \textbf{typedef void} (*pcap\_handler) part of the prototype just means that the function returns a \textbf{void *}.
 
 Usage of this function will be covered more in-depth in the chapter on the tool itself (Chapter~\ref{stp_gen}).
-\subsection{JSON}
+\subsection*{JSON}
 \label{json}
 JSON stands for Java Script Object Notation and was used for two reasons:
 \begin{enumerate}
@@ -154,7 +170,7 @@ An example is shown in Listing~\ref{lst:json}.
 \lstinputlisting[caption=JSON example, label=lst:json]{../listings/json/example.json}
 The JSON library used in this project is \textit{jsoncpp}\cite{jsoncpp}.
 
-\subsection{TikZ}
+\subsection*{TikZ}
 We chose TikZ ist kein Zeichenprogramm (TikZ) as the file format for our output.
 This choice fell to it because it would be very easy to create TikZ code programatically.
 It is also easy to modify after creation and very easy to include in a \LaTeX\ paper.

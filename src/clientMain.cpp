@@ -6,7 +6,7 @@ using namespace std;
 
 
 int main(int argc, char **args){
-    string inputFileName, outputFileName = "client.log", hostname = "gl1tch.mooo.com", deviceName = "";
+    string inputFileName, outputFileName = "client.log", hostname = "localhost", deviceName = "";
     int port = 80;
     bool noConnect = false;
 

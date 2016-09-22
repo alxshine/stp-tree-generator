@@ -12,7 +12,7 @@
 using namespace std;
 
 int main(int argc, char ** args){
-    string hostname = "gl1tch.mooo.com";
+    string hostname = "localhost";
     int port = 80;
     int buffersize = 4096;
     int yStep = 2;
@@ -25,11 +25,9 @@ int main(int argc, char ** args){
             port = atoi(args[++c]);
         else if(param == "-h")
             hostname = args[++c];
-        else if(param == "-bs")
-            buffersize = atoi(args[++c]);
-        else if(param == "-w")
+        else if(param == "-pw")
             totalWidth = atoi(args[++c]);
-        else if(param == "-h")
+        else if(param == "-ph")
             totalHeight = atoi(args[++c]);
         else if(param == "-s")
             yStep = atoi(args[++c]);

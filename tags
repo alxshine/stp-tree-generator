@@ -4,6 +4,16 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+--no-connect  -nc	thesis/chapters/stp-tree-gen.tex	/^Logging directly to \\textbf{STDOUT} is currently not possible.$/;"	P
+-dn	thesis/chapters/stp-tree-gen.tex	/^\\paragraph{-p \\textit{port}} specifies the port on which to connect.$/;"	P
+-h textit  hostname	thesis/chapters/stp-tree-gen.tex	/^This was used for debugging the client, but remains in the current version.$/;"	P
+-if textit  inputFile	thesis/chapters/stp-tree-gen.tex	/^\\subsection*{Client Launch Parameters}$/;"	P
+-np	thesis/chapters/stp-tree-gen.tex	/^\\paragraph{-of} specifies the filename for the output file, which is used for logging incoming data, as well as the current state.$/;"	P
+-of	thesis/chapters/stp-tree-gen.tex	/^\\paragraph{-p \\textit{port}} specifies on which port to listen.$/;"	P
+-of textit  outputFile	thesis/chapters/stp-tree-gen.tex	/^The server will remove data from this client, as it is not programmed to resend data taken from input files.$/;"	P
+-p textit  port	thesis/chapters/stp-tree-gen.tex	/^For more information on accepted formats please refer to the man page for \\textbf{gethostbyname}.$/;"	P
+-p textit  port	thesis/chapters/stp-tree-gen.tex	/^\\subsection*{Server Launch Parameters}$/;"	P
+-t	thesis/chapters/stp-tree-gen.tex	/^In cases the server is meant to be launched automatically in the background this file provides an easy means of accessing the process id.$/;"	P
 ALIGNAS	src/jsoncpp.cpp	2450;"	d	file:
 All	src/jsoncpp.cpp	/^    All  \/\/\/< Keep all comments.$/;"	e	enum:Json::CommentStyle::Enum	file:
 Args	inc/json/json.h	/^  typedef std::vector<PathArgument> Args;$/;"	t	class:Json::Path
@@ -41,20 +51,21 @@ CharReaderPtr	src/jsoncpp.cpp	/^typedef std::unique_ptr<CharReader> CharReaderPt
 ChildValues	inc/json/json.h	/^  typedef std::vector<JSONCPP_STRING> ChildValues;$/;"	t	class:Json::StyledStreamWriter
 ChildValues	inc/json/json.h	/^  typedef std::vector<JSONCPP_STRING> ChildValues;$/;"	t	class:Json::StyledWriter
 ChildValues	src/jsoncpp.cpp	/^  typedef std::vector<JSONCPP_STRING> ChildValues;$/;"	t	struct:Json::BuiltStyledStreamWriter	file:
-Class Structure	thesis/chapters/stp-tree-gen.tex	/^\\section{Details}$/;"	u
+Class Structure	thesis/chapters/stp-tree-gen.tex	/^\\end{figure}$/;"	s
 Client	inc/Client.hpp	/^class Client{$/;"	c
 Client	src/Client.cpp	/^Client::Client(std::string hostname, int port){$/;"	f	class:Client
-Combining the data	thesis/chapters/stp-tree-gen.tex	/^This way any connection information that is not proven wrong is retained.$/;"	u
+Client Launch Parameters	thesis/chapters/stp-tree-gen.tex	/^An \\textbf{install} target for global installation is not provided.$/;"	u
+Combining the data	thesis/chapters/stp-tree-gen.tex	/^This way any connection information that is not proven wrong is retained.$/;"	s
 CommentInfo	inc/json/json.h	/^  struct CommentInfo {$/;"	s	class:Json::Value
 CommentInfo	src/jsoncpp.cpp	/^Value::CommentInfo::CommentInfo() : comment_(0)$/;"	f	class:Json::Value::CommentInfo
 CommentPlacement	inc/json/json.h	/^enum CommentPlacement {$/;"	g	namespace:Json
 CommentStyle	src/jsoncpp.cpp	/^struct CommentStyle {$/;"	s	namespace:Json	file:
-Communication	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Bridge data update, label=lst:update]{..\/listings\/stp\/update.c}$/;"	u
+Communication	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Bridge data update, label=lst:update]{..\/listings\/stp\/update.c}$/;"	s
 Conclusion	thesis/chapters/conclusion.tex	/^\\chapter*{Conclusion}$/;"	c
 DEDICATED	thesis/listings/switch/full.c	/^    DEDICATED,$/;"	e	enum:port_state	file:
 DEPS	Makefile	/^DEPS=$(DEPSFOLDER)\/*$/;"	m
 DEPSFOLDER	Makefile	/^DEPSFOLDER=inc$/;"	m
-Details	thesis/chapters/stp-tree-gen.tex	/^\\end{figure}$/;"	s
+Default Parameters	thesis/chapters/background.tex	/^This possibility is explained more in-depth in the section on packet handling (Section~\\ref{packet_handling}).$/;"	b
 DirectoryOfThisScript	.ycm_extra_conf.py	/^def DirectoryOfThisScript():$/;"	f
 DuplicationPolicy	inc/json/json.h	/^    enum DuplicationPolicy {$/;"	g	class:Json::Value::CZString
 ERRCHECK	src/stp_sniffer.c	12;"	d	file:
@@ -79,10 +90,9 @@ FlagsForFile	.ycm_extra_conf.py	/^def FlagsForFile( filename, **kwargs ):$/;"	f
 GetCompilationInfoForFile	.ycm_extra_conf.py	/^def GetCompilationInfoForFile( filename ):$/;"	f
 HOST	test_utils/python_utils/serverStart.py	/^HOST = ''$/;"	v
 HOST	test_utils/python_utils/serverStop.py	/^HOST = ''$/;"	v
-Handling Non STP Packets	thesis/chapters/soft-switch.tex	/^\\lstinputlisting[caption=Updating Port States, label=lst:portStates]{..\/listings\/switch\/portStates.c}$/;"	u
-Handling STP Packets and Port States	thesis/chapters/soft-switch.tex	/^We need to synchronize these accesses to keep the different threads from corrupting data due to concurrent writes.$/;"	u
+Handling Non STP Packets	thesis/chapters/soft-switch.tex	/^\\lstinputlisting[caption=Updating Port States, label=lst:portStates]{..\/listings\/switch\/portStates.c}$/;"	s
+Handling STP Packets and Port States	thesis/chapters/soft-switch.tex	/^We need to synchronize these accesses to keep the different threads from corrupting data due to concurrent writes.$/;"	s
 INCLUDES	Makefile	/^INCLUDES=-lpcap$/;"	m
-Implementation	thesis/chapters/soft-switch.tex	/^It was written in C, in contrast to the \\textit{stp-tree-generator} which was written in C++.$/;"	s
 InArgs	inc/json/json.h	/^  typedef std::vector<const PathArgument*> InArgs;$/;"	t	class:Json::Path
 InRange	src/jsoncpp.cpp	/^static inline bool InRange(double d, T min, U max) {$/;"	f	namespace:Json
 Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Combining the bridge data, label=lst:combine]{..\/listings\/stp\/combination.c}$/;"	s
@@ -97,6 +107,7 @@ Int64	inc/json/json.h	/^typedef long long int Int64;$/;"	t	namespace:Json
 Introduction	thesis/chapters/introduction.tex	/^\\chapter{Introduction}$/;"	c
 IsHeaderFile	.ycm_extra_conf.py	/^def IsHeaderFile( filename ):$/;"	f
 IsIntegral	src/jsoncpp.cpp	/^static bool IsIntegral(double d) {$/;"	f	namespace:Json
+JSON	thesis/chapters/background.tex	/^Usage of this function will be covered more in-depth in the chapter on the tool itself (Chapter~\\ref{stp_gen}).$/;"	u
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	160;"	d
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	199;"	d
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	201;"	d
@@ -228,12 +239,11 @@ OurCharReader	src/jsoncpp.cpp	/^class OurCharReader : public CharReader {$/;"	c	
 OurFeatures	src/jsoncpp.cpp	/^class OurFeatures {$/;"	c	namespace:Json	file:
 OurReader	src/jsoncpp.cpp	/^OurReader::OurReader(OurFeatures const& features)$/;"	f	class:Json::OurReader
 OurReader	src/jsoncpp.cpp	/^class OurReader {$/;"	c	namespace:Json	file:
-PCAP	thesis/chapters/background.tex	/^\\section{Technologies used}$/;"	u
 PORT	test_utils/python_utils/serverStart.py	/^PORT = 9999$/;"	v
 PORT	test_utils/python_utils/serverStop.py	/^PORT = 10000$/;"	v
 PORT	test_utils/python_utils/start.py	/^PORT = 9999$/;"	v
 PORT	test_utils/python_utils/stop.py	/^PORT = 10000$/;"	v
-Packet Handling	thesis/chapters/stp-tree-gen.tex	/^This is easier than storing them in a fixed size array, and already combining them into a \\textbf{SpanningTree} object would keep the server from performing the steps described in Section~\\ref{unsafe_assumptions}$/;"	u
+Packet Handling	thesis/chapters/stp-tree-gen.tex	/^This is easier than storing them in a fixed size array, and already combining them into a \\textbf{SpanningTree} object would keep the server from performing the steps described in Section~\\ref{unsafe_assumptions}$/;"	s
 Path	inc/json/json.h	/^class JSON_API Path {$/;"	c	namespace:Json
 Path	src/jsoncpp.cpp	/^Path::Path(const JSONCPP_STRING& path,$/;"	f	class:Json::Path
 PathArgument	inc/json/json.h	/^class JSON_API PathArgument {$/;"	c	namespace:Json
@@ -258,10 +268,11 @@ SOURCEFOLDER	Makefile	/^SOURCEFOLDER=src$/;"	m
 SOURCE_EXTENSIONS	.ycm_extra_conf.py	/^SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]$/;"	v
 STP	thesis/chapters/background.tex	/^TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.$/;"	s
 STP Packets	thesis/chapters/background.tex	/^\\end{figure}$/;"	u
-STP Parameters	thesis/chapters/soft-switch.tex	/^\\lstinputlisting[caption=Handling non-STP packets, label=lst:nonStp]{..\/listings\/switch\/forwarding.c}$/;"	u
+STP Parameters	thesis/chapters/soft-switch.tex	/^\\lstinputlisting[caption=Handling non-STP packets, label=lst:nonStp]{..\/listings\/switch\/forwarding.c}$/;"	s
 STP Tree Generator	thesis/chapters/stp-tree-gen.tex	/^\\chapter{STP Tree Generator}$/;"	c
 STP_PROTOCOL	src/stp_sniffer.c	10;"	d	file:
-Saving Switching Data	thesis/chapters/soft-switch.tex	/^\\section{Implementation}$/;"	u
+Saving Switching Data	thesis/chapters/soft-switch.tex	/^It was written in C, in contrast to the \\textit{stp-tree-generator} which was written in C++.$/;"	s
+Scientific Papers	thesis/chapters/background.tex	/^The Generator described in this paper uses only STP, thus not needing the networking hardware being SNMP capable.$/;"	u
 SecureAllocator	inc/json/json.h	/^		SecureAllocator() {}$/;"	f	class:Json::SecureAllocator
 SecureAllocator	inc/json/json.h	/^		template<typename U> SecureAllocator(const SecureAllocator<U>&) {}$/;"	f	class:Json::SecureAllocator
 SecureAllocator	inc/json/json.h	/^class SecureAllocator {$/;"	c	namespace:Json
@@ -270,12 +281,13 @@ SelfType	inc/json/json.h	/^  typedef ValueIterator SelfType;$/;"	t	class:Json::V
 SelfType	inc/json/json.h	/^  typedef ValueIteratorBase SelfType;$/;"	t	class:Json::ValueIteratorBase
 Server	inc/Server.hpp	/^class Server{$/;"	c
 Server	src/Server.cpp	/^Server::Server(int port, std::string outputFileName, bool createPidFile, time_t to){$/;"	f	class:Server
+Server Launch Parameters	thesis/chapters/stp-tree-gen.tex	/^The names can be obtained using commands such as \\textbf{ifconfig} or \\textbf{ip addr show}.$/;"	u
 Setup	thesis/chapters/testing.tex	/^\\label{testing}$/;"	s
 Slow Dynamic Change Test	thesis/chapters/testing.tex	/^Bridge \\textit{B} must correctly be removed from the topology visualization.$/;"	u
 Sniffer	inc/Sniffer.hpp	/^class Sniffer{$/;"	c
 Sniffer	src/Sniffer.cpp	/^Sniffer::Sniffer(bool nC, std::string outputFileName, std::string hostname, int port){$/;"	f	class:Sniffer
 Software Switch Testing Utility	thesis/chapters/soft-switch.tex	/^\\chapter{Software Switch Testing Utility}$/;"	c
-Spanning Tree Algorithm	thesis/chapters/background.tex	/^This possibility is explained more in-depth in the section on packet handling (Section~\\ref{packet_handling}).$/;"	u
+Spanning Tree Algorithm	thesis/chapters/background.tex	/^\\end{itemize}$/;"	u
 SpanningTree	inc/SpanningTree.hpp	/^class SpanningTree{$/;"	c
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(){}$/;"	f	class:SpanningTree
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(const Bridge& r):root(r){$/;"	f	class:SpanningTree
@@ -296,9 +308,9 @@ StyledStreamWriter	inc/json/json.h	/^class JSON_API StyledStreamWriter {$/;"	c	n
 StyledStreamWriter	src/jsoncpp.cpp	/^StyledStreamWriter::StyledStreamWriter(JSONCPP_STRING indentation)$/;"	f	class:Json::StyledStreamWriter
 StyledWriter	inc/json/json.h	/^class JSON_API StyledWriter : public Writer {$/;"	c	namespace:Json
 StyledWriter	src/jsoncpp.cpp	/^StyledWriter::StyledWriter()$/;"	f	class:Json::StyledWriter
-Technologies used	thesis/chapters/background.tex	/^\\end{algorithm}$/;"	s
 Testing	thesis/chapters/testing.tex	/^\\chapter{Testing}$/;"	c
 Tests	thesis/chapters/testing.tex	/^\\end{figure}$/;"	s
+TikZ	thesis/chapters/background.tex	/^The JSON library used in this project is \\textit{jsoncpp}\\cite{jsoncpp}.$/;"	u
 Token	inc/json/json.h	/^  class Token {$/;"	c	class:Json::Reader
 Token	src/jsoncpp.cpp	/^  class Token {$/;"	c	class:Json::OurReader	file:
 TokenType	inc/json/json.h	/^  enum TokenType {$/;"	g	class:Json::Reader
@@ -313,7 +325,7 @@ UInt64	inc/json/json.h	/^  typedef Json::UInt64 UInt64;$/;"	t	class:Json::Value
 UInt64	inc/json/json.h	/^typedef unsigned __int64 UInt64;$/;"	t	namespace:Json
 UInt64	inc/json/json.h	/^typedef unsigned long long int UInt64;$/;"	t	namespace:Json
 UIntToStringBuffer	src/jsoncpp.cpp	/^typedef char UIntToStringBuffer[uintToStringBufferSize];$/;"	t	namespace:Json	file:
-Unsafe Assumptions	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Server-Parser Transmission, label=lst:treeJson]{..\/listings\/json\/serverParser.json}$/;"	u
+Unsafe Assumptions	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Server-Parser Transmission, label=lst:treeJson]{..\/listings\/json\/serverParser.json}$/;"	s
 Usage Test	thesis/chapters/testing.tex	/^\\section{Tests}$/;"	u
 Value	inc/json/json.h	/^class JSON_API Value {$/;"	c	namespace:Json
 Value	src/jsoncpp.cpp	/^Value::Value(Int value) {$/;"	f	class:Json::Value

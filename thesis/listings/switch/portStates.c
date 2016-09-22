@@ -41,7 +41,7 @@ void updatePortStates(int currentIndex, unsigned char rPriority, unsigned char r
                 states[currentIndex] = DEDICATED;
     }
 
-    //if a port should is DEDICATED but shouldn't be, change it
+    //if a port is DEDICATED but shouldn't be, change it
     //only possibility should be same root different path cost
     if(states[currentIndex] == DEDICATED){
         //only change if the neighbour has the same root (smaller root is handled by root change, larger root is ignored -> stay DEDICATED)
