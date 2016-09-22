@@ -61,7 +61,7 @@ CommentInfo	src/jsoncpp.cpp	/^Value::CommentInfo::CommentInfo() : comment_(0)$/;
 CommentPlacement	inc/json/json.h	/^enum CommentPlacement {$/;"	g	namespace:Json
 CommentStyle	src/jsoncpp.cpp	/^struct CommentStyle {$/;"	s	namespace:Json	file:
 Communication	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Bridge data update, label=lst:update]{..\/listings\/stp\/update.c}$/;"	s
-Conclusion	thesis/chapters/conclusion.tex	/^\\chapter*{Conclusion}$/;"	c
+Conclusion	thesis/chapters/conclusion.tex	/^\\chapter{Conclusion}$/;"	c
 DEDICATED	thesis/listings/switch/full.c	/^    DEDICATED,$/;"	e	enum:port_state	file:
 DEPS	Makefile	/^DEPS=$(DEPSFOLDER)\/*$/;"	m
 DEPSFOLDER	Makefile	/^DEPSFOLDER=inc$/;"	m
