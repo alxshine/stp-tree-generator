@@ -8,11 +8,16 @@ The company SolarWinds has an open vote on their website on whether or not to in
 LoriotPro and L2Discover use the SNMP for their topology discovery, with STP only being used to discover duplicate and unused links.
 The Generator described in this paper uses only STP, thus not needing the networking hardware being SNMP capable.
 
-\subsection*{Scientific Papers}
+While commercial tools mostly use active methods for network discovery, several research projects have also attempted to develop purely passive or hybrid tools.
+One of the first of these tools was developed by Becker et al.\cite{becker1995} in 1995.
+In more recent years, Blue et al.\cite{blue2008} and Wongsuphasawat et al.\cite{wongsuphasawat2009} published papers on passive network visualization tools in 2008 and 2009.
+However, not much work has been done on purely passive STP visualization.
 
-TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.
-%TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.
-%TODO: maybe talk about alternative bridging protocols
+Since the inclusion of STP in the IEEE 802.1D\cite{802.1D} standard, multiple additions have been made to the STP.
+Rapid STP (RSTP) has been developed to decrease the time needed for tree convergence.
+Per VLAN STP (PVSTP) has been developed by Cisco and is a proprietary variant which allows for multiple spanning trees to exist, one for each VLAN.
+The Multiple STP (MSTP) is an extension of RSTP which, like PVSTP, allows for multiple spanning trees to exist in their own VLAN.
+In addition to that, it also allows for VLAN specific trees to be combined into one large spanning tree.
 
 \section{STP}
 \label{stp}
@@ -88,14 +93,13 @@ During the buildup of the tree it is possible to obtain information on intermedi
 This possibility is explained more in-depth in the section on packet handling (Section~\ref{packet_handling}).
 
 \subsubsection*{Default Parameters}
-The parameters discussed default to the following values:
+The parameters discussed default to the following values\cite{params}:
 \begin{itemize}
     \item \textbf{Priority}: 32768
     \item \textbf{System Id Extension}: 0
     \item \textbf{Max Age}: 20
     \item \textbf{Forward Delay}: 15
     \item \textbf{Hello Time}: 2
-        %TODO:cite http://www.brocade.com/content/html/en/configuration-guide/FI_08030_L2/GUID-256DE2C6-C2DC-4DE0-A0C2-A96DDF0C3406.html
 \end{itemize}
 
 \subsection*{Spanning Tree Algorithm}
@@ -167,7 +171,7 @@ JSON stands for Java Script Object Notation and was used for two reasons:
 \end{enumerate}
 JSON has a simple notation for declaring objects and arrays, as well as primitive data types.
 An example is shown in Listing~\ref{lst:json}.
-\lstinputlisting[caption=JSON example, label=lst:json]{../listings/json/example.json}
+\lstinputlisting[caption=JSON Example, label=lst:json]{../listings/json/example.json}
 The JSON library used in this project is \textit{jsoncpp}\cite{jsoncpp}.
 
 \subsection*{TikZ}
@@ -176,4 +180,4 @@ This choice fell to it because it would be very easy to create TikZ code program
 It is also easy to modify after creation and very easy to include in a \LaTeX\ paper.
 While TikZ is very powerful and therefore complex, the parts we use are fairly simple.
 Listing~\ref{lst:tikz_example} shows the TikZ code for Figure~\ref{fig:bc_storm_b}.
-\lstinputlisting[caption=A TikZ example, label=lst:tikz_example]{../listings/tikzExample.tex} %TODO: check positioning
+\lstinputlisting[caption=A TikZ Example, label=lst:tikz_example]{../listings/tikzExample.tex} %TODO: check positioning

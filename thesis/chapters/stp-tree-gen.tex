@@ -130,7 +130,6 @@ Listing~\ref{lst:filter} shows how that is done.
 The \textit{bytes} variable is provided by the required \textit{pcap} callback prototype (see Section~\ref{pcap}: PCAP).
 This way is computationally more expensive than saving the destination in binary format and comparing memory.
 It is however also more readable and a lot easier to change should the need arise.
-%TODO: check capitalization in captions
 \lstinputlisting[caption=Filtering for STP packets, label=lst:filter]{../listings/stp/stpFilter.c}
 
 \textit{Pcap} provides us with a pointer to the binary packet data.
@@ -143,11 +142,11 @@ After the data is extracted from the packet, it is constructed into our custom c
 We then check if the two bridges (root and first hop) were previously known, as seen in Listing~\ref{lst:contained}.
 Concerning the root, knowing whether or not it was previously known is enough.
 For the first hop, we also require knowledge about the old message age.
-\lstinputlisting[caption=Checking for previously known information, label= lst:contained]{../listings/stp/contained.c}
+\lstinputlisting[caption=Checking for Previously Known Information, label= lst:contained]{../listings/stp/contained.c}
 
 Listing~\ref{lst:update} shows how we update the bridge information in the sniffer.
 The \textit{clearAndAdd} function is just a shorthand to clear the bridge vector before adding the two bridges to it.
-\lstinputlisting[caption=Bridge data update, label=lst:update]{../listings/stp/update.c}
+\lstinputlisting[caption=Bridge Data Update, label=lst:update]{../listings/stp/update.c}
 \section{Communication}
 \label{communication}
 As discussed in the background section (Section~\ref{json}) wer are using JSON for the client server communication.
@@ -270,7 +269,7 @@ An example can be seen in Figure~\ref{fig:message_ages}.
 \end{figure}
 By comparing bridge data from multiple clients we can find and remove bridges whose message age is lower than it should be.
 The code for doing this is shown in Listing~\ref{lst:remove}.
-\lstinputlisting[caption=Removing false bridge data, label=lst:remove]{../listings/stp/remove.c} %TODO: maybe do better formatting
+\lstinputlisting[caption=Removing Incorrect Bridge Data, label=lst:remove]{../listings/stp/remove.c} %TODO: maybe do better formatting
 The bridges are removed from the vector they each are in.
 This way any connection information that is not proven wrong is retained.
 \section{Combining the data}
@@ -281,7 +280,7 @@ First, we combine the bridge vectors to individual trees.
 These trees each represent a path from a client to the root.
 After the individual trees are obtained, we combine the ones with the same root.
 The code for this can be seen in Listing~\ref{lst:combine}.
-\lstinputlisting[caption=Combining the bridge data, label=lst:combine]{../listings/stp/combination.c}
+\lstinputlisting[caption=Combining the Bridge Data, label=lst:combine]{../listings/stp/combination.c}
 
 \section{Installation \& Usage}
 The tool was written in C++ and requires a compiler capable of C++11 to compile.

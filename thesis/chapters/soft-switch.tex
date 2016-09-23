@@ -21,7 +21,7 @@ The source code for the \textit{software-switch} can be found in its git\cite{so
 It was written in C, in contrast to the \textit{stp-tree-generator} which was written in C++.
 
 \section{Saving Switching Data}
-\lstinputlisting[caption=The containers for switching data, label=lst:switchData]{../listings/switch/data.c}
+\lstinputlisting[caption=The Containers for Switching Data, label=lst:switchData]{../listings/switch/data.c}
 Listing~\ref{lst:switchData} shows the variables and arrays we use for saving the switching data.
 The \textit{names}, \textit{neighbours} and \textit{interfaces} arrays are arrays of "strings".
 They store the local interface names (as seen in \textit{ifconfig}), the connected MAC addresses and the local MAC addresses respectively.
@@ -54,7 +54,7 @@ Non STP packets are forwarded based on port states and knowledge of the target M
 We did not implement any special handling for broadcast messages.
 None of the packets that the bridge receives should ever come from a broadcast address, which means they should never be contained in the MAC table.
 As packets to unknown MAC addresses are broadcast by default, we do not need special behaviour.
-\lstinputlisting[caption=Handling non-STP packets, label=lst:nonStp]{../listings/switch/forwarding.c}
+\lstinputlisting[caption=Handling Non-STP Packets, label=lst:nonStp]{../listings/switch/forwarding.c}
 
 \section{STP Parameters}
 STP parameters like the $helloTime$ and the \textit{forward delay}, as well as priorities can be set on launch.

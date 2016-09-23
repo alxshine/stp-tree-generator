@@ -60,7 +60,7 @@ CommentInfo	inc/json/json.h	/^  struct CommentInfo {$/;"	s	class:Json::Value
 CommentInfo	src/jsoncpp.cpp	/^Value::CommentInfo::CommentInfo() : comment_(0)$/;"	f	class:Json::Value::CommentInfo
 CommentPlacement	inc/json/json.h	/^enum CommentPlacement {$/;"	g	namespace:Json
 CommentStyle	src/jsoncpp.cpp	/^struct CommentStyle {$/;"	s	namespace:Json	file:
-Communication	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Bridge data update, label=lst:update]{..\/listings\/stp\/update.c}$/;"	s
+Communication	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Bridge Data Update, label=lst:update]{..\/listings\/stp\/update.c}$/;"	s
 Conclusion	thesis/chapters/conclusion.tex	/^\\chapter{Conclusion}$/;"	c
 DEDICATED	thesis/listings/switch/full.c	/^    DEDICATED,$/;"	e	enum:port_state	file:
 DEPS	Makefile	/^DEPS=$(DEPSFOLDER)\/*$/;"	m
@@ -95,7 +95,7 @@ Handling STP Packets and Port States	thesis/chapters/soft-switch.tex	/^We need t
 INCLUDES	Makefile	/^INCLUDES=-lpcap$/;"	m
 InArgs	inc/json/json.h	/^  typedef std::vector<const PathArgument*> InArgs;$/;"	t	class:Json::Path
 InRange	src/jsoncpp.cpp	/^static inline bool InRange(double d, T min, U max) {$/;"	f	namespace:Json
-Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Combining the bridge data, label=lst:combine]{..\/listings\/stp\/combination.c}$/;"	s
+Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Combining the Bridge Data, label=lst:combine]{..\/listings\/stp\/combination.c}$/;"	s
 Int	inc/json/json-forwards.h	/^typedef int Int;$/;"	t	namespace:Json
 Int	inc/json/json.h	/^  typedef Json::Int Int;$/;"	t	class:Json::Value
 Int	inc/json/json.h	/^typedef int Int;$/;"	t	namespace:Json
@@ -266,13 +266,12 @@ RuntimeError	inc/json/json.h	/^class JSON_API RuntimeError : public Exception {$
 RuntimeError	src/jsoncpp.cpp	/^RuntimeError::RuntimeError(JSONCPP_STRING const& msg)$/;"	f	class:Json::RuntimeError
 SOURCEFOLDER	Makefile	/^SOURCEFOLDER=src$/;"	m
 SOURCE_EXTENSIONS	.ycm_extra_conf.py	/^SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]$/;"	v
-STP	thesis/chapters/background.tex	/^TODO: Diese Sektion werde ich noch ausbauen, vielleicht finde ich ein paar Papers, die aehnliche Dinge versucht, bzw sich mit STP Topologien generell beschaeftigt haben.$/;"	s
+STP	thesis/chapters/background.tex	/^In addition to that, it also allows for VLAN specific trees to be combined into one large spanning tree.$/;"	s
 STP Packets	thesis/chapters/background.tex	/^\\end{figure}$/;"	u
-STP Parameters	thesis/chapters/soft-switch.tex	/^\\lstinputlisting[caption=Handling non-STP packets, label=lst:nonStp]{..\/listings\/switch\/forwarding.c}$/;"	s
+STP Parameters	thesis/chapters/soft-switch.tex	/^\\lstinputlisting[caption=Handling Non-STP Packets, label=lst:nonStp]{..\/listings\/switch\/forwarding.c}$/;"	s
 STP Tree Generator	thesis/chapters/stp-tree-gen.tex	/^\\chapter{STP Tree Generator}$/;"	c
 STP_PROTOCOL	src/stp_sniffer.c	10;"	d	file:
 Saving Switching Data	thesis/chapters/soft-switch.tex	/^It was written in C, in contrast to the \\textit{stp-tree-generator} which was written in C++.$/;"	s
-Scientific Papers	thesis/chapters/background.tex	/^The Generator described in this paper uses only STP, thus not needing the networking hardware being SNMP capable.$/;"	u
 SecureAllocator	inc/json/json.h	/^		SecureAllocator() {}$/;"	f	class:Json::SecureAllocator
 SecureAllocator	inc/json/json.h	/^		template<typename U> SecureAllocator(const SecureAllocator<U>&) {}$/;"	f	class:Json::SecureAllocator
 SecureAllocator	inc/json/json.h	/^class SecureAllocator {$/;"	c	namespace:Json
