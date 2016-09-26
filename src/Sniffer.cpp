@@ -121,7 +121,7 @@ void Sniffer::start(const std::string inputFileName, const std::string deviceNam
 
 void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){
     struct ethhdr *ethh = (struct ethhdr*) bytes;
-    
+
     char buffer[17];
     sprintf(buffer,"%.2X:%.2X:%.2X:%.2X:%.2X:%.2X", ethh->h_dest[0], ethh->h_dest[1], ethh->h_dest[2], ethh->h_dest[3], ethh->h_dest[4], ethh->h_dest[5]);
     if(std::string(buffer, 17) != "01:80:C2:00:00:00")
@@ -224,12 +224,13 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
         //root not contained
         if(oldHopMa >= 0){
             //if the first hop was contained this means there were some changes upstream
-            //TODO: maybe add parameter to disable unsafe assumptions (this would make the entire tool useless though)
-            if(oldHopMa == firstHop.getMessageAge() - 1){
+            //the root moving away means we assume network growth
+            if(oldHopMa < firstHop.getMessageAge()){
                 std::cout << "root moved away\n";
+                int maDiff = oldHopMa - firstHop.getMessageAge();
                 //this means we have to increase every message age and add the new root
                 for(Bridge &b : bridges)
-                    b.setMessageAge(b.getMessageAge() + 1);
+                    b.setMessageAge(b.getMessageAge() + maDiff);
                 bridges.push_back(root);
             }else{
                 clearAndAdd(firstHop, root);
