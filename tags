@@ -971,7 +971,7 @@ type	src/jsoncpp.cpp	/^ValueType Value::type() const { return type_; }$/;"	f	cla
 type_	inc/json/json.h	/^    TokenType type_;$/;"	m	class:Json::Reader::Token
 type_	src/jsoncpp.cpp	/^    TokenType type_;$/;"	m	class:Json::OurReader::Token	file:
 uintToString	src/jsoncpp.cpp	/^static inline void uintToString(LargestUInt value, char*& current) {$/;"	f	namespace:Json
-uintToStringBufferSize	src/jsoncpp.cpp	/^  uintToStringBufferSize = 3 * sizeof(LargestUInt) + 1$/;"	e	enum:Json::__anon1	file:
+uintToStringBufferSize	src/jsoncpp.cpp	/^  uintToStringBufferSize = 3 * sizeof(LargestUInt) + 1$/;"	e	enum:Json::__anon2	file:
 uintValue	inc/json/json.h	/^  uintValue,     \/\/\/< unsigned integer value$/;"	e	enum:Json::ValueType
 uint_	inc/json/json.h	/^    LargestUInt uint_;$/;"	m	union:Json::Value::ValueHolder
 unindent	src/jsoncpp.cpp	/^void BuiltStyledStreamWriter::unindent() {$/;"	f	class:Json::BuiltStyledStreamWriter
