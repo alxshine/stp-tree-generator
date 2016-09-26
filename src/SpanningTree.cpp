@@ -27,11 +27,8 @@ SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){
         for(SpanningTree rightChild : rhs.children){
             //if they have the same root, add the combination
             if(leftChild.root == rightChild.root){
-                //should the case occur that we make a wrong assumption and add a node with the wrong message age (due to wrong path assumptions)
-                //AND we have this node again (with correct message age, which will be higher)
-                //this function SHOULD move down far enough to hit this case with the two nodes
-                //after combining them we can update the message age to the higher age
-                //TODO: look over this when i'm not tired and delirious
+                //should we make an incorrect assumption, set the message age to the higher one.
+                //this should not be needed, as this should be filtered in the server.
                 SpanningTree newTree = leftChild + rightChild;
                 newTree.root.setMessageAge(std::max(leftChild.root.getMessageAge(), rightChild.root.getMessageAge()));
                 ret.addChild(newTree);
