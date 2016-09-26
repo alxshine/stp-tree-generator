@@ -21,9 +21,9 @@ Test results were checked for their correctness by checking the report provided 
     \begin{tikzpicture}
         \node (root) at (2, 4) {\switch{0.8}{Root}};
         \node (a) at (0, 2) {\switch{0.8}{Bridge A}};
-        \node (na) at (0, 1) {Node A};
+        \node (na) at (-1, 1) {Node A};
         \node (b) at (4, 2) {\switch{0.8}{Bridge B}};
-        \node (nb) at (4, 1) {Node B};
+        \node (nb) at (5, 1) {Node B};
         \node (c) at (2, 0) {\switch{0.8}{Bridge C}};
         \node (nc) at (2, -1) {Node C};
     \draw 
@@ -40,7 +40,7 @@ Test results were checked for their correctness by checking the report provided 
 \end{figure}
 
 \section{Tests}
-\subsection*{Usage Test}
+\subsection*{"Plug and Play" Test}
 \label{usage_test}
 The Usage test proves the general capability of the tool.
 It is designed to simulate the connection of nodes to an established network.
@@ -69,7 +69,7 @@ To test whether the tool can handle bridges being added to the network during ru
     \item The layout shown in Figure~\ref{fig:test_setup} was established and all devices were started.
     \item Before enabling STP on all the bridges we started the server and tools.
     \item After enabling STP on the bridges we waited for the tree to be established, again checking the progress via the TC flag.
-    \item Lastly we checked the result for correctness.
+    \item Finally we checked the result for correctness.
 \end{enumerate}
 
 \subsubsection*{Expected Result}
@@ -101,7 +101,7 @@ Therefore the logical topology will look like either one of the figures in Figur
 In our case bridge \textit{C} was logically connected to bridge \textit{A} as that was the possible connection to the root with the smaller MAC address.
 
 \begin{figure}[hp]
-    \begin{centering}
+    \begin{center}
         \begin{subfigure}[b]{0.4\textwidth}
             \begin{tikzpicture}
                 \node (root) at (2, 4) {\switch{0.8}{Root}};
@@ -141,7 +141,7 @@ In our case bridge \textit{C} was logically connected to bridge \textit{A} as th
             \end{tikzpicture}
             \caption{Path via Bridge B}
        \end{subfigure}
-    \end{centering}
+    \end{center}
     \caption{The 2 possible paths to the root from node \textit{C}}
     \label{fig:possible_topologies}
 \end{figure}
@@ -157,7 +157,7 @@ In our case bridge \textit{C} was logically connected to bridge \textit{A} as th
 \end{enumerate}
 
 \begin{figure}[hp]
-    \begin{centering}
+    \begin{center}
         \begin{subfigure}[b]{0.4\textwidth}
             \begin{tikzpicture}
                 \node (root) at (2, 4) {\switch{0.8}{Root}};
@@ -198,14 +198,13 @@ In our case bridge \textit{C} was logically connected to bridge \textit{A} as th
             \end{tikzpicture}
             \caption{The topology after the test}
        \end{subfigure}
-    \end{centering}
+    \end{center}
     \caption{The topology before and after performing the Slow Dynamic Change Test}
     \label{fig:deep_topology}
 \end{figure}
 
 \subsubsection*{Expected Result}
 Because we wait for the small subtree to stabilize, establishing bridge \textit{A} as root, the subtree should be correctly identified.
-%TODO: think about accepting subtree adds (moving the oldMa == messageAge-1 to a parameter)
 
 \subsection*{Fast Dynamic Change Test}
 \label{fast_dynamic_test}

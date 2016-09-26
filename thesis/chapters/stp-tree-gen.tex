@@ -12,9 +12,9 @@ We combine information received from multiple clients to reach a better understa
 
 STP uses only local data, which means that bridges have no knowledge of the network, except for their own port states.
 Unfortunately for us, this means that it is hard to find connections between bridges.
-The only way to obtain this information is to capture packets during the tree build up.
+The only way to obtain this information is by capturing packets during the tree build up.
 
-When the client witnesses the message age increasing by one, it assumes that the new root should be prepended to the previous one.
+When the client witnesses the message age increasing, it assumes that the new root should be prepended to the previous one.
 This assumption is unsafe, as this connection cannot be guaranteed, but the risk of making mistakes can be reduced.
 Details on this are discussed in the section on unsafe assumptions (Section~\ref{unsafe_assumptions})
 Figure~\ref{fig:build_up} shows a rudimentary example of information gained during tree build up.
@@ -22,6 +22,7 @@ Figure~\ref{fig:build_up} shows a rudimentary example of information gained duri
 \begin{figure}[p]
     \begin{centering}
         \begin{subfigure}[b]{0.4\textwidth}
+            \centering
             \begin{tikzpicture}
                 \node (a) at (4,4) {\switch{0.8}{A}};
                 \node (b) at (4,2) {\switch{0.8}{B}};
@@ -29,6 +30,8 @@ Figure~\ref{fig:build_up} shows a rudimentary example of information gained duri
 
                 \draw[green, thick]
                 (b) -- node [left] {root: B} ++ (client);
+                \draw
+                (a) -- (b);
 
             \end{tikzpicture}
             \caption{B thinks it is root}
@@ -45,16 +48,23 @@ Figure~\ref{fig:build_up} shows a rudimentary example of information gained duri
                 (a) -- node [right] {root: A} ++ (b);
                 \draw[green, thick] 
                 (b) -- node [right] {root: A} ++ (client);
+
+                \begin{customlegend}[legend cell align=left, legend entries={Known Connection, Unknown Connection},
+                    legend style={at={(10,4)},font=\footnotesize}]
+                    \addlegendimage{draw=green}
+                    \addlegendimage{draw=black}
+                \end{customlegend}
             \end{tikzpicture}
-            \caption{Root information updated}
+            \caption{B updates its root information}
         \end{subfigure}
     \end{centering}
     \caption{Information gained on STP build up}
     \label{fig:build_up}
 \end{figure}
 
-Unfortunately, this works only if the message age increases by one at the same time that the root changes.
-For other cases there are simply too many cases to assume a certain change with a reasonable safety.%TODO: source?
+We only assume network growth for the cases where the message age increases at the same time that the root changes.
+For other cases (message age decreasing, ...) we did not find ways to gain knowledge about the network.
+Without a reason to assume a \textit{certain} network topology, and with the guarantee that the current assumption is incorrect (due to a network change), the client clears its data when witnessing such a change.
 Figure \ref{fig:information_lost} shows an example case where the client has to reset its data.
 A detailed explanation of how this tool handles incoming STP packets can be found in the section on packet handling (Section~\ref{packet_handling}).
 
@@ -62,38 +72,42 @@ A detailed explanation of how this tool handles incoming STP packets can be foun
     \begin{centering}
         \begin{subfigure}[b]{0.4\textwidth}
             \begin{tikzpicture}
-                \node (a) at (6,6) {\switch{0.8}{A}};
-                \node (b) at (2,6) {\switch{0.8}{B}};
-                \node (c) at (6,4) {\switch{0.8}{C}};
-                \node (d) at (2,4) {\switch{0.8}{D}};
-                \node (e) at (4,2) {\switch{0.8}{E}};
-                \node (client) at (4,0) {Client};
-                \draw
-                (a) -- (b)
-                (b) -- (c);
-                \draw[green, thick]
-                (d) -- node [left] {root: D} ++ (e)
-                (e) -- node [left] {root: D} ++ (client);
+                \node (A) at (4,8) {\switch{0.8}{A}};
+                \node (B) at (2,6) {\switch{0.8}{B}};
+                \node (C) at (6,6) {\switch{0.8}{C}};
+                \node (D) at (4,4) {\switch{0.8}{D}};
+                \node (client) at (4,2) {Client};
+
+                \draw[thick, draw=green]
+                (A) -- (B)
+                (B) -- (D)
+                (D) -- (client);
+
             \end{tikzpicture}
             \caption{Some information known}
         \end{subfigure}
         \hspace{1cm}
         \begin{subfigure}[b]{0.4\textwidth}
             \begin{tikzpicture}
-                \node (a) at (6,6) {\switch{0.8}{A}};
-                \node (b) at (2,6) {\switch{0.8}{B}};
-                \node (c) at (6,4) {\switch{0.8}{C}};
-                \node (d) at (2,4) {\switch{0.8}{D}};
-                \node (e) at (4,2) {\switch{0.8}{E}};
-                \node (client) at (4,0) {Client};
-                \draw
-                (d) -- (e);
-                \draw[green, thick]
-                (e) -- node [right] {root: A} ++ (client);
-                \draw[red, thick]
-                (a) -- node [above] {root: A} ++ (b)
-                (b) -- node [right] {root: A} ++ (c)
-                (c) -- node [right] {root: A} ++ (e);
+                \node (A) at (4,8) {\switch{0.8}{A}};
+                \node (B) at (2,6) {\switch{0.8}{B}};
+                \node (C) at (6,6) {\switch{0.8}{C}};
+                \node (D) at (4,4) {\switch{0.8}{D}};
+                \node (client) at (4,2) {Client};
+
+                \draw[thick, draw=green]
+                (C) -- (D)
+                (D) -- (client);
+
+                \draw[thick, draw=red]
+                (A) -- (B)
+                (B) -- (D);
+
+                \begin{customlegend}[legend cell align=left, legend entries={Known Information, Lost Information},
+                    legend style={at={(8.2,8),font=\footnotesize}}]
+                    \addlegendimage{draw=green}
+                    \addlegendimage{draw=red}
+                \end{customlegend}
             \end{tikzpicture}
             \caption{Previous information lost}
         \end{subfigure}
@@ -173,7 +187,7 @@ It shows how the tool can use changing packets to gather information about bridg
 
 \section{Unsafe Assumptions}
 \label{unsafe_assumptions}
-As previously said, the assumptions we make about bridge connections are not necessarily true.
+As previously stated, the assumptions we make about bridge connections are not necessarily true.
 They can be wrong, for certain cases, one of which is shown in Figure~\ref{fig:false_example}.
 \begin{figure}[h]
     \begin{subfigure}[b]{0.4\textwidth}
@@ -213,6 +227,12 @@ They can be wrong, for certain cases, one of which is shown in Figure~\ref{fig:f
 
             \draw[red, thick, dashed]
             (A) -- node [left] {Root: A} ++ (B);
+
+            \begin{customlegend}[legend cell align=left, legend entries={Correct Ass., Incorrect Ass., Connection}, legend style={at={(8.2,8.5)},font=\footnotesize}]
+                \addlegendimage{draw=green}
+                \addlegendimage{draw=red}
+                \addlegendimage{draw=black}
+            \end{customlegend}
         \end{tikzpicture}
         \caption{False assumption}
     \end{subfigure}
@@ -281,6 +301,9 @@ These trees each represent a path from a client to the root.
 After the individual trees are obtained, we combine the ones with the same root.
 The code for this can be seen in Listing~\ref{lst:combine}.
 \lstinputlisting[caption=Combining the Bridge Data, label=lst:combine]{../listings/stp/combination.c}
+Combining the individual trees into one is done using the operator we overloaded.
+This operator executes a recursive tree combine, which is shown in Figure~\ref{lst:treeCombine}.
+\lstinputlisting[caption=Recursive Tree Combination Algorithm, label=lst:treeCombine]{../listings/stp/treeAdd.cpp}
 
 \section{Installation \& Usage}
 The tool was written in C++ and requires a compiler capable of C++11 to compile.

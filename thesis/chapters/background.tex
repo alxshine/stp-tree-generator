@@ -12,6 +12,7 @@ While commercial tools mostly use active methods for network discovery, several 
 One of the first of these tools was developed by Becker et al.\cite{becker1995} in 1995.
 In more recent years, Blue et al.\cite{blue2008} and Wongsuphasawat et al.\cite{wongsuphasawat2009} published papers on passive network visualization tools in 2008 and 2009.
 However, not much work has been done on purely passive STP visualization.
+%TODO: extend
 
 Since the inclusion of STP in the IEEE 802.1D\cite{802.1D} standard, multiple additions have been made to the STP.
 Rapid STP (RSTP) has been developed to decrease the time needed for tree convergence.
@@ -61,10 +62,31 @@ If no superior STP packets are received on a Blocking or Root Port for a set amo
 
 \subsection*{STP Packets}
 \label{stp_packet}
-%TODO: redo in tikz
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{stp_bpdu.png}
+    \begin{tikzpicture}[scale=0.4]
+        \foreach \x in {0,...,31}
+            \node at (\x+0.5,20.5) {\scriptsize \x};
+        \draw (0,20) rectangle (16,18.5); \node (mode) at (8, 19.25) {Protocol Identifier};
+        \draw (16,20) rectangle (24,18.5); \node (mode) at (20, 19.25) {Protocol Version Id};
+        \draw (24,20) rectangle (32,18.5); \node (mode) at (28, 19.25) {BPDU Type};
+        \draw (0,18.5) rectangle (8,17); \node (mode) at (4, 17.75) {Flags};
+        \draw (8,18.5) rectangle (32,17); \node (mode) at (20, 17.75) {Root Identifier};
+        \draw (0,17) rectangle (32,15.5); \node (mode) at (16, 16.25) {Root Identifier};
+        \draw (0,15.5) rectangle (8,14); \node (mode) at (4, 14.75) {Root Identifier};
+        \draw (8,15.5) rectangle (32,14); \node (mode) at (20, 14.75) {Root Path Cost};
+        \draw (0,14) rectangle (8,12.5); \node (mode) at (4, 13.25) {Root Path Cost};
+        \draw (8,14) rectangle (32,12.5); \node (mode) at (20, 13.25) {Bridge Identifier};
+        \draw (0,12.5) rectangle (32,11); \node (mode) at (16, 11.75) {Bridge Identifier};
+        \draw (0,11) rectangle (8,9.5); \node (mode) at (4, 10.25) {Bridge Identifier};
+        \draw (8,11) rectangle (24,9.5); \node (mode) at (16, 10.25) {Port Identifier};
+        \draw (24,11) rectangle (32,9.5); \node (mode) at (28, 10.25) {Message Age};
+        \draw (0,9.5) rectangle (8,8); \node (mode) at (4, 8.75) {Message Age};
+        \draw (8,9.5) rectangle (24,8); \node (mode) at (16, 8.75) {Max Age};
+        \draw (24,11) rectangle (32,8); \node (mode) at (28, 8.75) {Hello Time};
+        \draw (0,8) rectangle (8,6.5); \node (mode) at (4, 7.25) {Hello Time};
+        \draw (8,8) rectangle (24,6.5); \node (mode) at (16, 7.25) {Forward Delay};
+    \end{tikzpicture}
     \caption{An STP BPDU}
     \label{fig:stp_bpdu}
 \end{figure}

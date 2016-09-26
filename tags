@@ -14,7 +14,7 @@
 -p textit  port	thesis/chapters/stp-tree-gen.tex	/^For more information on accepted formats please refer to the man page for \\textbf{gethostbyname}.$/;"	P
 -p textit  port	thesis/chapters/stp-tree-gen.tex	/^\\subsection*{Server Launch Parameters}$/;"	P
 -t	thesis/chapters/stp-tree-gen.tex	/^In cases the server is meant to be launched automatically in the background this file provides an easy means of accessing the process id.$/;"	P
-ALIGNAS	src/jsoncpp.cpp	2450;"	d	file:
+ALIGNAS	src/jsoncpp.cpp	2448;"	d	file:
 All	src/jsoncpp.cpp	/^    All  \/\/\/< Keep all comments.$/;"	e	enum:Json::CommentStyle::Enum	file:
 Args	inc/json/json.h	/^  typedef std::vector<PathArgument> Args;$/;"	t	class:Json::Path
 ArrayIndex	inc/json/json-forwards.h	/^typedef unsigned int ArrayIndex;$/;"	t	namespace:Json
@@ -95,7 +95,7 @@ Handling STP Packets and Port States	thesis/chapters/soft-switch.tex	/^We need t
 INCLUDES	Makefile	/^INCLUDES=-lpcap$/;"	m
 InArgs	inc/json/json.h	/^  typedef std::vector<const PathArgument*> InArgs;$/;"	t	class:Json::Path
 InRange	src/jsoncpp.cpp	/^static inline bool InRange(double d, T min, U max) {$/;"	f	namespace:Json
-Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Combining the Bridge Data, label=lst:combine]{..\/listings\/stp\/combination.c}$/;"	s
+Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Recursive Tree Combination Algorithm, label=lst:treeCombine]{..\/listings\/stp\/treeAdd.cpp}$/;"	s
 Int	inc/json/json-forwards.h	/^typedef int Int;$/;"	t	namespace:Json
 Int	inc/json/json.h	/^  typedef Json::Int Int;$/;"	t	class:Json::Value
 Int	inc/json/json.h	/^typedef int Int;$/;"	t	namespace:Json
@@ -166,7 +166,7 @@ JSON_API	inc/json/json.h	266;"	d
 JSON_API	inc/json/json.h	279;"	d
 JSON_ASSERT	inc/json/json.h	2200;"	d
 JSON_ASSERT_MESSAGE	inc/json/json.h	2226;"	d
-JSON_ASSERT_UNREACHABLE	src/jsoncpp.cpp	2442;"	d	file:
+JSON_ASSERT_UNREACHABLE	src/jsoncpp.cpp	2440;"	d	file:
 JSON_CONFIG_H_INCLUDED	inc/json/json-forwards.h	92;"	d
 JSON_CONFIG_H_INCLUDED	inc/json/json.h	233;"	d
 JSON_FAIL_MESSAGE	inc/json/json.h	2203;"	d
@@ -256,6 +256,7 @@ Performing the test	thesis/chapters/testing.tex	/^The logical topology is the sa
 Performing the test	thesis/chapters/testing.tex	/^This test makes sure that capability is given.$/;"	b
 Performing the test	thesis/chapters/testing.tex	/^To test whether the tool can handle bridges being added to the network during runtime, we start the tool on all nodes before the establishment of the spanning tree, and check for correct identification afterwards.$/;"	b
 Performing the test	thesis/chapters/testing.tex	/^\\end{figure}$/;"	b
+Plug and Play Test	thesis/chapters/testing.tex	/^\\section{Tests}$/;"	u
 Port States	thesis/chapters/background.tex	/^\\label{stp}$/;"	u
 PortState	thesis/listings/switch/full.c	/^    BLOCKING } PortState;$/;"	t	typeref:enum:port_state	file:
 ROOT	thesis/listings/switch/full.c	/^    ROOT,$/;"	e	enum:port_state	file:
@@ -325,7 +326,6 @@ UInt64	inc/json/json.h	/^typedef unsigned __int64 UInt64;$/;"	t	namespace:Json
 UInt64	inc/json/json.h	/^typedef unsigned long long int UInt64;$/;"	t	namespace:Json
 UIntToStringBuffer	src/jsoncpp.cpp	/^typedef char UIntToStringBuffer[uintToStringBufferSize];$/;"	t	namespace:Json	file:
 Unsafe Assumptions	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Server-Parser Transmission, label=lst:treeJson]{..\/listings\/json\/serverParser.json}$/;"	s
-Usage Test	thesis/chapters/testing.tex	/^\\section{Tests}$/;"	u
 Value	inc/json/json.h	/^class JSON_API Value {$/;"	c	namespace:Json
 Value	src/jsoncpp.cpp	/^Value::Value(Int value) {$/;"	f	class:Json::Value
 Value	src/jsoncpp.cpp	/^Value::Value(Int64 value) {$/;"	f	class:Json::Value
@@ -614,8 +614,8 @@ isString	src/jsoncpp.cpp	/^bool Value::isString() const { return type_ == string
 isUInt	src/jsoncpp.cpp	/^bool Value::isUInt() const {$/;"	f	class:Json::Value
 isUInt64	src/jsoncpp.cpp	/^bool Value::isUInt64() const {$/;"	f	class:Json::Value
 isValidIndex	src/jsoncpp.cpp	/^bool Value::isValidIndex(ArrayIndex index) const { return index < size(); }$/;"	f	class:Json::Value
-isfinite	src/jsoncpp.cpp	4043;"	d	file:
-isfinite	src/jsoncpp.cpp	4089;"	d	file:
+isfinite	src/jsoncpp.cpp	4041;"	d	file:
+isfinite	src/jsoncpp.cpp	4087;"	d	file:
 iterator	inc/json/json.h	/^  typedef ValueIterator iterator;$/;"	t	class:Json::Value
 iterator_category	inc/json/json.h	/^  typedef std::bidirectional_iterator_tag iterator_category;$/;"	t	class:Json::ValueIteratorBase
 kNull	src/jsoncpp.cpp	/^static const unsigned char ALIGNAS(8) kNull[sizeof(Value)] = { 0 };$/;"	m	namespace:Json	file:
@@ -723,6 +723,7 @@ operator !=	src/jsoncpp.cpp	/^bool Value::operator!=(const Value& other) const {
 operator *	inc/json/json.h	/^  reference operator*() const { return deref(); }$/;"	f	class:Json::ValueConstIterator
 operator *	inc/json/json.h	/^  reference operator*() const { return deref(); }$/;"	f	class:Json::ValueIterator
 operator +	src/SpanningTree.cpp	/^SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){$/;"	f
+operator +	thesis/listings/stp/treeAdd.cpp	/^SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){$/;"	f
 operator ++	inc/json/json.h	/^  SelfType operator++(int) {$/;"	f	class:Json::ValueConstIterator
 operator ++	inc/json/json.h	/^  SelfType operator++(int) {$/;"	f	class:Json::ValueIterator
 operator ++	inc/json/json.h	/^  SelfType& operator++() {$/;"	f	class:Json::ValueConstIterator
@@ -886,8 +887,8 @@ skipCommentTokens	src/jsoncpp.cpp	/^void Reader::skipCommentTokens(Token& token)
 skipSpaces	src/jsoncpp.cpp	/^void OurReader::skipSpaces() {$/;"	f	class:Json::OurReader
 skipSpaces	src/jsoncpp.cpp	/^void Reader::skipSpaces() {$/;"	f	class:Json::Reader
 snprintf	src/jsoncpp.cpp	211;"	d	file:
-snprintf	src/jsoncpp.cpp	4073;"	d	file:
-snprintf	src/jsoncpp.cpp	4090;"	d	file:
+snprintf	src/jsoncpp.cpp	4071;"	d	file:
+snprintf	src/jsoncpp.cpp	4088;"	d	file:
 sock	test_utils/python_utils/start.py	/^sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)$/;"	v
 sock	test_utils/python_utils/stop.py	/^sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)$/;"	v
 sockfd	inc/Client.hpp	/^       int sockfd;$/;"	m	class:Client
@@ -970,7 +971,7 @@ type	src/jsoncpp.cpp	/^ValueType Value::type() const { return type_; }$/;"	f	cla
 type_	inc/json/json.h	/^    TokenType type_;$/;"	m	class:Json::Reader::Token
 type_	src/jsoncpp.cpp	/^    TokenType type_;$/;"	m	class:Json::OurReader::Token	file:
 uintToString	src/jsoncpp.cpp	/^static inline void uintToString(LargestUInt value, char*& current) {$/;"	f	namespace:Json
-uintToStringBufferSize	src/jsoncpp.cpp	/^  uintToStringBufferSize = 3 * sizeof(LargestUInt) + 1$/;"	e	enum:Json::__anon2	file:
+uintToStringBufferSize	src/jsoncpp.cpp	/^  uintToStringBufferSize = 3 * sizeof(LargestUInt) + 1$/;"	e	enum:Json::__anon1	file:
 uintValue	inc/json/json.h	/^  uintValue,     \/\/\/< unsigned integer value$/;"	e	enum:Json::ValueType
 uint_	inc/json/json.h	/^    LargestUInt uint_;$/;"	m	union:Json::Value::ValueHolder
 unindent	src/jsoncpp.cpp	/^void BuiltStyledStreamWriter::unindent() {$/;"	f	class:Json::BuiltStyledStreamWriter
