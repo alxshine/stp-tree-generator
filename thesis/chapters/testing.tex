@@ -60,6 +60,14 @@ If the spanning tree were more than 2 layers deep and we were using less nodes t
 With the limited size of the test network all bridges can and must be identified correctly for this test to be counted as successful.
 If the bridges in the network behave as they should, the tool should not be able to gather information about connections between the bridges.
 
+\subsubsection*{Actual Result}
+See Figure~\ref{fig:pnp}.
+\begin{figure}[h]
+    \include{../results/plugNplay.tikz}
+    \caption{aoeu}
+    \label{fig:pnp}
+\end{figure}
+
 \subsection*{Tree Establishment Test}
 \label{tree_est_test}
 To test whether the tool can handle bridges being added to the network during runtime, we start the tool on all nodes before the establishment of the spanning tree, and check for correct identification afterwards.
