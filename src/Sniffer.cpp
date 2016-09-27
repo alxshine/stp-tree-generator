@@ -227,7 +227,7 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
             //the root moving away means we assume network growth
             if(oldHopMa < firstHop.getMessageAge()){
                 std::cout << "root moved away\n";
-                int maDiff = oldHopMa - firstHop.getMessageAge();
+                int maDiff = firstHop.getMessageAge() - oldHopMa;
                 //this means we have to increase every message age and add the new root
                 for(Bridge &b : bridges)
                     b.setMessageAge(b.getMessageAge() + maDiff);
