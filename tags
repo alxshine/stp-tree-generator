@@ -14,9 +14,12 @@
 -p textit  port	thesis/chapters/stp-tree-gen.tex	/^For more information on accepted formats please refer to the man page for \\textbf{gethostbyname}.$/;"	P
 -p textit  port	thesis/chapters/stp-tree-gen.tex	/^\\subsection*{Server Launch Parameters}$/;"	P
 -t	thesis/chapters/stp-tree-gen.tex	/^In cases the server is meant to be launched automatically in the background this file provides an easy means of accessing the process id.$/;"	P
-..  results  plugNplay.tikz	thesis/chapters/testing.tex	/^\\begin{figure}[h]$/;"	i
 ALIGNAS	src/jsoncpp.cpp	2448;"	d	file:
+Actual Result	thesis/chapters/testing.tex	/^Additionally, this time the identification of bridge connections is possible, and the topology should therefore be fully identified.$/;"	b
+Actual Result	thesis/chapters/testing.tex	/^Because we wait for the small subtree to stabilize, establishing bridge \\textit{A} as root, the subtree should be correctly identified.$/;"	b
+Actual Result	thesis/chapters/testing.tex	/^Bridge \\textit{B} must correctly be removed from the topology visualization.$/;"	b
 Actual Result	thesis/chapters/testing.tex	/^If the bridges in the network behave as they should, the tool should not be able to gather information about connections between the bridges.$/;"	b
+Actual Results	thesis/chapters/testing.tex	/^However, the identification of the connections is quite volatile, depending on the inner workings of the STP implemenetiations and configurations.$/;"	b
 All	src/jsoncpp.cpp	/^    All  \/\/\/< Keep all comments.$/;"	e	enum:Json::CommentStyle::Enum	file:
 Args	inc/json/json.h	/^  typedef std::vector<PathArgument> Args;$/;"	t	class:Json::Path
 ArrayIndex	inc/json/json-forwards.h	/^typedef unsigned int ArrayIndex;$/;"	t	namespace:Json
@@ -29,7 +32,7 @@ Bridge	inc/Bridge.hpp	/^class Bridge{$/;"	c
 Bridge	src/Bridge.cpp	/^Bridge::Bridge(){$/;"	f	class:Bridge
 Bridge	src/Bridge.cpp	/^Bridge::Bridge(Mac& m, const short p, const short mA):mac(m), priority(p), messageAge(mA){ }$/;"	f	class:Bridge
 Bridge	src/Bridge.cpp	/^Bridge::Bridge(const Bridge& other):mac(other.mac), priority(other.priority), messageAge(other.messageAge)$/;"	f	class:Bridge
-Bridge Removal Test	thesis/chapters/testing.tex	/^Additionally, this time the identification of bridge connections is possible, and the topology should therefore be fully identified.$/;"	u
+Bridge Removal Test	thesis/chapters/testing.tex	/^\\end{figure}$/;"	u
 BuiltStyledStreamWriter	src/jsoncpp.cpp	/^BuiltStyledStreamWriter::BuiltStyledStreamWriter($/;"	f	class:Json::BuiltStyledStreamWriter
 BuiltStyledStreamWriter	src/jsoncpp.cpp	/^struct BuiltStyledStreamWriter : public StreamWriter$/;"	s	namespace:Json	file:
 CC	Makefile	/^CC=g++$/;"	m
@@ -83,7 +86,7 @@ Expected Result	thesis/chapters/testing.tex	/^\\end{enumerate}$/;"	b
 Expected Result	thesis/chapters/testing.tex	/^\\end{figure}$/;"	b
 Factory	inc/json/json.h	/^  class JSON_API Factory {$/;"	c	class:Json::CharReader
 Factory	inc/json/json.h	/^  class JSON_API Factory {$/;"	c	class:Json::StreamWriter
-Fast Dynamic Change Test	thesis/chapters/testing.tex	/^Because we wait for the small subtree to stabilize, establishing bridge \\textit{A} as root, the subtree should be correctly identified.$/;"	u
+Fast Dynamic Change Test	thesis/chapters/testing.tex	/^\\end{figure}$/;"	u
 FastWriter	inc/json/json.h	/^class JSON_API FastWriter : public Writer {$/;"	c	namespace:Json
 FastWriter	src/jsoncpp.cpp	/^FastWriter::FastWriter()$/;"	f	class:Json::FastWriter
 Features	inc/json/json.h	/^class JSON_API Features {$/;"	c	namespace:Json
@@ -253,7 +256,7 @@ PathArgument	src/jsoncpp.cpp	/^PathArgument::PathArgument() : key_(), index_(), 
 PathArgument	src/jsoncpp.cpp	/^PathArgument::PathArgument(ArrayIndex index)$/;"	f	class:Json::PathArgument
 PathArgument	src/jsoncpp.cpp	/^PathArgument::PathArgument(const JSONCPP_STRING& key)$/;"	f	class:Json::PathArgument
 PathArgument	src/jsoncpp.cpp	/^PathArgument::PathArgument(const char* key)$/;"	f	class:Json::PathArgument
-Performing the test	thesis/chapters/testing.tex	/^If the spanning tree were more than 2 layers deep and we were using less nodes than bridges in the network some information about the topology would be unobtainable without additional information.$/;"	b
+Performing the test	thesis/chapters/testing.tex	/^If we were using less nodes than we had non-root bridges in the network, this would not be possible.$/;"	b
 Performing the test	thesis/chapters/testing.tex	/^The logical topology is the same as for the Slow Dynamic Change Test \\ref{slow_dynamic_test}$/;"	b
 Performing the test	thesis/chapters/testing.tex	/^This test makes sure that capability is given.$/;"	b
 Performing the test	thesis/chapters/testing.tex	/^To test whether the tool can handle bridges being added to the network during runtime, we start the tool on all nodes before the establishment of the spanning tree, and check for correct identification afterwards.$/;"	b
@@ -285,7 +288,7 @@ Server	inc/Server.hpp	/^class Server{$/;"	c
 Server	src/Server.cpp	/^Server::Server(int port, std::string outputFileName, bool createPidFile, time_t to){$/;"	f	class:Server
 Server Launch Parameters	thesis/chapters/stp-tree-gen.tex	/^The names can be obtained using commands such as \\textbf{ifconfig} or \\textbf{ip addr show}.$/;"	u
 Setup	thesis/chapters/testing.tex	/^\\label{testing}$/;"	s
-Slow Dynamic Change Test	thesis/chapters/testing.tex	/^Bridge \\textit{B} must correctly be removed from the topology visualization.$/;"	u
+Slow Dynamic Change Test	thesis/chapters/testing.tex	/^\\end{figure}$/;"	u
 Sniffer	inc/Sniffer.hpp	/^class Sniffer{$/;"	c
 Sniffer	src/Sniffer.cpp	/^Sniffer::Sniffer(bool nC, std::string outputFileName, std::string hostname, int port){$/;"	f	class:Sniffer
 Software Switch Testing Utility	thesis/chapters/soft-switch.tex	/^\\chapter{Software Switch Testing Utility}$/;"	c

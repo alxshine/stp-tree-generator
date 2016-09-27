@@ -42,10 +42,10 @@ Test results were checked for their correctness by checking the report provided 
 \section{Tests}
 \subsection*{"Plug and Play" Test}
 \label{usage_test}
-The Usage test proves the general capability of the tool.
+This test is meant to ensure the general bridge discovery ability of our tool.
 It is designed to simulate the connection of nodes to an established network.
 Using a simple setup like shown in Figure~\ref{fig:test_setup} allows us to collect information about the whole network.
-If the spanning tree were more than 2 layers deep and we were using less nodes than bridges in the network some information about the topology would be unobtainable without additional information.
+If we were using less nodes than we had non-root bridges in the network, this would not be possible.
 
 \subsubsection*{Performing the test}
 \begin{enumerate}
@@ -61,10 +61,24 @@ With the limited size of the test network all bridges can and must be identified
 If the bridges in the network behave as they should, the tool should not be able to gather information about connections between the bridges.
 
 \subsubsection*{Actual Result}
+All nodes are correctly identified.
+As the tree is already established when the tools are started, no information about connections between the bridges can be gathered.
 See Figure~\ref{fig:pnp}.
 \begin{figure}[h]
-    \include{../results/plugNplay.tikz}
-    \caption{aoeu}
+    \centering
+    \begin{tikzpicture}
+        \node (0) at (7.000000,20) {128 - BC:AE:C5:EB:7D:B6, 0};
+        \node (1) at (2.333333,18) {};
+        \node (2) at (2.333333,16) {240 - F4:F2:6D:7D:BF:BD, 2};
+        \draw (1) -- (2);
+        \node (3) at (7.000000,18) {384 - 00:E0:7C:C8:57:E7, 1};
+        \node (4) at (11.666667,18) {384 - 00:E1:00:00:0D:C4, 1};
+        \draw 
+        (0) -- (1)
+        (0) -- (3)
+        (0) -- (4);
+    \end{tikzpicture}
+    \caption{The visualization after completing the "Plug and Play" test}
     \label{fig:pnp}
 \end{figure}
 
@@ -84,6 +98,26 @@ To test whether the tool can handle bridges being added to the network during ru
 Again all the bridges can and must be correctly identified.
 Additionally, this time the identification of bridge connections is possible, and the topology should therefore be fully identified.
 
+\subsubsection*{Actual Result}
+If bridge \textit{D} is connected to bridges \textit{B} and \textit{C} before they are connected to bridge \textit{A}, the tree can build up slowly and the clients will know about the connections.
+The resulting visualization can be seen in Figure~\ref{fig:est}
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[]
+        \node (0) at (7.000000,20) {128 - BC:AE:C5:EB:7D:B6, 0};
+        \node (1) at (3.500000,18) {384 - 00:E0:7C:C8:57:E7, 1};
+        \node (2) at (3.500000,16) {240 - F4:F2:6D:7D:BF:BD, 2};
+        \draw 
+        (1) -- (2);
+        \node (3) at (10.500000,18) {384 - 00:E1:00:00:0D:C4, 1};
+        \draw 
+        (0) -- (1)
+        (0) -- (3);
+    \end{tikzpicture}
+    \caption{The test setup with fully recognized connections}
+    \label{fig:est}
+\end{figure}
+
 \subsection*{Bridge Removal Test}
 \label{removal_test}
 The tool must also be able to handle bridges dropping from a network.
@@ -98,6 +132,24 @@ This test makes sure that capability is given.
 
 \subsubsection*{Expected Result}
 Bridge \textit{B} must correctly be removed from the topology visualization.
+
+\subsubsection*{Actual Result}
+As visible in Figure~\ref{fig:removal}, the bridge is correctly removed.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[]
+        \node (0) at (7.000000,20) {128 - BC:AE:C5:EB:7D:B6, 0};
+        \node (1) at (3.500000,18) {};
+        \node (2) at (3.500000,16) {240 - F4:F2:6D:7D:BF:BD, 2};
+        \draw (1) -- (2);
+        \node (3) at (10.500000,18) {384 - 00:E0:7C:C8:57:E7, 1};
+        \draw 
+        (0) -- (1)
+        (0) -- (3);
+    \end{tikzpicture}
+    \caption{The visualization after bridge \textit{B} is removed}
+    \label{fig:removal}
+\end{figure}
 
 \subsection*{Slow Dynamic Change Test}
 \label{slow_dynamic_test}
@@ -214,6 +266,28 @@ In our case bridge \textit{C} was logically connected to bridge \textit{A} as th
 \subsubsection*{Expected Result}
 Because we wait for the small subtree to stabilize, establishing bridge \textit{A} as root, the subtree should be correctly identified.
 
+\subsubsection*{Actual Result}
+The visualization acquired before executing the test is the same as in Figure~\ref{fig:est}, as we used that test as preparation.
+For an unknown reason, the message ages for the subtree that we disconnect \textit{00:E0:7C:C8:57:E7} and \textit{F4:F2:6D:7D:BF:BD} does not get updated and increased.
+This needs to be fixed in a future revision of the tool.
+The obtained visualization can be seen in Figure~\ref{fig:dynAfter}.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[]
+        \node (0) at (7.000000,20) {128 - BC:AE:C5:EB:7D:B6, 0};
+        \node (1) at (3.500000,18) {384 - 00:E0:7C:C8:57:E7, 1};
+        \node (2) at (3.500000,16) {240 - F4:F2:6D:7D:BF:BD, 2};
+        \draw 
+        (1) -- (2);
+        \node (3) at (10.500000,18) {384 - 00:E1:00:00:0D:C4, 1};
+        \draw 
+        (0) -- (1)
+        (0) -- (3);
+    \end{tikzpicture}
+    \caption{The obtained (incorrect) visualization for the slow dynamic change test}
+    \label{fig:dynAfter}
+\end{figure}
+
 \subsection*{Fast Dynamic Change Test}
 \label{fast_dynamic_test}
 Robustness to changes in the topology are a must for the developed tool.
@@ -229,5 +303,11 @@ The logical topology is the same as for the Slow Dynamic Change Test \ref{slow_d
 \end{enumerate}
 
 \subsubsection*{Expected Result}
-Whether the output was correct or not gave us information about the capabilities of the tool.
-Due to its distributed nature it is also difficult to debug and this gave us additional insights into the execution behavior.
+The outcome of this test depends on the time passing between disconnecting and reconnecting the subtree.
+Bridge configurations also play a role in the outcome due to affecting the configuration.
+All bridges should be correctly identified after the tree has stabilized again.
+However, the identification of the connections is quite volatile, depending on the inner workings of the STP implemenetiations and configurations.
+
+\subsubsection*{Actual Results}
+Due to the Slow Dynamic Test failing, and this test being highly dependent on STP implementations we decided not to run this test.
+With the hardware we had at our disposal, and especially with the low stability of our own STP implementation, we thought it not to be beneficial to this project.
