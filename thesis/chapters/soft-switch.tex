@@ -14,7 +14,7 @@ This did not work for multiple reasons.
 After making these discoveries, we tried \textit{dd-wrt}\cite{dd-wrt} as an alternative.
 Unfortunately, it shares the same behaviour with \textit{OpenWrt} and we did not know whether or not we could make either of these operating systems work for this project.
 
-In order to be able to stay withing the time limit while still testing our tool, we decided to implement a bridge capable of STP.
+In order to be able to stay within the time limit while still testing our tool, we decided to implement a bridge capable of STP.
 It uses \textit{pcap} to handle incoming packets and react to STP packets.
 Our \textit{software-switch} can be run on any number of interfaces, however, it has not been tested on more than two.
 The source code for the \textit{software-switch} can be found in its git\cite{software-switch}.
@@ -24,7 +24,7 @@ It was written in C, in contrast to the \textit{stp-tree-generator} which was wr
 \lstinputlisting[caption=The Containers for Switching Data, label=lst:switchData]{../listings/switch/data.c}
 Listing~\ref{lst:switchData} shows the variables and arrays we use for saving the switching data.
 The \textit{names}, \textit{neighbours} and \textit{interfaces} arrays are arrays of "strings".
-They store the local interface names (as seen in \textit{ifconfig}), the connected MAC addresses and the local MAC addresses respectively.
+They store the local interface names (as returned by the \textit{ifconfig} command), the connected MAC addresses and the local MAC addresses respectively.
 As basic C does not have strings, these are arrays of \textbf{char} arrays.
 In C, arrays are saved as pointers to the first element, with the other elements following sequentially after that.
 This makes \textit{names}, \textit{neighbours} and \textit{interfaces} pointers to pointers.
@@ -33,7 +33,7 @@ To know which interface to forward a packet on, switches keep a so-called MAC ta
 We keep a list of MAC addresses for every interface, making \textit{macTable} an array of arrays of \textbf{char} arrays.
 This is due to us saving MAC adrresses as \textbf{char} arrays as well.
 
-The \textit{ifaceMutex} (mutex stands for mutual exclusion) is used to synchronize our different threads.
+The \textit{ifaceMutex} variable (mutex stands for mutual exclusion) is used to synchronize our different threads.
 We use two threads per interface.
 One to handle and forward incoming packets, as well as update our STP port states.
 The other one sends the STP packets every $helloTime$ seconds.
@@ -43,7 +43,8 @@ We need to synchronize these accesses to keep the different threads from corrupt
 \section{Handling STP Packets and Port States}
 The code that handles STP packets is almost identical to the main tool.
 Extraction of the values stays exactly the same, as packets have the same format.
-We have to handle this data a lot differently however, the code for which can be seen in Listing~\ref{lst:portStates}.
+Handling of this data is a lot different from the \textit{stp-tree-generator}.
+The code for this can be found in Listing~\ref{lst:portStates}.
 Parameters prefixed with \textit{r} or \textit{b} are gained from the incoming packet and stand for root and bridge (first hop) respectively.
 Values prefixed with \textit{root} are for the root information currently saved in the bridge.
 \textit{CurrentIndex} is the index of the interface the packet was received on.
@@ -60,9 +61,8 @@ As packets to unknown MAC addresses are broadcast by default, we do not need spe
 STP parameters like the $helloTime$ and the \textit{forward delay}, as well as priorities can be set on launch.
 This is can be done via command line parameters or by using a config file.
 If no config file exists in the working directory on launch, the \textit{software-switch} will generate one.
-Default parameters are overwritten by any parametrs found in the config file.
+Default parameters are overwritten by any parameters found in the config file.
 These parameters are then in turn overwritten by any command line parameters.
 We found this to be the most useful order of precedence for testing.
-
-Any interfaces the tool is to be run on can be passed as well.
-%TODO: do something useful with empty space?
+The interfaces to bridge are passed via the command line as well.
+%TODO: same as for stp-tree-gen

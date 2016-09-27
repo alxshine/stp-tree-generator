@@ -9,9 +9,9 @@
 -h textit  hostname	thesis/chapters/stp-tree-gen.tex	/^This was used for debugging the client, but remains in the current version.$/;"	P
 -if textit  inputFile	thesis/chapters/stp-tree-gen.tex	/^\\subsection*{Client Launch Parameters}$/;"	P
 -np	thesis/chapters/stp-tree-gen.tex	/^\\paragraph{-of} specifies the filename for the output file, which is used for logging incoming data, as well as the current state.$/;"	P
--of	thesis/chapters/stp-tree-gen.tex	/^\\paragraph{-p \\textit{port}} specifies on which port to listen.$/;"	P
+-of	thesis/chapters/stp-tree-gen.tex	/^\\paragraph{-p \\textit{port}} specifies the port to listen on.$/;"	P
 -of textit  outputFile	thesis/chapters/stp-tree-gen.tex	/^The server will remove data from this client, as it is not programmed to resend data taken from input files.$/;"	P
--p textit  port	thesis/chapters/stp-tree-gen.tex	/^For more information on accepted formats please refer to the man page for \\textbf{gethostbyname}.$/;"	P
+-p textit  port	thesis/chapters/stp-tree-gen.tex	/^For more information on accepted formats please refer to the manual page for \\textbf{gethostbyname}.$/;"	P
 -p textit  port	thesis/chapters/stp-tree-gen.tex	/^\\subsection*{Server Launch Parameters}$/;"	P
 -t	thesis/chapters/stp-tree-gen.tex	/^In cases the server is meant to be launched automatically in the background this file provides an easy means of accessing the process id.$/;"	P
 ALIGNAS	src/jsoncpp.cpp	2448;"	d	file:
@@ -112,7 +112,7 @@ Int64	inc/json/json.h	/^typedef long long int Int64;$/;"	t	namespace:Json
 Introduction	thesis/chapters/introduction.tex	/^\\chapter{Introduction}$/;"	c
 IsHeaderFile	.ycm_extra_conf.py	/^def IsHeaderFile( filename ):$/;"	f
 IsIntegral	src/jsoncpp.cpp	/^static bool IsIntegral(double d) {$/;"	f	namespace:Json
-JSON	thesis/chapters/background.tex	/^Usage of this function will be covered more in-depth in the chapter on the tool itself (Chapter~\\ref{stp_gen}).$/;"	u
+JSON	thesis/chapters/background.tex	/^Usage of this function will be covered more in-depth in the chapter on the tool itself (Chapter~\\ref{stp-gen}).$/;"	u
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	160;"	d
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	199;"	d
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	201;"	d

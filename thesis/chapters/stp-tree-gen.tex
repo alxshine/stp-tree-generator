@@ -11,10 +11,10 @@ The intended form of usage is to have multiple clients in the network connecting
 We combine information received from multiple clients to reach a better understanding of the network.
 
 STP uses only local data, which means that bridges have no knowledge of the network, except for their own port states.
-Unfortunately for us, this means that it is hard to find connections between bridges.
+Unfortunately, this makes it hard to find connections between bridges.
 The only way to obtain this information is by capturing packets during the tree build up.
 
-When the client witnesses the message age increasing, it assumes that the new root should be prepended to the previous one.
+When the client witnesses the message age increasing, it assumes the new root to be prepended to the previous one.
 This assumption is unsafe, as this connection cannot be guaranteed, but the risk of making mistakes can be reduced.
 Details on this are discussed in the section on unsafe assumptions (Section~\ref{unsafe_assumptions})
 Figure~\ref{fig:build_up} shows a rudimentary example of information gained during tree build up.
@@ -63,7 +63,7 @@ Figure~\ref{fig:build_up} shows a rudimentary example of information gained duri
 \end{figure}
 
 We only assume network growth for the cases where the message age increases at the same time that the root changes.
-For other cases (message age decreasing, ...) we did not find ways to gain knowledge about the network.
+For other cases (message age decreasing or staying constant) we did not find ways to gain knowledge about the network.
 Without a reason to assume a \textit{certain} network topology, and with the guarantee that the current assumption is incorrect (due to a network change), the client clears its data when witnessing such a change.
 Figure \ref{fig:information_lost} shows an example case where the client has to reset its data.
 A detailed explanation of how this tool handles incoming STP packets can be found in the section on packet handling (Section~\ref{packet_handling}).
@@ -118,18 +118,18 @@ A detailed explanation of how this tool handles incoming STP packets can be foun
 
 \section{Class Structure}
 \label{data}
-We created multiple classes to make saving the STP data easier, as well as reduce the effort needed to generate \textit{JSON} and \textit{TikZ} output.
-There are classes to represent MAC addresses, bridges, and complete spanning trees.
+The classes we created made saving the STP data easier and reduced the effort needed to generate the \textit{JSON} and \textit{TikZ} output.
+We created classes to represent MAC addresses, bridges, and complete spanning trees.
 All these classes have conversion functions from and to \textit{JSON} format, as well as a function to generate \textit{TikZ} output.
 Altogether the following classes were created:
 \begin{itemize}
     \item \textbf{Mac}: A container class for MAC addresses.
-        It is used to store the address in nicer format.
+        It is used to store the address in cleaner format.
     \item \textbf{Bridge}: Stores a \textbf{MAC} object in conjunction with the priority and message age.
     \item \textbf{SpanningTree}: This class represents an entire tree.
         It has functions for creating the \textit{TikZ} export as well as combining and manipulating subtrees.
     \item \textbf{Sniffer}: Does the actual packet sniffing.
-    \item \textbf{Client}: Handle the client side communication.
+    \item \textbf{Client}: Handles the client side communication.
     \item \textbf{Server}: Handles the server side communication, as well as combining the trees and removing incorrect information.
 \end{itemize}
 The STP data is saved in the \textbf{Sniffer} as a vector.
@@ -306,9 +306,10 @@ This operator executes a recursive tree combine, which is shown in Figure~\ref{l
 \lstinputlisting[caption=Recursive Tree Combination Algorithm, label=lst:treeCombine]{../listings/stp/treeAdd.cpp}
 
 \section{Installation \& Usage}
-The tool was written in C++ and requires a compiler capable of C++11 to compile.
+The tool was written in C++ and requires a compiler capable of C++11.
 Usage of the included Makefile is strongly advised.
-We included the version of \textit{jsoncpp} we used, so only the pcap library needs to be installed at build time.
+We included the version of \textit{jsoncpp} we used, so it does not need to be downloaded.
+The client requires an installation of the \textit{pcap} development library to compile, and the regular library to run.
 Available build targets are \textbf{client}, \textbf{server}, \textbf{parser} for single components and \textbf{all} for all components.
 An \textbf{install} target for global installation is not provided.
 \subsection*{Client Launch Parameters}
@@ -327,7 +328,7 @@ This was used for debugging the client, but remains in the current version.
 
 \paragraph{-h \textit{hostname}} will tell the client which hostname to connect to.
 IPv4 addresses in dot notation, as well as hostnames (including URLs) are accepted.
-For more information on accepted formats please refer to the man page for \textbf{gethostbyname}.
+For more information on accepted formats please refer to the manual page for \textbf{gethostbyname}.
 
 \paragraph{-p \textit{port}} specifies the port on which to connect.
 
@@ -335,7 +336,7 @@ For more information on accepted formats please refer to the man page for \textb
 The names can be obtained using commands such as \textbf{ifconfig} or \textbf{ip addr show}.
 
 \subsection*{Server Launch Parameters}
-\paragraph{-p \textit{port}} specifies on which port to listen.
+\paragraph{-p \textit{port}} specifies the port to listen on.
 
 \paragraph{-of} specifies the filename for the output file, which is used for logging incoming data, as well as the current state.
 

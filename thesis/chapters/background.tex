@@ -23,19 +23,19 @@ In addition to that, it also allows for VLAN specific trees to be combined into 
 \section{STP}
 \label{stp}
 \subsection*{Port States}
-The most important part of STP is its introduction of Port States.
-These Port States ensure that the spanning tree does not contain loops.
-Ports can be in one of three states (they can also be seen in Figure~\ref{fig:port_states}):
+The most important part of STP is its introduction of port states.
+These port states ensure that the spanning tree does not contain loops.
+Ports can be in one of three states (see Figure~\ref{fig:port_states}):
 \begin{itemize}
-    \item \textbf{Root}: The port leading to the root or "upwards" in the tree.
-    \item \textbf{Dedicated}: Dedicated Ports are ports where packets are sent. These are the ports leading "downward" in the tree.
-    \item \textbf{Blocking}: No packets are sent via a Blocking Port.
-        This state is used to disable alternate paths to the Root or "sideways" in the tree.
+    \item \textbf{Root}: the port leading to the root or "upwards" in the tree.
+    \item \textbf{Dedicated}: dedicated Ports are ports where packets are sent. These are the ports leading "downward" in the tree.
+    \item \textbf{Blocking}: no packets are sent via a blocking Port.
+        This state is used to disable alternate paths to the root or "sideways" in the tree.
 \end{itemize}
-In the original STP paper, the term Local Area Network (LAN) referred to any connection to a Bridge, as well as between Bridges.
-Because the STP information must be propagated to every LAN, there needs to be exactly one Dedicated Port in a LAN.
-This can be seen in the connection between the bottom Bridges in Figure~\ref{fig:port_states}.
-If no superior STP packets are received on a Blocking or Root Port for a set amount of time (called the Forward Transition Delay) it transitions to Dedicated State.
+In the original STP paper, the term Local Area Network (LAN) referred to any connection to a bridge, as well as between bridges.
+Because the STP information must be propagated to every LAN, there needs to be exactly one dedicated port in a LAN.
+This can be seen in the connection between the bottom bridges in Figure~\ref{fig:port_states}.
+If no superior STP packets are received on a blocking or root port for a set amount of time (called the forward delay) it transitions to the dedicated state.
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
@@ -62,6 +62,7 @@ If no superior STP packets are received on a Blocking or Root Port for a set amo
 
 \subsection*{STP Packets}
 \label{stp_packet}
+In this section we will explain the individual fields in an STP Bridge Protocol Data Unit (BPDU), as seen in Figure~\ref{fig:stp_bpdu}.
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}[scale=0.4]
@@ -89,19 +90,19 @@ If no superior STP packets are received on a Blocking or Root Port for a set amo
     \end{tikzpicture}
     \caption{An STP BPDU}
     \label{fig:stp_bpdu}
-\end{figure}
-In this section we will explain the individual fields in an STP Bridge Protocol Data Unit (BPDU), as seen in Figure~\ref{fig:stp_bpdu}.
+\end{figure}\\
+The fields we used for our tool are:
 \begin{itemize}
-    \item \textbf{Flags}: The Flags Byte is used for the \textit{Topology Change} and \textit{Topology Change Acknowledgement} flags.
-    \item \textbf{Root/Bridge Identifier}: The Identifier consists of three parts and has the same layout for the Root and regular bridges:
+    \item \textbf{Flags}: The flags byte is used for the \textit{topology change} and \textit{topology change acknowledgement} flags.
+    \item \textbf{Root/Bridge Identifier}: The Identifier consists of three parts and has the same layout for the root and regular bridges:
         \begin{itemize}
             \item Priority (4 Bits): A value between 0 and 61440 configurable in increments of 4096
-            \item System ID Extension (12 Bits): Used for keeping the Bridge ID unique if multiple VLANs are configured for a Bridge
-            \item Bridge MAC (6 Byte): The MAC address of the Bridge
+            \item System ID Extension (12 Bits): Used for keeping the bridge ID unique if multiple VLANs are configured for a bridge
+            \item Bridge MAC (6 Byte): The MAC address of the bridge
         \end{itemize}
-        The conjunction of these three parts is used in comparisons as one large 8 Byte number.
-    \item \textbf{Root Path Cost}: The root path cost is the sum of all Port Costs (which can be configured in the Bridge) along the current path. The root path cost in packets sent by the Root is 0.
-    \item \textbf{Message Age}: The message age is the number of Bridges that have been passed (in addition to the Root) along the current path.
+        The conjunction of these three parts is used in comparisons as one large 8 byte number.
+    \item \textbf{Root Path Cost}: The root path cost is the sum of all port costs (which can be configured in the bridge) along the current path. The root path cost in packets sent by the root is 0.
+    \item \textbf{Message Age}: The message age is the number of bridges that have been passed (in addition to the root) along the current path.
     \item \textbf{Max Age}: If the message age surpasses this maximum, packages are not forwarded any more.
     \item \textbf{Hello Time}: The delay in seconds between sent \textit{Hello} BPDUs.
         \textit{Hello} BPDUs have the form shown in Figure~\ref{fig:stp_bpdu}.
@@ -125,38 +126,38 @@ The parameters discussed default to the following values\cite{params}:
 \end{itemize}
 
 \subsection*{Spanning Tree Algorithm}
-The original paper does not describe an algorithm itself, it merely lists constraints that have to be fulfilled.
+The original paper on STP does not describe an algorithm itself, it merely lists constraints that have to be fulfilled.
 Algorithm~\ref{alg:stp} shows the algorithm we use in our own \textit{software-switch} testing tool.
 We use a reduced number of port states, ignoring the transition states, by utilizing the timestamps of received BPDUs.
-The algorithm's purpose is to keep information about the global Root is kept up to date and that Ports that receive a superior STP BPDU are disabled.
+The algorithm's purpose is to keep loops out of the network, as well as keeping the tree topology consistent.
 
 \begin{algorithm}[h]
     \DontPrintSemicolon
     \KwData{\\
     $received$ = received packet\;
-    $current$ = data of the current Bridge\;
+    $current$ = data of the current bridge\;
     }
     \;
     \If{$received.rootId < current.rootId$}{
-        \tcc{There is a new Root in the network}
+        \tcc{There is a new root in the network}
         $current.rootId=other.rootId$\;
-        set receiving port as Root-Port\;
-        set other ports to Dedicated\;
+        set receiving port as root-port\;
+        set other ports to dedicated\;
     }{
         \uIf{$received.rootPathCost<current.rootPathCost$}{
-            \tcc{This means that the path via the other Bridge is shorter, so this should be our new Root-Path}
-            set receiving port as Root-Port\;
-            set other ports to Dedicated\;
+            \tcc{This means that the path via the other bridge is shorter, so this should be our new root-path}
+            set receiving port as root-port\;
+            set other ports to dedicated\;
         }
         \ElseIf{$received.rootPathCost==current.rootPathCost \land received.bridgeId<current.bridgeId$}{
-            \tcc{Both Bridges are equidistant from the Root, but the other Bridge has a lower Bridge Identifier and should be the Dedicated Bridge on the connection}
-            set receiving port as Blocking Port\;
+            \tcc{Both bridges are equidistant from the root, but the other bridge has a lower bridge Identifier and should be the dedicated bridge on the connection}
+            set receiving port as blocking port\;
         }
-        \tcc{Finally check if the transitions described in section \ref{stp_packet} on \textbf{STP Packets} is necessary}
+        \tcc{Check if the transitions described in the section on \textbf{STP Packets} are necessary}
         doPacketTimeOutTransitions()\;
     }
     
-    \caption{Spanning Tree Bridge Algorithm}
+    \caption{Spanning Tree Algorithm (STA)}
     \label{alg:stp}
 \end{algorithm}
 
@@ -171,19 +172,17 @@ It provides functions for opening live network devices and \textit{.pcapng} file
 After starting a live capture on a device, \textit{libpcap} will call a callback function for every packet received on the opened interface.
 The prototype of the callback function looks as follows:
 \begin{lstlisting}[caption=Pcap Callback Prototype]
-typedef void (*pcap_handler)(u_char *user, 
-const struct pcap_pkthdr *h,
-const u_char *bytes);
+typedef void (*pcap_handler)(u_char *user, const struct pcap_pkthdr *h, const u_char *bytes);
 \end{lstlisting}
 Where the parameters are:
 \begin{itemize}
-    \item \textbf{u\_char *user}: This parameter is used to pass user defined parameters.
-    \item \textbf{pcap\_pkthdr *h}: The header contains useful information about the packet, like source and destination addresses and size.
-    \item \textbf{u\_char *bytes}: This array contains the actual (binary) data of the packet.
+    \item \textbf{u\_char *user} is used to pass user defined parameters.
+    \item \textbf{pcap\_pkthdr *h} contains useful information about the packet, like source and destination addresses, as well as size.
+    \item \textbf{u\_char *bytes} contains the actual (binary) data of the packet.
 \end{itemize}
 The \textbf{typedef void} (*pcap\_handler) part of the prototype just means that the function returns a \textbf{void *}.
 
-Usage of this function will be covered more in-depth in the chapter on the tool itself (Chapter~\ref{stp_gen}).
+Usage of this function will be covered more in-depth in the chapter on the tool itself (Chapter~\ref{stp-gen}).
 \subsection*{JSON}
 \label{json}
 JSON stands for Java Script Object Notation and was used for two reasons:
@@ -198,8 +197,8 @@ The JSON library used in this project is \textit{jsoncpp}\cite{jsoncpp}.
 
 \subsection*{TikZ}
 We chose TikZ ist kein Zeichenprogramm (TikZ) as the file format for our output.
-This choice fell to it because it would be very easy to create TikZ code programatically.
-It is also easy to modify after creation and very easy to include in a \LaTeX\ paper.
+Using TikZ allows us to generate \textit{.tex} files rather than images, as well as making it easier for users to alter the images after generation.
+It is also very easy to integrate in \LaTeX\ papers.
 While TikZ is very powerful and therefore complex, the parts we use are fairly simple.
 Listing~\ref{lst:tikz_example} shows the TikZ code for Figure~\ref{fig:bc_storm_b}.
 \lstinputlisting[caption=A TikZ Example, label=lst:tikz_example]{../listings/tikzExample.tex} %TODO: check positioning

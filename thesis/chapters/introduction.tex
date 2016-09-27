@@ -2,9 +2,10 @@
 As networks grow larger and more complex, redundancy becomes desirable and necessary.
 Adding redundant links always introduces loops to the network.
 Switches and hubs respond to broadcast messages by sending them over every port (except for the one the packet was received on).
+This is done in order to ensure every node in the network receives the message.
 In conjunction with loops, this behaviour leads to broadcast messages being repeated indefinitely.
 With the right network setup, these messages can also multiply exponentially. 
-These conditions are called broadcast storms\cite{bstorm}.
+Conditions like this are called broadcast storms\cite{bstorm}.
 Figure~\ref{fig:bc_storm} shows an example of a broadcast storm.
 Because of this the Spannning Tree Protocol (STP)\cite{perlman85} was created.
 It creates an overlay network, in the shape of a tree, to remove loops from the network.
@@ -138,11 +139,12 @@ An example for broadcast propagation in an STP overlay network in Figure~\ref{fi
     \caption{Broadcast propagation in an STP network}
     \label{fig:stp_example}
 \end{figure}
+
 For this thesis, we will only talk about switches.
 Hubs, while still existent, are hardly ever used and not STP capable.
 We will also refer to switches as bridges, in order to be compliant with STP nomenclature.\\
 
-Networks where STP is utilized are usually quite large.
+Networks with STP utilization are usually quite large.
 Additionally, changes and outages are hidden by STP and redundant links in the network.
 This can make it hard to keep track of the current network layout.
 Debugging STP configurations is also a difficult and time consuming task.
@@ -156,7 +158,7 @@ This tool had the following requirements:
     \item \textbf{STP only}: the tool could only rely on STP packets
     \item \textbf{Low traffic}: the tool should create as low a traffic as possible
     \item \textbf{Passive}: the tool could not provoke any changes in the network and only use packets obtained passively
-    \item \textbf{Distributed}: the tool is to be run on multiple nodes, to send information to a central server where everything is pieced together
+    \item \textbf{Distributed}: the tool is to be run on multiple nodes to send information to a central server where everything is pieced together
     \item \textbf{Low hardware load}: the tool must run on simplistic hardware (e.g. a Raspberry Pi) or on a regular PC without slowing it down noticeably
     \item \textbf{No maintenance}: once set up, the tool must not require any maintenance (except when updating to a new version)
     \item \textbf{Multiple trees}: if the clients send data from multiple different spanning trees (e.g. one tree per VLAN), these need to be kept seperate.
@@ -164,6 +166,6 @@ This tool had the following requirements:
 \end{itemize}
 
 Chapter~\ref{background} will cover the background knowledge needed to fully understand the tool we developed.
-In chapter~\ref{stp-gen} we will discuss details of the implementation details of our tool.
+In chapter~\ref{stp-gen} we will discuss the implementation and problems we faced during the development of our tool.
 Chapter~\ref{switch} shows the details of our \textit{software-switch} tool, which we used for testing.
 Chapter~\ref{testing} explains how and to what extent we tested our tool, as well as the results.
