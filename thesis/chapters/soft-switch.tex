@@ -17,7 +17,7 @@ Unfortunately, it shares the same behaviour with \textit{OpenWrt} and we did not
 In order to be able to stay within the time limit while still testing our tool, we decided to implement a bridge capable of STP.
 It uses \textit{pcap} to handle incoming packets and react to STP packets.
 Our \textit{software-switch} can be run on any number of interfaces, however, it has not been tested on more than two.
-The source code for the \textit{software-switch} can be found in its git\cite{software-switch}.
+The source code for the \textit{software-switch} can be found in its git\cite{soft-switch}.
 It was written in C, in contrast to the \textit{stp-tree-generator} which was written in C++.
 
 \section{Saving Switching Data}
@@ -57,12 +57,16 @@ None of the packets that the bridge receives should ever come from a broadcast a
 As packets to unknown MAC addresses are broadcast by default, we do not need special behaviour.
 \lstinputlisting[caption=Handling Non-STP Packets, label=lst:nonStp]{../listings/switch/forwarding.c}
 
-\section{STP Parameters}
-STP parameters like the $helloTime$ and the \textit{forward delay}, as well as priorities can be set on launch.
-This is can be done via command line parameters or by using a config file.
-If no config file exists in the working directory on launch, the \textit{software-switch} will generate one.
-Default parameters are overwritten by any parameters found in the config file.
-These parameters are then in turn overwritten by any command line parameters.
-We found this to be the most useful order of precedence for testing.
-The interfaces to bridge are passed via the command line as well.
-%TODO: same as for stp-tree-gen
+\section{Installation and usage}
+This utility tool was written in C99.
+While only one build target exists, we included a Makefile for convenience.
+The \textit{pcap} development library is required to compile, and the regular \textit{pcap} library is needed on launch.
+Following parameters can be set on launch:
+\begin{itemize}
+    \item \textbf{-p} sets the STP priority (default: 0x80).
+    \item \textbf{-e} sets the system id extension (default: 0).
+    \item \textbf{-ms} sets the number of MAC addresses to store per interface (default: 30).
+\end{itemize}
+After these optional parameters the names of the interfaces to bridge are expected.
+The parameters used are printed to \textbf{stdout} for debugging purposes.
+Information on STP packets sent, including the respective port states is printed to \textbf{stdout} as well.
