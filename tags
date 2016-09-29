@@ -5,20 +5,18 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 --no-connect  -nc	thesis/chapters/stp-tree-gen.tex	/^Logging directly to \\textbf{STDOUT} is currently not possible.$/;"	P
--dn	thesis/chapters/stp-tree-gen.tex	/^\\paragraph{-p \\textit{port}} specifies the port on which to connect.$/;"	P
+-dn textit  deviceName	thesis/chapters/stp-tree-gen.tex	/^\\paragraph{-p \\textit{port}} specifies the port on which to connect.$/;"	P
 -h textit  hostname	thesis/chapters/stp-tree-gen.tex	/^This was used for debugging the client, but remains in the current version.$/;"	P
 -if textit  inputFile	thesis/chapters/stp-tree-gen.tex	/^\\subsection*{Client Launch Parameters}$/;"	P
--np	thesis/chapters/stp-tree-gen.tex	/^\\paragraph{-of} specifies the filename for the output file, which is used for logging incoming data, as well as the current state.$/;"	P
--of	thesis/chapters/stp-tree-gen.tex	/^\\paragraph{-p \\textit{port}} specifies the port to listen on.$/;"	P
+-np	thesis/chapters/stp-tree-gen.tex	/^\\paragraph{-of \\textit{outputFile}} specifies the filename for the output file, which is used for logging incoming data, as well as the current state.$/;"	P
 -of textit  outputFile	thesis/chapters/stp-tree-gen.tex	/^The server will remove data from this client, as it is not programmed to resend data taken from input files.$/;"	P
+-of textit  outputFile	thesis/chapters/stp-tree-gen.tex	/^\\paragraph{-p \\textit{port}} specifies the port to listen on.$/;"	P
 -p textit  port	thesis/chapters/stp-tree-gen.tex	/^For more information on accepted formats please refer to the manual page for \\textbf{gethostbyname}.$/;"	P
 -p textit  port	thesis/chapters/stp-tree-gen.tex	/^\\subsection*{Server Launch Parameters}$/;"	P
--t	thesis/chapters/stp-tree-gen.tex	/^In cases the server is meant to be launched automatically in the background this file provides an easy means of accessing the process id.$/;"	P
+-t textit  timeout	thesis/chapters/stp-tree-gen.tex	/^In cases the server is meant to be launched automatically in the background this file provides an easy means of accessing the process id.$/;"	P
 ALIGNAS	src/jsoncpp.cpp	2448;"	d	file:
-Actual Result	thesis/chapters/testing.tex	/^Additionally, this time the identification of bridge connections is possible, and the topology should therefore be fully identified.$/;"	b
 Actual Result	thesis/chapters/testing.tex	/^Because we wait for the small subtree to stabilize, establishing bridge \\textit{A} as root, the subtree should be correctly identified.$/;"	b
-Actual Result	thesis/chapters/testing.tex	/^Bridge \\textit{B} must correctly be removed from the topology visualization.$/;"	b
-Actual Result	thesis/chapters/testing.tex	/^If the bridges in the network behave as they should, the tool should not be able to gather information about connections between the bridges.$/;"	b
+Actual Result	thesis/chapters/testing.tex	/^The expected topology is shown in Figure~\\ref{fig:removalExp}.$/;"	b
 Actual Results	thesis/chapters/testing.tex	/^However, the identification of the connections is quite volatile, depending on the inner workings of the STP implemenetiations and configurations.$/;"	b
 All	src/jsoncpp.cpp	/^    All  \/\/\/< Keep all comments.$/;"	e	enum:Json::CommentStyle::Enum	file:
 Args	inc/json/json.h	/^  typedef std::vector<PathArgument> Args;$/;"	t	class:Json::Path
@@ -95,12 +93,12 @@ FlagsForFile	.ycm_extra_conf.py	/^def FlagsForFile( filename, **kwargs ):$/;"	f
 GetCompilationInfoForFile	.ycm_extra_conf.py	/^def GetCompilationInfoForFile( filename ):$/;"	f
 HOST	test_utils/python_utils/serverStart.py	/^HOST = ''$/;"	v
 HOST	test_utils/python_utils/serverStop.py	/^HOST = ''$/;"	v
-Handling Non STP Packets	thesis/chapters/soft-switch.tex	/^\\lstinputlisting[caption=Updating Port States, label=lst:portStates]{..\/listings\/switch\/portStates.c}$/;"	s
+Handling Non-STP Packets	thesis/chapters/soft-switch.tex	/^\\lstinputlisting[caption=Updating Port States, label=lst:portStates]{..\/listings\/switch\/portStates.c}$/;"	s
 Handling STP Packets and Port States	thesis/chapters/soft-switch.tex	/^We need to synchronize these accesses to keep the different threads from corrupting data due to concurrent writes.$/;"	s
 INCLUDES	Makefile	/^INCLUDES=-lpcap$/;"	m
 InArgs	inc/json/json.h	/^  typedef std::vector<const PathArgument*> InArgs;$/;"	t	class:Json::Path
 InRange	src/jsoncpp.cpp	/^static inline bool InRange(double d, T min, U max) {$/;"	f	namespace:Json
-Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Recursive Tree Combination Algorithm, label=lst:treeCombine]{..\/listings\/stp\/treeAdd.cpp}$/;"	s
+Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Calculating the maximum width of a tree, label=lst:maxWidth]{..\/listings\/stp\/maxWidth.cpp}$/;"	s
 Installation and usage	thesis/chapters/soft-switch.tex	/^\\lstinputlisting[caption=Handling Non-STP Packets, label=lst:nonStp]{..\/listings\/switch\/forwarding.c}$/;"	s
 Int	inc/json/json-forwards.h	/^typedef int Int;$/;"	t	namespace:Json
 Int	inc/json/json.h	/^  typedef Json::Int Int;$/;"	t	class:Json::Value
@@ -110,10 +108,10 @@ Int64	inc/json/json-forwards.h	/^typedef long long int Int64;$/;"	t	namespace:Js
 Int64	inc/json/json.h	/^  typedef Json::Int64 Int64;$/;"	t	class:Json::Value
 Int64	inc/json/json.h	/^typedef __int64 Int64;$/;"	t	namespace:Json
 Int64	inc/json/json.h	/^typedef long long int Int64;$/;"	t	namespace:Json
-Introduction	thesis/chapters/introduction.tex	/^\\chapter{Introduction}$/;"	c
+Introduction   Motivation	thesis/chapters/introduction.tex	/^\\chapter{Introduction \\& Motivation}$/;"	c
 IsHeaderFile	.ycm_extra_conf.py	/^def IsHeaderFile( filename ):$/;"	f
 IsIntegral	src/jsoncpp.cpp	/^static bool IsIntegral(double d) {$/;"	f	namespace:Json
-JSON	thesis/chapters/background.tex	/^Usage of this function will be covered more in-depth in the chapter on the tool itself (Chapter~\\ref{stp-gen}).$/;"	u
+JSON	thesis/chapters/background.tex	/^Usage of this function will be covered more in-depth in the chapter on \\tool itself (Chapter~\\ref{stp-gen}).$/;"	u
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	160;"	d
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	199;"	d
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	201;"	d
@@ -249,7 +247,7 @@ PORT	test_utils/python_utils/serverStart.py	/^PORT = 9999$/;"	v
 PORT	test_utils/python_utils/serverStop.py	/^PORT = 10000$/;"	v
 PORT	test_utils/python_utils/start.py	/^PORT = 9999$/;"	v
 PORT	test_utils/python_utils/stop.py	/^PORT = 10000$/;"	v
-Packet Handling	thesis/chapters/stp-tree-gen.tex	/^This is easier than storing them in a fixed size array, and already combining them into a \\textbf{SpanningTree} object would keep the server from performing the steps described in Section~\\ref{unsafe_assumptions}$/;"	s
+Packet Handling	thesis/chapters/stp-tree-gen.tex	/^This is easier than storing them in a fixed size array, and already combining them into a \\textbf{SpanningTree} object would keep the server from performing the steps described in Section~\\ref{uncertain_assumptions}.$/;"	s
 Path	inc/json/json.h	/^class JSON_API Path {$/;"	c	namespace:Json
 Path	src/jsoncpp.cpp	/^Path::Path(const JSONCPP_STRING& path,$/;"	f	class:Json::Path
 PathArgument	inc/json/json.h	/^class JSON_API PathArgument {$/;"	c	namespace:Json
@@ -257,11 +255,11 @@ PathArgument	src/jsoncpp.cpp	/^PathArgument::PathArgument() : key_(), index_(), 
 PathArgument	src/jsoncpp.cpp	/^PathArgument::PathArgument(ArrayIndex index)$/;"	f	class:Json::PathArgument
 PathArgument	src/jsoncpp.cpp	/^PathArgument::PathArgument(const JSONCPP_STRING& key)$/;"	f	class:Json::PathArgument
 PathArgument	src/jsoncpp.cpp	/^PathArgument::PathArgument(const char* key)$/;"	f	class:Json::PathArgument
+Performing the test	thesis/chapters/testing.tex	/^Due to the rather complex nature of this test, Figure~\\ref{fig:sdcTest} shows the physical network topology after every step.$/;"	b
 Performing the test	thesis/chapters/testing.tex	/^If we were using less nodes than we had non-root bridges in the network, this would not be possible.$/;"	b
 Performing the test	thesis/chapters/testing.tex	/^The logical topology is the same as for the Slow Dynamic Change Test \\ref{slow_dynamic_test}$/;"	b
 Performing the test	thesis/chapters/testing.tex	/^This test makes sure that capability is given.$/;"	b
-Performing the test	thesis/chapters/testing.tex	/^To test whether the tool can handle bridges being added to the network during runtime, we start the tool on all nodes before the establishment of the spanning tree, and check for correct identification afterwards.$/;"	b
-Performing the test	thesis/chapters/testing.tex	/^\\end{figure}$/;"	b
+Performing the test	thesis/chapters/testing.tex	/^To test whether \\tool\\ can handle bridges being added to the network during runtime, we start \\tool\\ on all nodes before the establishment of the spanning tree, and check for correct identification afterwards.$/;"	b
 Plug and Play Test	thesis/chapters/testing.tex	/^\\section{Tests}$/;"	u
 Port States	thesis/chapters/background.tex	/^\\label{stp}$/;"	u
 PortState	thesis/listings/switch/full.c	/^    BLOCKING } PortState;$/;"	t	typeref:enum:port_state	file:
@@ -273,7 +271,6 @@ RuntimeError	inc/json/json.h	/^class JSON_API RuntimeError : public Exception {$
 RuntimeError	src/jsoncpp.cpp	/^RuntimeError::RuntimeError(JSONCPP_STRING const& msg)$/;"	f	class:Json::RuntimeError
 SOURCEFOLDER	Makefile	/^SOURCEFOLDER=src$/;"	m
 SOURCE_EXTENSIONS	.ycm_extra_conf.py	/^SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]$/;"	v
-STP	thesis/chapters/background.tex	/^In addition to that, it also allows for VLAN specific trees to be combined into one large spanning tree.$/;"	s
 STP Packets	thesis/chapters/background.tex	/^\\end{figure}$/;"	u
 STP Tree Generator	thesis/chapters/stp-tree-gen.tex	/^\\chapter{STP Tree Generator}$/;"	c
 STP_PROTOCOL	src/stp_sniffer.c	10;"	d	file:
@@ -293,6 +290,7 @@ Sniffer	inc/Sniffer.hpp	/^class Sniffer{$/;"	c
 Sniffer	src/Sniffer.cpp	/^Sniffer::Sniffer(bool nC, std::string outputFileName, std::string hostname, int port){$/;"	f	class:Sniffer
 Software Switch Testing Utility	thesis/chapters/soft-switch.tex	/^\\chapter{Software Switch Testing Utility}$/;"	c
 Spanning Tree Algorithm	thesis/chapters/background.tex	/^\\end{itemize}$/;"	u
+Spanning Tree Protocol  STP 	thesis/chapters/background.tex	/^However, not much work has been done on purely passive STP visualization.$/;"	s
 SpanningTree	inc/SpanningTree.hpp	/^class SpanningTree{$/;"	c
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(){}$/;"	f	class:SpanningTree
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(const Bridge& r):root(r){$/;"	f	class:SpanningTree
@@ -315,7 +313,7 @@ StyledWriter	inc/json/json.h	/^class JSON_API StyledWriter : public Writer {$/;"
 StyledWriter	src/jsoncpp.cpp	/^StyledWriter::StyledWriter()$/;"	f	class:Json::StyledWriter
 Testing	thesis/chapters/testing.tex	/^\\chapter{Testing}$/;"	c
 Tests	thesis/chapters/testing.tex	/^\\end{figure}$/;"	s
-TikZ	thesis/chapters/background.tex	/^The JSON library used in this project is \\textit{jsoncpp}\\cite{jsoncpp}.$/;"	u
+TikZ	thesis/chapters/background.tex	/^The JSON library used in this thesis is \\textit{jsoncpp}\\cite{jsoncpp}.$/;"	u
 Token	inc/json/json.h	/^  class Token {$/;"	c	class:Json::Reader
 Token	src/jsoncpp.cpp	/^  class Token {$/;"	c	class:Json::OurReader	file:
 TokenType	inc/json/json.h	/^  enum TokenType {$/;"	g	class:Json::Reader
@@ -330,7 +328,7 @@ UInt64	inc/json/json.h	/^  typedef Json::UInt64 UInt64;$/;"	t	class:Json::Value
 UInt64	inc/json/json.h	/^typedef unsigned __int64 UInt64;$/;"	t	namespace:Json
 UInt64	inc/json/json.h	/^typedef unsigned long long int UInt64;$/;"	t	namespace:Json
 UIntToStringBuffer	src/jsoncpp.cpp	/^typedef char UIntToStringBuffer[uintToStringBufferSize];$/;"	t	namespace:Json	file:
-Unsafe Assumptions	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Server-Parser Transmission, label=lst:treeJson]{..\/listings\/json\/serverParser.json}$/;"	s
+Uncertain Assumptions	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Server-Parser Transmission, label=lst:treeJson]{..\/listings\/json\/serverParser.json}$/;"	s
 Value	inc/json/json.h	/^class JSON_API Value {$/;"	c	namespace:Json
 Value	src/jsoncpp.cpp	/^Value::Value(Int value) {$/;"	f	class:Json::Value
 Value	src/jsoncpp.cpp	/^Value::Value(Int64 value) {$/;"	f	class:Json::Value
@@ -360,6 +358,7 @@ ValueIteratorBase	inc/json/json.h	/^class JSON_API ValueIteratorBase {$/;"	c	nam
 ValueIteratorBase	src/jsoncpp.cpp	/^ValueIteratorBase::ValueIteratorBase($/;"	f	class:Json::ValueIteratorBase
 ValueIteratorBase	src/jsoncpp.cpp	/^ValueIteratorBase::ValueIteratorBase()$/;"	f	class:Json::ValueIteratorBase
 ValueType	inc/json/json.h	/^enum ValueType {$/;"	g	namespace:Json
+Visualization	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Recursive Tree Combination Algorithm, label=lst:treeCombine]{..\/listings\/stp\/treeAdd.cpp}$/;"	s
 Writer	inc/json/json.h	/^class JSON_API Writer {$/;"	c	namespace:Json
 addChild	src/SpanningTree.cpp	/^void SpanningTree::addChild(const SpanningTree& child){$/;"	f	class:SpanningTree
 addChildValues_	inc/json/json.h	/^  bool addChildValues_;$/;"	m	class:Json::StyledWriter
@@ -670,6 +669,7 @@ maxUInt64	inc/json/json.h	/^  static const UInt64 maxUInt64;$/;"	m	class:Json::V
 maxUInt64	src/jsoncpp.cpp	/^const UInt64 Value::maxUInt64 = UInt64(-1);$/;"	m	class:Json::Value	file:
 maxUInt64AsDouble	src/jsoncpp.cpp	/^static const double maxUInt64AsDouble = 18446744073709551615.0;$/;"	m	namespace:Json	file:
 maxWidth	src/SpanningTree.cpp	/^int SpanningTree::maxWidth() const{$/;"	f	class:SpanningTree
+maxWidth	thesis/listings/stp/maxWidth.cpp	/^int SpanningTree::maxWidth() const{$/;"	f	class:SpanningTree
 max_size	inc/json/json.h	/^		size_type max_size() const {$/;"	f	class:Json::SecureAllocator
 memberName	src/jsoncpp.cpp	/^char const* ValueIteratorBase::memberName() const {$/;"	f	class:Json::ValueIteratorBase
 memberName	src/jsoncpp.cpp	/^char const* ValueIteratorBase::memberName(char const** end) const {$/;"	f	class:Json::ValueIteratorBase
@@ -937,7 +937,11 @@ toJson	src/SpanningTree.cpp	/^Json::Value SpanningTree::toJson() const {$/;"	f	c
 toStyledString	src/jsoncpp.cpp	/^JSONCPP_STRING Value::toStyledString() const {$/;"	f	class:Json::Value
 toTikz	src/Bridge.cpp	/^std::string Bridge::toTikz() const{$/;"	f	class:Bridge
 toTikz	src/SpanningTree.cpp	/^std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
+toTikz	thesis/listings/stp/output.cpp	/^std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
+toTikz	thesis/listings/stp/output1.cpp	/^std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
 toTikzHelper	src/SpanningTree.cpp	/^std::pair<std::string, int> SpanningTree::toTikzHelper(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
+toTikzHelper	thesis/listings/stp/output.cpp	/^std::pair<std::string, int> SpanningTree::toTikzHelper(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
+toTikzHelper	thesis/listings/stp/output1.cpp	/^std::pair<std::string, int> SpanningTree::toTikzHelper(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
 tokenArrayBegin	inc/json/json.h	/^    tokenArrayBegin,$/;"	e	enum:Json::Reader::TokenType
 tokenArrayBegin	src/jsoncpp.cpp	/^    tokenArrayBegin,$/;"	e	enum:Json::OurReader::TokenType	file:
 tokenArrayEnd	inc/json/json.h	/^    tokenArrayEnd,$/;"	e	enum:Json::Reader::TokenType
@@ -971,6 +975,8 @@ tokenTrue	inc/json/json.h	/^    tokenTrue,$/;"	e	enum:Json::Reader::TokenType
 tokenTrue	src/jsoncpp.cpp	/^    tokenTrue,$/;"	e	enum:Json::OurReader::TokenType	file:
 token_	inc/json/json.h	/^    Token token_;$/;"	m	class:Json::Reader::ErrorInfo
 token_	src/jsoncpp.cpp	/^    Token token_;$/;"	m	class:Json::OurReader::ErrorInfo	file:
+tool  Output	thesis/chapters/testing.tex	/^Additionally, this time the identification of bridge connections is possible, and the topology should therefore be fully identified.$/;"	b
+tool  Output	thesis/chapters/testing.tex	/^Figure~\\ref{fig:pnpExp} shows the output we expect.$/;"	b
 treeHelper	src/Server.cpp	/^SpanningTree Server::treeHelper(std::vector<Bridge>::iterator current, std::vector<Bridge>::iterator end){$/;"	f	class:Server
 type	src/jsoncpp.cpp	/^ValueType Value::type() const { return type_; }$/;"	f	class:Json::Value
 type_	inc/json/json.h	/^    TokenType type_;$/;"	m	class:Json::Reader::Token
@@ -1001,6 +1007,7 @@ value_type	inc/json/json.h	/^  typedef Value value_type;$/;"	t	class:Json::Value
 value_type	inc/json/json.h	/^  typedef const Value value_type;$/;"	t	class:Json::ValueConstIterator
 what	src/jsoncpp.cpp	/^char const* Exception::what() const throw()$/;"	f	class:Json::Exception
 widthAtLevel	src/SpanningTree.cpp	/^int SpanningTree::widthAtLevel(int levelsRemaining) const{$/;"	f	class:SpanningTree
+widthAtLevel	thesis/listings/stp/maxWidth.cpp	/^int SpanningTree::widthAtLevel(int levelsRemaining) const{$/;"	f	class:SpanningTree
 write	src/jsoncpp.cpp	/^JSONCPP_STRING FastWriter::write(const Value& root) {$/;"	f	class:Json::FastWriter
 write	src/jsoncpp.cpp	/^JSONCPP_STRING StyledWriter::write(const Value& root) {$/;"	f	class:Json::StyledWriter
 write	src/jsoncpp.cpp	/^int BuiltStyledStreamWriter::write(Value const& root, JSONCPP_OSTREAM* sout)$/;"	f	class:Json::BuiltStyledStreamWriter

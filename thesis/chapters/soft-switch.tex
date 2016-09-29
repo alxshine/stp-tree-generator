@@ -1,6 +1,6 @@
 \chapter{Software Switch Testing Utility}
 \label{switch}
-The original plan for testing the tool was to use cheap routers running \textit{OpenWrt}\cite{OpenWrt} with STP enabled.
+The original plan for testing \tool\ was to use cheap routers running \textit{OpenWrt}\cite{OpenWrt} with STP enabled.
 This did not work for multiple reasons.
 \begin{itemize}
     \item \textit{OpenWrt} routers handle the internal switch as one interface, which stops it from disabling single switch ports.
@@ -12,17 +12,17 @@ This did not work for multiple reasons.
 \end{itemize}
 
 After making these discoveries, we tried \textit{dd-wrt}\cite{dd-wrt} as an alternative.
-Unfortunately, it shares the same behaviour with \textit{OpenWrt} and we did not know whether or not we could make either of these operating systems work for this project.
+Unfortunately, it shares the same behaviour with \textit{OpenWrt} and we did not know whether or not we could make either of these operating systems work for this thesis.
 
-In order to be able to stay within the time limit while still testing our tool, we decided to implement a bridge capable of STP.
+In order to be able to stay within the time limit while still testing \tool\, we decided to implement a bridge capable of STP.
 It uses \textit{pcap} to handle incoming packets and react to STP packets.
 Our \textit{software-switch} can be run on any number of interfaces, however, it has not been tested on more than two.
 The source code for the \textit{software-switch} can be found in its git\cite{soft-switch}.
 It was written in C, in contrast to the \textit{stp-tree-generator} which was written in C++.
 
 \section{Saving Switching Data}
-\lstinputlisting[caption=The Containers for Switching Data, label=lst:switchData]{../listings/switch/data.c}
 Listing~\ref{lst:switchData} shows the variables and arrays we use for saving the switching data.
+\lstinputlisting[caption=The Containers for Switching Data, label=lst:switchData]{../listings/switch/data.c}
 The \textit{names}, \textit{neighbours} and \textit{interfaces} arrays are arrays of "strings".
 They store the local interface names (as returned by the \textit{ifconfig} command), the connected MAC addresses and the local MAC addresses respectively.
 As basic C does not have strings, these are arrays of \textbf{char} arrays.
@@ -41,24 +41,23 @@ Sharing memory between \textit{pthreads} (the C thread implementation we used) d
 We need to synchronize these accesses to keep the different threads from corrupting data due to concurrent writes.
 
 \section{Handling STP Packets and Port States}
-The code that handles STP packets is almost identical to the main tool.
-Extraction of the values stays exactly the same, as packets have the same format.
-Handling of this data is a lot different from the \textit{stp-tree-generator}.
+The code that extracts data from the STP packets is identical to \tool, due to the packets having the same format.
+Handling of this data is a lot different however.
 The code for this can be found in Listing~\ref{lst:portStates}.
 Parameters prefixed with \textit{r} or \textit{b} are gained from the incoming packet and stand for root and bridge (first hop) respectively.
 Values prefixed with \textit{root} are for the root information currently saved in the bridge.
 \textit{CurrentIndex} is the index of the interface the packet was received on.
 \lstinputlisting[caption=Updating Port States, label=lst:portStates]{../listings/switch/portStates.c}
 
-\section{Handling Non STP Packets}
-Non STP packets are forwarded based on port states and knowledge of the target MAC address.
+\section{Handling Non-STP Packets}
+Non-STP packets are forwarded based on port states and knowledge of the target MAC address.
 We did not implement any special handling for broadcast messages.
 None of the packets that the bridge receives should ever come from a broadcast address, which means they should never be contained in the MAC table.
 As packets to unknown MAC addresses are broadcast by default, we do not need special behaviour.
 \lstinputlisting[caption=Handling Non-STP Packets, label=lst:nonStp]{../listings/switch/forwarding.c}
 
 \section{Installation and usage}
-This utility tool was written in C99.
+This utility tool was written in C99\cite{c99}.
 While only one build target exists, we included a Makefile for convenience.
 The \textit{pcap} development library is required to compile, and the regular \textit{pcap} library is needed on launch.
 Following parameters can be set on launch:

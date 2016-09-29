@@ -1,38 +1,31 @@
 \chapter{Background}
 \label{background}
 \section{Existing alternatives}
-As of writing this paper, only very few tools support monitoring of STP topologies.
+As of writing this thesis, only very few tools support monitoring of STP topologies.
 The ones we found are LoriotPro\cite{LoriotPro}, LiveAction\cite{LiveAction} and L2Discover\cite{L2Discover}.
 Of these three network monitoring tools, only L2Discover has its source code openly available.
 The company SolarWinds has an open vote on their website on whether or not to include this feature in their monitoring software since 2014\cite{thwackSW}.
 LoriotPro and L2Discover use the SNMP for their topology discovery, with STP only being used to discover duplicate and unused links.
-The Generator described in this paper uses only STP, thus not needing the networking hardware being SNMP capable.
+\tool\ uses only STP, thus not needing the networking hardware being SNMP capable.
 
 While commercial tools mostly use active methods for network discovery, several research projects have also attempted to develop purely passive or hybrid tools.
 One of the first of these tools was developed by Becker et al.\cite{becker1995} in 1995.
 In more recent years, Blue et al.\cite{blue2008} and Wongsuphasawat et al.\cite{wongsuphasawat2009} published papers on passive network visualization tools in 2008 and 2009.
 However, not much work has been done on purely passive STP visualization.
-%TODO: extend
 
-Since the inclusion of STP in the IEEE 802.1D\cite{802.1D} standard, multiple additions have been made to the STP.
-Rapid STP (RSTP) has been developed to decrease the time needed for tree convergence.
-Per VLAN STP (PVSTP) has been developed by Cisco and is a proprietary variant which allows for multiple spanning trees to exist, one for each VLAN.
-The Multiple STP (MSTP) is an extension of RSTP which, like PVSTP, allows for multiple spanning trees to exist in their own VLAN.
-In addition to that, it also allows for VLAN specific trees to be combined into one large spanning tree.
-
-\section{STP}
+\section{Spanning Tree Protocol (STP)}
 \label{stp}
 \subsection*{Port States}
 The most important part of STP is its introduction of port states.
 These port states ensure that the spanning tree does not contain loops.
 Ports can be in one of three states (see Figure~\ref{fig:port_states}):
 \begin{itemize}
-    \item \textbf{Root}: the port leading to the root or "upwards" in the tree.
-    \item \textbf{Dedicated}: dedicated Ports are ports where packets are sent. These are the ports leading "downward" in the tree.
-    \item \textbf{Blocking}: no packets are sent via a blocking Port.
+    \item \textcolor{green}{\textbf{Root Port}}: the port leading to the root or "upwards" in the tree.
+    \item \textcolor{blue!80}{\textbf{Dedicated Port}}: dedicated ports are ports where packets are sent. These are the ports leading "downward" in the tree.
+    \item \textcolor{red}{\textbf{Blocking Port}}: no packets are sent via a blocking Port.
         This state is used to disable alternate paths to the root or "sideways" in the tree.
 \end{itemize}
-In the original STP paper, the term Local Area Network (LAN) referred to any connection to a bridge, as well as between bridges.
+In the original STP paper\cite{perlman85}, the term Local Area Network (LAN) referred to any connection to a bridge, as well as between bridges.
 Because the STP information must be propagated to every LAN, there needs to be exactly one dedicated port in a LAN.
 This can be seen in the connection between the bottom bridges in Figure~\ref{fig:port_states}.
 If no superior STP packets are received on a blocking or root port for a set amount of time (called the forward delay) it transitions to the dedicated state.
@@ -91,9 +84,9 @@ In this section we will explain the individual fields in an STP Bridge Protocol 
     \caption{An STP BPDU}
     \label{fig:stp_bpdu}
 \end{figure}\\
-The fields we used for our tool are:
+The fields we used for \tool\ are:
 \begin{itemize}
-    \item \textbf{Flags}: The flags byte is used for the \textit{topology change} and \textit{topology change acknowledgement} flags.
+    \item \textbf{Flags}: The flags byte is used for the \textit{topology change (TC)} and \textit{topology change acknowledgement (TCA)} flags.
     \item \textbf{Root/Bridge Identifier}: The Identifier consists of three parts and has the same layout for the root and regular bridges:
         \begin{itemize}
             \item Priority (4 Bits): A value between 0 and 61440 configurable in increments of 4096
@@ -110,7 +103,7 @@ The fields we used for our tool are:
         Note that if a root port transitions to dedicated state that means the bridge now assumes it is the root.
 \end{itemize}
 A BPDU only contains information about the root and the bridge that sent the package.
-This means that if there is a bridge between these two, we will not know about its id.
+This means that if there is a bridge between these two, we will not know about its ID.
 We will however still know that it is there, because of the message age.
 During the buildup of the tree it is possible to obtain information on intermediate nodes.
 This possibility is explained more in-depth in the section on packet handling (Section~\ref{packet_handling}).
@@ -161,12 +154,23 @@ The algorithm's purpose is to keep loops out of the network, as well as keeping 
     \label{alg:stp}
 \end{algorithm}
 
+\subsection*{Extensions}
+Since the inclusion of STP in the IEEE 802.1D\cite{802.1D} standard, multiple additions have been made to the STP.
+Rapid STP (RSTP) has been developed to decrease the time needed for tree convergence.
+Per VLAN STP (PVSTP) has been developed by Cisco and is a proprietary variant which allows for multiple spanning trees to exist, one for each VLAN.
+The Multiple STP (MSTP) is an extension of RSTP which, like PVSTP, allows for multiple spanning trees to exist in their own VLAN.
+In addition to that, it also allows for VLAN specific trees to be combined into one large spanning tree.
+
+As an extension to STP the Shortest Path Bridging (SPB)\cite{spb} protocol was developed.
+It allows for multiple paths to be active at the same time, and uses global information to allow for the calculation of shortest paths.
+While it would be a lot easier to obtain network information using SPB, we decided to use to the simpler and still widely used STP, as we were unsure whether SPB had the same prevalence as STP.
+
 \section{Technologies used}
 \subsection*{PCAP}
 \label{pcap}
-PCAP is a shortening of packet capture.
+PCAP\cite{pcap} is a shortening of packet capture.
 It used to be a part of the \textit{tcpdump} tool before it was pulled into it's own library.
-We used the UNIX version \textit{libpcap} for this project.
+We used the UNIX version \textit{libpcap} for this thesis.
 \textit{Libpcap} is a C library and can be directly linked with C and C++ without using a wrapper.
 It provides functions for opening live network devices and \textit{.pcapng} files.
 After starting a live capture on a device, \textit{libpcap} will call a callback function for every packet received on the opened interface.
@@ -182,23 +186,36 @@ Where the parameters are:
 \end{itemize}
 The \textbf{typedef void} (*pcap\_handler) part of the prototype just means that the function returns a \textbf{void *}.
 
-Usage of this function will be covered more in-depth in the chapter on the tool itself (Chapter~\ref{stp-gen}).
+Usage of this function will be covered more in-depth in the chapter on \tool itself (Chapter~\ref{stp-gen}).
 \subsection*{JSON}
 \label{json}
 JSON stands for Java Script Object Notation and was used for two reasons:
 \begin{enumerate}
-    \item It keeps the network communication independent from any and all programming languages used.
+    \item It keeps the network communication independent from any programming languages used.
     \item Utility libraries for JSON are easily available for most programming and scripting languages, saving us the work of inventing and implementing our own notation.
 \end{enumerate}
 JSON has a simple notation for declaring objects and arrays, as well as primitive data types.
 An example is shown in Listing~\ref{lst:json}.
 \lstinputlisting[caption=JSON Example, label=lst:json]{../listings/json/example.json}
-The JSON library used in this project is \textit{jsoncpp}\cite{jsoncpp}.
+The JSON library used in this thesis is \textit{jsoncpp}\cite{jsoncpp}.
 
 \subsection*{TikZ}
-We chose TikZ ist kein Zeichenprogramm (TikZ) as the file format for our output.
-Using TikZ allows us to generate \textit{.tex} files rather than images, as well as making it easier for users to alter the images after generation.
+\label{tikz}
+We chose TikZ ist kein Zeichenprogramm (TikZ)\cite{tikz} as the file format for our output.
+Using TikZ allows us to generate \textit{.tex} files rather than images.
+These are easier to generate, as well as to modify after creation.
 It is also very easy to integrate in \LaTeX\ papers.
 While TikZ is very powerful and therefore complex, the parts we use are fairly simple.
 Listing~\ref{lst:tikz_example} shows the TikZ code for Figure~\ref{fig:bc_storm_b}.
 \lstinputlisting[caption=A TikZ Example, label=lst:tikz_example]{../listings/tikzExample.tex} %TODO: check positioning
+The \textbackslash node keyword draws a node with the id given in parenthesis.
+It is centered around the coordinates given with the \textit{at} keyword and has the text written in braces.
+The (0,0) coordinate is in the top left corner of an image.
+For our graphics we used a self defined \textbackslash switch macro, but regular text or \LaTeX\ commands work as well.
+Edges are drawn using the \textbackslash draw command.
+This command can be used with raw coordinates or identifiers.
+Options for the edges can be passed in brackets.
+Note that \textit{edge} can be substituded with \textit{- -}.
+All TikZ commands are ended with a semicolon.
+TikZ graphics are automatically cropped on rendering.
+

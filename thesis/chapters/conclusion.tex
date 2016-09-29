@@ -1,18 +1,18 @@
 \chapter{Conclusion}
-Gaining information about bridges in the network is easy.
-Gaining information about the connections in between is a lot harder, and only possible under certain conditions.
-By observing changes to the packets sent during buildup of the spanning tree, we can assume the tree has a certain shape.
-These assumptions, however, are not correct in every case.
-We can only try to minimize these errors by combining data sent from multiple clients.
-This means that the usefulness of the tool discussed increases greatly with the number of clients running on a network.
+\label{conclusion}
+The purpose of this thesis was to create a distributed, passive, low impact network visualization tool that relies solely on STP packets.
+With \tool, we created a network visualization tool that does just that.
+It can extract information about bridges from STP packets, and under the right circumstances even make assumptions about bridge connections.
+When the established spanning tree is expanded, and a new root is prepended, \tool\ expands its known topology with it.
+The inherent uncertainty of these assumptions is reduced by combining data obtained from distributed nodes.
+This means that the usefulness of \tool\ increases greatly with the number of clients running on a network.
 Unfortunately we did not find any other general method of checking assumed topologies.
 The lack of mechanics like a hop count on the Data Link layer keeps us from implementing something like a \textit{traceroute}, which we could use to check our assumptions manually.
 
-Future extensions of this tool could include features to increase usability, like a GUI, as well as other output formats.
-The \textit{README} in the git should also be extended to include the parts of this thesis paper that are vital to using the tool.
+Future extensions of \tool\ could include features to increase usability, like a GUI, as well as other output formats.
+Extending the functionality of \tool\ to STP extension, as well as alternatives to STP (discussed in Section~\ref{stp}) would also be very helpful.
 Additionally we should extend the parser to be capable of generating output from one or more \textit{.pcapng} files without needing to launch a server and multiple clients beforehand.
-Our approach to handling network topology changes could also be improved.
-With more extensive testing and statistical analysis of the results, it is our opininon that the assumptions we make can be greatly improved.
+With more extensive testing and statistical analysis of the results, it is our opininon that the assumptions we make could be greatly improved.
 
 The \textit{software-switch} utility could also be extended and tested more thoroughly, to make it usable as a general purpose switching utility.
 To this end, the update of root information could be improved.
