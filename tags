@@ -58,7 +58,7 @@ Class Structure	thesis/chapters/stp-tree-gen.tex	/^\\end{figure}$/;"	s
 Client	inc/Client.hpp	/^class Client{$/;"	c
 Client	src/Client.cpp	/^Client::Client(std::string hostname, int port){$/;"	f	class:Client
 Client Launch Parameters	thesis/chapters/stp-tree-gen.tex	/^An \\textbf{install} target for global installation is not provided.$/;"	u
-Combining the data	thesis/chapters/stp-tree-gen.tex	/^This way any connection information that is not proven wrong is retained.$/;"	s
+Combining the data	thesis/chapters/stp-tree-gen.tex	/^This way any connection information that is not proven wrong is retained, which means that if previous assumptions were correct, they will not be lost.$/;"	s
 CommentInfo	inc/json/json.h	/^  struct CommentInfo {$/;"	s	class:Json::Value
 CommentInfo	src/jsoncpp.cpp	/^Value::CommentInfo::CommentInfo() : comment_(0)$/;"	f	class:Json::Value::CommentInfo
 CommentPlacement	inc/json/json.h	/^enum CommentPlacement {$/;"	g	namespace:Json

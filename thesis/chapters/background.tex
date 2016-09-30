@@ -21,12 +21,16 @@ These port states ensure that the spanning tree does not contain loops.
 Ports can be in one of three states (see Figure~\ref{fig:port_states}):
 \begin{itemize}
     \item \textcolor{green}{\textbf{Root Port}}: the port leading to the root or "upwards" in the tree.
+        Every non-root bridge has \textbf{exactly one} root port.
     \item \textcolor{blue!80}{\textbf{Dedicated Port}}: dedicated ports are ports where packets are sent. These are the ports leading "downward" in the tree.
+        The root has only dedicated ports.
     \item \textcolor{red}{\textbf{Blocking Port}}: no packets are sent via a blocking Port.
         This state is used to disable alternate paths to the root or "sideways" in the tree.
 \end{itemize}
 In the original STP paper\cite{perlman85}, the term Local Area Network (LAN) referred to any connection to a bridge, as well as between bridges.
 Because the STP information must be propagated to every LAN, there needs to be exactly one dedicated port in a LAN.
+In a LAN between two non-root bridges, the bridge with the smaller root path cost (see Figure~\ref{fig:stp_bpdu}) will make its connected port dedicated.
+Should both bridges have the same path cost to the root, the one with the smaller bridge identifier becomes the dedicated bridge (see Section~\ref{stp_packet}: STP Packets).
 This can be seen in the connection between the bottom bridges in Figure~\ref{fig:port_states}.
 If no superior STP packets are received on a blocking or root port for a set amount of time (called the forward delay) it transitions to the dedicated state.
 \begin{figure}[h]

@@ -4,37 +4,37 @@
 \contentsline {section}{\numberline {2.2}Spanning Tree Protocol (STP)}{5}
 \contentsline {section}{\numberline {2.3}Technologies used}{9}
 \contentsline {chapter}{\numberline {3}STP Tree Generator}{12}
-\contentsline {section}{\numberline {3.1}Class Structure}{12}
+\contentsline {section}{\numberline {3.1}Class Structure}{14}
 \contentsline {section}{\numberline {3.2}Packet Handling}{15}
 \contentsline {section}{\numberline {3.3}Communication}{18}
 \contentsline {section}{\numberline {3.4}Uncertain Assumptions}{20}
-\contentsline {section}{\numberline {3.5}Combining the data}{22}
+\contentsline {section}{\numberline {3.5}Combining the data}{23}
 \contentsline {section}{\numberline {3.6}Visualization}{25}
-\contentsline {section}{\numberline {3.7}Installation \& Usage}{28}
+\contentsline {section}{\numberline {3.7}Installation \& Usage}{29}
 \contentsline {paragraph}{-if \textit {inputFile}}{29}
 \contentsline {paragraph}{-of \textit {outputFile}}{29}
 \contentsline {paragraph}{--no-connect / -nc}{29}
 \contentsline {paragraph}{-h \textit {hostname}}{29}
 \contentsline {paragraph}{-p \textit {port}}{29}
 \contentsline {paragraph}{-dn \textit {deviceName}}{29}
-\contentsline {paragraph}{-p \textit {port}}{29}
-\contentsline {paragraph}{-of \textit {outputFile}}{29}
-\contentsline {paragraph}{-np}{29}
-\contentsline {paragraph}{-t \textit {timeout}}{29}
-\contentsline {paragraph}{-p \textit {port}}{29}
+\contentsline {paragraph}{-p \textit {port}}{30}
+\contentsline {paragraph}{-of \textit {outputFile}}{30}
+\contentsline {paragraph}{-np}{30}
+\contentsline {paragraph}{-t \textit {timeout}}{30}
+\contentsline {paragraph}{-p \textit {port}}{30}
 \contentsline {paragraph}{-h \textit {hostname}}{30}
 \contentsline {paragraph}{-pw \textit {pictureWidth}}{30}
 \contentsline {paragraph}{-ph \textit {pictureHeigth}}{30}
 \contentsline {paragraph}{-s \textit {yStep}}{30}
 \contentsline {paragraph}{Client}{30}
-\contentsline {paragraph}{Server}{30}
-\contentsline {paragraph}{Parser}{30}
-\contentsline {chapter}{\numberline {4}Software Switch Testing Utility}{31}
-\contentsline {section}{\numberline {4.1}Saving Switching Data}{31}
-\contentsline {section}{\numberline {4.2}Handling STP Packets and Port States}{32}
-\contentsline {section}{\numberline {4.3}Handling Non-STP Packets}{34}
-\contentsline {section}{\numberline {4.4}Installation and usage}{36}
-\contentsline {chapter}{\numberline {5}Testing}{37}
-\contentsline {section}{\numberline {5.1}Setup}{37}
-\contentsline {section}{\numberline {5.2}Tests}{37}
-\contentsline {chapter}{\numberline {6}Conclusion}{45}
+\contentsline {paragraph}{Server}{31}
+\contentsline {paragraph}{Parser}{31}
+\contentsline {chapter}{\numberline {4}Software Switch Testing Utility}{32}
+\contentsline {section}{\numberline {4.1}Saving Switching Data}{32}
+\contentsline {section}{\numberline {4.2}Handling STP Packets and Port States}{33}
+\contentsline {section}{\numberline {4.3}Handling Non-STP Packets}{35}
+\contentsline {section}{\numberline {4.4}Installation and usage}{37}
+\contentsline {chapter}{\numberline {5}Testing}{38}
+\contentsline {section}{\numberline {5.1}Setup}{38}
+\contentsline {section}{\numberline {5.2}Tests}{38}
+\contentsline {chapter}{\numberline {6}Conclusion}{46}

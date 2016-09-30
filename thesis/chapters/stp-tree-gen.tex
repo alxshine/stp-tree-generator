@@ -17,9 +17,15 @@ The only way to obtain this information is by capturing packets during the tree 
 When the client witnesses the message age increasing, it assumes the new root to be prepended to the previous one.
 This assumption is uncertain, as this connection cannot be guaranteed, but the risk of making mistakes can be reduced.
 Details on this are discussed in the section on uncertain assumptions (Section~\ref{uncertain_assumptions})
+
 Figure~\ref{fig:build_up} shows a rudimentary example of information gained during tree build up.
-%TODO: check that the figures don't break any listings
-\begin{figure}[p]
+As bridge \textit{B} has not yet received an STP packet from bridge \textit{A} yet, it thinks itself root, so it sends STP packets with its ID as bridge and root identifier (Figure~\ref{fig:build_up1}).
+The client therefore only knows about bridge \textit{B}.
+When bridge \textit{B} receives an STP packet from \textit{A}, it updates its local informtion and broadcasts it, as shown in Figure~\ref{fig:build_up2}.
+This leads to the client adding bridge \textit{A} to its vector of known bridges and increments the saved message age for all other bridges.
+Both bridges are contained in an STP packet from \textit{B} as root and bridge respectively, but the process stays the same for larger topologies.
+
+\begin{figure}[h]
     \begin{centering}
         \begin{subfigure}[b]{0.4\textwidth}
             \centering
@@ -35,6 +41,7 @@ Figure~\ref{fig:build_up} shows a rudimentary example of information gained duri
 
             \end{tikzpicture}
             \caption{B thinks it is root}
+            \label{fig:build_up1}
         \end{subfigure}
         \hspace{1cm}
         \begin{subfigure}[b]{0.4\textwidth}
@@ -56,6 +63,7 @@ Figure~\ref{fig:build_up} shows a rudimentary example of information gained duri
                 \end{customlegend}
             \end{tikzpicture}
             \caption{B updates its root information}
+            \label{fig:build_up2}
         \end{subfigure}
     \end{centering}
     \caption{Information gained on STP build up}
@@ -64,11 +72,16 @@ Figure~\ref{fig:build_up} shows a rudimentary example of information gained duri
 
 We only assume network growth for the cases where the message age increases at the same time that the root changes.
 For other cases (message age decreasing or staying constant) we did not find ways to gain knowledge about the network.
-Without a reason to assume a \textit{certain} network topology, and with the guarantee that the current assumption is incorrect (due to a network change), the client clears its data when witnessing such a change.
+Because we cannot guarantee that the topology change does not affect the path we assume, \tool\ clients currently clear their data unless the message age increases.
+With the limited time and networking hardware at our disposal, we were not able to find a way to reduce the amount of informtion that has to be discarded.
+We believe that by increasing the communication between clients, \tool\ would be able to only discard information that is known to be false.
+
 Figure \ref{fig:information_lost} shows an example case where the client has to reset its data.
+Due to the message age decreasing when the root changes, \tool\ discards all data and adds the two bridges contained in the STP packet again.
+This leaves it with knowledge of bridges \textit{D} and \textit{C}.
 A detailed explanation of how \tool\ handles incoming STP packets can be found in the section on packet handling (Section~\ref{packet_handling}).
 
-\begin{figure}[p]
+\begin{figure}[h]
     \begin{centering}
         \begin{subfigure}[b]{0.4\textwidth}
             \begin{tikzpicture}
@@ -198,6 +211,10 @@ It shows how \tool\ can use changing packets to gather information about bridge 
 \label{uncertain_assumptions}
 As previously stated, the assumptions we make about bridge connections are not necessarily true.
 They can be wrong, for certain cases, one of which is shown in Figure~\ref{fig:false_example}.
+The client knows about the path to (at the time) root \textit{B} in Figure~\ref{fig:false_example1}.
+When the global root information gets updated, the message age will increase causing the client to prepend \textit{A} to its known path, even though there is no connection between \textit{A} and \textit{B}.
+This leads the client to thinking the path looks like in Figure~\ref{fig:false_example2}.
+
 \begin{figure}[h]
     \begin{subfigure}[b]{0.4\textwidth}
         \begin{tikzpicture}
@@ -216,6 +233,7 @@ They can be wrong, for certain cases, one of which is shown in Figure~\ref{fig:f
             (D) -- node [left] {Root: B} ++ (client);
         \end{tikzpicture}
         \caption{Correct information}
+        \label{fig:false_example1}
     \end{subfigure}
     \hspace{1cm}
     \begin{subfigure}[b]{0.4\textwidth}
@@ -230,9 +248,11 @@ They can be wrong, for certain cases, one of which is shown in Figure~\ref{fig:f
             (A) -- (C)
             (C) -- (D);
 
-            \draw[red, thick]
-            (B) -- node [left] {Root: A} ++ (D)
+            \draw[green, thick]
             (D) -- node [left] {Root: A} ++ (client);
+
+            \draw[red, thick]
+            (B) -- node [left] {Root: A} ++ (D);
 
             \draw[red, thick, dashed]
             (A) -- node [left] {Root: A} ++ (B);
@@ -246,15 +266,23 @@ They can be wrong, for certain cases, one of which is shown in Figure~\ref{fig:f
             \end{customlegend}
         \end{tikzpicture}
         \caption{False assumption}
+        \label{fig:false_example2}
     \end{subfigure}
 
     \caption{An example case of false assumptions about network structure}
     \label{fig:false_example}
 \end{figure}
+
 We did not find an alternate way to gather information about connections in the network, so we tried to reduce errors created by our method.
 To this end we combine information gathered by multiple clients to identify and remove false information.
 If a client makes a false assumption about a bridge, the message age for that bridge will be lower than its actual messge age.
 An example can be seen in Figure~\ref{fig:message_ages}.
+It uses the same topology as Figure~\ref{fig:false_example}
+The assumed (nonexistent) connection between bridges \textit{A} and \textit{B} is shown in red.
+Figure~\ref{fig:message_ages1} shows the message ages assumed by \tool.
+With the assumed connection the message age of bridge \textit{B} would be 1.
+However, as Figure~\ref{fig:message_ages2} shows, the actual message age is 3.
+If a client connected to bridge \textit{B} sends its actual message age to the server (or any message age larger than 1), the server will remove \textit{B} from the path sent by the client.
 \begin{figure}[h]
     \begin{subfigure}[b]{0.4\textwidth}
         \begin{tikzpicture}
@@ -275,6 +303,7 @@ An example can be seen in Figure~\ref{fig:message_ages}.
 
         \end{tikzpicture}
         \caption{Assumed message ages}
+        \label{fig:message_ages1}
     \end{subfigure}
     \hspace{1cm}
     \begin{subfigure}[b]{0.4\textwidth}
@@ -293,16 +322,18 @@ An example can be seen in Figure~\ref{fig:message_ages}.
 
         \end{tikzpicture}
         \caption{Actual message ages}
+        \label{fig:message_ages2}
     \end{subfigure}
 
     \caption{Assumed and actual message ages}
     \label{fig:message_ages}
 \end{figure}
-By comparing bridge data from multiple clients we can find and remove bridges whose message age is lower than it should be.
+
+By checking all bridges for inconsistencies we can remove any false assumptions from the data we use for building the visualization.
 The code for doing this is shown in Listing~\ref{lst:remove}.
 \lstinputlisting[caption=Removing Incorrect Bridge Data, label=lst:remove]{../listings/stp/remove.c} %TODO: maybe do better formatting
 The bridges are removed from the vector they each are in.
-This way any connection information that is not proven wrong is retained.
+This way any connection information that is not proven wrong is retained, which means that if previous assumptions were correct, they will not be lost.
 \section{Combining the data}
 \label{combining_data}
 After false information is removed, the bridge data is combined into one SpanningTree object.
