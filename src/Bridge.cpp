@@ -34,6 +34,7 @@ Json::Value Bridge::toJson() const{
     ret["mac"] = mac.toJson();
     ret["priority"] = priority;
     ret["messageAge"] = messageAge;
+    ret["extension"] = extension;
     return ret;
 }
 
@@ -46,6 +47,7 @@ Bridge Bridge::fromJson(const Json::Value buildFrom){
     ret.mac = Mac::fromJson(buildFrom["mac"]);
     ret.priority = buildFrom["priority"].asInt();
     ret.messageAge = buildFrom["messageAge"].asInt();
+    ret.extension = buildFrom["extension"].asInt();
     return ret;
 }
 
