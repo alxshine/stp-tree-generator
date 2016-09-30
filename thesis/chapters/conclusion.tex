@@ -6,15 +6,24 @@ It can extract information about bridges from STP packets, and under the right c
 When the established spanning tree is expanded, and a new root is prepended, \tool\ expands its known topology with it.
 The inherent uncertainty of these assumptions is reduced by combining data obtained from distributed nodes.
 This means that the usefulness of \tool\ increases greatly with the number of clients running on a network.
+We tested \tool\ to the greatest extend possible with the limited hardware we had at our disposal.
+In order to perform these tests we had to develop \textit{software-switch}, a utiliy that mimics STP capable bridges.
+It is a very basic and minimal tool, developed just far enough to make it usable for our tests.
+\tool\ passed the tests done in a static network environment (testing bridge discovery, connection discovery and bridge removal).
+When we tested \tool\ in a dynamically changing network, disconnecting subtrees and reconnecting them in different places, we found faulty behaviour in our \textit{software-switch} utility. %TODO: update
+Therefore, we were unable to accurately test \tool\ in our last two scenarios.
+
+The tests we could perform, however, showed that \tool\ is fully capable of bridge discovery and removal, as well as making assumptions about bridge connections on topology updates.
+In our tests, \tool\ correctly filtered out incorrect assumptions in the server by comparing information from different clients.
 Unfortunately we did not find any other general method of checking assumed topologies.
 The lack of mechanics like a hop count on the Data Link layer keeps us from implementing something like a \textit{traceroute}, which we could use to check our assumptions manually.
 
 Future extensions of \tool\ could include features to increase usability, like a GUI, as well as other output formats.
 Extending the functionality of \tool\ to STP extension, as well as alternatives to STP (discussed in Section~\ref{stp}) would also be very helpful.
 Additionally we should extend the parser to be capable of generating output from one or more \textit{.pcapng} files without needing to launch a server and multiple clients beforehand.
-With more extensive testing and statistical analysis of the results, it is our opininon that the assumptions we make could be greatly improved.
+With more extensive testing and statistical analysis of the results, it is our opininon that the assumptions we make could be improved as well.
 
 The \textit{software-switch} utility could also be extended and tested more thoroughly, to make it usable as a general purpose switching utility.
-To this end, the update of root information could be improved.
+To this end, the update of root information could be improved, as currently the bridges take a long time to react to a downed connection via their root port.
 
 Other extensions of this thesis include work on the \textit{OpenWrt} and \textit{dd-wrt} projects in order to find a viable method to keep the STP implementation consistent with other hardware.

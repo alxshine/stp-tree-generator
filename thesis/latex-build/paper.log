@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.9)  29 SEP 2016 22:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.9)  30 SEP 2016 09:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2052,9 +2052,9 @@ Overfull \hbox (1.78084pt too wide) in paragraph at lines 326--327
 
 [41] [42] [43]) (./chapters/conclusion.tex [44]
 Chapter 6.
-) (latex-build/paper.bbl [45
+[45
 
-]
+]) (latex-build/paper.bbl [46]
 LaTeX Font Info:    Font shape `T1/fvs/m/sc' will be
 (Font)              scaled to size 8.99994pt on input line 4.
 
@@ -2087,9 +2087,9 @@ Underfull \hbox (badness 1303) in paragraph at lines 71--76
 d-/OpenMP Ex-am-ples,
  []
 
-[46
+[47
 
-]) [47] (latex-build/paper.aux)
+]) [48] (latex-build/paper.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -2114,10 +2114,10 @@ bera/fvmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvsb8a.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvsbo8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/bera/fvsr8a.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/bera/fvsro8a.pfb>
-Output written on latex-build/paper.pdf (48 pages, 180513 bytes).
+Output written on latex-build/paper.pdf (49 pages, 181734 bytes).
 PDF statistics:
- 205 PDF objects out of 1000 (max. 8388607)
- 142 compressed objects within 2 object streams
+ 209 PDF objects out of 1000 (max. 8388607)
+ 145 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
