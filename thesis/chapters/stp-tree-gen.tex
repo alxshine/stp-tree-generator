@@ -142,12 +142,12 @@ Altogether the following classes were created:
     \item \textbf{SpanningTree}: This class represents an entire tree.
         It has functions for creating the \textit{TikZ} export as well as combining and manipulating subtrees.
         The \textbf{SpanningTree} class is a recursive data structure, storing the root as a \textit{Bridge} object and its children as a vector of \textbf{SpanningTree} objects.
-        As it is the most important and also the most complex class, the header file is shown in detail in Listing~\ref{lst:spanningTree}.
+        As a lot of its functions are needed in this chapter, the header file is shown in detail in Listing~\ref{lst:spanningTree}.
     \item \textbf{Sniffer}: Does the actual packet sniffing.
     \item \textbf{Client}: Handles the client side communication.
     \item \textbf{Server}: Handles the server side communication, as well as combining the trees and removing incorrect information.
 \end{itemize}
-\lstinputlisting[caption=The \textbf{SpanningTree} header file, label=lst:spanningTree]{../listings/stp/spanningTree.cpp}
+\lstinputlisting[caption=The \textbf{SpanningTree} header file, label=lst:spanningTree]{stp/SpanningTree.hpp}
 The STP data is saved in the \textbf{Sniffer} as a vector.
 This is easier than storing them in a fixed size array, and already combining them into a \textbf{SpanningTree} object would keep the server from performing the steps described in Section~\ref{uncertain_assumptions}.
 
@@ -161,23 +161,24 @@ The \textit{bytes} variable is provided by the required \textit{pcap} callback p
 This way is computationally more expensive than saving the destination in binary format and comparing memory.
 It is however also more readable and a lot easier to change should the need arise.
 The address we compare the destination to is the broadcast target for STP.
-\lstinputlisting[caption=Filtering for STP packets, label=lst:filter]{../listings/stp/stpFilter.c}
+\lstinputlisting[caption=Filtering for STP packets, label=lst:filter, firstline=123, lastline=128]{stp/Sniffer.cpp}
 
 \textit{Pcap} provides us with a pointer to the binary packet data.
 We can go through the packet by incrementing this pointer by set amounts (after skipping to the STP data).
 This repeats for the bridge identifier, as well as other fields.
 Listing~\ref{lst:payload} shows the beginning of the payload handling.
-\lstinputlisting[caption=Going Through the Payload, label=lst:payload]{../listings/stp/payload.c}
+\lstinputlisting[caption=Going Through the Payload, label=lst:payload, firstline=130, lastline=191]{stp/Sniffer.cpp}
 
 After the data is extracted from the packet, it is constructed into our custom classes.
 We then check if the two bridges (root and first hop) were previously known, as seen in Listing~\ref{lst:contained}.
 Concerning the root, knowing whether or not it was previously known is enough.
 For the first hop, we also require knowledge about the old message age.
-\lstinputlisting[caption=Checking for Previously Known Information, label= lst:contained]{../listings/stp/contained.c}
+\lstinputlisting[caption=Checking for Previously Known Information, label= lst:contained, firstline=192, lastline=210]{stp/Sniffer.cpp}
 
 Listing~\ref{lst:update} shows how we update the bridge information in the sniffer.
 The \textit{clearAndAdd} function is just a shorthand to clear the bridge vector before adding the two bridges to it.
-\lstinputlisting[caption=Bridge Data Update, label=lst:update]{../listings/stp/update.c}
+\lstinputlisting[caption=Bridge Data Update, label=lst:update, firstline=211, lastline=253]{stp/Sniffer.cpp}
+
 \section{Communication}
 \label{communication}
 Our distributed architecture is hierarchical, as we have a distinct \textit{client-server} separation.
@@ -331,7 +332,7 @@ If a client connected to bridge \textit{B} sends its actual message age to the s
 
 By checking all bridges for inconsistencies we can remove any false assumptions from the data we use for building the visualization.
 The code for doing this is shown in Listing~\ref{lst:remove}.
-\lstinputlisting[caption=Removing Incorrect Bridge Data, label=lst:remove]{../listings/stp/remove.c} %TODO: maybe do better formatting
+\lstinputlisting[caption=Removing Incorrect Bridge Data, label=lst:remove, firstline=49, lastline=77]{stp/Server.cpp}
 The bridges are removed from the vector they each are in.
 This way any connection information that is not proven wrong is retained, which means that if previous assumptions were correct, they will not be lost.
 \section{Combining the data}
@@ -342,10 +343,18 @@ First, we combine the bridge vectors to individual trees.
 These trees each represent a path from a client to the root.
 After the individual trees are obtained, we combine the ones with the same root.
 The code for this can be seen in Listing~\ref{lst:combine}.
-\lstinputlisting[caption=Combining the Bridge Data, label=lst:combine]{../listings/stp/combination.c}
+\lstinputlisting[caption=Combining the Bridge Data, label=lst:combine, firstline=79, lastline=103]{stp/Server.cpp}
+
 Combining the individual trees into one is done using the operator we overloaded.
 This operator executes a recursive tree combine, which is shown in Figure~\ref{lst:treeCombine}.
-\lstinputlisting[caption=Recursive Tree Combination Algorithm, label=lst:treeCombine]{../listings/stp/treeAdd.cpp}
+\lstinputlisting[caption=Recursive Tree Combination Algorithm, label=lst:treeCombine, firstline=17, lastline=82]{stp/SpanningTree.cpp}
+
+Our Tree combination algorithm uses a helper function called \textit{addSubTree}, which is shown in Listing~\ref{lst:addSubTree}.
+\lstinputlisting[caption=Adding subtrees in the place where they belong, label=lst:addSubTree, firstline=118, lastline=150]{stp/SpanningTree.cpp}
+
+The comparison operator we overloaded for our \textbf{SpanningTree} class recursively compares the roots of the subtrees for equality (which in turn just compares all members).
+It is shown in Listing~\ref{lst:comparison}.
+\lstinputlisting[caption=Comparing SpanningTree objects for equality, label=lst:comparison, firstline=88, lastline=113]{stp/SpanningTree.cpp}
 
 \section{Visualization}
 \tool\ generates \textit{.tex} files containing \textit{TikZ} graphs.
@@ -379,17 +388,17 @@ Our code for this is rather confusing when first read, so we decided to split it
 No code is skipped between the listings, so combining Listings~\ref{lst:output1}-\ref{lst:output4} would yield the original function.
 To make it easier to follow we also did not modify any indentations.
 Viewing the code together with the raw \LaTeX\ output makes it much clearer, so Listing~\ref{lst:raw} shows the output for Figure~\ref{fig:viz_example}
-\lstinputlisting[caption=\textit{.tex} code for Figure~\ref{fig:viz_example}, label=lst:raw]{../listings/output.tex}
+\lstinputlisting[caption=\textit{.tex} code for Figure~\ref{fig:viz_example}, label=lst:raw]{output.tex}
 For an explanation on TikZ keywords please refer to the section on TikZ (Section~\ref{tikz}).
 
-\lstinputlisting[caption={TikZ conversion function, part 1}, label=lst:output1]{../listings/stp/output1.cpp}
+\lstinputlisting[caption={TikZ conversion function, part 1}, label=lst:output1, firstline=162, lastline=172]{stp/SpanningTree.cpp}
 The \textit{lowerX}, \textit{upperX}, \textit{y} and \textit{yStep} parameters are used to calculate the position for the current root, as well as the subtrees.
 \textit{OldMessageAge} is used to discern whether or not \tool\ needs to draw empty nodes.
 As we use incrementing IDs to draw connections between the nodes (see Listing~\ref{lst:raw}), we need to \textit{index} to pass the current index.
 This function is executed recursively until the current \textbf{SpanningTree} has no children, so the first step is always to calculate the position of the current root (see Listing~\ref{lst:spanningTree}).
 The previous child index calculation will be discussed in the explanation for Listing~\ref{lst:output4}.
 
-\lstinputlisting[caption={TikZ conversion function, part 2}, label=lst:output2]{../listings/stp/output2.cpp}
+\lstinputlisting[caption={TikZ conversion function, part 2}, label=lst:output2, firstline=174, lastline=180]{stp/SpanningTree.cpp}
 If there is an unknown bridge between the current root and the previous one, we draw an empty node to visualize this.
 After the empty node is drawn, the same function will be called with increased \textit{y} coordinate, because the current root has not been handled yet.
 We also know that the ID will be the current index plus 1.
@@ -397,7 +406,7 @@ With these informations we can write the command for drawing the edge beforehand
 Note that we include newlines to keep the output readable.
 As the returned string is a C++ \textbf{std::string} we use the \textbf{\textbackslash n} escape sequence.
 
-\lstinputlisting[caption={Tikz conversion function, part 3}, label=lst:output3]{../listings/stp/output3.cpp}
+\lstinputlisting[caption={Tikz conversion function, part 3}, label=lst:output3, firstline=181, lastline=202]{stp/SpanningTree.cpp}
 Here we draw the node for the current root.
 To calculate the amounts of horizontal space the subtrees can use, we use their respective maximum width.
 This width is calculated using the functions shown in Listing~\ref{lst:maxWidth}.
@@ -409,12 +418,12 @@ To keep drawing the nodes and edges in blocks, we use multiple loops for drawing
 This leads to edges being drawn in "layers", as edges from a node to all its children are drawn at once.
 Only "deep" topologies (with a spanning tree of depth > 3) are affected.%TODO: include deep example
 
-\lstinputlisting[caption={Tikz conversion function, part 4}, label=lst:output4]{../listings/stp/output4.cpp}
+\lstinputlisting[caption={Tikz conversion function, part 4}, label=lst:output4, firstline=203, lastline=220]{stp/SpanningTree.cpp}
 Listing~\ref{lst:output4} shows how we draw edges between nodes and their children.
 We use the same method of accessing the indices as in Listing~\ref{lst:output3}.
 Before returning we set the the returned \textit{int} half of the pair to the largest index used by a recursive call.
 
-\lstinputlisting[caption=Calculating the maximum width of a tree, label=lst:maxWidth]{../listings/stp/maxWidth.cpp}
+\lstinputlisting[caption=Calculating the maximum width of a tree, label=lst:maxWidth, firstline=222, lastline=240]{stp/SpanningTree.cpp}
 
 \section{Installation \& Usage}
 \tool\ was written in C++ and requires a compiler capable of C++11.

@@ -1,5 +1,16 @@
-void updatePortStates(int currentIndex, unsigned char rPriority, unsigned char rExtension, unsigned char *rMac, unsigned int pathCost, unsigned char age, unsigned char bPriority, unsigned char bExtension){
+void updatePortStates(int currentIndex, unsigned char rPriority, unsigned char rExtension, unsigned char *rMac, unsigned int pathCost, unsigned short age, unsigned char bPriority, unsigned char bExtension){
     pthread_mutex_lock(&ifaceMutex);
+
+    //check if the information on the ROOT port has changed
+    if(states[currentIndex] == ROOT){
+        if(compareBridges(rPriority, rExtension, rMac, rootPriority, rootExtension, root) != 0 || pathCost +portCost != rootPathCost){
+            //force reset
+            for(int i=0; i<n; i++){
+                states[i] = DEDICATED;
+                messageAge = 0;
+            }
+        }
+    }
 
     //check for a root change
     if(compareBridges(rPriority, rExtension, rMac, rootPriority, rootExtension, root) < 0 ||
@@ -27,6 +38,7 @@ void updatePortStates(int currentIndex, unsigned char rPriority, unsigned char r
 
         for(int i=0; i<n; i++)
             states[i] = DEDICATED;
+        messageAge = 0;
     }
 
     //if a port is in the BLOCKING state but shouldn't be, change it

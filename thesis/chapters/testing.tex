@@ -113,18 +113,7 @@ Figure~\ref{fig:pnp} shows a comparison between expected output ant \tool\ outpu
 
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \begin{tikzpicture}
-            \node (0) at (7.000000,20) {128 - BC:AE:C5:EB:7D:B6, 0};
-            \node (1) at (2.333333,18) {};
-            \node (2) at (2.333333,16) {240 - F4:F2:6D:7D:BF:BD, 2};
-            \draw (1) -- (2);
-            \node (3) at (7.000000,18) {384 - 00:E0:7C:C8:57:E7, 1};
-            \node (4) at (11.666667,18) {384 - 00:E1:00:00:0D:C4, 1};
-            \draw 
-            (0) -- (1)
-            (0) -- (3)
-            (0) -- (4);
-        \end{tikzpicture}
+        \input{../results/pnp.tikz}
         \caption{Visualization output}
     \end{subfigure}
     \caption{A comparison between expected and \tool\ output for the "Plug and Play" test}

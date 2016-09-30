@@ -159,6 +159,10 @@ Json::Value SpanningTree::toJson() const {
     return ret;
 }
 
+std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {
+    return toTikzHelper(lowerX, upperX, y, yStep, oldMessageAge, index).first;
+}
+
 std::pair<std::string, int> SpanningTree::toTikzHelper(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {
     //this helper is needed because the previously used child index calculation was faulty if the algorithm was adding empty nodes
     std::string retString;
@@ -213,10 +217,6 @@ std::pair<std::string, int> SpanningTree::toTikzHelper(double lowerX, double upp
     }
 
     return std::pair<std::string, int>(retString, retInt);
-}
-
-std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {
-    return toTikzHelper(lowerX, upperX, y, yStep, oldMessageAge, index).first;
 }
 
 int SpanningTree::maxWidth() const{

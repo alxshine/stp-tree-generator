@@ -145,8 +145,11 @@ void Server::run(){
             int id = receivedJson["id"].asInt();
             Json::Value jsonBridges = receivedJson["bridges"];
             clientData[id].clear();
-            for(auto newbridge : jsonBridges)
-                clientData[id].push_back(Bridge::fromJson(newbridge));
+            for(auto newbridge : jsonBridges){
+                Bridge toAdd = Bridge::fromJson(newbridge);
+                std::cout << toAdd.toTikz() << std::endl;
+                clientData[id].push_back(toAdd);
+            }
       
             timestamps[id] = time(NULL);
 

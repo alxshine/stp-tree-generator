@@ -63,7 +63,7 @@ CommentInfo	inc/json/json.h	/^  struct CommentInfo {$/;"	s	class:Json::Value
 CommentInfo	src/jsoncpp.cpp	/^Value::CommentInfo::CommentInfo() : comment_(0)$/;"	f	class:Json::Value::CommentInfo
 CommentPlacement	inc/json/json.h	/^enum CommentPlacement {$/;"	g	namespace:Json
 CommentStyle	src/jsoncpp.cpp	/^struct CommentStyle {$/;"	s	namespace:Json	file:
-Communication	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Bridge Data Update, label=lst:update]{..\/listings\/stp\/update.c}$/;"	s
+Communication	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Bridge Data Update, label=lst:update, firstline=211, lastline=253]{stp\/Sniffer.cpp}$/;"	s
 Conclusion	thesis/chapters/conclusion.tex	/^\\chapter{Conclusion}$/;"	c
 DEDICATED	thesis/listings/switch/full.c	/^    DEDICATED,$/;"	e	enum:port_state	file:
 DEPS	Makefile	/^DEPS=$(DEPSFOLDER)\/*$/;"	m
@@ -98,7 +98,7 @@ Handling STP Packets and Port States	thesis/chapters/soft-switch.tex	/^We need t
 INCLUDES	Makefile	/^INCLUDES=-lpcap$/;"	m
 InArgs	inc/json/json.h	/^  typedef std::vector<const PathArgument*> InArgs;$/;"	t	class:Json::Path
 InRange	src/jsoncpp.cpp	/^static inline bool InRange(double d, T min, U max) {$/;"	f	namespace:Json
-Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Calculating the maximum width of a tree, label=lst:maxWidth]{..\/listings\/stp\/maxWidth.cpp}$/;"	s
+Installation   Usage	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Calculating the maximum width of a tree, label=lst:maxWidth, firstline=222, lastline=240]{stp\/SpanningTree.cpp}$/;"	s
 Installation and usage	thesis/chapters/soft-switch.tex	/^\\lstinputlisting[caption=Handling Non-STP Packets, label=lst:nonStp]{..\/listings\/switch\/forwarding.c}$/;"	s
 Int	inc/json/json-forwards.h	/^typedef int Int;$/;"	t	namespace:Json
 Int	inc/json/json.h	/^  typedef Json::Int Int;$/;"	t	class:Json::Value
@@ -283,11 +283,13 @@ SelfType	inc/json/json.h	/^  typedef ValueIterator SelfType;$/;"	t	class:Json::V
 SelfType	inc/json/json.h	/^  typedef ValueIteratorBase SelfType;$/;"	t	class:Json::ValueIteratorBase
 Server	inc/Server.hpp	/^class Server{$/;"	c
 Server	src/Server.cpp	/^Server::Server(int port, std::string outputFileName, bool createPidFile, time_t to){$/;"	f	class:Server
+Server	thesis/listings/stp/Server.cpp	/^Server::Server(int port, std::string outputFileName, bool createPidFile, time_t to){$/;"	f	class:Server
 Server Launch Parameters	thesis/chapters/stp-tree-gen.tex	/^The names can be obtained using commands such as \\textbf{ifconfig} or \\textbf{ip addr show}.$/;"	u
 Setup	thesis/chapters/testing.tex	/^\\label{testing}$/;"	s
 Slow Dynamic Change Test	thesis/chapters/testing.tex	/^\\end{figure}$/;"	u
 Sniffer	inc/Sniffer.hpp	/^class Sniffer{$/;"	c
 Sniffer	src/Sniffer.cpp	/^Sniffer::Sniffer(bool nC, std::string outputFileName, std::string hostname, int port){$/;"	f	class:Sniffer
+Sniffer	thesis/listings/stp/Sniffer.cpp	/^Sniffer::Sniffer(bool nC, std::string outputFileName, std::string hostname, int port){$/;"	f	class:Sniffer
 Software Switch Testing Utility	thesis/chapters/soft-switch.tex	/^\\chapter{Software Switch Testing Utility}$/;"	c
 Spanning Tree Algorithm	thesis/chapters/background.tex	/^\\end{itemize}$/;"	u
 Spanning Tree Protocol  STP 	thesis/chapters/background.tex	/^However, not much work has been done on purely passive STP visualization.$/;"	s
@@ -296,7 +298,11 @@ SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(){}$/;"	f	class:S
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(const Bridge& r):root(r){$/;"	f	class:SpanningTree
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(const Bridge& r, std::vector<SpanningTree> c): root(r), children(c){$/;"	f	class:SpanningTree
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(const SpanningTree& other):root(other.root), children(other.children){$/;"	f	class:SpanningTree
-SpanningTree	thesis/listings/stp/spanningTree.cpp	/^class SpanningTree{$/;"	c	file:
+SpanningTree	thesis/listings/stp/SpanningTree.cpp	/^SpanningTree::SpanningTree(){}$/;"	f	class:SpanningTree
+SpanningTree	thesis/listings/stp/SpanningTree.cpp	/^SpanningTree::SpanningTree(const Bridge& r):root(r){$/;"	f	class:SpanningTree
+SpanningTree	thesis/listings/stp/SpanningTree.cpp	/^SpanningTree::SpanningTree(const Bridge& r, std::vector<SpanningTree> c): root(r), children(c){$/;"	f	class:SpanningTree
+SpanningTree	thesis/listings/stp/SpanningTree.cpp	/^SpanningTree::SpanningTree(const SpanningTree& other):root(other.root), children(other.children){$/;"	f	class:SpanningTree
+SpanningTree	thesis/listings/stp/SpanningTree.hpp	/^class SpanningTree{$/;"	c
 StaticString	inc/json/json.h	/^  explicit StaticString(const char* czstring) : c_str_(czstring) {}$/;"	f	class:Json::StaticString
 StaticString	inc/json/json.h	/^class JSON_API StaticString {$/;"	c	namespace:Json
 StreamWriter	inc/json/json.h	/^class JSON_API StreamWriter {$/;"	c	namespace:Json
@@ -358,9 +364,10 @@ ValueIteratorBase	inc/json/json.h	/^class JSON_API ValueIteratorBase {$/;"	c	nam
 ValueIteratorBase	src/jsoncpp.cpp	/^ValueIteratorBase::ValueIteratorBase($/;"	f	class:Json::ValueIteratorBase
 ValueIteratorBase	src/jsoncpp.cpp	/^ValueIteratorBase::ValueIteratorBase()$/;"	f	class:Json::ValueIteratorBase
 ValueType	inc/json/json.h	/^enum ValueType {$/;"	g	namespace:Json
-Visualization	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Recursive Tree Combination Algorithm, label=lst:treeCombine]{..\/listings\/stp\/treeAdd.cpp}$/;"	s
+Visualization	thesis/chapters/stp-tree-gen.tex	/^\\lstinputlisting[caption=Comparing SpanningTree objects for equality, label=lst:comparison, firstline=88, lastline=113]{stp\/SpanningTree.cpp}$/;"	s
 Writer	inc/json/json.h	/^class JSON_API Writer {$/;"	c	namespace:Json
 addChild	src/SpanningTree.cpp	/^void SpanningTree::addChild(const SpanningTree& child){$/;"	f	class:SpanningTree
+addChild	thesis/listings/stp/SpanningTree.cpp	/^void SpanningTree::addChild(const SpanningTree& child){$/;"	f	class:SpanningTree
 addChildValues_	inc/json/json.h	/^  bool addChildValues_;$/;"	m	class:Json::StyledWriter
 addChildValues_	src/jsoncpp.cpp	/^  bool addChildValues_ : 1;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
 addComment	src/jsoncpp.cpp	/^OurReader::addComment(Location begin, Location end, CommentPlacement placement) {$/;"	f	class:Json::OurReader
@@ -371,6 +378,7 @@ addErrorAndRecover	src/jsoncpp.cpp	/^bool OurReader::addErrorAndRecover(const JS
 addErrorAndRecover	src/jsoncpp.cpp	/^bool Reader::addErrorAndRecover(const JSONCPP_STRING& message,$/;"	f	class:Json::Reader
 addPathInArg	src/jsoncpp.cpp	/^void Path::addPathInArg(const JSONCPP_STRING& \/*path*\/,$/;"	f	class:Json::Path
 addSubTree	src/SpanningTree.cpp	/^int SpanningTree::addSubTree(const SpanningTree& other)$/;"	f	class:SpanningTree
+addSubTree	thesis/listings/stp/SpanningTree.cpp	/^int SpanningTree::addSubTree(const SpanningTree& other)$/;"	f	class:SpanningTree
 address	inc/Mac.hpp	/^        std::string address;$/;"	m	class:Mac
 address	inc/json/json.h	/^		const_pointer address( const_reference x ) const {$/;"	f	class:Json::SecureAllocator
 address	inc/json/json.h	/^		pointer address( reference x ) const {$/;"	f	class:Json::SecureAllocator
@@ -410,19 +418,21 @@ bridgeId	thesis/listings/switch/data.c	/^unsigned char *bridgeId;$/;"	v
 bridgeId	thesis/listings/switch/full.c	/^unsigned char *bridgeId;$/;"	v
 bridges	inc/Sniffer.hpp	/^        static std::vector<Bridge> bridges;$/;"	m	class:Sniffer
 bridges	src/Sniffer.cpp	/^std::vector<Bridge> Sniffer::bridges;$/;"	m	class:Sniffer	file:
+bridges	thesis/listings/stp/Sniffer.cpp	/^std::vector<Bridge> Sniffer::bridges;$/;"	m	class:Sniffer	file:
 buffer	inc/Server.hpp	/^        char buffer[1024];$/;"	m	class:Server
-buffer	thesis/listings/stp/stpFilter.c	/^char buffer[17];$/;"	v
 c_str	inc/json/json.h	/^  const char* c_str() const { return c_str_; }$/;"	f	class:Json::StaticString
 c_str_	inc/json/json.h	/^  const char* c_str_;$/;"	m	class:Json::StaticString
 childValues_	inc/json/json.h	/^  ChildValues childValues_;$/;"	m	class:Json::StyledStreamWriter
 childValues_	inc/json/json.h	/^  ChildValues childValues_;$/;"	m	class:Json::StyledWriter
 childValues_	src/jsoncpp.cpp	/^  ChildValues childValues_;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
 children	inc/SpanningTree.hpp	/^        std::vector<SpanningTree> children;$/;"	m	class:SpanningTree
-children	thesis/listings/stp/spanningTree.cpp	/^        std::vector<SpanningTree> children;$/;"	m	class:SpanningTree	file:
+children	thesis/listings/stp/SpanningTree.hpp	/^        std::vector<SpanningTree> children;$/;"	m	class:SpanningTree
 clear	src/jsoncpp.cpp	/^void Value::clear() {$/;"	f	class:Json::Value
 clearAndAdd	src/Sniffer.cpp	/^void Sniffer::clearAndAdd(Bridge firstHop, Bridge root){$/;"	f	class:Sniffer
+clearAndAdd	thesis/listings/stp/Sniffer.cpp	/^void Sniffer::clearAndAdd(Bridge firstHop, Bridge root){$/;"	f	class:Sniffer
 client	inc/Sniffer.hpp	/^        static Client * client;$/;"	m	class:Sniffer
 client	src/Sniffer.cpp	/^Client * Sniffer::client;$/;"	m	class:Sniffer	file:
+client	thesis/listings/stp/Sniffer.cpp	/^Client * Sniffer::client;$/;"	m	class:Sniffer	file:
 clientAddress	inc/Server.hpp	/^        struct sockaddr_in serverAddress, clientAddress;$/;"	m	class:Server	typeref:struct:Server::
 clientData	inc/Server.hpp	/^        std::map<int, std::vector<Bridge>> clientData;$/;"	m	class:Server
 clientLength	inc/Server.hpp	/^        socklen_t clientLength;$/;"	m	class:Server
@@ -448,6 +458,7 @@ containsControlCharacter	src/jsoncpp.cpp	/^static bool containsControlCharacter(
 containsControlCharacter0	src/jsoncpp.cpp	/^static bool containsControlCharacter0(const char* str, unsigned len) {$/;"	f	namespace:Json
 containsNewLine	src/jsoncpp.cpp	/^static bool containsNewLine(Reader::Location begin, Reader::Location end) {$/;"	f	namespace:Json
 containsRoot	src/SpanningTree.cpp	/^int SpanningTree::containsRoot(const SpanningTree& tree) const{$/;"	f	class:SpanningTree
+containsRoot	thesis/listings/stp/SpanningTree.cpp	/^int SpanningTree::containsRoot(const SpanningTree& tree) const{$/;"	f	class:SpanningTree
 copy	src/jsoncpp.cpp	/^void ValueIteratorBase::copy(const SelfType& other) {$/;"	f	class:Json::ValueIteratorBase
 create_socket	thesis/listings/switch/full.c	/^int create_socket(char *device, int *sockfd, unsigned char *mac){$/;"	f
 cs_	src/jsoncpp.cpp	/^  CommentStyle::Enum cs_;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
@@ -506,7 +517,6 @@ end_	src/jsoncpp.cpp	/^  Location end_;$/;"	m	class:Json::OurReader	file:
 endingLineFeedSymbol_	src/jsoncpp.cpp	/^  JSONCPP_STRING endingLineFeedSymbol_;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
 errors_	inc/json/json.h	/^  Errors errors_;$/;"	m	class:Json::Reader
 errors_	src/jsoncpp.cpp	/^  Errors errors_;$/;"	m	class:Json::OurReader	file:
-ethh	thesis/listings/stp/stpFilter.c	/^struct ethhdr *ethh = (struct ethhdr*) bytes;$/;"	v	typeref:struct:ethhdr
 extension	inc/Bridge.hpp	/^        unsigned short extension;$/;"	m	class:Bridge
 extension	thesis/listings/switch/full.c	/^unsigned char priority, extension;$/;"	v
 extra_	inc/json/json.h	/^    Location extra_;$/;"	m	class:Json::Reader::ErrorInfo
@@ -524,6 +534,7 @@ found	thesis/listings/switch/forwarding.c	/^int found = 0;$/;"	v
 fromJson	src/Bridge.cpp	/^Bridge Bridge::fromJson(const Json::Value buildFrom){$/;"	f	class:Bridge
 fromJson	src/Mac.cpp	/^Mac Mac::fromJson(const Json::Value buildFrom){$/;"	f	class:Mac
 fromJson	src/SpanningTree.cpp	/^SpanningTree SpanningTree::fromJson(const Json::Value buildFrom){$/;"	f	class:SpanningTree
+fromJson	thesis/listings/stp/SpanningTree.cpp	/^SpanningTree SpanningTree::fromJson(const Json::Value buildFrom){$/;"	f	class:SpanningTree
 generateSTP	thesis/listings/switch/full.c	/^void generateSTP(unsigned char *packet, unsigned char *btype, unsigned char *bflags, unsigned char *port, int padding){$/;"	f
 get	src/jsoncpp.cpp	/^Value Value::get(ArrayIndex index, const Value& defaultValue) const {$/;"	f	class:Json::Value
 get	src/jsoncpp.cpp	/^Value Value::get(JSONCPP_STRING const& key, Value const& defaultValue) const$/;"	f	class:Json::Value
@@ -550,16 +561,19 @@ getOffsetLimit	src/jsoncpp.cpp	/^ptrdiff_t Value::getOffsetLimit() const { retur
 getOffsetStart	src/jsoncpp.cpp	/^ptrdiff_t Value::getOffsetStart() const { return start_; }$/;"	f	class:Json::Value
 getPriority	src/Bridge.cpp	/^const short Bridge::getPriority() const$/;"	f	class:Bridge
 getRoot	src/SpanningTree.cpp	/^Bridge SpanningTree::getRoot() const{$/;"	f	class:SpanningTree
+getRoot	thesis/listings/stp/SpanningTree.cpp	/^Bridge SpanningTree::getRoot() const{$/;"	f	class:SpanningTree
 getString	src/jsoncpp.cpp	/^bool Value::getString(char const** str, char const** cend) const {$/;"	f	class:Json::Value
 getStructuredErrors	src/jsoncpp.cpp	/^std::vector<OurReader::StructuredError> OurReader::getStructuredErrors() const {$/;"	f	class:Json::OurReader
 getStructuredErrors	src/jsoncpp.cpp	/^std::vector<Reader::StructuredError> Reader::getStructuredErrors() const {$/;"	f	class:Json::Reader
 getTrees	src/Server.cpp	/^std::vector<SpanningTree> Server::getTrees(){$/;"	f	class:Server
+getTrees	thesis/listings/stp/Server.cpp	/^std::vector<SpanningTree> Server::getTrees(){$/;"	f	class:Server
 getValidReaderKeys	src/jsoncpp.cpp	/^static void getValidReaderKeys(std::set<JSONCPP_STRING>* valid_keys)$/;"	f	namespace:Json
 getValidWriterKeys	src/jsoncpp.cpp	/^static void getValidWriterKeys(std::set<JSONCPP_STRING>* valid_keys)$/;"	f	namespace:Json
 good	src/jsoncpp.cpp	/^bool OurReader::good() const {$/;"	f	class:Json::OurReader
 good	src/jsoncpp.cpp	/^bool Reader::good() const {$/;"	f	class:Json::Reader
 hadTC	inc/Sniffer.hpp	/^        static bool hadTC;$/;"	m	class:Sniffer
 hadTC	src/Sniffer.cpp	/^bool Sniffer::hadTC;$/;"	m	class:Sniffer	file:
+hadTC	thesis/listings/stp/Sniffer.cpp	/^bool Sniffer::hadTC;$/;"	m	class:Sniffer	file:
 hadTc	thesis/listings/switch/full.c	/^int hadTc;$/;"	v
 hasComment	src/jsoncpp.cpp	/^bool Value::hasComment(CommentPlacement placement) const {$/;"	f	class:Json::Value
 hasCommentForValue	src/jsoncpp.cpp	/^bool BuiltStyledStreamWriter::hasCommentForValue(const Value& value) {$/;"	f	class:Json::BuiltStyledStreamWriter
@@ -671,6 +685,7 @@ maxUInt64	inc/json/json.h	/^  static const UInt64 maxUInt64;$/;"	m	class:Json::V
 maxUInt64	src/jsoncpp.cpp	/^const UInt64 Value::maxUInt64 = UInt64(-1);$/;"	m	class:Json::Value	file:
 maxUInt64AsDouble	src/jsoncpp.cpp	/^static const double maxUInt64AsDouble = 18446744073709551615.0;$/;"	m	namespace:Json	file:
 maxWidth	src/SpanningTree.cpp	/^int SpanningTree::maxWidth() const{$/;"	f	class:SpanningTree
+maxWidth	thesis/listings/stp/SpanningTree.cpp	/^int SpanningTree::maxWidth() const{$/;"	f	class:SpanningTree
 maxWidth	thesis/listings/stp/maxWidth.cpp	/^int SpanningTree::maxWidth() const{$/;"	f	class:SpanningTree
 max_size	inc/json/json.h	/^		size_type max_size() const {$/;"	f	class:Json::SecureAllocator
 memberName	src/jsoncpp.cpp	/^char const* ValueIteratorBase::memberName() const {$/;"	f	class:Json::ValueIteratorBase
@@ -700,6 +715,7 @@ newStreamWriter	src/jsoncpp.cpp	/^StreamWriter* StreamWriterBuilder::newStreamWr
 newsockfd	inc/Server.hpp	/^        int sockfd, newsockfd;$/;"	m	class:Server
 noConnect	inc/Sniffer.hpp	/^        static bool noConnect;$/;"	m	class:Sniffer
 noConnect	src/Sniffer.cpp	/^bool Sniffer::noConnect;$/;"	m	class:Sniffer	file:
+noConnect	thesis/listings/stp/Sniffer.cpp	/^bool Sniffer::noConnect;$/;"	m	class:Sniffer	file:
 noDuplication	inc/json/json.h	/^      noDuplication = 0,$/;"	e	enum:Json::Value::CZString::DuplicationPolicy
 nodes_	inc/json/json.h	/^  Nodes nodes_;$/;"	m	class:Json::Reader
 nodes_	src/jsoncpp.cpp	/^  Nodes nodes_;$/;"	m	class:Json::OurReader	file:
@@ -727,9 +743,11 @@ operator !=	src/Bridge.cpp	/^int operator!=(const Bridge& lhs, const Bridge& rhs
 operator !=	src/Mac.cpp	/^int operator!=(const Mac& lhs, const Mac& rhs){$/;"	f
 operator !=	src/SpanningTree.cpp	/^int operator!=(const SpanningTree& lhs, const SpanningTree& rhs){$/;"	f
 operator !=	src/jsoncpp.cpp	/^bool Value::operator!=(const Value& other) const { return !(*this == other); }$/;"	f	class:Json::Value
+operator !=	thesis/listings/stp/SpanningTree.cpp	/^int operator!=(const SpanningTree& lhs, const SpanningTree& rhs){$/;"	f
 operator *	inc/json/json.h	/^  reference operator*() const { return deref(); }$/;"	f	class:Json::ValueConstIterator
 operator *	inc/json/json.h	/^  reference operator*() const { return deref(); }$/;"	f	class:Json::ValueIterator
 operator +	src/SpanningTree.cpp	/^SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){$/;"	f
+operator +	thesis/listings/stp/SpanningTree.cpp	/^SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){$/;"	f
 operator +	thesis/listings/stp/treeAdd.cpp	/^SpanningTree operator+(const SpanningTree& lhs, const SpanningTree& rhs){$/;"	f
 operator ++	inc/json/json.h	/^  SelfType operator++(int) {$/;"	f	class:Json::ValueConstIterator
 operator ++	inc/json/json.h	/^  SelfType operator++(int) {$/;"	f	class:Json::ValueIterator
@@ -753,6 +771,7 @@ operator =	src/jsoncpp.cpp	/^Value& Value::operator=(Value other) {$/;"	f	class:
 operator =	src/jsoncpp.cpp	/^Value::CZString& Value::CZString::operator=(CZString other) {$/;"	f	class:Json::Value::CZString
 operator =	src/jsoncpp.cpp	/^ValueIterator& ValueIterator::operator=(const SelfType& other) {$/;"	f	class:Json::ValueIterator
 operator =	src/jsoncpp.cpp	/^operator=(const ValueIteratorBase& other) {$/;"	f	class:Json::ValueConstIterator
+operator =	thesis/listings/stp/SpanningTree.cpp	/^SpanningTree SpanningTree::operator=(const SpanningTree& other){$/;"	f	class:SpanningTree
 operator ==	inc/json/json.h	/^  bool operator==(const SelfType& other) const { return isEqual(other); }$/;"	f	class:Json::ValueIteratorBase
 operator ==	inc/json/json.h	/^bool operator==(const SecureAllocator<T>&, const SecureAllocator<U>&) {$/;"	f	namespace:Json
 operator ==	src/Bridge.cpp	/^int operator==(const Bridge& lhs, const Bridge& rhs){$/;"	f
@@ -760,6 +779,7 @@ operator ==	src/Mac.cpp	/^int operator==(const Mac& lhs, const Mac& rhs){$/;"	f
 operator ==	src/SpanningTree.cpp	/^int operator==(const SpanningTree& lhs, const SpanningTree& rhs){$/;"	f
 operator ==	src/jsoncpp.cpp	/^bool Value::CZString::operator==(const CZString& other) const {$/;"	f	class:Json::Value::CZString
 operator ==	src/jsoncpp.cpp	/^bool Value::operator==(const Value& other) const {$/;"	f	class:Json::Value
+operator ==	thesis/listings/stp/SpanningTree.cpp	/^int operator==(const SpanningTree& lhs, const SpanningTree& rhs){$/;"	f
 operator >	src/jsoncpp.cpp	/^bool Value::operator>(const Value& other) const { return other < *this; }$/;"	f	class:Json::Value
 operator >=	src/jsoncpp.cpp	/^bool Value::operator>=(const Value& other) const { return !(*this < other); }$/;"	f	class:Json::Value
 operator >>	src/jsoncpp.cpp	/^JSONCPP_ISTREAM& operator>>(JSONCPP_ISTREAM& sin, Value& root) {$/;"	f	namespace:Json
@@ -781,6 +801,7 @@ output	inc/Server.hpp	/^        std::ofstream output;$/;"	m	class:Server
 output	inc/Sniffer.hpp	/^        static std::ofstream output;$/;"	m	class:Sniffer
 output	src/Sniffer.cpp	/^std::ofstream Sniffer::output;$/;"	m	class:Sniffer	file:
 output	src/stp_sniffer.c	/^FILE *output;$/;"	v
+output	thesis/listings/stp/Sniffer.cpp	/^std::ofstream Sniffer::output;$/;"	m	class:Sniffer	file:
 packageIndex	thesis/listings/switch/full.c	/^int packageIndex;$/;"	v
 parse	src/jsoncpp.cpp	/^Reader::parse(const std::string& document, Value& root, bool collectComments) {$/;"	f	class:Json::Reader
 parse	src/jsoncpp.cpp	/^bool OurReader::parse(const char* beginDoc,$/;"	f	class:Json::OurReader
@@ -800,6 +821,7 @@ priority	thesis/listings/switch/full.c	/^unsigned char priority, extension;$/;"	
 processPacket	thesis/listings/switch/full.c	/^void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){$/;"	f
 process_packet	src/Sniffer.cpp	/^void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){$/;"	f	class:Sniffer
 process_packet	src/stp_sniffer.c	/^void process_packet(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){$/;"	f
+process_packet	thesis/listings/stp/Sniffer.cpp	/^void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){$/;"	f	class:Sniffer
 psize	thesis/listings/stp/payload.c	/^int psize = header->len - sizeof(struct ethhdr);$/;"	v
 pushError	src/jsoncpp.cpp	/^bool OurReader::pushError(const Value& value, const JSONCPP_STRING& message) {$/;"	f	class:Json::OurReader
 pushError	src/jsoncpp.cpp	/^bool OurReader::pushError(const Value& value, const JSONCPP_STRING& message, const Value& extra) {$/;"	f	class:Json::OurReader
@@ -857,13 +879,14 @@ rightMargin_	inc/json/json.h	/^  unsigned int rightMargin_;$/;"	m	class:Json::St
 rightMargin_	inc/json/json.h	/^  unsigned int rightMargin_;$/;"	m	class:Json::StyledWriter
 rightMargin_	src/jsoncpp.cpp	/^  unsigned int rightMargin_;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
 root	inc/SpanningTree.hpp	/^        Bridge root;$/;"	m	class:SpanningTree
-root	thesis/listings/stp/spanningTree.cpp	/^        Bridge root;$/;"	m	class:SpanningTree	file:
+root	thesis/listings/stp/SpanningTree.hpp	/^        Bridge root;$/;"	m	class:SpanningTree
 root	thesis/listings/switch/full.c	/^unsigned char root[6];$/;"	v
 rootContained	thesis/listings/stp/contained.c	/^int rootContained = 0, oldHopMa = -1;$/;"	v
 rootExtension	thesis/listings/switch/full.c	/^unsigned char rootPriority, rootExtension;$/;"	v
 rootPathCost	thesis/listings/switch/full.c	/^int rootPathCost;$/;"	v
 rootPriority	thesis/listings/switch/full.c	/^unsigned char rootPriority, rootExtension;$/;"	v
 run	src/Server.cpp	/^void Server::run(){$/;"	f	class:Server
+run	thesis/listings/stp/Server.cpp	/^void Server::run(){$/;"	f	class:Server
 send	src/Client.cpp	/^void Client::send(Json::Value value){$/;"	f	class:Client
 sendSTP	thesis/listings/switch/full.c	/^void sendSTP(int index){$/;"	f
 sendTCN	thesis/listings/switch/full.c	/^void sendTCN(int index){$/;"	f
@@ -887,6 +910,7 @@ settings_	inc/json/json.h	/^  Json::Value settings_;$/;"	m	class:Json::CharReade
 settings_	inc/json/json.h	/^  Json::Value settings_;$/;"	m	class:Json::StreamWriterBuilder
 size	src/SpanningTree.cpp	/^int SpanningTree::size() const{$/;"	f	class:SpanningTree
 size	src/jsoncpp.cpp	/^ArrayIndex Value::size() const {$/;"	f	class:Json::Value
+size	thesis/listings/stp/SpanningTree.cpp	/^int SpanningTree::size() const{$/;"	f	class:SpanningTree
 size_t	inc/json/json.h	/^  typedef unsigned int size_t;$/;"	t	class:Json::ValueIterator
 size_t	inc/json/json.h	/^  typedef unsigned int size_t;$/;"	t	class:Json::ValueIteratorBase
 skipCommentTokens	src/jsoncpp.cpp	/^void OurReader::skipCommentTokens(Token& token) {$/;"	f	class:Json::OurReader
@@ -908,6 +932,7 @@ stackDepth_g	src/jsoncpp.cpp	/^static int       stackDepth_g = 0;  \/\/ see read
 stackLimit_	src/jsoncpp.cpp	/^  int stackLimit_;$/;"	m	class:Json::OurFeatures	file:
 stackLimit_g	src/jsoncpp.cpp	/^static int const stackLimit_g = 1000;$/;"	v	file:
 start	src/Sniffer.cpp	/^void Sniffer::start(const std::string inputFileName, const std::string deviceName){$/;"	f	class:Sniffer
+start	thesis/listings/stp/Sniffer.cpp	/^void Sniffer::start(const std::string inputFileName, const std::string deviceName){$/;"	f	class:Sniffer
 start_	inc/json/json.h	/^    Location start_;$/;"	m	class:Json::Reader::Token
 start_	inc/json/json.h	/^  ptrdiff_t start_;$/;"	m	class:Json::Value
 start_	src/jsoncpp.cpp	/^    Location start_;$/;"	m	class:Json::OurReader::Token	file:
@@ -936,12 +961,15 @@ timestamps	thesis/listings/switch/full.c	/^time_t *timestamps;$/;"	v
 toJson	src/Bridge.cpp	/^Json::Value Bridge::toJson() const{$/;"	f	class:Bridge
 toJson	src/Mac.cpp	/^Json::Value Mac::toJson() const{$/;"	f	class:Mac
 toJson	src/SpanningTree.cpp	/^Json::Value SpanningTree::toJson() const {$/;"	f	class:SpanningTree
+toJson	thesis/listings/stp/SpanningTree.cpp	/^Json::Value SpanningTree::toJson() const {$/;"	f	class:SpanningTree
 toStyledString	src/jsoncpp.cpp	/^JSONCPP_STRING Value::toStyledString() const {$/;"	f	class:Json::Value
 toTikz	src/Bridge.cpp	/^std::string Bridge::toTikz() const{$/;"	f	class:Bridge
 toTikz	src/SpanningTree.cpp	/^std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
+toTikz	thesis/listings/stp/SpanningTree.cpp	/^std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
 toTikz	thesis/listings/stp/output.cpp	/^std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
 toTikz	thesis/listings/stp/output1.cpp	/^std::string SpanningTree::toTikz(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
 toTikzHelper	src/SpanningTree.cpp	/^std::pair<std::string, int> SpanningTree::toTikzHelper(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
+toTikzHelper	thesis/listings/stp/SpanningTree.cpp	/^std::pair<std::string, int> SpanningTree::toTikzHelper(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
 toTikzHelper	thesis/listings/stp/output.cpp	/^std::pair<std::string, int> SpanningTree::toTikzHelper(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
 toTikzHelper	thesis/listings/stp/output1.cpp	/^std::pair<std::string, int> SpanningTree::toTikzHelper(double lowerX, double upperX, int y, int yStep, int oldMessageAge, int index) const {$/;"	f	class:SpanningTree
 tokenArrayBegin	inc/json/json.h	/^    tokenArrayBegin,$/;"	e	enum:Json::Reader::TokenType
@@ -980,6 +1008,7 @@ token_	src/jsoncpp.cpp	/^    Token token_;$/;"	m	class:Json::OurReader::ErrorInf
 tool  Output	thesis/chapters/testing.tex	/^Additionally, this time the identification of bridge connections is possible, and the topology should therefore be fully identified.$/;"	b
 tool  Output	thesis/chapters/testing.tex	/^Figure~\\ref{fig:pnpExp} shows the output we expect.$/;"	b
 treeHelper	src/Server.cpp	/^SpanningTree Server::treeHelper(std::vector<Bridge>::iterator current, std::vector<Bridge>::iterator end){$/;"	f	class:Server
+treeHelper	thesis/listings/stp/Server.cpp	/^SpanningTree Server::treeHelper(std::vector<Bridge>::iterator current, std::vector<Bridge>::iterator end){$/;"	f	class:Server
 type	src/jsoncpp.cpp	/^ValueType Value::type() const { return type_; }$/;"	f	class:Json::Value
 type_	inc/json/json.h	/^    TokenType type_;$/;"	m	class:Json::Reader::Token
 type_	src/jsoncpp.cpp	/^    TokenType type_;$/;"	m	class:Json::OurReader::Token	file:
@@ -991,7 +1020,7 @@ unindent	src/jsoncpp.cpp	/^void BuiltStyledStreamWriter::unindent() {$/;"	f	clas
 unindent	src/jsoncpp.cpp	/^void StyledStreamWriter::unindent() {$/;"	f	class:Json::StyledStreamWriter
 unindent	src/jsoncpp.cpp	/^void StyledWriter::unindent() {$/;"	f	class:Json::StyledWriter
 updatePortStates	thesis/listings/switch/full.c	/^void updatePortStates(int currentIndex, unsigned char rPriority, unsigned char rExtension, unsigned char *rMac, unsigned int pathCost, unsigned char age, unsigned char bPriority, unsigned char bExtension){$/;"	f
-updatePortStates	thesis/listings/switch/portStates.c	/^void updatePortStates(int currentIndex, unsigned char rPriority, unsigned char rExtension, unsigned char *rMac, unsigned int pathCost, unsigned char age, unsigned char bPriority, unsigned char bExtension){$/;"	f
+updatePortStates	thesis/listings/switch/portStates.c	/^void updatePortStates(int currentIndex, unsigned char rPriority, unsigned char rExtension, unsigned char *rMac, unsigned int pathCost, unsigned short age, unsigned char bPriority, unsigned char bExtension){$/;"	f
 useSpecialFloats_	src/jsoncpp.cpp	/^  bool useSpecialFloats_ : 1;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
 validate	src/jsoncpp.cpp	/^bool CharReaderBuilder::validate(Json::Value* invalid) const$/;"	f	class:Json::CharReaderBuilder
 validate	src/jsoncpp.cpp	/^bool StreamWriterBuilder::validate(Json::Value* invalid) const$/;"	f	class:Json::StreamWriterBuilder
@@ -1009,6 +1038,7 @@ value_type	inc/json/json.h	/^  typedef Value value_type;$/;"	t	class:Json::Value
 value_type	inc/json/json.h	/^  typedef const Value value_type;$/;"	t	class:Json::ValueConstIterator
 what	src/jsoncpp.cpp	/^char const* Exception::what() const throw()$/;"	f	class:Json::Exception
 widthAtLevel	src/SpanningTree.cpp	/^int SpanningTree::widthAtLevel(int levelsRemaining) const{$/;"	f	class:SpanningTree
+widthAtLevel	thesis/listings/stp/SpanningTree.cpp	/^int SpanningTree::widthAtLevel(int levelsRemaining) const{$/;"	f	class:SpanningTree
 widthAtLevel	thesis/listings/stp/maxWidth.cpp	/^int SpanningTree::widthAtLevel(int levelsRemaining) const{$/;"	f	class:SpanningTree
 write	src/jsoncpp.cpp	/^JSONCPP_STRING FastWriter::write(const Value& root) {$/;"	f	class:Json::FastWriter
 write	src/jsoncpp.cpp	/^JSONCPP_STRING StyledWriter::write(const Value& root) {$/;"	f	class:Json::StyledWriter
@@ -1044,8 +1074,11 @@ yamlCompatiblityEnabled_	inc/json/json.h	/^  bool yamlCompatiblityEnabled_;$/;"	
 ~Factory	inc/json/json.h	/^    virtual ~Factory() {}$/;"	f	class:Json::CharReader::Factory
 ~Factory	src/jsoncpp.cpp	/^StreamWriter::Factory::~Factory()$/;"	f	class:Json::StreamWriter::Factory
 ~Server	src/Server.cpp	/^Server::~Server(){$/;"	f	class:Server
+~Server	thesis/listings/stp/Server.cpp	/^Server::~Server(){$/;"	f	class:Server
 ~Sniffer	src/Sniffer.cpp	/^Sniffer::~Sniffer(){$/;"	f	class:Sniffer
+~Sniffer	thesis/listings/stp/Sniffer.cpp	/^Sniffer::~Sniffer(){$/;"	f	class:Sniffer
 ~SpanningTree	src/SpanningTree.cpp	/^SpanningTree::~SpanningTree(){$/;"	f	class:SpanningTree
+~SpanningTree	thesis/listings/stp/SpanningTree.cpp	/^SpanningTree::~SpanningTree(){$/;"	f	class:SpanningTree
 ~StreamWriter	src/jsoncpp.cpp	/^StreamWriter::~StreamWriter()$/;"	f	class:Json::StreamWriter
 ~StreamWriterBuilder	src/jsoncpp.cpp	/^StreamWriterBuilder::~StreamWriterBuilder()$/;"	f	class:Json::StreamWriterBuilder
 ~StyledStreamWriter	inc/json/json.h	/^  ~StyledStreamWriter() {}$/;"	f	class:Json::StyledStreamWriter
