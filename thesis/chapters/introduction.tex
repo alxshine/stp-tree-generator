@@ -19,6 +19,8 @@ To prevent this the Spannning Tree Protocol (STP)\cite{perlman85} was created.
 It creates an overlay network, in the shape of a tree, to remove loops from the network.
 In this overlay, broadcast storms are not possible anymore.
 An example for broadcast propagation in an STP overlay network is shown in Figure~\ref{fig:stp_example}.
+As shown in Figure~\ref{fig:stp_example}, the overlay ignores the connection between bridges \textit{C} and \textit{D}.
+This leads to the broadcast being propagated to every node in just two steps, without any extra packets being generated.
 
 \begin{figure}[p]
     \begin{center}
@@ -167,7 +169,7 @@ An example for broadcast propagation in an STP overlay network is shown in Figur
 
 For this thesis, we will only talk about switches.
 Hubs, while still existent, are hardly ever used and not STP capable.
-We will also refer to switches as bridges, in order to be compliant with STP nomenclature\cite{perlman85}.\\
+We will also refer to switches as bridges, in order to be compliant with STP nomenclature\cite{perlman85}.
 
 Networks with STP utilization are usually quite large.
 Additionally, changes and outages are hidden by STP and redundant links in the network.
