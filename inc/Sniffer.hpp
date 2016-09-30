@@ -9,6 +9,7 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
+#include <bitset>
 
 #include <pcap.h>
 #include <netinet/if_ether.h>

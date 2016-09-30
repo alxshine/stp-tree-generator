@@ -8,15 +8,17 @@
 class Bridge{
     private:
         Mac mac;
-        short priority;
-        short messageAge;
+        unsigned short priority;
+        unsigned short extension;
+        unsigned short messageAge;
         
     public:
         Bridge();
-        Bridge(Mac& m, const short p, const short mA);
+        Bridge(Mac& m, const unsigned short p, const unsigned short e, const unsigned short mA);
         Bridge(const Bridge& other);
         const Mac& getMac() const;
-        const short getPriority() const ;
+        const short getPriority() const;
+        const short getExtension() const;
         const short getMessageAge() const;
         void setMessageAge(short mA);
         Json::Value toJson() const;

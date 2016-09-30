@@ -149,9 +149,18 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
 
     //root identifier
     //bridge priority is the next 2 bytes
-    unsigned short rPriority;
-    //actual priority is 4 bits
-    rPriority = *((short*)payload);
+    //actual bridge priority is 4 bits, 
+    //then comes id extension with 12 bits
+    
+    //generate filters
+    unsigned short extFilter = -1;
+    extFilter = extFilter>>4;
+    unsigned short prioFilter = extFilter<<12;
+    
+    unsigned short rPriority, rExtension;
+    rPriority = htons(*((short*)payload));
+    rExtension = rPriority & extFilter;
+    rPriority = rPriority & prioFilter;
     payload+=2;
     psize-=2;
     //next 6 bytes is the root bridge id
@@ -164,9 +173,11 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     psize-=4;
 
     //bridge identifier
-    ////bridge priority is the next 2 bytes
-    unsigned short bPriority;
-    bPriority = *((short*)payload);
+    //bridge priority is the next 2 bytes
+    unsigned short bPriority, bExtension;
+    bPriority = htons(*((short*)payload));
+    bExtension = bPriority & extFilter;
+    bPriority = bPriority & prioFilter;
     payload+=2;
     psize-=2;
     //next 6 bytes is the bridge mac address
@@ -179,14 +190,14 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
     psize-=2;
 
     //next 2 bytes is message age
-    short messageAge;
+    unsigned short messageAge;
     messageAge = *((short*)payload);
     payload+=2;
     psize-=2;
 
     //generate Bridge objects
-    Bridge root(rootMac, rPriority, 0);
-    Bridge firstHop(bridgeMac, bPriority, messageAge);
+    Bridge root(rootMac, rPriority, rExtension, 0);
+    Bridge firstHop(bridgeMac, bPriority, bExtension, messageAge);
 
     //check if the two nodes are contained
     int rootContained = 0, oldHopMa = -1;

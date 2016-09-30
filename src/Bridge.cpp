@@ -3,18 +3,16 @@
 Bridge::Bridge(){
 }
 
-Bridge::Bridge(const Bridge& other):mac(other.mac), priority(other.priority), messageAge(other.messageAge)
+Bridge::Bridge(const Bridge& other):mac(other.mac), priority(other.priority), extension(other.extension), messageAge(other.messageAge)
 { }
 
-Bridge::Bridge(Mac& m, const short p, const short mA):mac(m), priority(p), messageAge(mA){ }
+Bridge::Bridge(Mac& m, const unsigned short p, const unsigned short e, const unsigned short mA):mac(m), priority(p), extension(e), messageAge(mA){ }
 
-const Mac& Bridge::getMac() const
-{
+const Mac& Bridge::getMac() const{
     return mac;
 }
 
-const short Bridge::getMessageAge() const 
-{
+const short Bridge::getMessageAge() const{
     return messageAge;
 }
 
@@ -27,6 +25,10 @@ const short Bridge::getPriority() const
     return priority;
 }
 
+const short Bridge::getExtension() const{
+    return extension;
+}
+
 Json::Value Bridge::toJson() const{
     Json::Value ret;
     ret["mac"] = mac.toJson();
@@ -36,7 +38,7 @@ Json::Value Bridge::toJson() const{
 }
 
 std::string Bridge::toTikz() const{
-    return std::to_string(priority) + " - " + mac.getAddress() + ", " + std::to_string(messageAge);
+    return std::to_string(priority) + ":" + std::to_string(extension) + " - " + mac.getAddress() + ", " + std::to_string(messageAge);
 }
 
 Bridge Bridge::fromJson(const Json::Value buildFrom){

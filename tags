@@ -28,8 +28,8 @@ BLOCKING	thesis/listings/switch/full.c	/^    BLOCKING } PortState;$/;"	e	enum:po
 Background	thesis/chapters/background.tex	/^\\chapter{Background}$/;"	c
 Bridge	inc/Bridge.hpp	/^class Bridge{$/;"	c
 Bridge	src/Bridge.cpp	/^Bridge::Bridge(){$/;"	f	class:Bridge
-Bridge	src/Bridge.cpp	/^Bridge::Bridge(Mac& m, const short p, const short mA):mac(m), priority(p), messageAge(mA){ }$/;"	f	class:Bridge
-Bridge	src/Bridge.cpp	/^Bridge::Bridge(const Bridge& other):mac(other.mac), priority(other.priority), messageAge(other.messageAge)$/;"	f	class:Bridge
+Bridge	src/Bridge.cpp	/^Bridge::Bridge(Mac& m, const unsigned short p, const unsigned short e, const unsigned short mA):mac(m), priority(p), extension(e), messageAge(mA){ }$/;"	f	class:Bridge
+Bridge	src/Bridge.cpp	/^Bridge::Bridge(const Bridge& other):mac(other.mac), priority(other.priority), extension(other.extension), messageAge(other.messageAge)$/;"	f	class:Bridge
 Bridge Removal Test	thesis/chapters/testing.tex	/^\\end{figure}$/;"	u
 BuiltStyledStreamWriter	src/jsoncpp.cpp	/^BuiltStyledStreamWriter::BuiltStyledStreamWriter($/;"	f	class:Json::BuiltStyledStreamWriter
 BuiltStyledStreamWriter	src/jsoncpp.cpp	/^struct BuiltStyledStreamWriter : public StreamWriter$/;"	s	namespace:Json	file:
@@ -507,6 +507,7 @@ endingLineFeedSymbol_	src/jsoncpp.cpp	/^  JSONCPP_STRING endingLineFeedSymbol_;$
 errors_	inc/json/json.h	/^  Errors errors_;$/;"	m	class:Json::Reader
 errors_	src/jsoncpp.cpp	/^  Errors errors_;$/;"	m	class:Json::OurReader	file:
 ethh	thesis/listings/stp/stpFilter.c	/^struct ethhdr *ethh = (struct ethhdr*) bytes;$/;"	v	typeref:struct:ethhdr
+extension	inc/Bridge.hpp	/^        unsigned short extension;$/;"	m	class:Bridge
 extension	thesis/listings/switch/full.c	/^unsigned char priority, extension;$/;"	v
 extra_	inc/json/json.h	/^    Location extra_;$/;"	m	class:Json::Reader::ErrorInfo
 extra_	src/jsoncpp.cpp	/^    Location extra_;$/;"	m	class:Json::OurReader::ErrorInfo	file:
@@ -532,6 +533,7 @@ get	src/jsoncpp.cpp	/^Value Value::get(const CppTL::ConstString& key,$/;"	f	clas
 getAddress	src/Mac.cpp	/^std::string Mac::getAddress () const{$/;"	f	class:Mac
 getCStringLength	src/jsoncpp.cpp	/^unsigned Value::getCStringLength() const {$/;"	f	class:Json::Value
 getComment	src/jsoncpp.cpp	/^JSONCPP_STRING Value::getComment(CommentPlacement placement) const {$/;"	f	class:Json::Value
+getExtension	src/Bridge.cpp	/^const short Bridge::getExtension() const{$/;"	f	class:Bridge
 getFormatedErrorMessages	src/jsoncpp.cpp	/^JSONCPP_STRING Reader::getFormatedErrorMessages() const {$/;"	f	class:Json::Reader
 getFormattedErrorMessages	src/jsoncpp.cpp	/^JSONCPP_STRING OurReader::getFormattedErrorMessages() const {$/;"	f	class:Json::OurReader
 getFormattedErrorMessages	src/jsoncpp.cpp	/^JSONCPP_STRING Reader::getFormattedErrorMessages() const {$/;"	f	class:Json::Reader
@@ -539,9 +541,9 @@ getLocationLineAndColumn	src/jsoncpp.cpp	/^JSONCPP_STRING OurReader::getLocation
 getLocationLineAndColumn	src/jsoncpp.cpp	/^JSONCPP_STRING Reader::getLocationLineAndColumn(Location location) const {$/;"	f	class:Json::Reader
 getLocationLineAndColumn	src/jsoncpp.cpp	/^void OurReader::getLocationLineAndColumn(Location location,$/;"	f	class:Json::OurReader
 getLocationLineAndColumn	src/jsoncpp.cpp	/^void Reader::getLocationLineAndColumn(Location location,$/;"	f	class:Json::Reader
-getMac	src/Bridge.cpp	/^const Mac& Bridge::getMac() const$/;"	f	class:Bridge
+getMac	src/Bridge.cpp	/^const Mac& Bridge::getMac() const{$/;"	f	class:Bridge
 getMemberNames	src/jsoncpp.cpp	/^Value::Members Value::getMemberNames() const {$/;"	f	class:Json::Value
-getMessageAge	src/Bridge.cpp	/^const short Bridge::getMessageAge() const $/;"	f	class:Bridge
+getMessageAge	src/Bridge.cpp	/^const short Bridge::getMessageAge() const{$/;"	f	class:Bridge
 getNextChar	src/jsoncpp.cpp	/^OurReader::Char OurReader::getNextChar() {$/;"	f	class:Json::OurReader
 getNextChar	src/jsoncpp.cpp	/^Reader::Char Reader::getNextChar() {$/;"	f	class:Json::Reader
 getOffsetLimit	src/jsoncpp.cpp	/^ptrdiff_t Value::getOffsetLimit() const { return limit_; }$/;"	f	class:Json::Value
@@ -675,7 +677,7 @@ memberName	src/jsoncpp.cpp	/^char const* ValueIteratorBase::memberName() const {
 memberName	src/jsoncpp.cpp	/^char const* ValueIteratorBase::memberName(char const** end) const {$/;"	f	class:Json::ValueIteratorBase
 message	inc/json/json.h	/^    JSONCPP_STRING message;$/;"	m	struct:Json::Reader::StructuredError
 message	src/jsoncpp.cpp	/^    JSONCPP_STRING message;$/;"	m	struct:Json::OurReader::StructuredError	file:
-messageAge	inc/Bridge.hpp	/^        short messageAge;$/;"	m	class:Bridge
+messageAge	inc/Bridge.hpp	/^        unsigned short messageAge;$/;"	m	class:Bridge
 messageAge	thesis/listings/switch/full.c	/^unsigned short messageAge;$/;"	v
 message_	inc/json/json.h	/^    JSONCPP_STRING message_;$/;"	m	class:Json::Reader::ErrorInfo
 message_	src/jsoncpp.cpp	/^    JSONCPP_STRING message_;$/;"	m	class:Json::OurReader::ErrorInfo	file:
@@ -793,7 +795,7 @@ portCost	thesis/listings/switch/full.c	/^int portCost;$/;"	v
 port_state	thesis/listings/switch/full.c	/^typedef enum port_state {$/;"	g	file:
 precision_	src/jsoncpp.cpp	/^  unsigned int precision_;$/;"	m	struct:Json::BuiltStyledStreamWriter	file:
 printMac	src/stp_sniffer.c	/^void printMac(char *string, const u_char *bytes){$/;"	f
-priority	inc/Bridge.hpp	/^        short priority;$/;"	m	class:Bridge
+priority	inc/Bridge.hpp	/^        unsigned short priority;$/;"	m	class:Bridge
 priority	thesis/listings/switch/full.c	/^unsigned char priority, extension;$/;"	v
 processPacket	thesis/listings/switch/full.c	/^void processPacket(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){$/;"	f
 process_packet	src/Sniffer.cpp	/^void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, const u_char *bytes){$/;"	f	class:Sniffer
