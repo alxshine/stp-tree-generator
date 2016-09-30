@@ -15,9 +15,7 @@
 -p textit  port	thesis/chapters/stp-tree-gen.tex	/^\\subsection*{Server Launch Parameters}$/;"	P
 -t textit  timeout	thesis/chapters/stp-tree-gen.tex	/^In cases the server is meant to be launched automatically in the background this file provides an easy means of accessing the process id.$/;"	P
 ALIGNAS	src/jsoncpp.cpp	2448;"	d	file:
-Actual Result	thesis/chapters/testing.tex	/^Because we wait for the small subtree to stabilize, establishing bridge \\textit{A} as root, the subtree should be correctly identified.$/;"	b
-Actual Result	thesis/chapters/testing.tex	/^The expected topology is shown in Figure~\\ref{fig:removalExp}.$/;"	b
-Actual Results	thesis/chapters/testing.tex	/^However, the identification of the connections is quite volatile, depending on the inner workings of the STP implemenetiations and configurations.$/;"	b
+Actual Physical Setup	thesis/chapters/testing.tex	/^\\end{figure}$/;"	u
 All	src/jsoncpp.cpp	/^    All  \/\/\/< Keep all comments.$/;"	e	enum:Json::CommentStyle::Enum	file:
 Args	inc/json/json.h	/^  typedef std::vector<PathArgument> Args;$/;"	t	class:Json::Path
 ArrayIndex	inc/json/json-forwards.h	/^typedef unsigned int ArrayIndex;$/;"	t	namespace:Json
@@ -80,6 +78,7 @@ Errors	src/jsoncpp.cpp	/^  typedef std::deque<ErrorInfo> Errors;$/;"	t	class:Jso
 Exception	inc/json/json.h	/^class JSON_API Exception : public std::exception {$/;"	c	namespace:Json
 Exception	src/jsoncpp.cpp	/^Exception::Exception(JSONCPP_STRING const& msg)$/;"	f	class:Json::Exception
 Existing alternatives	thesis/chapters/background.tex	/^\\label{background}$/;"	s
+Expected Result	thesis/chapters/testing.tex	/^This time we did not wait for the subtree to stabilize (after Figure~\\ref{fig:sdcTest3}), but instead immediately plugged bridge \\textit{A} into bridge \\textit{B}.$/;"	b
 Expected Result	thesis/chapters/testing.tex	/^\\end{enumerate}$/;"	b
 Expected Result	thesis/chapters/testing.tex	/^\\end{figure}$/;"	b
 Factory	inc/json/json.h	/^  class JSON_API Factory {$/;"	c	class:Json::CharReader
@@ -318,7 +317,7 @@ StyledStreamWriter	src/jsoncpp.cpp	/^StyledStreamWriter::StyledStreamWriter(JSON
 StyledWriter	inc/json/json.h	/^class JSON_API StyledWriter : public Writer {$/;"	c	namespace:Json
 StyledWriter	src/jsoncpp.cpp	/^StyledWriter::StyledWriter()$/;"	f	class:Json::StyledWriter
 Testing	thesis/chapters/testing.tex	/^\\chapter{Testing}$/;"	c
-Tests	thesis/chapters/testing.tex	/^\\end{figure}$/;"	s
+Tests	thesis/chapters/testing.tex	/^Not even if some of the bridges in the network were running our \\textit{software-switch} utility, as basic switching was tested and is functional.$/;"	s
 TikZ	thesis/chapters/background.tex	/^The JSON library used in this thesis is \\textit{jsoncpp}\\cite{jsoncpp}.$/;"	u
 Token	inc/json/json.h	/^  class Token {$/;"	c	class:Json::Reader
 Token	src/jsoncpp.cpp	/^  class Token {$/;"	c	class:Json::OurReader	file:
@@ -1006,7 +1005,10 @@ tokenTrue	src/jsoncpp.cpp	/^    tokenTrue,$/;"	e	enum:Json::OurReader::TokenType
 token_	inc/json/json.h	/^    Token token_;$/;"	m	class:Json::Reader::ErrorInfo
 token_	src/jsoncpp.cpp	/^    Token token_;$/;"	m	class:Json::OurReader::ErrorInfo	file:
 tool  Output	thesis/chapters/testing.tex	/^Additionally, this time the identification of bridge connections is possible, and the topology should therefore be fully identified.$/;"	b
+tool  Output	thesis/chapters/testing.tex	/^Bridge \\textit{A} should not be connected to this subtree in the output, as the \\textit{Root} bridge should be recognized immediately on reconnecting.$/;"	b
 tool  Output	thesis/chapters/testing.tex	/^Figure~\\ref{fig:pnpExp} shows the output we expect.$/;"	b
+tool  Output	thesis/chapters/testing.tex	/^The expected topology is shown in Figure~\\ref{fig:removalExp}.$/;"	b
+tool  Output	thesis/chapters/testing.tex	/^The nodes should be correctly identified, but we were unsure about the connections, as it was not clear how each bridge would update.$/;"	b
 treeHelper	src/Server.cpp	/^SpanningTree Server::treeHelper(std::vector<Bridge>::iterator current, std::vector<Bridge>::iterator end){$/;"	f	class:Server
 treeHelper	thesis/listings/stp/Server.cpp	/^SpanningTree Server::treeHelper(std::vector<Bridge>::iterator current, std::vector<Bridge>::iterator end){$/;"	f	class:Server
 type	src/jsoncpp.cpp	/^ValueType Value::type() const { return type_; }$/;"	f	class:Json::Value

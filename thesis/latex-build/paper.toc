@@ -36,5 +36,5 @@
 \contentsline {section}{\numberline {4.4}Installation and usage}{39}
 \contentsline {chapter}{\numberline {5}Testing}{40}
 \contentsline {section}{\numberline {5.1}Setup}{40}
-\contentsline {section}{\numberline {5.2}Tests}{40}
-\contentsline {chapter}{\numberline {6}Conclusion}{48}
+\contentsline {section}{\numberline {5.2}Tests}{41}
+\contentsline {chapter}{\numberline {6}Conclusion}{50}

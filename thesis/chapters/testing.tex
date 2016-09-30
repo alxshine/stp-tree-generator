@@ -4,9 +4,9 @@
 In order to ensure \tool\ fulfills the requirements stated in Chapter~\ref{introduction} we performed several tests.
 To be able to check the results for correctness, we kept the testing network small and simple.
 The layout of the test setup can be seen in Figure~\ref{fig:test_setup}.
-While a very basic network, it is sufficient for the tests described below, which will guarantee the required capabilities of the \tool.
-The root in figure~\ref{fig:test_setup} was made root by manually assigning it a higher priority than the other bridges (note that \textit{higher} in this case means \textit{smaller}).
-Bridges \textit{A}, \textit{B} and \textit{C} had their priorities left to the default value.
+While a very basic network, it is sufficient for the tests described below, which will guarantee the required capabilities of \tool.
+We changed the priority of bridge \textit{C} to 61440 (the maximum) to ensure it would not be root.
+For bridges \textit{A} and \textit{B} we used the systemd id extension to ensure they would not be root when our \textit{Root} bridge was connected.
 Nodes \textit{A}, \textit{B} and \textit{C} were running \textit{Wireshark} and \tool.
 Additionally using \textit{Wireshark} allowed us to check the actual packages involved in the testing process to monitor progress and note situations not handled correctly by \tool.
 The server for \tool\ was run on Node \textit{C}.
@@ -34,7 +34,7 @@ This layout was deduced using the debug output from our running \textit{software
                 (c) -- (nc);
             \end{tikzpicture}
             \caption{Test setup}
-            \label{fig:test_setup}
+            \label{fig:test_setup1}
         \end{subfigure}
         \hspace{1cm}
         \begin{subfigure}[b]{0.4\textwidth}
@@ -56,23 +56,39 @@ This layout was deduced using the debug output from our running \textit{software
                 (c) -- (nc);
             \end{tikzpicture}
             \caption{Expected STP overlay}
-            \label{fig:test_setup}
+            \label{fig:test_setup2}
         \end{subfigure}
     \end{center}
     \caption{The expected physical and logical network topologies}
+    \label{fig:test_setup}
 \end{figure}
+
+\subsection*{Actual Physical Setup}
+\label{physical_setup}
+Due to our problems with \textit{OpenWrt} and \textit{dd-wrt} we had to use our \textit{software-switch} tool for testing.
+We ran it on 2 laptops, which were bridges \textit{A} and \textit{B}.
+USB to Ethernet adapters were used to give the laptops an additional Ethernet port and make them usable.
+To reduce the amount of ports we needed, we ran \tool\ instances on the laptops themselves instead of on a seperate node.
+Unfortunately, the laptop replacing bridge \textit{B} sometimes got confused which interface to use for the default route when all interfaces were connected.
+This stopped it from sending data to the server, which caused the server to remove all its old data.
+It is not an issue with anything we developed, but rather \textit{NetworkManager} running on the laptop.
+The tests were not really affected, as whether bridge \textit{A} was contained in the visualization was irrelevant in the cases where it happened.
+We decided no to set the timeout in the server to a large number to circumvent this, because this might have interfered with the actual test we wanted to perform.
+
+In an actual scenario, where \tool\ is running on a seperate device, this is not an issue.
+Not even if some of the bridges in the network were running our \textit{software-switch} utility, as basic switching was tested and is functional.
 
 \section{Tests}
 \subsection*{"Plug and Play" Test}
 \label{usage_test}
 This test is meant to ensure the general bridge discovery ability of \tool.
 It is designed to simulate the connection of nodes to an established network.
-Using a simple setup like shown in Figure~\ref{fig:test_setup} allows us to collect information about the whole network.
+Using a simple setup like shown in Figure~\ref{fig:test_setup1} allows us to collect information about the whole network.
 If we were using less nodes than we had non-root bridges in the network, this would not be possible.
 
 \subsubsection*{Performing the test}
 \begin{enumerate}
-    \item The layout shown in Figure~\ref{fig:test_setup} was established and all devices were started.
+    \item The layout shown in Figure~\ref{fig:test_setup1} was established and all devices were started.
     \item No \tool\ instance was started yet, identification during the tree establishment is covered by Section~\ref{tree_est_test}: Tree Establishment Test.
     \item We waited for the bridges to establish a stable spanning tree, checking the progress by observing the STP packets for the TC flag.
     \item After the tree had stabilized we started the server on node \textit{A}, as well as \tool\ on all the nodes.
@@ -105,7 +121,7 @@ Figure~\ref{fig:pnp} shows a comparison between expected output ant \tool\ outpu
             (empty) -- (c);
 
         \end{tikzpicture}
-        \caption{Expected output}
+        \caption{Expected result}
         \label{fig:pnpExp}
     \end{subfigure}
     
@@ -114,7 +130,7 @@ Figure~\ref{fig:pnp} shows a comparison between expected output ant \tool\ outpu
     \begin{subfigure}[b]{\textwidth}
         \centering
         \input{../results/pnp.tikz}
-        \caption{Visualization output}
+        \caption{\tool\ output}
     \end{subfigure}
     \caption{A comparison between expected and \tool\ output for the "Plug and Play" test}
     \label{fig:pnp}
@@ -140,19 +156,30 @@ Additionally, this time the identification of bridge connections is possible, an
 If bridge \textit{D} is connected to bridges \textit{B} and \textit{C} before they are connected to bridge \textit{A}, the tree can build up slowly and the clients will know about the connections.
 The resulting visualization can be seen in Figure~\ref{fig:est}
 \begin{figure}[h]
-    \centering
-    \begin{tikzpicture}[]
-        \node (0) at (7.000000,20) {128 - BC:AE:C5:EB:7D:B6, 0};
-        \node (1) at (3.500000,18) {384 - 00:E0:7C:C8:57:E7, 1};
-        \node (2) at (3.500000,16) {240 - F4:F2:6D:7D:BF:BD, 2};
-        \draw 
-        (1) -- (2);
-        \node (3) at (10.500000,18) {384 - 00:E1:00:00:0D:C4, 1};
-        \draw 
-        (0) -- (1)
-        (0) -- (3);
-    \end{tikzpicture}
-    \caption{The test setup with fully recognized connections}
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+            \begin{tikzpicture}
+                \node (root) at (2, 4) {\switch{0.8}{Root}};
+                \node (a) at (0, 2) {\switch{0.8}{A}};
+                \node (b) at (4, 2) {\switch{0.8}{B}};
+                \node (c) at (2, 0) {\switch{0.8}{C}};
+
+                \draw
+                (root) -- (a)
+                (root) -- (b)
+                (a) -- (c);
+            \end{tikzpicture}
+            \caption{Expected result}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \input{../results/estWorking.tikz}
+        \caption{\tool\ output}
+    \end{subfigure}
+    \caption{The result of the Tree Establishment Test}
     \label{fig:est}
 \end{figure}
 
@@ -172,8 +199,11 @@ This test makes sure that capability is given.
 Bridge \textit{A} must correctly be removed from the topology visualization.
 The expected topology is shown in Figure~\ref{fig:removalExp}.
 
-\subsubsection*{Actual Result}
+\subsubsection*{\tool\ Output}
 As visible in Figure~\ref{fig:removal}, the bridge is correctly removed.
+This is one of the cases where the laptop running bridge \textit{B} stopped sending data to the server.
+The removal of bridge \textit{A} is still visible however, and so we deemed this test successful.
+
 \begin{figure}[h]
     \begin{subfigure}[b]{\textwidth}
         \centering
@@ -188,7 +218,7 @@ As visible in Figure~\ref{fig:removal}, the bridge is correctly removed.
             (root) -- (b)
             (empty) -- (c);
         \end{tikzpicture}
-        \caption{The expected output}
+        \caption{The expected result}
         \label{fig:removalExp}
     \end{subfigure}
 
@@ -196,16 +226,7 @@ As visible in Figure~\ref{fig:removal}, the bridge is correctly removed.
 
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \begin{tikzpicture}[]
-            \node (0) at (7.000000,20) {128 - BC:AE:C5:EB:7D:B6, 0};
-            \node (1) at (3.500000,18) {};
-            \node (2) at (3.500000,16) {240 - F4:F2:6D:7D:BF:BD, 2};
-            \draw (1) -- (2);
-            \node (3) at (10.500000,18) {384 - 00:E0:7C:C8:57:E7, 1};
-            \draw 
-            (0) -- (1)
-            (0) -- (3);
-        \end{tikzpicture}
+        \input{../results/removal.tikz}
         \caption{The \tool\ output}
     \end{subfigure}
     \caption{Expected output compared to \tool\ output}
@@ -322,29 +343,61 @@ Due to the rather complex nature of this test, Figure~\ref{fig:sdcTest} shows th
 \end{figure}
 
 \subsubsection*{Expected Result}
-Because we wait for the small subtree to stabilize, establishing bridge \textit{A} as root, the subtree should be correctly identified.
+Because we wait for the small subtree to stabilize, establishing bridge \textit{A} as root, the subtree should be correctly identified, with the connection between the bridges.
+Bridge \textit{A} should not be connected to this subtree in the output, as the \textit{Root} bridge should be recognized immediately on reconnecting.
 
-\subsubsection*{Actual Result}
-The visualization acquired before executing the test is the same as in Figure~\ref{fig:est}, as we used that test as preparation.
-For an unknown reason, the message ages for the subtree that we disconnect \textit{00:E0:7C:C8:57:E7} and \textit{F4:F2:6D:7D:BF:BD} does not get updated and increased.
-However, this is not an error in \tool, but one in the \textit{software-switch} tool.
-Unfortunately, it has not undergone much testing, and was developed only to the point where it is usable in testing \tool.
-As we neither wanted to lose too much time on its development, nor draw the focus of this thesis away from its actual purpose, we decided to keep the effort expended into it minimal.
-Additional testing, fixing bugs like this and increasing general stability should be done in a future revision of the \textit{software-switch}.
-The visualization we did obtain from \tool can be seen in Figure~\ref{fig:dynAfter}.
+\subsubsection*{\tool\ Output}
+During the test we checked the server output to see how disconnecting the two clients affected the output.
+We were surprised to see that it had not changed.
+After checking the \textit{Wireshark} output, we realized that this was because no TC flag had been sent.
+Without this flag, the clients never reset their information.
+Figure~\ref{fig:noTc} shows the packet capture, including the changed packets.
+We marked the line after which the root identifier is updated.
+Where it should say \textit{Conf. + TC} (meaning a configuration packet with set TC flag), a regular configuration packet was indicated.
+This could lead to errors in some edge cases, and should be looked into.
 \begin{figure}[h]
     \centering
-    \begin{tikzpicture}[]
-        \node (0) at (7.000000,20) {128 - BC:AE:C5:EB:7D:B6, 0};
-        \node (1) at (3.500000,18) {384 - 00:E0:7C:C8:57:E7, 1};
-        \node (2) at (3.500000,16) {240 - F4:F2:6D:7D:BF:BD, 2};
-        \draw 
-        (1) -- (2);
-        \node (3) at (10.500000,18) {384 - 00:E1:00:00:0D:C4, 1};
-        \draw 
-        (0) -- (1)
-        (0) -- (3);
-    \end{tikzpicture}
+    \includegraphics[width=0.8\textwidth]{noTc.png}
+    \caption{The packet capture not showing a TC flag}
+    \label{fig:noTc}
+\end{figure}
+
+
+The visualization acquired before executing the test is the same as in Figure~\ref{fig:est}, as we used that test as preparation.
+Unfortunately, bridge \textit{B} stopped sending again.
+However, the test was a success, as the subtree was correctly identified and added to the large tree.
+The visualization we obtained from \tool can be seen in Figure~\ref{fig:dynAfter}.
+\begin{figure}[h]
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \node (root) at (2, 4) {\switch{0.8}{Root}};
+            \node (a) at (0, 2) {\switch{0.8}{Bridge A}};
+            \node (na) at (0, 1) {Node A};
+            \node (b) at (4, 2) {\switch{0.8}{Bridge B}};
+            \node (nb) at (4, 1) {Node B};
+            \node (c) at (2, 0) {\switch{0.8}{Bridge C}};
+            \node (nc) at (2, -1) {Node C};
+
+            \draw 
+            (root) -- (b)
+            (b) -- (a)
+            (a) -- (c)
+            (a) -- (na)
+            (b) -- (nb)
+            (c) -- (nc);
+        \end{tikzpicture}
+        \caption{The expected result}
+        \label{fig:sdcTest5}
+    \end{subfigure}
+       
+    \vspace{0.5cm}
+
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \input{../results/dynAfterWorking.tikz}
+        \caption{\tool\ output}
+    \end{subfigure}
     \caption{The obtained (incorrect) visualization for the slow dynamic change test}
     \label{fig:dynAfter}
 \end{figure}
@@ -356,19 +409,21 @@ It would however also be nice if \tool\ were robust enough to handle topology ch
 The logical topology is the same as for the Slow Dynamic Change Test \ref{slow_dynamic_test}
 
 \subsubsection*{Performing the test}
-\begin{enumerate}
-    \item We set up all the nodes and waited for a stable spanning tree.
-    \item After we removed node \textit{A} from the network we immediately plugged nodes \textit{A} and \textit{C} into B.
-    \item We waited $2*helloTime$ to make sure the changes were propagated to the server before plugging node \textit{C} into the root.
-    \item Finally we waited for the tree to stabilize and checked the output for correctness.
-\end{enumerate}
+The steps required to perform this test are the same as for Section~\ref{slow_dynamic_test}: Slow Dynamic Test, with one difference.
+This time we did not wait for the subtree to stabilize (after Figure~\ref{fig:sdcTest3}), but instead immediately plugged bridge \textit{A} into bridge \textit{B}.
 
 \subsubsection*{Expected Result}
-The outcome of this test depends on the time passing between disconnecting and reconnecting the subtree.
-Bridge configurations also play a role in the outcome due to affecting the configuration.
-All bridges should be correctly identified after the tree has stabilized again.
-However, the identification of the connections is quite volatile, depending on the inner workings of the STP implemenetiations and configurations.
+We did not know what to expect.
+The nodes should be correctly identified, but we were unsure about the connections, as it was not clear how each bridge would update.
 
-\subsubsection*{Actual Results}
-Due to the Slow Dynamic Test failing, and this test being highly dependent on STP implementations we decided not to run this test.
-With the hardware we had at our disposal, and especially with the low stability of our own STP implementation, we thought it not to be beneficial to this thesis.
+\subsubsection*{\tool\ Output}
+For the first few seconds after reconnecting the subtree to bridge \textit{B} (Figure~\ref{fig:sdcTest5}) nothing happened.
+After that, the bridges updated their information, which resulted in the same visualization as the Slow Dynamic Change Test.
+This means that our approach to keeping and saving bridge connection data is stable enough to withstand sudden topology changes.
+The output is shown in Figure~\ref{fig:fdc}.
+\begin{figure}[h]
+    \centering
+    \input{../results/dynFastAfterWorking.tikz}
+    \caption{\tool\ output for the Fast Dynamic Change Test}
+    \label{fig:fdc}
+\end{figure}

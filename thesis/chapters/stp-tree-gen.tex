@@ -335,6 +335,7 @@ The code for doing this is shown in Listing~\ref{lst:remove}.
 \lstinputlisting[caption=Removing Incorrect Bridge Data, label=lst:remove, firstline=49, lastline=77]{stp/Server.cpp}
 The bridges are removed from the vector they each are in.
 This way any connection information that is not proven wrong is retained, which means that if previous assumptions were correct, they will not be lost.
+
 \section{Combining the data}
 \label{combining_data}
 After false information is removed, the bridge data is combined into one SpanningTree object.
@@ -367,18 +368,7 @@ Figure~\ref{fig:viz_example} shows an example.
 \begin{figure}[h]
     %TODO: change to new output format
     \centering
-    \begin{tikzpicture}
-        \node (0) at (7.000000,20) {128 - BC:AE:C5:EB:7D:B6, 0};
-        \node (1) at (2.333333,18) {};
-        \node (2) at (2.333333,16) {240 - F4:F2:6D:7D:BF:BD, 2};
-        \draw (1) -- (2);
-        \node (3) at (7.000000,18) {384 - 00:E1:00:00:0D:C4, 1};
-        \node (4) at (11.666667,18) {384 - 00:E0:7C:C8:57:E7, 1};
-        \draw 
-        (0) -- (1)
-        (0) -- (3)
-        (0) -- (4);
-    \end{tikzpicture}
+    \input{../results/estWorking.tikz}
     \caption{An example for \tool\ output}
     \label{fig:viz_example}
 \end{figure}
@@ -388,7 +378,7 @@ Our code for this is rather confusing when first read, so we decided to split it
 No code is skipped between the listings, so combining Listings~\ref{lst:output1}-\ref{lst:output4} would yield the original function.
 To make it easier to follow we also did not modify any indentations.
 Viewing the code together with the raw \LaTeX\ output makes it much clearer, so Listing~\ref{lst:raw} shows the output for Figure~\ref{fig:viz_example}
-\lstinputlisting[caption=\textit{.tex} code for Figure~\ref{fig:viz_example}, label=lst:raw]{output.tex}
+\lstinputlisting[caption=\textit{.tex} code for Figure~\ref{fig:viz_example}, label=lst:raw]{../results/estWorking.tikz}
 For an explanation on TikZ keywords please refer to the section on TikZ (Section~\ref{tikz}).
 
 \lstinputlisting[caption={TikZ conversion function, part 1}, label=lst:output1, firstline=162, lastline=172]{stp/SpanningTree.cpp}

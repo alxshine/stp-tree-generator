@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.9)  30 SEP 2016 16:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.9)  30 SEP 2016 19:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1201,10 +1201,10 @@ LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 9.
 ) (latex-build/paper.aux
 
-LaTeX Warning: Label `fig:test_setup' multiply defined.
+LaTeX Warning: Label `fig:sdcTest5' multiply defined.
 
 
-LaTeX Warning: Label `sub@fig:test_setup' multiply defined.
+LaTeX Warning: Label `sub@fig:sdcTest5' multiply defined.
 
 )
 \openout1 = `paper.aux'.
@@ -1573,19 +1573,19 @@ LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [7] [8]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 182--182
+Overfull \hbox (6.0pt too wide) in paragraph at lines 184--184
 [][][][][][][] 
  []
 
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
-(Font)              scaled to size 4.49997pt on input line 183.
+(Font)              scaled to size 4.49997pt on input line 185.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 203--203
+Overfull \hbox (6.0pt too wide) in paragraph at lines 205--205
 [][][][][][][] 
  []
 
 (./listings/../listings/json/example.json [9])
-Overfull \hbox (6.0pt too wide) in paragraph at lines 214--214
+Overfull \hbox (6.0pt too wide) in paragraph at lines 216--216
 [][][][][][][] 
  []
 
@@ -1807,55 +1807,56 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 335--335
  []
 
 (./listings/stp/Server.cpp [22]) [23]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 346--346
+Overfull \hbox (6.0pt too wide) in paragraph at lines 347--347
 [][][][][][][] 
  []
 
 (./listings/stp/Server.cpp)
-Overfull \hbox (6.0pt too wide) in paragraph at lines 350--350
+Overfull \hbox (6.0pt too wide) in paragraph at lines 351--351
 [][][][][][][] 
  []
 
 (./listings/stp/SpanningTree.cpp [24] [25])
-Overfull \hbox (6.0pt too wide) in paragraph at lines 353--353
+Overfull \hbox (6.0pt too wide) in paragraph at lines 354--354
 [][][][][][][] 
  []
 
 (./listings/stp/SpanningTree.cpp [26])
-Overfull \hbox (6.0pt too wide) in paragraph at lines 357--357
+Overfull \hbox (6.0pt too wide) in paragraph at lines 358--358
 [][][][][][][] 
  []
 
-(./listings/stp/SpanningTree.cpp) [27]
+(./listings/stp/SpanningTree.cpp) (latex-build/../results/estWorking.tikz)
+[27]
 LaTeX Font Info:    Font shape `T1/fvs/b/it' will be
-(Font)              scaled to size 8.99994pt on input line 391.
+(Font)              scaled to size 8.99994pt on input line 381.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 391--391
+Overfull \hbox (6.0pt too wide) in paragraph at lines 381--381
 [][][][][][][] 
  []
 
-(./listings/output.tex)
-Overfull \hbox (6.0pt too wide) in paragraph at lines 394--394
+(./listings/../results/estWorking.tikz)
+Overfull \hbox (6.0pt too wide) in paragraph at lines 384--384
 [][][][][][][] 
  []
 
 (./listings/stp/SpanningTree.cpp [28])
-Overfull \hbox (6.0pt too wide) in paragraph at lines 401--401
+Overfull \hbox (6.0pt too wide) in paragraph at lines 391--391
 [][][][][][][] 
  []
 
 (./listings/stp/SpanningTree.cpp)
-Overfull \hbox (6.0pt too wide) in paragraph at lines 409--409
+Overfull \hbox (6.0pt too wide) in paragraph at lines 399--399
 [][][][][][][] 
  []
 
 (./listings/stp/SpanningTree.cpp [29])
-Overfull \hbox (6.0pt too wide) in paragraph at lines 421--421
+Overfull \hbox (6.0pt too wide) in paragraph at lines 411--411
 [][][][][][][] 
  []
 
 (./listings/stp/SpanningTree.cpp [30])
-Overfull \hbox (6.0pt too wide) in paragraph at lines 426--426
+Overfull \hbox (6.0pt too wide) in paragraph at lines 416--416
 [][][][][][][] 
  []
 
@@ -1931,89 +1932,82 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [40
 
-]
+] [41]
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 95.
+Package pdftex.def Info: images/switch.pdf used on input line 111.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 96.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 97.
+Package pdftex.def Info: images/switch.pdf used on input line 112.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
 
 <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 99.
+Package pdftex.def Info: images/switch.pdf used on input line 113.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
- (latex-build/../results/pnp.tikz)
-Overfull \hbox (18.7505pt too wide) in paragraph at lines 12--117
- [][] 
- []
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 115.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 
+(latex-build/../results/pnp.tikz) [42]
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 162.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+
+<use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 163.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 164.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 165.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+
+(latex-build/../results/estWorking.tikz)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[41] [42]
 File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 181.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 183.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
-
 <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 184.
+Package pdftex.def Info: images/switch.pdf used on input line 211.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 213.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 214.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 
+(latex-build/../results/removal.tikz)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[43]
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 235.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 236.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 238.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
-
-<use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 240.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-
-Overfull \hbox (1.78084pt too wide) in paragraph at lines 249--250
-[][] 
- []
-
-File: images/switch.pdf Graphic file (type pdf)
-<use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 255.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+[43] [44]
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 256.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 258.
+Package pdftex.def Info: images/switch.pdf used on input line 257.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
 
 <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 260.
+Package pdftex.def Info: images/switch.pdf used on input line 259.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 261.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 
 Overfull \hbox (1.78084pt too wide) in paragraph at lines 270--271
@@ -2022,23 +2016,23 @@ Overfull \hbox (1.78084pt too wide) in paragraph at lines 270--271
 
 File: images/switch.pdf Graphic file (type pdf)
 <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 276.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 277.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 279.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 280.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 282.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
 
 <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 284.
+Package pdftex.def Info: images/switch.pdf used on input line 281.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 
-Overfull \hbox (1.78084pt too wide) in paragraph at lines 293--294
+Overfull \hbox (1.78084pt too wide) in paragraph at lines 291--292
 [][] 
  []
 
@@ -2060,15 +2054,74 @@ File: images/switch.pdf Graphic file (type pdf)
 Package pdftex.def Info: images/switch.pdf used on input line 305.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 
-Overfull \hbox (1.78084pt too wide) in paragraph at lines 315--316
+Overfull \hbox (1.78084pt too wide) in paragraph at lines 314--315
 [][] 
  []
 
-[44] [45] [46]) (./chapters/conclusion.tex [47]
-Chapter 6.
-[48
+File: images/switch.pdf Graphic file (type pdf)
+<use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 321.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 322.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 324.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
 
-]) (latex-build/paper.bbl [49]
+<use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 326.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+
+Overfull \hbox (1.78084pt too wide) in paragraph at lines 336--337
+[][] 
+ []
+
+<images/noTc.png, id=162, 865.2325pt x 255.95625pt>
+File: images/noTc.png Graphic file (type png)
+ <use images/noTc.png>
+Package pdftex.def Info: images/noTc.png used on input line 360.
+(pdftex.def)             Requested size: 334.60422pt x 98.98283pt.
+
+[45] [46]
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 374.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 375.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+
+<use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 377.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 379.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+
+(latex-build/../results/dynAfterWorking.tikz)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(latex-build/../results/dynFastAfterWorking.tikz)) (./chapters/conclusion.tex
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[47 <./images/noTc.png>] [48] [49]
+Chapter 6.
+
+LaTeX Warning: Reference `slow_dynamic_change' on page 50 undefined on input li
+ne 26.
+
+[50
+
+]) (latex-build/paper.bbl [51]
 LaTeX Font Info:    Font shape `T1/fvs/m/sc' will be
 (Font)              scaled to size 8.99994pt on input line 4.
 
@@ -2101,21 +2154,24 @@ Underfull \hbox (badness 1303) in paragraph at lines 71--76
 d-/OpenMP Ex-am-ples,
  []
 
-[50
+[52
 
-]) [51] (latex-build/paper.aux)
+]) [53] (latex-build/paper.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 29930 strings out of 493029
- 715332 string characters out of 6136235
+ 29956 strings out of 493029
+ 716027 string characters out of 6136235
  1024593 words of memory out of 5000000
- 32832 multiletter control sequences out of 15000+600000
+ 32843 multiletter control sequences out of 15000+600000
  79575 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,18n,98p,719b,1603s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2128,10 +2184,10 @@ bera/fvmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvsb8a.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvsbo8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/bera/fvsr8a.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/bera/fvsro8a.pfb>
-Output written on latex-build/paper.pdf (52 pages, 189679 bytes).
+Output written on latex-build/paper.pdf (54 pages, 291944 bytes).
 PDF statistics:
- 218 PDF objects out of 1000 (max. 8388607)
- 151 compressed objects within 2 object streams
+ 225 PDF objects out of 1000 (max. 8388607)
+ 155 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 
