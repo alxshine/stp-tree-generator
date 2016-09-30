@@ -63,5 +63,6 @@ Bridge& Bridge::operator=(const Bridge& other){
     mac = other.mac;
     messageAge = other.messageAge;
     priority = other.priority;
+    extension = other.extension;
     return *this;
 }

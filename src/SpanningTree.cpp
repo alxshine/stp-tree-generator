@@ -264,7 +264,8 @@ Bridge SpanningTree::getRoot() const{
 
 SpanningTree SpanningTree::fromJson(const Json::Value buildFrom){
     SpanningTree ret;
-    ret.root = Bridge::fromJson(buildFrom["root"]);
+    Bridge newBridge = Bridge::fromJson(buildFrom["root"]);
+    ret.root = newBridge;
     auto childrenJson = buildFrom["children"];
     for(auto cj : childrenJson)
         ret.children.push_back(SpanningTree::fromJson(cj));
