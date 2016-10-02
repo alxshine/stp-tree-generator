@@ -213,7 +213,7 @@ void Sniffer::process_packet(u_char *user, const struct pcap_pkthdr *header, con
         if(oldHopMa >= 0){
             //both contained
             if(oldHopMa != firstHop.getMessageAge()){
-                //upstream changes
+                //changes occured
                 clearAndAdd(firstHop, root);
             }else{
                 //everything is as it was

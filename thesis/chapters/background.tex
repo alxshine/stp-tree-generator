@@ -11,7 +11,7 @@ LoriotPro and L2Discover use the SNMP for their topology discovery, with STP onl
 While commercial tools mostly use active methods for network discovery, several research projects have also attempted to develop purely passive or hybrid tools.
 One of the first of these tools was developed by Becker et al.\cite{becker1995} in 1995.
 In more recent years, Blue et al.\cite{blue2008} and Wongsuphasawat et al.\cite{wongsuphasawat2009} published papers on passive network visualization tools in 2008 and 2009.
-However, not much work has been done on purely passive STP visualization.
+However, we did not find any work on using STP exclusively.
 
 \section{Spanning Tree Protocol (STP)}
 \label{stp}
@@ -26,7 +26,13 @@ Ports can be in one of three states (see Figure~\ref{fig:port_states}):
         The root has only dedicated ports.
     \item \textcolor{red}{\textbf{Blocking Port}}: no packets are sent via a blocking Port.
         This state is used to disable alternate paths to the root or "sideways" in the tree.
+        In the original paper\cite{perlman85}, this state was called backup.
 \end{itemize}
+To handle necessary port transitions (e.g. on bridge failure), so called transition states are used.
+A blocking port for example waits $forwardDelay$ seconds in a loop.
+Every time a superior BPDU is received, the timer is reset.
+If the timer ever hits zero, the port will transition to dedicated.
+
 In the original STP paper\cite{perlman85}, the term Local Area Network (LAN) referred to any connection to a bridge, as well as between bridges.
 Because the STP information must be propagated to every LAN, there needs to be exactly one dedicated port in a LAN.
 In a LAN between two non-root bridges, the bridge with the smaller root path cost (see Figure~\ref{fig:stp_bpdu}) will make its connected port dedicated.
@@ -98,7 +104,7 @@ The fields we used for \tool\ are:
             \item Bridge MAC (6 Byte): The MAC address of the bridge
         \end{itemize}
         The conjunction of these three parts is used in comparisons as one large 8 byte number.
-    \item \textbf{Root Path Cost}: The root path cost is the sum of all port costs (which can be configured in the bridge) along the current path. The root path cost in packets sent by the root is 0.
+        \item \textbf{Root Path Cost}: The root path cost is the sum of all port costs (which can be configured or detected automatically) along the current path. The root path cost in packets sent by the root is 0.
     \item \textbf{Message Age}: The message age is the number of bridges that have been passed (in addition to the root) along the current path.
     \item \textbf{Max Age}: If the message age surpasses this maximum, packages are not forwarded any more.
     \item \textbf{Hello Time}: The delay in seconds between sent \textit{Hello} BPDUs.
@@ -192,7 +198,7 @@ Where the parameters are:
 \end{itemize}
 The \textbf{typedef void} (*pcap\_handler) part of the prototype just means that the function returns a \textbf{void *}.
 
-Usage of this function will be covered more in-depth in the chapter on \tool itself (Chapter~\ref{stp-gen}).
+Usage of this function will be covered more in-depth in the chapter on \tool\ itself (Chapter~\ref{stp-gen}).
 \subsection*{JSON}
 \label{json}
 JSON stands for Java Script Object Notation and was used for two reasons:
@@ -213,7 +219,7 @@ These are easier to generate, as well as to modify after creation.
 It is also very easy to integrate in \LaTeX\ papers.
 While TikZ is very powerful and therefore complex, the parts we use are fairly simple.
 Listing~\ref{lst:tikz_example} shows the TikZ code for Figure~\ref{fig:bc_storm_b}.
-\lstinputlisting[caption=A TikZ Example, label=lst:tikz_example]{../listings/tikzExample.tex} %TODO: check positioning
+\lstinputlisting[caption=A TikZ Example, label=lst:tikz_example]{../listings/tikzExample.tex}
 The \textbackslash node keyword draws a node with the id given in parenthesis.
 It is centered around the coordinates given with the \textit{at} keyword and has the text written in braces.
 The (0,0) coordinate is in the top left corner of an image.

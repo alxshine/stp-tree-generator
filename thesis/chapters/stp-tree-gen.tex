@@ -77,6 +77,8 @@ With the limited time and networking hardware at our disposal, we were not able 
 We believe that by increasing the communication between clients, \tool\ would be able to only discard information that is known to be false.
 
 Figure \ref{fig:information_lost} shows an example case where the client has to reset its data.
+In Figure~\ref{fig:information_lost1} the client knows about the full path to the current root, bridge \textit{A}.
+When bridge \textit{C} is connected (before Figure~\ref{fig:information_lost2}) and becomes root, a TC flag is sent along with a different message age.
 Due to the message age decreasing when the root changes, \tool\ discards all data and adds the two bridges contained in the STP packet again.
 This leaves it with knowledge of bridges \textit{D} and \textit{C}.
 A detailed explanation of how \tool\ handles incoming STP packets can be found in the section on packet handling (Section~\ref{packet_handling}).
@@ -98,6 +100,7 @@ A detailed explanation of how \tool\ handles incoming STP packets can be found i
 
             \end{tikzpicture}
             \caption{Some information known}
+            \label{fig:information_lost1}
         \end{subfigure}
         \hspace{1cm}
         \begin{subfigure}[b]{0.4\textwidth}
@@ -123,6 +126,7 @@ A detailed explanation of how \tool\ handles incoming STP packets can be found i
                 \end{customlegend}
             \end{tikzpicture}
             \caption{Previous information lost}
+            \label{fig:information_lost2}
         \end{subfigure}
         \caption{Information lost during tree build up}
         \label{fig:information_lost}
@@ -137,8 +141,8 @@ All these classes have conversion functions from and to \textit{JSON} format, as
 Altogether the following classes were created:
 \begin{itemize}
     \item \textbf{Mac}: A container class for MAC addresses.
-        It is used to store the address in cleaner format.
-    \item \textbf{Bridge}: Stores a \textbf{MAC} object in conjunction with the priority and message age.
+        It is used to store the address in an easier to use format (as a C++ \textbf{std::string}).
+    \item \textbf{Bridge}: Stores a \textbf{Mac} object in conjunction with the priority and message age.
     \item \textbf{SpanningTree}: This class represents an entire tree.
         It has functions for creating the \textit{TikZ} export as well as combining and manipulating subtrees.
         The \textbf{SpanningTree} class is a recursive data structure, storing the root as a \textit{Bridge} object and its children as a vector of \textbf{SpanningTree} objects.
@@ -153,7 +157,7 @@ This is easier than storing them in a fixed size array, and already combining th
 
 \section{Packet Handling}
 \label{packet_handling}
-Packets are handled by the sniffer class.
+Packets are handled by the \textbf{Sniffer} class.
 While the function mostly skips unused fields in the STP packet, here we will take a close look at the more important parts.
 In order to check if the packet is actually an STP packet, we use the Ethernet destination address.
 Listing~\ref{lst:filter} shows how that is done.
@@ -182,13 +186,13 @@ The \textit{clearAndAdd} function is just a shorthand to clear the bridge vector
 \section{Communication}
 \label{communication}
 Our distributed architecture is hierarchical, as we have a distinct \textit{client-server} separation.
-We also used a \textit{push} style communication, meaning the clients will "push" their messages to the server, who simply waits for incoming connections.
+We also use a \textit{push} style communication, meaning the clients will "push" their messages to the server, which simply waits for incoming connections.
 The alternative would be to have the server poll the registered clients for their data.
 This would have doubled the communication effort needed and made the handling for disconnected clients more complicated.
-For these reasons that we chose not to do this.
+
 As discussed in the background section (Section~\ref{json}) wer are using JSON for the client server communication.
 To inform all involved components about the purpose of a JSON message, we use a \textit{messagetype} field.
-The possibilities for \textit{messagetypes} are as follows:
+The possible values for \textit{messagetypes} are as follows:
 \begin{itemize}
     \item \textbf{Register}: before they can send data to the server, the clients need to register to receive an identifier.
         These unique identifiers are used to keep the data from different clients separated.
@@ -202,10 +206,9 @@ Bridge data is transmitted from the client to the server in standard JSON array 
 When the data is transmitted from the server to the parser, it is transmitted as a full tree.
 We added conversion functions to and from JSON to all our custom data classes, to keep this transmission simple.
 Listing~\ref{lst:arrayJson} shows an example transmission from client to server, and Listing~\ref{lst:treeJson} shows a transmission from server to parser.
-The JSON tree shown in Listing~\ref{lst:treeJson} the tree resulting from our test runs.
+The JSON tree shown in Listing~\ref{lst:treeJson} is one of the trees transmitted during our test runs.
 It shows how \tool\ can use changing packets to gather information about bridge connections.
 \lstinputlisting[caption=Client-Server Transmission, label=lst:arrayJson]{../listings/json/clientServer.json}
-%TODO: check positioning of listings on pages (especially large json)
 \lstinputlisting[caption=Server-Parser Transmission, label=lst:treeJson]{../listings/json/serverParser.json}
 
 \section{Uncertain Assumptions}
@@ -278,54 +281,61 @@ We did not find an alternate way to gather information about connections in the 
 To this end we combine information gathered by multiple clients to identify and remove false information.
 If a client makes a false assumption about a bridge, the message age for that bridge will be lower than its actual messge age.
 An example can be seen in Figure~\ref{fig:message_ages}.
-It uses the same topology as Figure~\ref{fig:false_example}
+It uses the same topology as Figure~\ref{fig:false_example}.
 The assumed (nonexistent) connection between bridges \textit{A} and \textit{B} is shown in red.
 Figure~\ref{fig:message_ages1} shows the message ages assumed by \tool.
 With the assumed connection the message age of bridge \textit{B} would be 1.
 However, as Figure~\ref{fig:message_ages2} shows, the actual message age is 3.
 If a client connected to bridge \textit{B} sends its actual message age to the server (or any message age larger than 1), the server will remove \textit{B} from the path sent by the client.
 \begin{figure}[h]
-    \begin{subfigure}[b]{0.4\textwidth}
-        \begin{tikzpicture}
-            \node (A) at (4,8) {\switch{0.8}{A:0}};
-            \node (B) at (2,6) {\switch{0.8}{B:1}};
-            \node (C) at (6,6) {\switch{0.8}{C:1}};
-            \node (D) at (4,4) {\switch{0.8}{D:2}};
-            \node (client) at (4,2) {Client};
+    \begin{center}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (A) at (4,8) {\switch{0.8}{A:0}};
+                \node (B) at (2,6) {\switch{0.8}{B:1}};
+                \node (C) at (6,6) {\switch{0.8}{C:1}};
+                \node (D) at (4,4) {\switch{0.8}{D:2}};
+                \node (client) at (4,2) {Client};
 
-            \draw
-            (A) -- (C)
-            (C) -- (D)
-            (B) -- (D)
-            (D) -- (client);
+                \draw
+                (A) -- (C)
+                (C) -- (D)
+                (B) -- (D)
+                (D) -- (client);
 
-            \draw [red, thick, dashed]
-            (A) -- (B);
+                \draw [red, thick, dashed]
+                (A) -- (B);
 
-        \end{tikzpicture}
-        \caption{Assumed message ages}
-        \label{fig:message_ages1}
-    \end{subfigure}
-    \hspace{1cm}
-    \begin{subfigure}[b]{0.4\textwidth}
-        \begin{tikzpicture}
-            \node (A) at (4,8) {\switch{0.8}{A: 0}};
-            \node (B) at (2,6) {\switch{0.8}{B: 3}};
-            \node (C) at (6,6) {\switch{0.8}{C: 1}};
-            \node (D) at (4,4) {\switch{0.8}{D: 2}};
-            \node (client) at (4,2) {Client};
+            \end{tikzpicture}
+            \caption{Assumed message ages}
+            \label{fig:message_ages1}
+        \end{subfigure}
+        \hspace{1cm}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \begin{tikzpicture}
+                \node (A) at (4,8) {\switch{0.8}{A: 0}};
+                \node (B) at (2,6) {\switch{0.8}{B: 3}};
+                \node (C) at (6,6) {\switch{0.8}{C: 1}};
+                \node (D) at (4,4) {\switch{0.8}{D: 2}};
+                \node (client) at (4,2) {Client};
 
-            \draw
-            (A) -- (C)
-            (C) -- (D)
-            (B) -- (D)
-            (D) -- (client);
+                \draw
+                (A) -- (C)
+                (C) -- (D)
+                (B) -- (D)
+                (D) -- (client);
 
-        \end{tikzpicture}
-        \caption{Actual message ages}
-        \label{fig:message_ages2}
-    \end{subfigure}
+                \begin{customlegend}[legend cell align=left, legend entries={Connection, Assumed Conn.}, legend style={at={(7.8,8.7)},font=\footnotesize}]
+                    \addlegendimage{}
+                    \addlegendimage{red, dashed}
+                \end{customlegend}
 
+
+            \end{tikzpicture}
+            \caption{Actual message ages}
+            \label{fig:message_ages2}
+        \end{subfigure}
+    \end{center}
     \caption{Assumed and actual message ages}
     \label{fig:message_ages}
 \end{figure}
@@ -366,9 +376,8 @@ For cases where \tool\ has no knowledge of the path to the root, empty nodes are
 These can be seen as gaps in the final output.
 Figure~\ref{fig:viz_example} shows an example.
 \begin{figure}[h]
-    %TODO: change to new output format
     \centering
-    \input{../results/estWorking.tikz}
+    \input{../results/pnp.tikz}
     \caption{An example for \tool\ output}
     \label{fig:viz_example}
 \end{figure}
@@ -377,7 +386,7 @@ The output is generated using a recursive function in the \textbf{SpanningTree} 
 Our code for this is rather confusing when first read, so we decided to split it into multiple listings, allowing for clearer explanations.
 No code is skipped between the listings, so combining Listings~\ref{lst:output1}-\ref{lst:output4} would yield the original function.
 To make it easier to follow we also did not modify any indentations.
-Viewing the code together with the raw \LaTeX\ output makes it much clearer, so Listing~\ref{lst:raw} shows the output for Figure~\ref{fig:viz_example}
+Viewing the code together with the raw \LaTeX\ output makes it much clearer, so Listing~\ref{lst:raw} shows the code for Figure~\ref{fig:viz_example}
 \lstinputlisting[caption=\textit{.tex} code for Figure~\ref{fig:viz_example}, label=lst:raw]{../results/estWorking.tikz}
 For an explanation on TikZ keywords please refer to the section on TikZ (Section~\ref{tikz}).
 
@@ -400,13 +409,12 @@ As the returned string is a C++ \textbf{std::string} we use the \textbf{\textbac
 Here we draw the node for the current root.
 To calculate the amounts of horizontal space the subtrees can use, we use their respective maximum width.
 This width is calculated using the functions shown in Listing~\ref{lst:maxWidth}.
-For subtree spacing we simply use the relation between the width of the full tree and the width of all children.
+For subtree spacing we simply use the relation between the width of the full tree and the width the individual children.
 In Listing~\ref{lst:output3} we see the reason why we have to return a pair of \textbf{string} and \textbf{int}.
 As it would be rather expensive to check for the number of empty nodes that need to be drawn beforehand (this would double the required computational effort), we return the last used index as well.
 This eliminates ID conflicts.
 To keep drawing the nodes and edges in blocks, we use multiple loops for drawing them.
 This leads to edges being drawn in "layers", as edges from a node to all its children are drawn at once.
-Only "deep" topologies (with a spanning tree of depth > 3) are affected.%TODO: include deep example
 
 \lstinputlisting[caption={Tikz conversion function, part 4}, label=lst:output4, firstline=203, lastline=220]{stp/SpanningTree.cpp}
 Listing~\ref{lst:output4} shows how we draw edges between nodes and their children.
@@ -424,14 +432,13 @@ Available build targets are \textbf{client}, \textbf{server}, \textbf{parser} fo
 An \textbf{install} target for global installation is not provided.
 \subsection*{Client Launch Parameters}
 \paragraph{-if \textit{inputFile}} is  used to specify the name of an input file which is written in \textit{.pcapng} format.
-If specified packets will not be captured live, but instead taken from the input file.
+If specified, packets will not be captured live, but instead taken from the input file.
 For easier usage with this parameter, launching the server with a higher timeout duration is recommended.
 The server will remove data from this client, as it is not programmed to resend data taken from input files.
-%TODO: change client to send file data only once?
 
 \paragraph{-of \textit{outputFile}} is used to specify a different output file.
 Output files are used for logging data.
-Logging directly to \textbf{STDOUT} is currently not possible.
+Logging directly to \textbf{stdout} is currently not possible.
 
 \paragraph{--no-connect / -nc} will stop the client from connecting to a server.
 This was used for debugging the client, but remains in the current version.
@@ -461,7 +468,7 @@ In cases the server is meant to be launched automatically in the background this
 \paragraph{-h \textit{hostname}} specifies the hostname to connect to.
 
 \paragraph{-pw \textit{pictureWidth}} specifies the width of the resulting TikZ picture.
-Note that if a width of 20cm is specified but only 10 are used, the picture will be snipped automatically
+Note that if a width of 20cm is specified but only 10cm are used, the picture will be snipped automatically
 
 \paragraph{-ph \textit{pictureHeigth}} specifies the height of the resulting TikZ picture.
 The same snipping occurs as for the width.

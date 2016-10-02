@@ -4,7 +4,7 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
---no-connect  -nc	thesis/chapters/stp-tree-gen.tex	/^Logging directly to \\textbf{STDOUT} is currently not possible.$/;"	P
+--no-connect  -nc	thesis/chapters/stp-tree-gen.tex	/^Logging directly to \\textbf{stdout} is currently not possible.$/;"	P
 -dn textit  deviceName	thesis/chapters/stp-tree-gen.tex	/^\\paragraph{-p \\textit{port}} specifies the port on which to connect.$/;"	P
 -h textit  hostname	thesis/chapters/stp-tree-gen.tex	/^This was used for debugging the client, but remains in the current version.$/;"	P
 -if textit  inputFile	thesis/chapters/stp-tree-gen.tex	/^\\subsection*{Client Launch Parameters}$/;"	P
@@ -110,7 +110,7 @@ Int64	inc/json/json.h	/^typedef long long int Int64;$/;"	t	namespace:Json
 Introduction   Motivation	thesis/chapters/introduction.tex	/^\\chapter{Introduction \\& Motivation}$/;"	c
 IsHeaderFile	.ycm_extra_conf.py	/^def IsHeaderFile( filename ):$/;"	f
 IsIntegral	src/jsoncpp.cpp	/^static bool IsIntegral(double d) {$/;"	f	namespace:Json
-JSON	thesis/chapters/background.tex	/^Usage of this function will be covered more in-depth in the chapter on \\tool itself (Chapter~\\ref{stp-gen}).$/;"	u
+JSON	thesis/chapters/background.tex	/^Usage of this function will be covered more in-depth in the chapter on \\tool\\ itself (Chapter~\\ref{stp-gen}).$/;"	u
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	160;"	d
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	199;"	d
 JSONCPP_DEPRECATED	inc/json/json-forwards.h	201;"	d
@@ -291,7 +291,7 @@ Sniffer	src/Sniffer.cpp	/^Sniffer::Sniffer(bool nC, std::string outputFileName, 
 Sniffer	thesis/listings/stp/Sniffer.cpp	/^Sniffer::Sniffer(bool nC, std::string outputFileName, std::string hostname, int port){$/;"	f	class:Sniffer
 Software Switch Testing Utility	thesis/chapters/soft-switch.tex	/^\\chapter{Software Switch Testing Utility}$/;"	c
 Spanning Tree Algorithm	thesis/chapters/background.tex	/^\\end{itemize}$/;"	u
-Spanning Tree Protocol  STP 	thesis/chapters/background.tex	/^However, not much work has been done on purely passive STP visualization.$/;"	s
+Spanning Tree Protocol  STP 	thesis/chapters/background.tex	/^However, we did not find any work on using STP exclusively.$/;"	s
 SpanningTree	inc/SpanningTree.hpp	/^class SpanningTree{$/;"	c
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(){}$/;"	f	class:SpanningTree
 SpanningTree	src/SpanningTree.cpp	/^SpanningTree::SpanningTree(const Bridge& r):root(r){$/;"	f	class:SpanningTree

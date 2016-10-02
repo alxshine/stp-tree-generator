@@ -14,9 +14,10 @@ This did not work for multiple reasons.
 After making these discoveries, we tried \textit{dd-wrt}\cite{dd-wrt} as an alternative.
 Unfortunately, it shares the same behaviour with \textit{OpenWrt} and we did not know whether or not we could make either of these operating systems work for this thesis.
 
-In order to be able to stay within the time limit while still testing \tool\, we decided to implement a bridge capable of STP.
+In order to be able to stay within the time limit while still testing \tool\, we decided to implement a software bridge capable of STP.
 It uses \textit{pcap} to handle incoming packets and react to STP packets.
-Our \textit{software-switch} can be run on any number of interfaces, however, it has not been tested on more than two.
+Our \textit{software-switch} can be run on any number of interfaces.
+However, it has not been tested on more than two.
 The source code for the \textit{software-switch} can be found in its git\cite{soft-switch}.
 It was written in C, in contrast to the \textit{stp-tree-generator} which was written in C++.
 

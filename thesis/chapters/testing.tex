@@ -249,7 +249,7 @@ Due to the rather complex nature of this test, Figure~\ref{fig:sdcTest} shows th
     \item After the tree had stabilized we checked the report output for correctness.
 \end{enumerate}
 
-\begin{figure}[hp]
+\begin{figure}[h]
     \begin{center}
         \begin{subfigure}[b]{0.4\textwidth}
             \begin{tikzpicture}
@@ -350,11 +350,9 @@ Bridge \textit{A} should not be connected to this subtree in the output, as the 
 During the test we checked the server output to see how disconnecting the two clients affected the output.
 We were surprised to see that it had not changed.
 After checking the \textit{Wireshark} output, we realized that this was because no TC flag had been sent.
-Without this flag, the clients never reset their information.
 Figure~\ref{fig:noTc} shows the packet capture, including the changed packets.
 We marked the line after which the root identifier is updated.
 Where it should say \textit{Conf. + TC} (meaning a configuration packet with set TC flag), a regular configuration packet was indicated.
-This could lead to errors in some edge cases, and should be looked into.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{noTc.png}
@@ -362,6 +360,10 @@ This could lead to errors in some edge cases, and should be looked into.
     \label{fig:noTc}
 \end{figure}
 
+As we realized during earlier testing, the TC flag is not always sent when a change occurs.
+This is why the client also looks for changes in message ages and the bridges in the STP packet.
+Due to the message age decreasing (one of the bridges is now root), the client will clear its data even without a TC flag.
+With the subtree stabilized, the client will prepend the \textit{Root} bridge to \textit{A} and \textit{C} on reconnection. 
 
 The visualization acquired before executing the test is the same as in Figure~\ref{fig:est}, as we used that test as preparation.
 Unfortunately, bridge \textit{B} stopped sending again.
@@ -388,7 +390,6 @@ The visualization we obtained from \tool can be seen in Figure~\ref{fig:dynAfter
             (c) -- (nc);
         \end{tikzpicture}
         \caption{The expected result}
-        \label{fig:sdcTest5}
     \end{subfigure}
        
     \vspace{0.5cm}

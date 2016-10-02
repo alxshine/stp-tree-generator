@@ -19,7 +19,7 @@ To prevent this the Spannning Tree Protocol (STP)\cite{perlman85} was created.
 It creates an overlay network, in the shape of a tree, to remove loops from the network.
 In this overlay, broadcast storms are not possible anymore.
 An example for broadcast propagation in an STP overlay network is shown in Figure~\ref{fig:stp_example}.
-As shown in Figure~\ref{fig:stp_example}, the overlay ignores the connection between bridges \textit{C} and \textit{D}.
+The overlay ignores the connection between bridges \textit{C} and \textit{D}.
 This leads to the broadcast being propagated to every node in just two steps, without any extra packets being generated.
 
 \begin{figure}[p]
@@ -193,9 +193,25 @@ We chose to name this tool \textit{\tool}.
     \label{requirements}
 \end{itemize}
 
-The remainder of this thesis is structured as follows: %TODO: rephrase/extend
+The remainder of this thesis is structured as follows:\\
 Chapter~\ref{background} will cover the background knowledge needed to fully understand \tool\ we developed.
-In chapter~\ref{stp-gen} we will discuss the implementation and our approach to gathering information from STP packets.
+It includes information on STP, how it works, the packets it uses, the Spanning Tree Algorithm and extensions to the protocol.
+Libraries and tools we used for this thesis are also explained.
+
+In chapter~\ref{stp-gen} we will discuss the implementation of \tool.
+We will cover our methods of saving the data, client-server communication, and packet handling.
+Discovering bridges and connections between them, as well as our ways to mitigate errors that may occur during discovery are explained in great detail.
+It also describes how we obtain the final visualization.
+A short explanation of the installation requirements and command line parameters is included as well.
+
+
 Chapter~\ref{switch} shows the details of our \textit{software-switch} tool, which we had to develop due to problems we encountered with the STP implementations in free router OSs\cite{OpenWrt}\cite{dd-wrt}.
+It shows how we handle STP and non-STP packets, in addition to our approach to port states.
+Again a short section with instructions is included.
+
 Chapter~\ref{testing} explains how and to what extent we tested \tool, as well as the results.
+Here we describe the setup for each of our 5 tests and the steps required to perform them.
+We show a graphical representation of the expected result for every test, and compare it to the output of \tool.
+Additionally, we analyse the results, and give insight into what happened and why.
+
 Finally, Chapter~\ref{conclusion} will summarize this thesis and give an outlook on possible future improvements to \tool.

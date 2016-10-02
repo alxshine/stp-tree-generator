@@ -7,9 +7,9 @@ When the established spanning tree is expanded, and a new root is prepended, \to
 The inherent uncertainty of these assumptions is reduced by combining data obtained from distributed nodes.
 This means that the usefulness of \tool\ increases greatly with the number of clients running on a network.
 We tested \tool\ to the greatest extend possible with the limited hardware we had at our disposal.
-In order to perform these tests we had to develop \textit{software-switch}, a utiliy that mimics STP capable bridges.
+In order to perform these tests we had to develop \textit{software-switch}, a utility that mimics STP capable bridges.
 It is a very basic and minimal tool, developed just far enough to make it usable for our tests.
-\tool\ passed all the tests we designed (in static and dynamically changing networks) with the hardware we had at our disposal.
+\tool\ passed all the tests we designed (in static and dynamically changing networks).
 The tests showed that \tool\ is fully capable of bridge discovery and handling a bridge's removal, as well as making assumptions about bridge connections on topology updates.
 In our tests, \tool\ correctly filtered out incorrect assumptions in the server by comparing information from different clients.
 When confronted with sudden changes in the physical network topology, \tool\ proved to be stable enough to handle them without discarding any correct assumptions made beforehand.
@@ -22,8 +22,8 @@ Future extensions of \tool\ could include features to increase usability, like a
 Extending the functionality of \tool\ to STP extension, as well as alternatives to STP (discussed in Section~\ref{stp}) would also be very helpful.
 An even better extension would be to detect and use whichever features the connected bridge is capable of dynamically at runtime.
 Additionally we should extend the parser to be capable of generating output from one or more \textit{.pcapng} files without needing to launch a server and multiple clients beforehand.
-With more extensive testing and statistical analysis of the results, it is our opininon that the assumptions we make could be improved as well.
-As we realized during the Slow Dynamic Change Test (Section~\ref{slow_dynamic_change}), TC flags are not always sent when they should be.
+With more extensive testing and statistical analysis of the results, it is our opinion that the assumptions we make could be improved as well.
+As we realized during the Slow Dynamic Change Test (Section~\ref{slow_dynamic_test}), TC flags are not always sent when they should be.
 Any future revision of this tool should consider finding another method of detecting network changes, to increase accuracy.
 
 The \textit{software-switch} utility could also be extended and tested more thoroughly, to make it usable as a general purpose switching utility.
