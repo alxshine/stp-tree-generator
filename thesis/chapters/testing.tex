@@ -78,6 +78,14 @@ We decided no to set the timeout in the server to a large number to circumvent t
 In an actual scenario, where \tool\ is running on a seperate device, this is not an issue.
 Not even if some of the bridges in the network were running our \textit{software-switch} utility, as basic switching was tested and is functional.
 
+The devices we used have the following bridge IDs:
+\begin{itemize}
+    \item \textbf{Root Bridge}: BC:AE:C5:EB:7D:B6
+    \item \textbf{Bridge A}: 00:E0:7C:C8:57:E7
+    \item \textbf{Bridge B}: 00:E1:00:00:0D:C4
+    \item \textbf{Bridge C}: F4:F2:6D:7D:BF:BD
+\end{itemize}
+
 \section{Tests}
 \subsection*{"Plug and Play" Test}
 \label{usage_test}
@@ -132,7 +140,7 @@ Figure~\ref{fig:pnp} shows a comparison between expected output ant \tool\ outpu
         \input{../results/pnp.tikz}
         \caption{\tool\ output}
     \end{subfigure}
-    \caption{A comparison between expected and \tool\ output for the "Plug and Play" test}
+    \caption{Expected output compared to \tool\ output ("Plug and Play" Test)}
     \label{fig:pnp}
 \end{figure}
 
@@ -229,7 +237,7 @@ The removal of bridge \textit{A} is still visible however, and so we deemed this
         \input{../results/removal.tikz}
         \caption{The \tool\ output}
     \end{subfigure}
-    \caption{Expected output compared to \tool\ output}
+    \caption{Expected output compared to \tool\ output (Tree Removal Test)}
     \label{fig:removal}
 \end{figure}
 
@@ -399,7 +407,7 @@ The visualization we obtained from \tool can be seen in Figure~\ref{fig:dynAfter
         \input{../results/dynAfterWorking.tikz}
         \caption{\tool\ output}
     \end{subfigure}
-    \caption{The obtained (incorrect) visualization for the slow dynamic change test}
+    \caption{Expected output compared to \tool\ output (Slow/Fast Dynamic Change Test)}
     \label{fig:dynAfter}
 \end{figure}
 
@@ -421,10 +429,4 @@ The nodes should be correctly identified, but we were unsure about the connectio
 For the first few seconds after reconnecting the subtree to bridge \textit{B} (Figure~\ref{fig:sdcTest5}) nothing happened.
 After that, the bridges updated their information, which resulted in the same visualization as the Slow Dynamic Change Test.
 This means that our approach to keeping and saving bridge connection data is stable enough to withstand sudden topology changes.
-The output is shown in Figure~\ref{fig:fdc}.
-\begin{figure}[h]
-    \centering
-    \input{../results/dynFastAfterWorking.tikz}
-    \caption{\tool\ output for the Fast Dynamic Change Test}
-    \label{fig:fdc}
-\end{figure}
+The output is identical to Figure~\ref{fig:dynAfter}.

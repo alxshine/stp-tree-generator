@@ -4,6 +4,7 @@ The original plan for testing \tool\ was to use cheap routers running \textit{Op
 This did not work for multiple reasons.
 \begin{itemize}
     \item \textit{OpenWrt} routers handle the internal switch as one interface, which stops it from disabling single switch ports.
+        This also makes their STP implementation useless, as broadcast storms will still occur when using multiple \textit{OpenWrt} routers in a topology with loops.
     \item Through testing we found that the packets sent by the \textit{OpenWrt} implementation are not recognized by our other devices.
     The other devices were a \textit{TP-Link TL-SG2008 Gigabit Smart Switch} and an \textit{ASUS RT-N56U Wireless Router}.
     These two devices would just forward the \textit{OpenWrt} STP packets while still sending their own.
@@ -12,7 +13,10 @@ This did not work for multiple reasons.
 \end{itemize}
 
 After making these discoveries, we tried \textit{dd-wrt}\cite{dd-wrt} as an alternative.
-Unfortunately, it shares the same behaviour with \textit{OpenWrt} and we did not know whether or not we could make either of these operating systems work for this thesis.
+Unfortunately, it mostly shares the same behaviour with \textit{OpenWrt} and we did not know whether or not we could make either of these operating systems work for this thesis.
+With two \textit{dd-wrt} routers connected to each other (to create a loop) and STP enabled, broadcast storms did not occur.
+This was still true when connecting them on more than two ports.
+The other problems existed like in \textit{OpenWrt}, making it unusable for this thesis as well.
 
 In order to be able to stay within the time limit while still testing \tool\, we decided to implement a software bridge capable of STP.
 It uses \textit{pcap} to handle incoming packets and react to STP packets.
