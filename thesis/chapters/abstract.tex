@@ -1,0 +1,29 @@
+\begin{abstractpage}
+    \begin{abstract}{english}
+        Monitoring the logical topology of Spanning Tree Protocol (STP) enabled networks is a difficult task, and often only accomplished by using other network management protocols.
+        Not all networking hardware supports these protocols, making this a suboptimal approach.
+        In this thesis we present \tool, a tool which can monitor nodes in a network using only passively obtained STP information.
+        It uses a distributed client-server architecture to gather STP packets at multiple points in the network.
+        STP transmits only local data, but \tool\ can still use this distributed information to draw conclusions about connections in the network.
+        As our method of assuming connections in the network does not guarantee correctness, we provide a simple and computationally cheap way of eliminating errors.
+        The error eliminating accuracy increases with the number of \tool\ instances in the network, going up to 100\% if there is an \tool\ instance connected to every networking device.
+        Due to inconsistencies we found in STP implementations during testing, we had to implement the protocol ourselves to be able to test \tool.
+        \tool\ passed all the tests we designed.
+        It can handle node discovery, connection discovery, device removal and even dynamic topolgy changes.
+        These test results leave us with the impression that with usability improvements \tool\ can become a useful addition to the network monitoring suite for environments where the networking hardware does not support more complex management protocols.
+    \end{abstract}
+
+    \begin{abstract}{german}
+        Die Überprüfung von Netzwerktopologien, welche das Spanning Tree Protocol (STP) verwenden, ist eine schwere Aufgabe, welche oft nur mit Hilfe von Netzwerkverwaltungsprotokollen bewältigt werden kann.
+        Da nicht alle Netzwerkgeräte diese Protokolle unterstützen, ist dies eine suboptimale Lösung.
+        In dieser Arbeit präsentieren wir \tool, ein Werkzeug, welches Netzwerktopologien nur anhand von passiv erhaltenen STP Paketen beobachten kann. 
+        Es verwendet eine verteilte Client-Server-Architektur um STP Pakete an mehreren Orten im Netzwerk zu erhalten.
+        Obwohl STP nur lokale Daten überträgt, kann \tool\ durch diese verteilten Informationen Vermutungen zu Verbindungen im Netzwerk anstellen.
+        Da unsere Annahmen nicht immer korrekt sind, beschreiben wir auch eine einfache und leicht berechenbare Methode zur Entfernung dieser Fehler.
+        Die Genauigkeit unserer Methode wächst mit den \tool\ Instanzen im Netzwerk, und erreicht 100\% wenn eine Instanz mit jedem Netzwerkgerät verbunden ist.
+        Durch Ungenauigkeiten in STP Implementationen, die wir beim Test von \tool\ fanden, waren wir gezwungen, STP selbst zu implementieren, um \tool\ zu testen.
+        \tool\ bestand alle unsere Tests.
+        Dabei wurden seine Fähigkeiten zur Entdeckung von Geräten, Annahmen zu Verbindungen zwischen Geräten, die Entfernung von Geräten sowie dynamische Topologieveränderungen getestet.
+        Diese Testresultate verleiten uns zur Annahme, dass \tool\ mit verbesserter grafischer Ausgabe ein nützliches Werkzeug zur Netzwerkkontrolle in Umgebungen ohne Unterstützung von komplexeren Netzwerkverwaltungsprotokollen sein kann.
+    \end{abstract}
+\end{abstractpage}

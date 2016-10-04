@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.9)  3 OCT 2016 19:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.9)  4 OCT 2016 10:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -791,228 +791,31 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutvoffset=\dimen175
 \Gm@dimlist=\toks30
 )
-(./conf/tikz.tex (/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
-Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box47
-\sift@deathcycles=\count133
-\@vwid@loff=\dimen176
-\@vwid@roff=\dimen177
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2016/02/24 3.9q The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2012/08/20 v3.3p English support from the babel system
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2016/02/24 3.9q Babel common definitions
+\babel@savecnt=\count133
+\U@D=\dimen176
 )
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarypositioning.code.tex
-File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
 )
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryarrows.code.tex
-File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+(/usr/share/texlive/texmf-dist/tex/generic/babel-german/german.ldf
+Language: german 2014/10/10 v2.7b German support for babel (traditional orthogr
+aphy)
 
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.
-tex
-File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen178
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.markings.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
-e.tex
-\pgfdecoratedcompleteddistance=\dimen179
-\pgfdecoratedremainingdistance=\dimen180
-\pgfdecoratedinputsegmentcompleteddistance=\dimen181
-\pgfdecoratedinputsegmentremainingdistance=\dimen182
-\pgf@decorate@distancetomove=\dimen183
-\pgf@decorate@repeatstate=\count134
-\pgfdecorationsegmentamplitude=\dimen184
-\pgfdecorationsegmentlength=\dimen185
-)
-\tikz@lib@dec@box=\box48
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
-decorations.markings.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.code.tex
-File: tikzlibraryshapes.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.geometric.code.tex
-File: tikzlibraryshapes.geometric.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
-)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.geometric.code.tex
-File: pgflibraryshapes.geometric.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
-
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.misc.code.tex
-File: tikzlibraryshapes.misc.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.misc.code.tex
-File: pgflibraryshapes.misc.code.tex 2013/07/18 v3.0.1a (rcs-revision 1.5)
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.symbols.code.tex
-File: tikzlibraryshapes.symbols.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.symbols.code.tex
-File: pgflibraryshapes.symbols.code.tex 2013/09/11 v3.0.1a (rcs-revision 1.6)
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.arrows.code.tex
-File: tikzlibraryshapes.arrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.arrows.code.tex
-File: pgflibraryshapes.arrows.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.callouts.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.callouts.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.multipart.code.tex
-File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
-)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.multipart.code.tex
-File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
-
-\pgfnodepartlowerbox=\box49
-\pgfnodeparttwobox=\box50
-\pgfnodepartthreebox=\box51
-\pgfnodepartfourbox=\box52
-\pgfnodeparttwentybox=\box53
-\pgfnodepartnineteenbox=\box54
-\pgfnodeparteighteenbox=\box55
-\pgfnodepartseventeenbox=\box56
-\pgfnodepartsixteenbox=\box57
-\pgfnodepartfifteenbox=\box58
-\pgfnodepartfourteenbox=\box59
-\pgfnodepartthirteenbox=\box60
-\pgfnodeparttwelvebox=\box61
-\pgfnodepartelevenbox=\box62
-\pgfnodeparttenbox=\box63
-\pgfnodepartninebox=\box64
-\pgfnodeparteightbox=\box65
-\pgfnodepartsevenbox=\box66
-\pgfnodepartsixbox=\box67
-\pgfnodepartfivebox=\box68
+(/usr/share/texlive/texmf-dist/tex/generic/babel-german/germanb.ldf
+Language: germanb 2014/10/10 v2.7b German support for babel (traditional orthog
+raphy)
+\l@austrian = a dialect from \language\l@german 
+Package babel Info: Making " an active character on input line 110.
 )))
-(/usr/share/texlive/texmf-dist/tex/latex/pgfplots/pgfplots.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
-Package: pgfplots 2016/01/06 v1.13 Data Visualization (1.13)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
-\t@pgfplots@toka=\toks31
-\t@pgfplots@tokb=\toks32
-\t@pgfplots@tokc=\toks33
-\pgfplots@tmpa=\dimen186
-\c@pgfplots@coordindex=\count135
-\c@pgfplots@scanlineindex=\count136
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code
-.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.t
-ex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
-gfsupp_loader.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
-)
-Package pgfplots: loading complementary arithmetics for your pgf version...
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
-gfsupp_pgflibraryfpu.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
-gfsupp_pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count137
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
-tructure.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
-tructureext.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray
-.code.tex
-\c@pgfplotsarray@tmp=\count138
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatri
-x.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshare
-d.code.tex
-\c@pgfplotstable@counta=\count139
-\t@pgfplotstable@a=\toks34
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.te
-x
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.co
-de.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.sur
-fshading.code.tex
-\c@pgfplotslibrarysurf@no=\count140
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surf
-shading.pgfsys-pdftex.def)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.
-tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.t
-ex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.t
-ex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.cod
-e.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.
-tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.cod
-e.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.pathmorphing.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
-decorations.pathmorphing.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.pathreplacing.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
-decorations.pathreplacing.code.tex))
-\pgfplots@numplots=\count141
-\pgfplots@xmin@reg=\dimen187
-\pgfplots@xmax@reg=\dimen188
-\pgfplots@ymin@reg=\dimen189
-\pgfplots@ymax@reg=\dimen190
-\pgfplots@zmin@reg=\dimen191
-\pgfplots@zmax@reg=\dimen192
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryplotmarks.code.tex
-File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.co
-de.tex
-File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
-)))) (./conf/listings.tex) (./conf/c++.tex
-(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
-(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
-(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-))
 (/usr/share/texlive/texmf-dist/tex/latex/bera/bera.sty
 Package: bera 2004/01/31 (WaS)
 
@@ -1181,59 +984,284 @@ Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/bera/beraserif.sty
 Package: beraserif 2004/01/30 (WaS)
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 30.
+LaTeX Font Info:    Try loading font information for T1+fve on input line 30.
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
-File: t1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-))
+(/usr/share/texlive/texmf-dist/tex/latex/bera/t1fve.fd
+File: t1fve.fd 2004/09/07 scalable font definitions for T1/fve.
+)
+LaTeX Font Info:    Font shape `T1/fve/m/n' will be
+(Font)              scaled to size 8.99994pt on input line 30.
+)
 (/usr/share/texlive/texmf-dist/tex/latex/bera/berasans.sty
 Package: berasans 2004/01/30 (WaS)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/bera/beramono.sty
 Package: beramono 2004/01/31 (WaS)
+)) (./conf/tikz.tex
+(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box47
+\sift@deathcycles=\count134
+\@vwid@loff=\dimen177
+\@vwid@roff=\dimen178
 )
-LaTeX Font Info:    Try loading font information for T1+fvs on input line 9.
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryarrows.code.tex
+File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.
+tex
+File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
+\arrowsize=\dimen179
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarydecorations.markings.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarydecorations.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
+e.tex
+\pgfdecoratedcompleteddistance=\dimen180
+\pgfdecoratedremainingdistance=\dimen181
+\pgfdecoratedinputsegmentcompleteddistance=\dimen182
+\pgfdecoratedinputsegmentremainingdistance=\dimen183
+\pgf@decorate@distancetomove=\dimen184
+\pgf@decorate@repeatstate=\count135
+\pgfdecorationsegmentamplitude=\dimen185
+\pgfdecorationsegmentlength=\dimen186
+)
+\tikz@lib@dec@box=\box48
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
+decorations.markings.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.code.tex
+File: tikzlibraryshapes.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.misc.code.tex
+File: tikzlibraryshapes.misc.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.misc.code.tex
+File: pgflibraryshapes.misc.code.tex 2013/07/18 v3.0.1a (rcs-revision 1.5)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.symbols.code.tex
+File: tikzlibraryshapes.symbols.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.symbols.code.tex
+File: pgflibraryshapes.symbols.code.tex 2013/09/11 v3.0.1a (rcs-revision 1.6)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.arrows.code.tex
+File: tikzlibraryshapes.arrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.arrows.code.tex
+File: pgflibraryshapes.arrows.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.callouts.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.callouts.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.multipart.code.tex
+File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.multipart.code.tex
+File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
+
+\pgfnodepartlowerbox=\box49
+\pgfnodeparttwobox=\box50
+\pgfnodepartthreebox=\box51
+\pgfnodepartfourbox=\box52
+\pgfnodeparttwentybox=\box53
+\pgfnodepartnineteenbox=\box54
+\pgfnodeparteighteenbox=\box55
+\pgfnodepartseventeenbox=\box56
+\pgfnodepartsixteenbox=\box57
+\pgfnodepartfifteenbox=\box58
+\pgfnodepartfourteenbox=\box59
+\pgfnodepartthirteenbox=\box60
+\pgfnodeparttwelvebox=\box61
+\pgfnodepartelevenbox=\box62
+\pgfnodeparttenbox=\box63
+\pgfnodepartninebox=\box64
+\pgfnodeparteightbox=\box65
+\pgfnodepartsevenbox=\box66
+\pgfnodepartsixbox=\box67
+\pgfnodepartfivebox=\box68
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2016/01/06 v1.13 Data Visualization (1.13)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+\t@pgfplots@toka=\toks31
+\t@pgfplots@tokb=\toks32
+\t@pgfplots@tokc=\toks33
+\pgfplots@tmpa=\dimen187
+\c@pgfplots@coordindex=\count136
+\c@pgfplots@scanlineindex=\count137
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code
+.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_loader.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
+)
+Package pgfplots: loading complementary arithmetics for your pgf version...
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_pgflibraryfpu.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count138
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
+tructure.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
+tructureext.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray
+.code.tex
+\c@pgfplotsarray@tmp=\count139
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatri
+x.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshare
+d.code.tex
+\c@pgfplotstable@counta=\count140
+\t@pgfplotstable@a=\toks34
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.te
+x
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.co
+de.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.sur
+fshading.code.tex
+\c@pgfplotslibrarysurf@no=\count141
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surf
+shading.pgfsys-pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.
+tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.t
+ex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.cod
+e.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.
+tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarydecorations.pathmorphing.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
+decorations.pathmorphing.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarydecorations.pathreplacing.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
+decorations.pathreplacing.code.tex))
+\pgfplots@numplots=\count142
+\pgfplots@xmin@reg=\dimen188
+\pgfplots@xmax@reg=\dimen189
+\pgfplots@ymin@reg=\dimen190
+\pgfplots@ymax@reg=\dimen191
+\pgfplots@zmin@reg=\dimen192
+\pgfplots@zmax@reg=\dimen193
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.co
+de.tex
+File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
+)))) (./conf/listings.tex) (./conf/c++.tex
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+)) (./conf/tex.tex) (latex-build/paper.aux)
+\openout1 = `paper.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 28.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Try loading font information for T1+fvs on input line 28.
 
 (/usr/share/texlive/texmf-dist/tex/latex/bera/t1fvs.fd
 File: t1fvs.fd 2004/09/07 scalable font definitions for T1/fvs.
 )
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 9.
-) (latex-build/paper.aux)
-\openout1 = `paper.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 29.
- (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
-File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    ... okay on input line 29.
+(Font)              scaled to size 8.99994pt on input line 28.
 
 ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count142
-\scratchdimen=\dimen193
+\scratchcounter=\count143
+\scratchdimen=\dimen194
 \scratchbox=\box69
-\nofMPsegments=\count143
-\nofMParguments=\count144
+\nofMPsegments=\count144
+\nofMParguments=\count145
 \everyMPshowfont=\toks35
-\MPscratchCnt=\count145
-\MPscratchDim=\dimen194
-\MPnumerator=\count146
-\makeMPintoPDFobject=\count147
+\MPscratchCnt=\count146
+\MPscratchDim=\dimen195
+\MPnumerator=\count147
+\makeMPintoPDFobject=\count148
 \everyMPtoPDFconversion=\toks36
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -1282,7 +1310,7 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count148
+\c@lstlisting=\count149
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1322,7 +1350,7 @@ Package caption Info: End \AtBeginDocument code.
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.13} into 
 your preamble.
- on input line 29.
+ on input line 28.
 
 (./chapters/titlepage.tex <images/uibk.jpeg, id=4, 109.91063pt x 220.57407pt>
 File: images/uibk.jpeg Graphic file (type jpg)
@@ -1355,26 +1383,43 @@ LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
 
 (latex-build/paper.toc
 LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
-(Font)              scaled to size 8.99994pt on input line 1.
+(Font)              scaled to size 8.99994pt on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 3.
+(Font)              <7> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 3.
+(Font)              <5> on input line 10.
 )
 \tf@toc=\write4
 \openout4 = `paper.toc'.
 
- (./chapters/introduction.tex [1
+ [1
 
-]
-Chapter 1.
+
+] (latex-build/paper.lof)
+\tf@lof=\write5
+\openout5 = `paper.lof'.
+
+ [2
+
+] (latex-build/paper.lol
+LaTeX Font Info:    Font shape `T1/fvs/m/it' will be
+(Font)              scaled to size 8.99994pt on input line 16.
+)
+\tf@lol=\write6
+\openout6 = `paper.lol'.
+
+[3
+
+] (./chapters/abstract.tex [1
+
+
+]) (./chapters/introduction.tex
+Kapitel 1.
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 (Font)              scaled to size 18.66588pt on input line 1.
 LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
 (Font)              scaled to size 18.66588pt on input line 1.
-LaTeX Font Info:    Font shape `T1/fvs/m/it' will be
-(Font)              scaled to size 8.99994pt on input line 11.
-<images/switch.pdf, id=15, 50.1875pt x 26.0975pt>
+<images/switch.pdf, id=25, 50.1875pt x 26.0975pt>
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 29.
@@ -1518,6 +1563,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--181
 
 [2
 
+
 ] [3 <./images/switch.pdf>]
 LaTeX Font Info:    Try loading font information for TS1+fvs on input line 186.
 
@@ -1529,7 +1575,7 @@ LaTeX Font Info:    Font shape `TS1/fvs/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 186.
 )
 (./chapters/background.tex [4]
-Chapter 2.
+Kapitel 2.
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 (Font)              scaled to size 12.9599pt on input line 3.
 LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
@@ -1552,7 +1598,7 @@ Package pdftex.def Info: images/switch.pdf used on input line 47.
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 (Font)              scaled to size 6.29996pt on input line 73.
 
-[6]
+[6] [7]
 LaTeX Font Info:    Try loading font information for T1+fvm on input line 149.
  (/usr/share/texlive/texmf-dist/tex/latex/bera/t1fvm.fd
 File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
@@ -1561,11 +1607,7 @@ LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 149.
 LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
 (Font)              scaled to size 8.99994pt on input line 159.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[7] [8]
+ [8]
 Overfull \hbox (6.0pt too wide) in paragraph at lines 190--190
 [][][][][][][] 
  []
@@ -1582,9 +1624,9 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 222--222
 [][][][][][][] 
  []
 
-(./listings/../listings/tikzExample.tex) [10]) (./chapters/stp-tree-gen.tex
+(./listings/../listings/tikzExample.tex [10])) (./chapters/stp-tree-gen.tex
 [11]
-Chapter 3.
+Kapitel 3.
 File: images/switch.pdf Graphic file (type pdf)
 <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 33.
@@ -1854,7 +1896,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 424--424
 
 (./listings/stp/SpanningTree.cpp) [31] [32]) (./chapters/soft-switch.tex
 [33]
-Chapter 4.
+Kapitel 4.
 
 Overfull \hbox (6.0pt too wide) in paragraph at lines 30--30
 [][][][][][][] 
@@ -1874,7 +1916,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 62--62
 
 (./listings/../listings/switch/forwarding.c [37] [38])) (./chapters/testing.tex
 [39]
-Chapter 5.
+Kapitel 5.
 File: images/switch.pdf Graphic file (type pdf)
 <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 20.
@@ -1946,6 +1988,12 @@ Package pdftex.def Info: images/switch.pdf used on input line 123.
 (latex-build/../results/pnp.tikz)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (2.72466pt too wide) in paragraph at lines 155--156
+[]\T1/fvs/m/n/10 After enab-ling STP on the bridges we wai-ted for the tree to 
+be esta-blis-hed, again checking
+ []
 
 File: images/switch.pdf Graphic file (type pdf)
 <use images/switch.pdf>
@@ -2078,7 +2126,7 @@ Overfull \hbox (1.78084pt too wide) in paragraph at lines 344--345
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<images/noTc.png, id=162, 865.2325pt x 255.95625pt>
+<images/noTc.png, id=171, 865.2325pt x 255.95625pt>
 File: images/noTc.png Graphic file (type png)
  <use images/noTc.png>
 Package pdftex.def Info: images/noTc.png used on input line 366.
@@ -2110,16 +2158,13 @@ Package pdftex.def Info: images/switch.pdf used on input line 389.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 ) (./chapters/conclusion.tex [47 <./images/noTc.png>] [48]
-Chapter 6.
+Kapitel 6.
 [49
 
-]) (latex-build/paper.bbl [50]
-LaTeX Font Info:    Font shape `T1/fvs/m/sc' will be
-(Font)              scaled to size 8.99994pt on input line 4.
-
+]) [50] (latex-build/paper.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 21--26
-[]\T1/fvs/m/sc/10 Brocade.  STP Pa-ram-e-ters and De-faults.  $\T1/fvm/m/n/10 h
-ttp : / / www .
+[]\T1/fvs/m/n/10 Brocade.  STP Pa-ra-me-ters and Defaults.  $\T1/fvm/m/n/10 htt
+p : / / www .
  []
 
 
@@ -2130,8 +2175,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 21--26
 
 
 Underfull \hbox (badness 6675) in paragraph at lines 46--51
-[]\T1/fvs/m/sc/10 International Or-ga-ni-za-tion for Stan-dard-iza-tion.  ISO/I
-EC 9899:1999.  $\T1/fvm/m/n/10 http :
+[]\T1/fvs/m/n/10 International Or-ga-ni-za-ti-on for Stan-dar-di-za-ti-on.  ISO
+/IEC 9899:1999.  $\T1/fvm/m/n/10 http :
  []
 
 
@@ -2140,13 +2185,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 46--51
 catalogue _ detail _ ics . htm ?
  []
 
-
-Underfull \hbox (badness 1303) in paragraph at lines 71--76
-[]\T1/fvs/m/sc/10 Olukotun, K.  Shared Mem-ory Par-al-lel Pro-gram-ming, Pthrea
-d-/OpenMP Ex-am-ples,
- []
-
 [51
+
 
 ]) [52] (latex-build/paper.aux)
 
@@ -2154,13 +2194,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 29949 strings out of 493029
- 715926 string characters out of 6136235
- 1017593 words of memory out of 5000000
- 32839 multiletter control sequences out of 15000+600000
- 79575 words of font info for 50 fonts, out of 8000000 for 9000
+ 30465 strings out of 493029
+ 722475 string characters out of 6136235
+ 1032782 words of memory out of 5000000
+ 33326 multiletter control sequences out of 15000+600000
+ 80690 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,19n,98p,719b,1603s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,19n,98p,719b,1614s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/
@@ -2170,10 +2210,10 @@ bera/fvmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvsb8a.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvsbo8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/bera/fvsr8a.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/bera/fvsro8a.pfb>
-Output written on latex-build/paper.pdf (53 pages, 294215 bytes).
+Output written on latex-build/paper.pdf (56 pages, 298556 bytes).
 PDF statistics:
- 222 PDF objects out of 1000 (max. 8388607)
- 153 compressed objects within 2 object streams
+ 232 PDF objects out of 1000 (max. 8388607)
+ 160 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

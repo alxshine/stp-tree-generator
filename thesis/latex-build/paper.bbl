@@ -1,126 +1,126 @@
 \begin{thebibliography}{10}
 
 \bibitem{becker1995}
-{\sc Becker, R.~A., Eick, S.~G., and Wilks, A.~R.}
-\newblock Visualizing network data.
-\newblock {\em IEEE Transactions on Visualization and Computer Graphics 1}, 1
-  (Mar. 1995), 16--28.
+Richard~A. Becker, Stephen~G. Eick, and Allan~R. Wilks.
+\newblock {Visualizing Network Data}.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  1(1):16--28, March 1995.
 
 \bibitem{blue2008}
-{\sc Blue, R., Dunne, C., Fuchs, A., King, K., and Schulman, A.}
-\newblock {\em Visualizing Real-Time Network Resource Usage}.
-\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2008, pp.~119--135.
+Ryan Blue, Cody Dunne, Adam Fuchs, Kyle King, and Aaron Schulman.
+\newblock {\em {Visualizing Real-Time Network Resource Usage}}, pages 119--135.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2008.
 
 \bibitem{thwackSW}
-{\sc brianwhelton}.
-\newblock Solarwinds thwack forum.
+brianwhelton.
+\newblock {SolarWinds Thwack Forum}.
 \newblock \url{https://thwack.solarwinds.com/ideas/3034}.
 \newblock Accessed: 2016-09-06.
 
 \bibitem{params}
-{\sc Brocade}.
+Brocade.
 \newblock {STP Parameters and Defaults}.
 \newblock
   \url{http://www.brocade.com/content/html/en/configuration-guide/FI_08030_L2/GUID-256DE2C6-C2DC-4DE0-A0C2-A96DDF0C3406.html}.
 \newblock Accessed: 2016-09-23.
 
 \bibitem{dd-wrt}
-{\sc {embeDD GmbH}}.
+{embeDD GmbH}.
 \newblock {dd-wrt}.
 \newblock \url{https://dd-wrt.com}.
 \newblock Accessed: 2016-09-29.
 
 \bibitem{spb}
-{\sc {IEEE Standards Associaton}}.
+{IEEE Standards Associaton}.
 \newblock {IEEE 802.1aq Standard}.
 \newblock \url{https://standards.ieee.org/findstds/standard/802.1aq-2012.html}.
 \newblock Accessed: 2016-09-28.
 
 \bibitem{802.1D}
-{\sc {IEEE Standards Associaton}}.
-\newblock {IEEE 802.1D standard}.
+{IEEE Standards Associaton}.
+\newblock {IEEE 802.1D Standard}.
 \newblock \url{http://standards.ieee.org/getieee802/download/802.17a-2004.pdf}.
 \newblock Accessed: 2016-09-28.
 
 \bibitem{c99}
-{\sc {International Organization for Standardization}}.
+{International Organization for Standardization}.
 \newblock {ISO/IEC 9899:1999}.
 \newblock
   \url{http://www.iso.org/iso/iso_catalogue/catalogue_ics/catalogue_detail_ics.htm?csnumber=29237}.
 \newblock Accessed: 2016-09-29.
 
 \bibitem{L2Discover}
-{\sc L2Discover}.
-\newblock L2discover.
+L2Discover.
+\newblock {L2Discover}.
 \newblock \url{http://www.inf.u-szeged.hu/~bilickiv/l2discover/}.
 \newblock Accessed: 2016-09-06.
 
 \bibitem{LiveAction}
-{\sc LiveAction}.
+LiveAction.
 \newblock {LiveNX Network Performance Management}.
 \newblock \url{http://www.liveaction.com/}.
 \newblock Accessed: 2016-09-06.
 
 \bibitem{LoriotPro}
-{\sc LoriotPro}.
+LoriotPro.
 \newblock {LoriotPro Network Management Software}.
 \newblock \url{http://www.loriotpro.com/}.
 \newblock Accessed: 2016-09-06.
 
 \bibitem{pthreads}
-{\sc Olukotun, K.}
+Kunle Olukotun.
 \newblock {Shared Memory Parallel Programming, Pthread/OpenMP Examples}, 2011.
 \newblock Stanford University,
   \url{http://web.stanford.edu/~tayo/temp/aust_parallel/lect.02.ShMemPrg.pdf},
   Accessed: 2016-09-21.
 
 \bibitem{jsoncpp}
-{\sc {open-source-parsers Github Community}}.
-\newblock A {C++} library for interacting with {JSON}.
+{open-source-parsers Github Community}.
+\newblock {A {C++} Library for Interacting With {JSON}}.
 \newblock \url{https://github.com/open-source-parsers/jsoncpp}.
 \newblock Accessed: 2016-09-06.
 
 \bibitem{OpenWrt}
-{\sc {OpenWrt Community}}.
+{OpenWrt Community}.
 \newblock {OpenWrt}.
 \newblock \url{https://openwrt.org/}.
 \newblock Accessed: 2016-09-29.
 
 \bibitem{perlman85}
-{\sc Perlman, R.}
-\newblock An algorithm for distributed computation of a spanningtree in an
-  extended lan.
-\newblock {\em SIGCOMM Comput. Commun. Rev. 15}, 4 (Sept. 1985), 44--53.
+Radia Perlman.
+\newblock {An Algorithm for Distributed Computation of a Spanningtree in an
+  Extended LAN}.
+\newblock {\em SIGCOMM Comput. Commun. Rev.}, 15(4):44--53, September 1985.
 
 \bibitem{soft-switch}
-{\sc Schlögl, A.}
+Alexander Schlögl.
 \newblock {software-switch}.
 \newblock https://github.com/alxshine/software-switch.
 \newblock Accessed: 2016-09-29.
 
 \bibitem{tikz}
-{\sc Tantau, T.}
-\newblock {\em {The TikZ and PGF Packages}}, 1.18~ed.
-\newblock Institut für Theoretische Informatik, Universität zu Lübeck, June
-  2007.
+Till Tantau.
+\newblock {\em {The TikZ and PGF Packages}}.
+\newblock Institut für Theoretische Informatik, Universität zu Lübeck, 1.18
+  edition, June 2007.
 
 \bibitem{pcap}
-{\sc {tcpdump \& libpcap Community}}.
+{tcpdump \& libpcap Community}.
 \newblock {tcpdump \& libpcap}.
 \newblock \url{http://www.tcpdump.org/}.
 \newblock Accessed: 2016-09-29.
 
 \bibitem{bstorm}
-{\sc {The Linux Information Project}}.
+{The Linux Information Project}.
 \newblock {Broadcast Storm Definition}.
 \newblock \url{http://www.linfo.org/broadcast_storm.html}.
 \newblock Accessed: 2016-09-09.
 
 \bibitem{wongsuphasawat2009}
-{\sc Wongsuphasawat, K., Artornsombudh, P., Nguyen, B., and McCann, J.}
-\newblock Network stack diagnosis and visualization tool.
+Krist Wongsuphasawat, Pornpat Artornsombudh, Bao Nguyen, and Justin McCann.
+\newblock {Network Stack Diagnosis and Visualization Tool}.
 \newblock In {\em Proceedings of the Symposium on Computer Human Interaction
-  for the Management of Information Technology\/} (New York, NY, USA, 2009),
-  CHiMiT '09, ACM, pp.~4:29--4:37.
+  for the Management of Information Technology}, CHiMiT '09, pages 4:29--4:37,
+  New York, NY, USA, 2009. ACM.
 
 \end{thebibliography}

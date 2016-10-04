@@ -1,48 +1,48 @@
 This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: latex-build/paper.aux
-The style file: acm.bst
+The style file: plain.bst
 Database file #1: sources.bib
 Warning--can't use both author and editor fields in blue2008
 You've used 20 entries,
-            2253 wiz_defined-function locations,
-            634 strings with 6782 characters,
-and the built_in function-call counts, 5225 in all, are:
-= -- 508
-> -- 185
-< -- 0
-+ -- 80
+            2118 wiz_defined-function locations,
+            605 strings with 6920 characters,
+and the built_in function-call counts, 5157 in all, are:
+= -- 516
+> -- 188
+< -- 2
++ -- 78
 - -- 58
-* -- 261
-:= -- 842
-add.period$ -- 74
+* -- 221
+:= -- 853
+add.period$ -- 75
 call.type$ -- 20
 change.case$ -- 88
 chr.to.int$ -- 0
 cite$ -- 21
-duplicate$ -- 196
-empty$ -- 499
+duplicate$ -- 183
+empty$ -- 479
 format.name$ -- 58
-if$ -- 1130
+if$ -- 1123
 int.to.chr$ -- 0
 int.to.str$ -- 20
 missing$ -- 5
 newline$ -- 117
 num.names$ -- 40
-pop$ -- 178
+pop$ -- 177
 preamble$ -- 1
 purify$ -- 69
 quote$ -- 0
-skip$ -- 131
+skip$ -- 135
 stack$ -- 0
-substring$ -- 212
-swap$ -- 60
-text.length$ -- 0
+substring$ -- 210
+swap$ -- 42
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 78
 warning$ -- 1
 while$ -- 50
 width$ -- 22
-write$ -- 221
+write$ -- 225
 (There was 1 warning)

@@ -101,10 +101,10 @@ The fields we used for \tool\ are:
         \begin{itemize}
             \item Priority (4 Bits): A value between 0 and 61440 configurable in increments of 4096
             \item System ID Extension (12 Bits): Used for keeping the bridge ID unique if multiple VLANs are configured for a bridge
-            \item Bridge MAC (6 Byte): The MAC address of the bridge
+            \item Bridge MAC (6 Bytes): The MAC address of the bridge
         \end{itemize}
-        The conjunction of these three parts is used in comparisons as one large 8 byte number.
-        \item \textbf{Root Path Cost}: The root path cost is the sum of all port costs (which can be configured or detected automatically) along the current path. The root path cost in packets sent by the root is 0.
+        The conjunction of these three parts is used in comparisons as one large eight byte number.
+        \item \textbf{Root Path Cost}: The root path cost is the sum of all port costs (which can be configured or detected automatically) along the current path. The root path cost in packets sent by the root is zero.
     \item \textbf{Message Age}: The message age is the number of bridges that have been passed (in addition to the root) along the current path.
     \item \textbf{Max Age}: If the message age surpasses this maximum, packages are not forwarded any more.
     \item \textbf{Hello Time}: The delay in seconds between sent \textit{Hello} BPDUs.

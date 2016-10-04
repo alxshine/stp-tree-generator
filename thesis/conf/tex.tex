@@ -1,0 +1,39 @@
+\renewcommand{\familydefault}{\sfdefault}
+\newcommand{\tool}{STPViz}
+
+%configure the list of listings spacing
+\makeatletter
+\def\l@lstlisting#1#2{\@dottedtocline{1}{1.5em}{3em}{#1}{#2}}
+\makeatother
+
+\makeatletter
+
+\newcommand\frontmatter{%
+        \cleardoublepage
+    %\@mainmatterfalse
+    \pagenumbering{roman}}
+
+\newcommand\mainmatter{%
+        \cleardoublepage
+    % \@mainmattertrue
+    \pagenumbering{arabic}}
+
+\newcommand\backmatter{%
+    \if@openright
+        \cleardoublepage
+    \else
+        \clearpage
+    \fi
+    % \@mainmatterfalse
+}
+\makeatother
+
+\newenvironment{abstractpage}
+    {\cleardoublepage\vspace*{\fill}\thispagestyle{empty}}
+    {\vfill\cleardoublepage}
+\renewenvironment{abstract}[1]
+    {\bigskip\selectlanguage{#1}%
+     \begin{center}\bfseries\abstractname\end{center}}
+    {\par\bigskip}
+
+

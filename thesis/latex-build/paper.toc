@@ -1,3 +1,10 @@
+\select@language {german}
+\contentsline {chapter}{List of Figures}{i}
+\contentsline {chapter}{List of Listings}{ii}
+\select@language {english}
+\select@language {german}
+\select@language {german}
+\select@language {german}
 \contentsline {chapter}{\numberline {1}Introduction \& Motivation}{2}
 \contentsline {chapter}{\numberline {2}Background}{5}
 \contentsline {section}{\numberline {2.1}Existing alternatives}{5}
@@ -38,3 +45,4 @@
 \contentsline {section}{\numberline {5.1}Setup}{40}
 \contentsline {section}{\numberline {5.2}Tests}{41}
 \contentsline {chapter}{\numberline {6}Conclusion}{49}
+\contentsline {chapter}{Bibliography}{51}

@@ -9,6 +9,8 @@
 \usepackage{url}
 \usepackage[utf8]{inputenc}
 \usepackage[a4paper]{geometry}
+\usepackage[english,german]{babel}
+\usepackage{bera}
 
 %set directories
 \graphicspath{{images/}}
@@ -17,11 +19,8 @@
 \input{conf/tikz.tex}
 \input{conf/listings.tex}
 \input{conf/c++.tex}    
+\input{conf/tex.tex}
 
-\renewcommand{\familydefault}{\sfdefault}
-\newcommand{\tool}{STPViz}
-
-\usepackage{bera}
 
 \setcounter{secnumdepth}{1}
 % end of preamble
@@ -29,8 +28,17 @@
 \begin{document}
 %\raggedright
 \input{chapters/titlepage.tex}
+\frontmatter
 \tableofcontents
-%TODO: abstract?
+
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+\addcontentsline{toc}{chapter}{List of Listings}
+\lstlistoflistings
+
+\mainmatter
+\input{chapters/abstract.tex}
 \input{chapters/introduction.tex}
 \input{chapters/background.tex}
 \input{chapters/stp-tree-gen.tex}
@@ -38,6 +46,8 @@
 \input{chapters/testing.tex}
 \input{chapters/conclusion.tex}
 
-\bibliographystyle{acm}
+\backmatter
+\bibliographystyle{plain}
+\addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{sources}
 \end{document}
