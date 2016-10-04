@@ -50,7 +50,7 @@ std::vector<SpanningTree> Server::getTrees(){
     //check every received vector against every other
     for(auto mapIt1 = clientData.begin(); mapIt1 != clientData.end(); ++mapIt1){
         std::vector<Bridge> vec1 = mapIt1->second;
-        for(auto mapIt2 = clientData.begin(); mapIt2 != clientData.end(); ++mapIt2){
+        for(auto mapIt2 = mapIt1; mapIt2 != clientData.end(); ++mapIt2){
             if(mapIt1 == mapIt2)
                 continue;
             std::vector<Bridge> vec2 = mapIt2->second;

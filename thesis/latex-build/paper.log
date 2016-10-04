@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.9)  4 OCT 2016 10:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.9)  4 OCT 2016 12:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -997,13 +997,120 @@ Package: berasans 2004/01/30 (WaS)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/bera/beramono.sty
 Package: beramono 2004/01/31 (WaS)
-)) (./conf/tikz.tex
-(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
+))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package hobsub Info: Skipping package `ifvtex' (already loaded).
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+)
+\@linkdim=\dimen177
+\Hy@linkcounter=\count134
+\Hy@pagecounter=\count135
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count136
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count137
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen178
+\Fld@menulength=\count138
+\Field@Width=\dimen179
+\Fld@charsize=\dimen180
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count139
+\c@Item=\count140
+\c@Hfootnote=\count141
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count142
+\c@bookmark@seq@number=\count143
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip64
+)
+(./conf/tikz.tex (/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box47
-\sift@deathcycles=\count134
-\@vwid@loff=\dimen177
-\@vwid@roff=\dimen178
+\sift@deathcycles=\count144
+\@vwid@loff=\dimen181
+\@vwid@roff=\dimen182
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarypositioning.code.tex
@@ -1016,7 +1123,7 @@ File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.
 tex
 File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen179
+\arrowsize=\dimen183
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarydecorations.markings.code.tex
@@ -1024,14 +1131,14 @@ zlibrarydecorations.markings.code.tex
 zlibrarydecorations.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
 e.tex
-\pgfdecoratedcompleteddistance=\dimen180
-\pgfdecoratedremainingdistance=\dimen181
-\pgfdecoratedinputsegmentcompleteddistance=\dimen182
-\pgfdecoratedinputsegmentremainingdistance=\dimen183
-\pgf@decorate@distancetomove=\dimen184
-\pgf@decorate@repeatstate=\count135
-\pgfdecorationsegmentamplitude=\dimen185
-\pgfdecorationsegmentlength=\dimen186
+\pgfdecoratedcompleteddistance=\dimen184
+\pgfdecoratedremainingdistance=\dimen185
+\pgfdecoratedinputsegmentcompleteddistance=\dimen186
+\pgfdecoratedinputsegmentremainingdistance=\dimen187
+\pgf@decorate@distancetomove=\dimen188
+\pgf@decorate@repeatstate=\count145
+\pgfdecorationsegmentamplitude=\dimen189
+\pgfdecorationsegmentlength=\dimen190
 )
 \tikz@lib@dec@box=\box48
 )
@@ -1118,9 +1225,9 @@ Package: pgfplots 2016/01/06 v1.13 Data Visualization (1.13)
 \t@pgfplots@toka=\toks31
 \t@pgfplots@tokb=\toks32
 \t@pgfplots@tokc=\toks33
-\pgfplots@tmpa=\dimen187
-\c@pgfplots@coordindex=\count136
-\c@pgfplots@scanlineindex=\count137
+\pgfplots@tmpa=\dimen191
+\c@pgfplots@coordindex=\count146
+\c@pgfplots@scanlineindex=\count147
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code
 .tex))
@@ -1136,7 +1243,7 @@ Package pgfplots: loading complementary arithmetics for your pgf version...
 gfsupp_pgflibraryfpu.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
 gfsupp_pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count138
+\c@pgfmathroundto@lastzeros=\count148
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
@@ -1145,13 +1252,13 @@ tructure.code.tex)
 tructureext.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray
 .code.tex
-\c@pgfplotsarray@tmp=\count139
+\c@pgfplotsarray@tmp=\count149
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatri
 x.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshare
 d.code.tex
-\c@pgfplotstable@counta=\count140
+\c@pgfplotstable@counta=\count150
 \t@pgfplotstable@a=\toks34
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque
@@ -1164,7 +1271,7 @@ de.tex))
 .tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.sur
 fshading.code.tex
-\c@pgfplotslibrarysurf@no=\count141
+\c@pgfplotslibrarysurf@no=\count151
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surf
 shading.pgfsys-pdftex.def)))
@@ -1195,13 +1302,13 @@ decorations.pathmorphing.code.tex))
 zlibrarydecorations.pathreplacing.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
 decorations.pathreplacing.code.tex))
-\pgfplots@numplots=\count142
-\pgfplots@xmin@reg=\dimen188
-\pgfplots@xmax@reg=\dimen189
-\pgfplots@ymin@reg=\dimen190
-\pgfplots@ymax@reg=\dimen191
-\pgfplots@zmin@reg=\dimen192
-\pgfplots@zmax@reg=\dimen193
+\pgfplots@numplots=\count152
+\pgfplots@xmin@reg=\dimen192
+\pgfplots@xmax@reg=\dimen193
+\pgfplots@ymin@reg=\dimen194
+\pgfplots@ymax@reg=\dimen195
+\pgfplots@zmin@reg=\dimen196
+\pgfplots@zmax@reg=\dimen197
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryplotmarks.code.tex
@@ -1222,82 +1329,55 @@ File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 )) (./conf/tex.tex) (latex-build/paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 29.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Try loading font information for T1+fvs on input line 28.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Try loading font information for T1+fvs on input line 29.
 
 (/usr/share/texlive/texmf-dist/tex/latex/bera/t1fvs.fd
 File: t1fvs.fd 2004/09/07 scalable font definitions for T1/fvs.
 )
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 28.
+(Font)              scaled to size 8.99994pt on input line 29.
 
 ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count143
-\scratchdimen=\dimen194
+\scratchcounter=\count153
+\scratchdimen=\dimen198
 \scratchbox=\box69
-\nofMPsegments=\count144
-\nofMParguments=\count145
+\nofMPsegments=\count154
+\nofMParguments=\count155
 \everyMPshowfont=\toks35
-\MPscratchCnt=\count146
-\MPscratchDim=\dimen195
-\MPnumerator=\count147
-\makeMPintoPDFobject=\count148
+\MPscratchCnt=\count156
+\MPscratchDim=\dimen199
+\MPnumerator=\count157
+\makeMPintoPDFobject=\count158
 \everyMPtoPDFconversion=\toks36
-) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
 Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-))
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
+)
 Package grfext Info: Graphics extension search list:
 (grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
@@ -1308,9 +1388,10 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count149
+\c@lstlisting=\count159
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1346,16 +1427,35 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+\AtBeginShipoutBox=\box70
+Package hyperref Info: Link coloring OFF on input line 29.
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count160
+)
+LaTeX Info: Redefining \ref on input line 29.
+LaTeX Info: Redefining \pageref on input line 29.
+LaTeX Info: Redefining \nameref on input line 29.
+
+(latex-build/paper.out) (latex-build/paper.out)
+\@outlinefile=\write4
+\openout4 = `paper.out'.
+
+
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.13} into 
 your preamble.
- on input line 28.
+ on input line 29.
 
-(./chapters/titlepage.tex <images/uibk.jpeg, id=4, 109.91063pt x 220.57407pt>
+(./chapters/titlepage.tex
+<images/uibk.jpeg, id=106, 109.91063pt x 220.57407pt>
 File: images/uibk.jpeg Graphic file (type jpg)
-
-<use images/uibk.jpeg>
+ <use images/uibk.jpeg>
 Package pdftex.def Info: images/uibk.jpeg used on input line 5.
 (pdftex.def)             Requested size: 41.82791pt x 83.94017pt.
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
@@ -1373,31 +1473,90 @@ LaTeX Font Warning: Font shape `T1/fvs/b/sc' undefined
 
 LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
 (Font)              scaled to size 10.79993pt on input line 14.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 30.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 30.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 30.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 30.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 30.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 30.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/uibk.jpeg>])
-LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
-(Font)              scaled to size 22.39185pt on input line 32.
-LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
-(Font)              scaled to size 22.39185pt on input line 32.
-
-(latex-build/paper.toc
+(./chapters/selbst.tex
 LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
 (Font)              scaled to size 8.99994pt on input line 2.
+File: images/uibk.jpeg Graphic file (type jpg)
+ <use images/uibk.jpeg>
+Package pdftex.def Info: images/uibk.jpeg used on input line 5.
+(pdftex.def)             Requested size: 62.73549pt x 125.90016pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 10.
+(Font)              <7> on input line 6.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 10.
-)
-\tf@toc=\write4
-\openout4 = `paper.toc'.
+(Font)              <5> on input line 6.
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--14
+
+ []
+
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 27.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 27.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 27.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 27.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 27.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 27.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.27 \end{titlepage}
+                     [1]) (./chapters/abstract.tex
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 30.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 30.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 30.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 30.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 30.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 30.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.30 \end{abstractpage}
+                        [1
+
+])
+LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
+(Font)              scaled to size 22.39185pt on input line 35.
+LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
+(Font)              scaled to size 22.39185pt on input line 35.
+ (latex-build/paper.toc)
+\tf@toc=\write5
+\openout5 = `paper.toc'.
 
  [1
 
 
+
 ] (latex-build/paper.lof)
-\tf@lof=\write5
-\openout5 = `paper.lof'.
+\tf@lof=\write6
+\openout6 = `paper.lof'.
 
  [2
 
@@ -1405,21 +1564,18 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    Font shape `T1/fvs/m/it' will be
 (Font)              scaled to size 8.99994pt on input line 16.
 )
-\tf@lol=\write6
-\openout6 = `paper.lol'.
+\tf@lol=\write7
+\openout7 = `paper.lol'.
 
-[3
+ [3
 
-] (./chapters/abstract.tex [1
-
-
-]) (./chapters/introduction.tex
-Kapitel 1.
+] (./chapters/introduction.tex
+Chapter 1.
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 (Font)              scaled to size 18.66588pt on input line 1.
 LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
 (Font)              scaled to size 18.66588pt on input line 1.
-<images/switch.pdf, id=25, 50.1875pt x 26.0975pt>
+<images/switch.pdf, id=253, 50.1875pt x 26.0975pt>
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 29.
@@ -1561,10 +1717,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--181
 
  []
 
-[2
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.185 \begin{itemize}
+                      [1
 
 
-] [3 <./images/switch.pdf>]
+] [2 <./images/switch.pdf>]
 LaTeX Font Info:    Try loading font information for TS1+fvs on input line 186.
 
 
@@ -1574,15 +1735,19 @@ File: ts1fvs.fd 2004/09/07 scalable font definitions for TS1/fvs.
 LaTeX Font Info:    Font shape `TS1/fvs/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 186.
 )
-(./chapters/background.tex [4]
-Kapitel 2.
+(./chapters/background.tex [3]
+Chapter 2.
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 (Font)              scaled to size 12.9599pt on input line 3.
 LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
 (Font)              scaled to size 12.9599pt on input line 3.
-[5
+[4
 
 ]
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 44.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 45.
@@ -1591,74 +1756,70 @@ File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 46.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 47.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
-(Font)              scaled to size 6.29996pt on input line 73.
+(Font)              scaled to size 6.29996pt on input line 72.
 
-[6] [7]
-LaTeX Font Info:    Try loading font information for T1+fvm on input line 149.
+[5]
+LaTeX Font Info:    Try loading font information for T1+fvm on input line 150.
  (/usr/share/texlive/texmf-dist/tex/latex/bera/t1fvm.fd
 File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
 )
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 149.
+(Font)              scaled to size 8.99994pt on input line 150.
 LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
-(Font)              scaled to size 8.99994pt on input line 159.
- [8]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 190--190
+(Font)              scaled to size 8.99994pt on input line 160.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[6] [7]
+Overfull \hbox (6.0pt too wide) in paragraph at lines 191--191
 [][][][][][][] 
  []
 
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
-(Font)              scaled to size 4.49997pt on input line 191.
+(Font)              scaled to size 4.49997pt on input line 192.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 211--211
+Overfull \hbox (6.0pt too wide) in paragraph at lines 212--212
 [][][][][][][] 
  []
 
-(./listings/../listings/json/example.json [9])
-Overfull \hbox (6.0pt too wide) in paragraph at lines 222--222
+(./listings/../listings/json/example.json [8])
+Overfull \hbox (6.0pt too wide) in paragraph at lines 223--223
 [][][][][][][] 
  []
 
-(./listings/../listings/tikzExample.tex [10])) (./chapters/stp-tree-gen.tex
-[11]
-Kapitel 3.
+(./listings/../listings/tikzExample.tex) [9]) (./chapters/stp-tree-gen.tex
+[10]
+Chapter 3.
 File: images/switch.pdf Graphic file (type pdf)
 <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 33.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 34.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 50.
+Package pdftex.def Info: images/switch.pdf used on input line 35.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 51.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
 
 <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 51.
+Package pdftex.def Info: images/switch.pdf used on input line 52.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 
-Overfull \hbox (31.05194pt too wide) in paragraph at lines 64--65
+Overfull \hbox (31.05194pt too wide) in paragraph at lines 65--66
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[12
+[11
 
 ]
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 90.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 91.
@@ -1668,21 +1829,21 @@ File: images/switch.pdf Graphic file (type pdf)
 Package pdftex.def Info: images/switch.pdf used on input line 92.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
-
-<use images/switch.pdf>
+ <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 93.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
 
-Overfull \hbox (1.78084pt too wide) in paragraph at lines 101--102
+<use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 94.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+
+Overfull \hbox (1.78084pt too wide) in paragraph at lines 102--103
 [][] 
  []
 
 File: images/switch.pdf Graphic file (type pdf)
 <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 108.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 109.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
@@ -1690,9 +1851,13 @@ File: images/switch.pdf Graphic file (type pdf)
 Package pdftex.def Info: images/switch.pdf used on input line 110.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 111.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
 
 <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 111.
+Package pdftex.def Info: images/switch.pdf used on input line 112.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 Missing character: There is no , in font nullfont!
 Missing character: There is no f in font nullfont!
@@ -1701,46 +1866,46 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no = in font nullfont!
 
-Overfull \hbox (36.7424pt too wide) in paragraph at lines 127--128
+Overfull \hbox (36.7424pt too wide) in paragraph at lines 128--129
 [][] 
  []
 
-[13]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 154--154
+[12]
+Overfull \hbox (6.0pt too wide) in paragraph at lines 155--155
 [][][][][][][] 
  []
 
-(./listings/stp/SpanningTree.hpp [14])
-Overfull \hbox (6.0pt too wide) in paragraph at lines 168--168
+(./listings/stp/SpanningTree.hpp [13])
+Overfull \hbox (6.0pt too wide) in paragraph at lines 169--169
+[][][][][][][] 
+ []
+
+(./listings/stp/Sniffer.cpp [14])
+Overfull \hbox (6.0pt too wide) in paragraph at lines 175--175
 [][][][][][][] 
  []
 
 (./listings/stp/Sniffer.cpp [15])
-Overfull \hbox (6.0pt too wide) in paragraph at lines 174--174
+Overfull \hbox (6.0pt too wide) in paragraph at lines 181--181
 [][][][][][][] 
  []
 
 (./listings/stp/Sniffer.cpp [16])
-Overfull \hbox (6.0pt too wide) in paragraph at lines 180--180
+Overfull \hbox (6.0pt too wide) in paragraph at lines 185--185
 [][][][][][][] 
  []
 
 (./listings/stp/Sniffer.cpp [17])
-Overfull \hbox (6.0pt too wide) in paragraph at lines 184--184
-[][][][][][][] 
- []
-
-(./listings/stp/Sniffer.cpp [18])
 Overfull \hbox (6.0pt too wide) in paragraph at lines 211--211
 [][][][][][][] 
  []
 
-(./listings/../listings/json/clientServer.json [19])
+(./listings/../listings/json/clientServer.json [18])
 Overfull \hbox (6.0pt too wide) in paragraph at lines 212--212
 [][][][][][][] 
  []
 
-(./listings/../listings/json/serverParser.json [20])
+(./listings/../listings/json/serverParser.json [19])
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 225.
@@ -1832,7 +1997,7 @@ Overfull \hbox (25.36147pt too wide) in paragraph at lines 334--335
 [][] 
  []
 
-[21]
+[20]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -1841,7 +2006,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 345--345
 [][][][][][][] 
  []
 
-(./listings/stp/Server.cpp [22]) [23]
+(./listings/stp/Server.cpp [21]) [22]
 Overfull \hbox (6.0pt too wide) in paragraph at lines 357--357
 [][][][][][][] 
  []
@@ -1851,17 +2016,17 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 361--361
 [][][][][][][] 
  []
 
-(./listings/stp/SpanningTree.cpp [24] [25])
+(./listings/stp/SpanningTree.cpp [23] [24])
 Overfull \hbox (6.0pt too wide) in paragraph at lines 364--364
 [][][][][][][] 
  []
 
-(./listings/stp/SpanningTree.cpp [26])
+(./listings/stp/SpanningTree.cpp [25])
 Overfull \hbox (6.0pt too wide) in paragraph at lines 368--368
 [][][][][][][] 
  []
 
-(./listings/stp/SpanningTree.cpp) (latex-build/../results/pnp.tikz) [27]
+(./listings/stp/SpanningTree.cpp) (latex-build/../results/pnp.tikz) [26]
 LaTeX Font Info:    Font shape `T1/fvs/b/it' will be
 (Font)              scaled to size 8.99994pt on input line 390.
 
@@ -1874,7 +2039,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 393--393
 [][][][][][][] 
  []
 
-(./listings/stp/SpanningTree.cpp [28])
+(./listings/stp/SpanningTree.cpp [27])
 Overfull \hbox (6.0pt too wide) in paragraph at lines 400--400
 [][][][][][][] 
  []
@@ -1884,39 +2049,39 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 408--408
 [][][][][][][] 
  []
 
-(./listings/stp/SpanningTree.cpp [29])
+(./listings/stp/SpanningTree.cpp [28])
 Overfull \hbox (6.0pt too wide) in paragraph at lines 419--419
 [][][][][][][] 
  []
 
-(./listings/stp/SpanningTree.cpp [30])
+(./listings/stp/SpanningTree.cpp [29])
 Overfull \hbox (6.0pt too wide) in paragraph at lines 424--424
 [][][][][][][] 
  []
 
-(./listings/stp/SpanningTree.cpp) [31] [32]) (./chapters/soft-switch.tex
-[33]
-Kapitel 4.
+(./listings/stp/SpanningTree.cpp) [30] [31]) (./chapters/soft-switch.tex
+[32]
+Chapter 4.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 30--30
+Overfull \hbox (6.0pt too wide) in paragraph at lines 29--29
 [][][][][][][] 
  []
 
-(./listings/../listings/switch/data.c [34
+(./listings/../listings/switch/data.c [33
 
 ])
-Overfull \hbox (6.0pt too wide) in paragraph at lines 55--55
+Overfull \hbox (6.0pt too wide) in paragraph at lines 54--54
 [][][][][][][] 
  []
 
-(./listings/../listings/switch/portStates.c [35] [36])
-Overfull \hbox (6.0pt too wide) in paragraph at lines 62--62
+(./listings/../listings/switch/portStates.c [34] [35])
+Overfull \hbox (6.0pt too wide) in paragraph at lines 61--61
 [][][][][][][] 
  []
 
-(./listings/../listings/switch/forwarding.c [37] [38])) (./chapters/testing.tex
-[39]
-Kapitel 5.
+(./listings/../listings/switch/forwarding.c [36] [37])) (./chapters/testing.tex
+[38]
+Chapter 5.
 File: images/switch.pdf Graphic file (type pdf)
 <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 20.
@@ -1964,9 +2129,9 @@ Overfull \hbox (1.78084pt too wide) in paragraph at lines 57--58
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[40
+[39
 
-] [41]
+] [40]
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 119.
@@ -1989,59 +2154,49 @@ Package pdftex.def Info: images/switch.pdf used on input line 123.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Overfull \hbox (2.72466pt too wide) in paragraph at lines 155--156
-[]\T1/fvs/m/n/10 After enab-ling STP on the bridges we wai-ted for the tree to 
-be esta-blis-hed, again checking
- []
-
 File: images/switch.pdf Graphic file (type pdf)
 <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 170.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 171.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 172.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
-
-<use images/switch.pdf>
+ <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 173.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
- (latex-build/../results/estWorking.tikz)
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 174.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+
+<use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 175.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+ (latex-build/../results/estWorking.tikz) [41]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[42] [43]
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 219.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+[42]
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 221.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
-
-<use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 222.
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 223.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
- (latex-build/../results/removal.tikz)
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 224.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+
+(latex-build/../results/removal.tikz)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[44]
+[43] [44]
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 264.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 265.
+Package pdftex.def Info: images/switch.pdf used on input line 266.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
@@ -2052,119 +2207,114 @@ File: images/switch.pdf Graphic file (type pdf)
 <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 269.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
+ <use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 271.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 
-Overfull \hbox (1.78084pt too wide) in paragraph at lines 278--279
+Overfull \hbox (1.78084pt too wide) in paragraph at lines 280--281
 [][] 
  []
 
 File: images/switch.pdf Graphic file (type pdf)
 <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 284.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 285.
+Package pdftex.def Info: images/switch.pdf used on input line 286.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 287.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
-
-<use images/switch.pdf>
+ <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 289.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
 
-Overfull \hbox (1.78084pt too wide) in paragraph at lines 299--300
+<use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 291.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+
+Overfull \hbox (1.78084pt too wide) in paragraph at lines 301--302
 [][] 
  []
 
 File: images/switch.pdf Graphic file (type pdf)
 <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 308.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 309.
+Package pdftex.def Info: images/switch.pdf used on input line 310.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 311.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
-
-<use images/switch.pdf>
+ <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 313.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
 
-Overfull \hbox (1.78084pt too wide) in paragraph at lines 322--323
+<use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 315.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+
+Overfull \hbox (1.78084pt too wide) in paragraph at lines 324--325
 [][] 
  []
 
 File: images/switch.pdf Graphic file (type pdf)
 <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 329.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
-File: images/switch.pdf Graphic file (type pdf)
- <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 330.
+Package pdftex.def Info: images/switch.pdf used on input line 331.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 332.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
-
-<use images/switch.pdf>
+ <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 334.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+File: images/switch.pdf Graphic file (type pdf)
 
-Overfull \hbox (1.78084pt too wide) in paragraph at lines 344--345
+<use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 336.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+
+Overfull \hbox (1.78084pt too wide) in paragraph at lines 346--347
 [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/noTc.png, id=171, 865.2325pt x 255.95625pt>
+<images/noTc.png, id=1340, 865.2325pt x 255.95625pt>
 File: images/noTc.png Graphic file (type png)
  <use images/noTc.png>
-Package pdftex.def Info: images/noTc.png used on input line 366.
+Package pdftex.def Info: images/noTc.png used on input line 368.
 (pdftex.def)             Requested size: 334.60422pt x 98.98283pt.
 
 [45]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-File: images/switch.pdf Graphic file (type pdf)
-<use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 384.
-(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
-Package pdftex.def Info: images/switch.pdf used on input line 385.
+Package pdftex.def Info: images/switch.pdf used on input line 386.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
  <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 387.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
 File: images/switch.pdf Graphic file (type pdf)
-
-<use images/switch.pdf>
+ <use images/switch.pdf>
 Package pdftex.def Info: images/switch.pdf used on input line 389.
 (pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
- (latex-build/../results/dynAfterWorking.tikz) [46]
+File: images/switch.pdf Graphic file (type pdf)
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (./chapters/conclusion.tex [47 <./images/noTc.png>] [48]
-Kapitel 6.
+<use images/switch.pdf>
+Package pdftex.def Info: images/switch.pdf used on input line 391.
+(pdftex.def)             Requested size: 50.18736pt x 26.09743pt.
+ (latex-build/../results/dynAfterWorking.tikz))
+(./chapters/conclusion.tex [46 <./images/noTc.png>] [47] [48]
+Chapter 6.
 [49
 
 ]) [50] (latex-build/paper.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 21--26
-[]\T1/fvs/m/n/10 Brocade.  STP Pa-ra-me-ters and Defaults.  $\T1/fvm/m/n/10 htt
-p : / / www .
+[]\T1/fvs/m/n/10 Brocade.  STP Pa-ram-e-ters and De-faults.  []$\T1/fvm/m/n/10 
+http : / / www .
  []
 
 
@@ -2175,8 +2325,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 21--26
 
 
 Underfull \hbox (badness 6675) in paragraph at lines 46--51
-[]\T1/fvs/m/n/10 International Or-ga-ni-za-ti-on for Stan-dar-di-za-ti-on.  ISO
-/IEC 9899:1999.  $\T1/fvm/m/n/10 http :
+[]\T1/fvs/m/n/10 International Or-ga-ni-za-tion for Stan-dard-iza-tion.  ISO/IE
+C 9899:1999.  []$\T1/fvm/m/n/10 http :
  []
 
 
@@ -2188,19 +2338,28 @@ catalogue _ detail _ ics . htm ?
 [51
 
 
-]) [52] (latex-build/paper.aux)
+]) [52]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 59.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 59.
+ (latex-build/paper.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 59.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 59.
+Package rerunfilecheck Info: File `paper.out' has not changed.
+(rerunfilecheck)             Checksum: <no file>.
+
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 59.
  ) 
 Here is how much of TeX's memory you used:
- 30465 strings out of 493029
- 722475 string characters out of 6136235
- 1032782 words of memory out of 5000000
- 33326 multiletter control sequences out of 15000+600000
+ 34695 strings out of 493029
+ 787063 string characters out of 6136235
+ 1114633 words of memory out of 5000000
+ 36627 multiletter control sequences out of 15000+600000
  80690 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,19n,98p,719b,1614s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,19n,98p,719b,1815s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/
@@ -2210,10 +2369,10 @@ bera/fvmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvsb8a.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvsbo8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/bera/fvsr8a.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/bera/fvsro8a.pfb>
-Output written on latex-build/paper.pdf (56 pages, 298556 bytes).
+Output written on latex-build/paper.pdf (58 pages, 334489 bytes).
 PDF statistics:
- 232 PDF objects out of 1000 (max. 8388607)
- 160 compressed objects within 2 object streams
- 0 named destinations out of 1000 (max. 500000)
- 28 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1636 PDF objects out of 1728 (max. 8388607)
+ 1548 compressed objects within 16 object streams
+ 907 named destinations out of 1000 (max. 500000)
+ 228 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -5,6 +5,7 @@ We split the application in three parts:
     \item \textbf{Client}: collects STP information and sends it to the server.
         The client also handles piecing together the packets into paths.
     \item \textbf{Server}: saves the data from the clients and combines them into one tree.
+        The server additionally handles the removal of incorrect assumptions (see Section~\ref{uncertain_assumptions}).
     \item \textbf{Parser}: contacts the server to receive the tree and converts it into output format.
 \end{itemize}
 The intended form of usage is to have multiple clients in the network connecting to one server.
@@ -204,17 +205,16 @@ The possible values for \textit{messagetypes} are as follows:
 \end{itemize}
 Bridge data is transmitted from the client to the server in standard JSON array notation.
 When the data is transmitted from the server to the parser, it is transmitted as a full tree.
-We added conversion functions to and from JSON to all our custom data classes, to keep this transmission simple.
+We added conversion functions to and from JSON to all our custom data classes to keep this transmission simple.
 Listing~\ref{lst:arrayJson} shows an example transmission from client to server, and Listing~\ref{lst:treeJson} shows a transmission from server to parser.
 The JSON tree shown in Listing~\ref{lst:treeJson} is one of the trees transmitted during our test runs.
-It shows how \tool\ can use changing packets to gather information about bridge connections.
 \lstinputlisting[caption=Client-Server Transmission, label=lst:arrayJson]{../listings/json/clientServer.json}
 \lstinputlisting[caption=Server-Parser Transmission, label=lst:treeJson]{../listings/json/serverParser.json}
 
 \section{Uncertain Assumptions}
 \label{uncertain_assumptions}
 As previously stated, the assumptions we make about bridge connections are not necessarily true.
-They can be wrong, for certain cases, one of which is shown in Figure~\ref{fig:false_example}.
+They can be wrong for certain cases, one of which is shown in Figure~\ref{fig:false_example}.
 The client knows about the path to (at the time) root \textit{B} in Figure~\ref{fig:false_example1}.
 When the global root information gets updated, the message age will increase causing the client to prepend \textit{A} to its known path, even though there is no connection between \textit{A} and \textit{B}.
 This leads the client to thinking the path looks like in Figure~\ref{fig:false_example2}.
@@ -370,7 +370,7 @@ It is shown in Listing~\ref{lst:comparison}.
 \section{Visualization}
 \tool\ generates \textit{.tex} files containing \textit{TikZ} graphs.
 Nodes in these graphs contain the bridge data.
-Edges show the (assumed) connections in the topology.
+Edges show the assumed connections in the topology.
 Node information is displayed in the format \textit{priority, system id extension - MAC address, message age}.
 For cases where \tool\ has no knowledge of the path to the root, empty nodes are used.
 These can be seen as gaps in the final output.
@@ -399,8 +399,8 @@ The previous child index calculation will be discussed in the explanation for Li
 
 \lstinputlisting[caption={TikZ conversion function, part 2}, label=lst:output2, firstline=174, lastline=180]{stp/SpanningTree.cpp}
 If there is an unknown bridge between the current root and the previous one, we draw an empty node to visualize this.
-After the empty node is drawn, the same function will be called with increased \textit{y} coordinate, because the current root has not been handled yet.
-We also know that the ID will be the current index plus 1.
+After the empty node is drawn, the same function will be called with increased \textit{y} coordinate, \textit{oldMessageAge} and \textit{index}, because the current root has not been handled yet.
+We also know that the ID will be the current index plus one.
 With these informations we can write the command for drawing the edge beforehand.
 Note that we include newlines to keep the output readable.
 As the returned string is a C++ \textbf{std::string} we use the \textbf{\textbackslash n} escape sequence.
@@ -427,14 +427,14 @@ Before returning we set the the returned \textit{int} half of the pair to the la
 \tool\ was written in C++ and requires a compiler capable of C++11.
 Usage of the included Makefile is strongly advised.
 We included the version of \textit{jsoncpp} we used, so it does not need to be downloaded.
-The client requires an installation of the \textit{pcap} development library to compile, and the regular library to run.
+The client requires an installation of the \textit{pcap} development library to compile, and the runtime library to run.
 Available build targets are \textbf{client}, \textbf{server}, \textbf{parser} for single components and \textbf{all} for all components.
 An \textbf{install} target for global installation is not provided.
 \subsection*{Client Launch Parameters}
 \paragraph{-if \textit{inputFile}} is  used to specify the name of an input file which is written in \textit{.pcapng} format.
 If specified, packets will not be captured live, but instead taken from the input file.
 For easier usage with this parameter, launching the server with a higher timeout duration is recommended.
-The server will remove data from this client, as it is not programmed to resend data taken from input files.
+The server will remove data from this client after the timeout, as it is not programmed to resend data taken from input files.
 
 \paragraph{-of \textit{outputFile}} is used to specify a different output file.
 Output files are used for logging data.

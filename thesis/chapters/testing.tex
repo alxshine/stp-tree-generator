@@ -1,14 +1,14 @@
 \chapter{Testing}
 \label{testing}
 \section{Setup}
-In order to ensure \tool\ fulfills the requirements stated in Chapter~\ref{introduction} we performed several tests.
+In order to ensure \tool\ fulfills the requirements stated in chapter~\ref{introduction} we performed several tests.
 To be able to check the results for correctness, we kept the testing network small and simple.
 The layout of the test setup can be seen in Figure~\ref{fig:test_setup}.
 While a very basic network, it is sufficient for the tests described below, which will guarantee the required capabilities of \tool.
 We changed the priority of bridge \textit{C} to 61440 (the maximum) to ensure it would not be root.
 For bridges \textit{A} and \textit{B} we used the systemd id extension to ensure they would not be root when our \textit{Root} bridge was connected.
 Nodes \textit{A}, \textit{B} and \textit{C} were running \textit{Wireshark} and \tool.
-Additionally using \textit{Wireshark} allowed us to check the actual packages involved in the testing process to monitor progress and note situations not handled correctly by \tool.
+Additionally using \textit{Wireshark} allowed us to check the actual packets involved in the testing process to monitor progress and note situations not handled correctly by \tool.
 The server for \tool\ was run on Node \textit{C}.
 Test results were checked for their correctness by checking the report provided by \tool\ against the layout the network actually has.
 This layout was deduced using the debug output from our running \textit{software-switch} instances and the configuration of the hardware switches.
@@ -161,8 +161,10 @@ Again all the bridges can and must be correctly identified.
 Additionally, this time the identification of bridge connections is possible, and the topology should therefore be fully identified.
 
 \subsubsection*{\tool\ Output}
-If bridge \textit{D} is connected to bridges \textit{B} and \textit{C} before they are connected to bridge \textit{A}, the tree can build up slowly and the clients will know about the connections.
-The resulting visualization can be seen in Figure~\ref{fig:est}
+If bridge \textit{C} is connected to bridges \textit{A} and \textit{B} before they are connected to the \textit{Root} bridge, the tree can build up slowly and the clients will know about the connections.
+We had to run this test twice, as the order we connected the bridges in caused the client on node \textit{C} to assume an incorrect path.
+This lead to a visualization like in Figure~\ref{fig:pnp}, because this assumption was filtered out.
+The visualization for our second run can be seen in Figure~\ref{fig:est}
 \begin{figure}[h]
     \begin{subfigure}[b]{\textwidth}
         \centering
@@ -377,7 +379,7 @@ The visualization acquired before executing the test is the same as in Figure~\r
 Unfortunately, bridge \textit{B} stopped sending again.
 However, the test was a success, as the subtree was correctly identified and added to the large tree.
 The visualization we obtained from \tool can be seen in Figure~\ref{fig:dynAfter}.
-\begin{figure}[h]
+\begin{figure}[p]
     \begin{subfigure}[b]{\textwidth}
         \centering
         \begin{tikzpicture}
@@ -399,9 +401,7 @@ The visualization we obtained from \tool can be seen in Figure~\ref{fig:dynAfter
         \end{tikzpicture}
         \caption{The expected result}
     \end{subfigure}
-       
     \vspace{0.5cm}
-
     \begin{subfigure}[b]{\textwidth}
         \centering
         \input{../results/dynAfterWorking.tikz}
@@ -429,4 +429,4 @@ The nodes should be correctly identified, but we were unsure about the connectio
 For the first few seconds after reconnecting the subtree to bridge \textit{B} (Figure~\ref{fig:sdcTest5}) nothing happened.
 After that, the bridges updated their information, which resulted in the same visualization as the Slow Dynamic Change Test.
 This means that our approach to keeping and saving bridge connection data is stable enough to withstand sudden topology changes.
-The output is identical to Figure~\ref{fig:dynAfter}.
+The output is identical that of the Slow Dynamic Change Test and can be seen in Figure~\ref{fig:dynAfter}.

@@ -29,7 +29,7 @@ Ports can be in one of three states (see Figure~\ref{fig:port_states}):
         In the original paper\cite{perlman85}, this state was called backup.
 \end{itemize}
 To handle necessary port transitions (e.g. on bridge failure), so called transition states are used.
-A blocking port for example waits $forwardDelay$ seconds in a loop.
+A blocking port for example waits $forwardDelay$ (see Figure~\ref{fig:stp_bpdu}) seconds in a loop.
 Every time a superior BPDU is received, the timer is reset.
 If the timer ever hits zero, the port will transition to dedicated.
 
@@ -38,7 +38,6 @@ Because the STP information must be propagated to every LAN, there needs to be e
 In a LAN between two non-root bridges, the bridge with the smaller root path cost (see Figure~\ref{fig:stp_bpdu}) will make its connected port dedicated.
 Should both bridges have the same path cost to the root, the one with the smaller bridge identifier becomes the dedicated bridge (see Section~\ref{stp_packet}: STP Packets).
 This can be seen in the connection between the bottom bridges in Figure~\ref{fig:port_states}.
-If no superior STP packets are received on a blocking or root port for a set amount of time (called the forward delay) it transitions to the dedicated state.
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
@@ -104,13 +103,15 @@ The fields we used for \tool\ are:
             \item Bridge MAC (6 Bytes): The MAC address of the bridge
         \end{itemize}
         The conjunction of these three parts is used in comparisons as one large eight byte number.
-        \item \textbf{Root Path Cost}: The root path cost is the sum of all port costs (which can be configured or detected automatically) along the current path. The root path cost in packets sent by the root is zero.
+        \item \textbf{Root Path Cost}: The root path cost is the sum of all port costs along the current path.
+            Port Cost can be configured manually or detected automatically.
+            The root path cost in packets sent by the root is zero.
     \item \textbf{Message Age}: The message age is the number of bridges that have been passed (in addition to the root) along the current path.
     \item \textbf{Max Age}: If the message age surpasses this maximum, packages are not forwarded any more.
     \item \textbf{Hello Time}: The delay in seconds between sent \textit{Hello} BPDUs.
         \textit{Hello} BPDUs have the form shown in Figure~\ref{fig:stp_bpdu}.
     \item \textbf{Forward Delay}: After this time, if no superior packet was received, a root, or blocking port will transition to dedicated.
-        Note that if a root port transitions to dedicated state that means the bridge now assumes it is the root.
+        Note that if a root port transitions to dedicated state due to timeout, the bridge now assumes it is the root.
 \end{itemize}
 A BPDU only contains information about the root and the bridge that sent the package.
 This means that if there is a bridge between these two, we will not know about its ID.
@@ -119,7 +120,7 @@ During the buildup of the tree it is possible to obtain information on intermedi
 This possibility is explained more in-depth in the section on packet handling (Section~\ref{packet_handling}).
 
 \subsubsection*{Default Parameters}
-The parameters discussed default to the following values\cite{params}:
+Unless otherwise conifgured the parameters discussed default to the following values\cite{params}:
 \begin{itemize}
     \item \textbf{Priority}: 32768
     \item \textbf{System Id Extension}: 0
@@ -181,7 +182,7 @@ For this reason we decided to confine our efforts to basic STP.
 \subsection*{PCAP}
 \label{pcap}
 PCAP\cite{pcap} is a shortening of packet capture.
-It used to be a part of the \textit{tcpdump} tool before it was pulled into it's own library.
+It used to be a part of the \textit{tcpdump} tool before it was moved to its own library.
 We used the UNIX version \textit{libpcap} for this thesis.
 \textit{Libpcap} is a C library and can be directly linked with C and C++ without using a wrapper.
 It provides functions for opening live network devices and \textit{.pcapng} files.
@@ -216,7 +217,7 @@ The JSON library used in this thesis is \textit{jsoncpp}\cite{jsoncpp}.
 We chose TikZ ist kein Zeichenprogramm (TikZ)\cite{tikz} as the file format for our output.
 Using TikZ allows us to generate \textit{.tex} files rather than images.
 These are easier to generate, as well as to modify after creation.
-It is also very easy to integrate in \LaTeX\ papers.
+They are also very easy to integrate in \LaTeX\ papers.
 While TikZ is very powerful and therefore complex, the parts we use are fairly simple.
 Listing~\ref{lst:tikz_example} shows the TikZ code for Figure~\ref{fig:bc_storm_b}.
 \lstinputlisting[caption=A TikZ Example, label=lst:tikz_example]{../listings/tikzExample.tex}

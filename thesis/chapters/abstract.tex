@@ -14,16 +14,19 @@
     \end{abstract}
 
     \begin{abstract}{german}
-        Die Überprüfung von Netzwerktopologien, welche das Spanning Tree Protocol (STP) verwenden, ist eine schwere Aufgabe, welche oft nur mit Hilfe von Netzwerkverwaltungsprotokollen bewältigt werden kann.
+        Die Überprüfung von Netzwerktopologien, welche das Spanning Tree Protocol (STP) verwenden, ist eine schwere Aufgabe.
+        Diese kann oft nur mit Hilfe von Netzwerkverwaltungsprotokollen bewältigt werden.
         Da nicht alle Netzwerkgeräte diese Protokolle unterstützen, ist dies eine suboptimale Lösung.
         In dieser Arbeit präsentieren wir \tool, ein Werkzeug, welches Netzwerktopologien nur anhand von passiv erhaltenen STP Paketen beobachten kann. 
         Es verwendet eine verteilte Client-Server-Architektur um STP Pakete an mehreren Orten im Netzwerk zu erhalten.
         Obwohl STP nur lokale Daten überträgt, kann \tool\ durch diese verteilten Informationen Vermutungen zu Verbindungen im Netzwerk anstellen.
         Da unsere Annahmen nicht immer korrekt sind, beschreiben wir auch eine einfache und leicht berechenbare Methode zur Entfernung dieser Fehler.
-        Die Genauigkeit unserer Methode wächst mit den \tool\ Instanzen im Netzwerk, und erreicht 100\% wenn eine Instanz mit jedem Netzwerkgerät verbunden ist.
-        Durch Ungenauigkeiten in STP Implementationen, die wir beim Test von \tool\ fanden, waren wir gezwungen, STP selbst zu implementieren, um \tool\ zu testen.
-        \tool\ bestand alle unsere Tests.
+        Die Genauigkeit unserer Methode wächst mit den \tool\ Instanzen im Netzwerk, und erreicht 100\% wenn eine \tool\ Instanz mit jedem Netzwerkgerät verbunden ist.
+        Durch Ungenauigkeiten in STP Implementationen, die wir beim Test von \tool\ fanden, waren wir gezwungen, STP selbst zu implementieren.
+        Erst dadurch konnten wir unsere Tests durchführen, welche \tool\ alle bestand.
         Dabei wurden seine Fähigkeiten zur Entdeckung von Geräten, Annahmen zu Verbindungen zwischen Geräten, die Entfernung von Geräten sowie dynamische Topologieveränderungen getestet.
         Diese Testresultate verleiten uns zur Annahme, dass \tool\ mit verbesserter grafischer Ausgabe ein nützliches Werkzeug zur Netzwerkkontrolle in Umgebungen ohne Unterstützung von komplexeren Netzwerkverwaltungsprotokollen sein kann.
     \end{abstract}
 \end{abstractpage}
+
+\selectlanguage{english}

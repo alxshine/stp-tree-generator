@@ -11,6 +11,7 @@
 \usepackage[a4paper]{geometry}
 \usepackage[english,german]{babel}
 \usepackage{bera}
+\usepackage{hyperref}
 
 %set directories
 \graphicspath{{images/}}
@@ -26,19 +27,24 @@
 % end of preamble
 
 \begin{document}
-%\raggedright
 \input{chapters/titlepage.tex}
+\input{chapters/selbst.tex}
+\input{chapters/abstract.tex}
+
 \frontmatter
 \tableofcontents
 
+\newpage
+\phantomsection \label{listoffigures}
 \addcontentsline{toc}{chapter}{List of Figures}
 \listoffigures
 
+\newpage
+\phantomsection \label{listoflistings}
 \addcontentsline{toc}{chapter}{List of Listings}
 \lstlistoflistings
 
 \mainmatter
-\input{chapters/abstract.tex}
 \input{chapters/introduction.tex}
 \input{chapters/background.tex}
 \input{chapters/stp-tree-gen.tex}
