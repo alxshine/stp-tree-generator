@@ -1,0 +1,28 @@
+\select@language {german}
+\select@language {english}
+\select@language {german}
+\select@language {german}
+\select@language {german}
+\select@language {english}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces An example of a broadcast storm\relax }}{2}{figure.caption.8}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Broadcast propagation in an STP network\relax }}{2}{figure.caption.9}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces An example of STP port states\relax }}{5}{figure.caption.11}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces An STP BPDU\relax }}{5}{figure.caption.13}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Information gained on STP build up\relax }}{12}{figure.caption.21}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Information lost during tree build up\relax }}{12}{figure.caption.22}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces An example case of false assumptions about network structure\relax }}{21}{figure.caption.23}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Assumed and actual message ages\relax }}{22}{figure.caption.24}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces An example for STPViz\ output\relax }}{27}{figure.caption.25}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces The expected physical and logical network topologies\relax }}{40}{figure.caption.49}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Expected output compared to STPViz\ output ("Plug and Play" Test)\relax }}{42}{figure.caption.55}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces The result of the Tree Establishment Test\relax }}{43}{figure.caption.60}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Expected output compared to STPViz\ output (Tree Removal Test)\relax }}{44}{figure.caption.65}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces The physical topology during the Slow Dynamic Test\relax }}{45}{figure.caption.68}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces The packet capture not showing a TC flag\relax }}{46}{figure.caption.71}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Expected output compared to STPViz\ output (Slow/Fast Dynamic Change Test)\relax }}{47}{figure.caption.72}
+\addvspace {10\p@ }

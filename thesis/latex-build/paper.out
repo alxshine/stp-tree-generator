@@ -1,0 +1,25 @@
+\BOOKMARK [0][-]{section*.4}{List of Figures}{}% 1
+\BOOKMARK [0][-]{section*.6}{List of Listings}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Introduction \046 Motivation}{}% 3
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 4
+\BOOKMARK [1][-]{section.2.1}{Existing alternatives}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.2}{Spanning Tree Protocol \(STP\)}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.3}{Technologies used}{chapter.2}% 7
+\BOOKMARK [0][-]{chapter.3}{STP Tree Generator}{}% 8
+\BOOKMARK [1][-]{section.3.1}{Class Structure}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.2}{Packet Handling}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.3}{Communication}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.4}{Uncertain Assumptions}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.5}{Combining the data}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.6}{Visualization}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.7}{Installation \046 Usage}{chapter.3}% 15
+\BOOKMARK [0][-]{chapter.4}{Software Switch Testing Utility}{}% 16
+\BOOKMARK [1][-]{section.4.1}{Saving Switching Data}{chapter.4}% 17
+\BOOKMARK [1][-]{section.4.2}{Handling STP Packets and Port States}{chapter.4}% 18
+\BOOKMARK [1][-]{section.4.3}{Handling Non-STP Packets}{chapter.4}% 19
+\BOOKMARK [1][-]{section.4.4}{Installation and usage}{chapter.4}% 20
+\BOOKMARK [0][-]{chapter.5}{Testing}{}% 21
+\BOOKMARK [1][-]{section.5.1}{Setup}{chapter.5}% 22
+\BOOKMARK [1][-]{section.5.2}{Tests}{chapter.5}% 23
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 24
+\BOOKMARK [0][-]{chapter.6}{Bibliography}{}% 25
