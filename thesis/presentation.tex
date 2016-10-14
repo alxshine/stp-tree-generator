@@ -497,10 +497,12 @@
 \end{frame}
 
 \begin{frame}{Software-Switch}
-    \begin{itemize}
-        \item Grund
-        \item Funktionsweise
-        \item Grenzen \& Beschränkungen
+    \begin{itemize}[<+(1)->]
+        \item STP Implementation in OpenWrt und dd-wrt fehlerhaft
+        \item Emuliert STP fähige Bridge
+        \item Multithreaded (POSIX Threads)
+        \item \alert<7>{Probleme mit NetworkManager}
+        \item Nicht sehr ausgiebig getestet
     \end{itemize}
 \end{frame}
 
@@ -522,6 +524,32 @@
         \item Tests
         \item Resultate
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Setup}
+    \begin{figure}[h]
+        \begin{center}
+            \begin{tikzpicture}[scale=0.8]
+                \node (root) at (2, 4) {\switch{0.6}{Root}};
+                \node (a) at (0, 2) {\switch{0.6}{Bridge A}};
+                \node (na) at (-1, 0.5) {Node A};
+                \node (b) at (4, 2) {\switch{0.6}{Bridge B}};
+                \node (nb) at (5, 0.5) {Node B};
+                \node (c) at (2, 0) {\switch{0.6}{Bridge C}};
+                \node (nc) at (2, -1.5) {Node C};
+                \draw 
+                (root) -- (a)
+                (root) -- (b)
+                (a) -- (c)
+                (a) -- (na)
+                (b) -- (nb)
+                (c) -- (nc);
+
+                \draw[onslide=<2>{white}]
+                (b) -- (c);
+            \end{tikzpicture}
+        \end{center}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Überblick}
