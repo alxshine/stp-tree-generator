@@ -1,5 +1,5 @@
 \documentclass{beamer}
-\usepackage{uibkstyle}
+\usepackage[titlepage=images/titlepage.jpg]{uibkstyle}
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
 \usepackage{graphicx}
@@ -115,31 +115,34 @@
             \node (D) at (4,4) {\switch{0.8}{D}};
 
             \draw
-            [onslide=<2>{green,thick,->}]
+            [onslide=<+(1)>{green,thick,->}]
             (root) edge (B);
 
             \draw
-            [onslide=<2>{green,thick,->}]
+            [onslide=<.(1)>{green,thick,->}]
             (root) edge (C);
 
             \draw
-            [onslide=<3>{green,thick,->}]
+            [onslide=<+(1)>{green,thick,->}]
             (B) edge (D);
         \end{tikzpicture}
     \end{figure}
 \end{frame}
 
-\begin{frame}{Was sind die Probleme?}
+\begin{frame}{Grundidee}
     \begin{itemize}[<+->]
         \item Große Netzwerke sind schwer zu administrieren
         \item STP verbirgt Fehler und Änderungen zusätzlich
         \item STP Konfiguration ist komplex
     \end{itemize}
+    \pause
+    Kommerzielle Tools existieren.\\
+    \alert{Aber: Diese nutzen SNMP}
 \end{frame}
 
 
 \begin{frame}{Was waren unsere Ziele?}
-    \begin{itemize}
+    \begin{itemize}[<+->]
         \item Nur STP
         \item Geringe verursachte Netzwerkauslastung
         \item Passiv
@@ -179,7 +182,7 @@
             \draw (3.5,0.7) rectangle (4.5,0.5);\node () at (4,1) {\tiny Zus. Feat.}; 
             \draw (4.5,0.7) rectangle (5,0.5);\node () at (4.75,1) {\tiny Tests};
             \draw (5,0.7) rectangle (6,0.5);\node () at (5.5,1) {\tiny Arbeit}; 
-            \draw[->] (6,1.5) -- (6,0);\node () at (6,1.7) {\tiny Presentation};
+            \draw[->] (6,1.5) -- (6,0);\node () at (6,1.7) {\tiny Präsentation};
         \end{tikzpicture}
     \end{figure}
 \end{frame}
@@ -196,8 +199,8 @@
 \end{frame}
 
 \begin{frame}{STP Funktionsweise}
-    Ports zu doppelten Verbindungen werden deaktiviert.\\
-    Für jede Verbindung gibt es genau einen aktiven Port.
+    Globale Root wird durch Prioritäten bestimmt.\\
+    Nur kürzester Pfad zur Root bleibt erhalten.
     \pause
     \begin{figure}
         \begin{tikzpicture}
@@ -232,18 +235,18 @@
             \draw (0,20) rectangle (16,18.5); \node (mode) at (8, 19.25) {Protocol Identifier};
             \draw (16,20) rectangle (24,18.5); \node (mode) at (20, 19.25) {Version Id};
             \draw (24,20) rectangle (32,18.5); \node (mode) at (28, 19.25) {BPDU Type};
-            \draw[onslide=<2>{red,line width=3pt}] (0,18.5) rectangle (8,17); \node (mode) at (4, 17.75) {Flags};
-            \draw[onslide=<3>{red,line width=3pt}] (8,18.5) rectangle (32,17); \node (mode) at (20, 17.75) {Root Identifier};
-            \draw[onslide=<3>{red,line width=3pt}] (0,17) rectangle (32,15.5); \node (mode) at (16, 16.25) {Root Identifier};
-            \draw[onslide=<3>{red,line width=3pt}] (0,15.5) rectangle (8,14); \node (mode) at (4, 14.75) {Root Identifier};
-            \draw[onslide=<4>{red,line width=3pt}] (8,15.5) rectangle (32,14); \node (mode) at (20, 14.75) {Root Path Cost};
-            \draw[onslide=<4>{red,line width=3pt}] (0,14) rectangle (8,12.5); \node (mode) at (4, 13.25) {Root Path Cost};
-            \draw[onslide=<5>{red,line width=3pt}] (8,14) rectangle (32,12.5); \node (mode) at (20, 13.25) {Bridge Identifier};
-            \draw[onslide=<5>{red,line width=3pt}] (0,12.5) rectangle (32,11); \node (mode) at (16, 11.75) {Bridge Identifier};
-            \draw[onslide=<5>{red,line width=3pt}] (0,11) rectangle (8,9.5); \node (mode) at (4, 10.25) {Bridge Identifier};
+            \draw[onslide=<+(1)>{red,line width=3pt}] (0,18.5) rectangle (8,17); \node (mode) at (4, 17.75) {Flags};
+            \draw[onslide=<+(1)>{red,line width=3pt}] (8,18.5) rectangle (32,17); \node (mode) at (20, 17.75) {Root Identifier};
+            \draw[onslide=<.(1)>{red,line width=3pt}] (0,17) rectangle (32,15.5); \node (mode) at (16, 16.25) {Root Identifier};
+            \draw[onslide=<.(1)>{red,line width=3pt}] (0,15.5) rectangle (8,14); \node (mode) at (4, 14.75) {Root Identifier};
+            \draw (8,15.5) rectangle (32,14); \node (mode) at (20, 14.75) {Root Path Cost};
+            \draw (0,14) rectangle (8,12.5); \node (mode) at (4, 13.25) {Root Path Cost};
+            \draw[onslide=<+(1)>{red,line width=3pt}] (8,14) rectangle (32,12.5); \node (mode) at (20, 13.25) {Bridge Identifier};
+            \draw[onslide=<.(1)>{red,line width=3pt}] (0,12.5) rectangle (32,11); \node (mode) at (16, 11.75) {Bridge Identifier};
+            \draw[onslide=<.(1)>{red,line width=3pt}] (0,11) rectangle (8,9.5); \node (mode) at (4, 10.25) {Bridge Identifier};
             \draw (8,11) rectangle (24,9.5); \node (mode) at (16, 10.25) {Port Identifier};
-            \draw[onslide=<6>{red,line width=3pt}] (24,11) rectangle (32,9.5); \node (mode) at (28, 10.25) {Message Age};
-            \draw[onslide=<6>{red,line width=3pt}] (0,9.5) rectangle (8,8); \node (mode) at (4, 8.75) {Message Age};
+            \draw[onslide=<+(1)>{red,line width=3pt}] (24,11) rectangle (32,9.5); \node (mode) at (28, 10.25) {Message Age};
+            \draw[onslide=<.(1)>{red,line width=3pt}] (0,9.5) rectangle (8,8); \node (mode) at (4, 8.75) {Message Age};
             \draw (8,9.5) rectangle (24,8); \node (mode) at (16, 8.75) {Max Age};
             \draw (24,11) rectangle (32,8); \node (mode) at (28, 8.75) {Hello Time};
             \draw (0,8) rectangle (8,6.5); \node (mode) at (4, 7.25) {Hello Time};
@@ -306,7 +309,7 @@
     \centering
     \begin{figure}
         \begin{tikzpicture}[nodes=draw]
-            \node[circle, red, onslide=<4-6>{white},onslide=<8>{red}] (r) at (16,10) {};
+            \node[circle, red, onslide=<1>{black},onslide=<4-6>{white},onslide=<8>{red}] (r) at (16,10) {};
 
             \node[circle,onslide=<3-5>{white},onslide=<6>{red}] (a0) at (13, 9) {};
             \node[other] (a1) at (15.5, 9) {};
@@ -363,7 +366,7 @@
 
             (c3) -- (d2);
 
-            \draw[white, onslide=<1>{black}, onslide=<10>{gray, opacity=0.5}]
+            \draw[white, onslide=<1>{black}, onslide=<9>{gray, opacity=0.5}]
             %other links
             (a0) -- (b3)
             (a2) -- (b3)
@@ -379,7 +382,7 @@
 \end{frame}
 
 \begin{frame}{Problem}
-    Durch diese Annahmen können Fehler entstehen.\\
+    Durch diese Konstruktion können Fehler entstehen.\\
     Diese müssen korrigiert werden.
     \pause
     \begin{figure}[h]
@@ -443,7 +446,7 @@
             \item Entferne Duplikate mit höherer Message Age
         \end{enumerate}
         \pause
-        Dadurch bleiben alle korrekten Annahmen erhalten
+        Dadurch bleiben alle korrekten Pfade erhalten
     \end{minipage}
 \end{frame}
 
@@ -453,13 +456,13 @@
         \node[white,onslide=<2->{black}] (0) at (7.000000,20) {Root};
         \node[white,onslide=<3->{black}] (1) at (2.333333,18) {A, 1};
         \node[white,onslide=<4->{black}] (3) at (7.000000,18) {B, 1};
-        \node[white,onslide=<5->{black}] (4) at (11.666667,18) {};
-        \node[white,onslide=<6->{black}] (2) at (11.666667,16) {C, 2};
+        \node[white] (4) at (11.666667,18) {};
+        \node[white,onslide=<5->{black}] (2) at (11.666667,16) {C, 2};
 
-        \draw[white,onslide=<8->{black}] (0) -- (1);
-        \draw[white,onslide=<8->{black}] (0) -- (3);
-        \draw[white,onslide=<8->{black}] (0) -- (4);
-        \draw[white,onslide=<7->{black}] (4) -- (2);
+        \draw[white,onslide=<7->{black}] (0) -- (1);
+        \draw[white,onslide=<7->{black}] (0) -- (3);
+        \draw[white,onslide=<7->{black}] (0) -- (4);
+        \draw[white,onslide=<6->{black}] (4) -- (2);
     \end{tikzpicture}
 \end{frame}
 
@@ -500,15 +503,6 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Testing}
-    \begin{itemize}
-        \item Setup
-        \item Physisches Setup
-        \item Tests
-        \item Resultate
-    \end{itemize}
-\end{frame}
-
 \begin{frame}{Setup}
     \begin{figure}[h]
         \begin{center}
@@ -536,16 +530,59 @@
 \end{frame}
 
 \begin{frame}{Physisches Setup}
-    %TODO: Bild einfuegen
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{physicalSetup}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Plug and Play Test}
-    STPViz wird gestartet, bevor Verbindung hergestellt wird.\\
+    Verbindung wird hergestellt, bevor STPViz gestartet wird\\
     \pause
     \vspace{0.3cm}
     \centering
     \scalebox{0.8}{
         \input{results/pnp.tikz}
+    }
+\end{frame}
+
+\begin{frame}{Tree Establishment Test}
+    STPViz wird gestartet, bevor Verbindung hergestellt wird\\
+    \pause
+    \vspace{0.3cm}
+    \centering
+    \scalebox{0.8}{
+        \input{results/estWorking.tikz}
+    }
+\end{frame}
+
+\begin{frame}{Dynamische Tests}
+    (Physische) Topologie wird nach der Erkennung verändert\\
+    \vspace{0.3cm}
+    \centering
+    \only<1-2>{
+        \begin{tikzpicture}
+            \node (root) at (2, 4) {\switch{0.8}{Root}};
+            \node (a) at (0, 2) {\switch{0.8}{A}};
+            \node (b) at (4, 2) {\switch{0.8}{B}};
+            \node (c) at (2, 0) {\switch{0.8}{C}};
+
+            \draw
+            (root) -- (b)
+            (a) -- (c);
+
+            \draw[onslide=<2>{white}]
+            (b) -- (c)
+            (root) -- (a);
+
+            \draw[white, onslide=<2>{black}]
+            (a) -- (b);
+        \end{tikzpicture}
+    }
+    \only<3>{
+        \scalebox{0.8}{
+            \input{results/dynAfterWorking.tikz}
+        }
     }
 \end{frame}
 
@@ -560,23 +597,109 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Zusammenfassung und Ausblick}
-    \begin{itemize}
-        \item STPViz Fähigkeiten
-        \item STPViz Grenzen
-        \item Software-Switch
-        \item Sonstige Dinge (OpenWrt, dd-wrt)
-    \end{itemize}
+\begin{frame}{Ergebnisse}
+    STPViz kann:
+    \begin{enumerate}[<+(1)->]
+        \item Bridges mit ihrer Entfernung zur Root erkennen
+        \item Lokale Information zu globaler zusammenbauen
+        \item Fehler korrigieren
+        \item Diese Information sinnvoll visualisieren
+    \end{enumerate}
+    \pause
+    STPViz kann nicht:
+    \begin{enumerate}[<+(1)->]
+        \item Features von STP Erweiterungen nutzen
+        \item Kabeltypen bestimmen
+        \item Nur notwendige Informationen verwerfen
+        \item Topologien direkt aus \textit{.pcapng} Dateien erstellen
+    \end{enumerate}
+    \pause
+    \alert{Kann nicht mit kommerziellen Tools mithalten, ist aber auch nicht nutzlos.}
 \end{frame}
 
-\begin{frame}{Message}
-Ich hätte gerne, dass Zuseher folgendes mit nach Hause nehmen:\\
-\begin{itemize}
-    \item Information aus STP zu extrahieren ist schwer, da es nur lokales Wissen benutzt.
-    \item Wir haben es trotzdem geschafft (nur halt nicht mit maximaler Informationsdichte).
-    \item Es gibt nicht viele Use Cases, aber es gibt sie.
-    \item STPViz ist eine gute Grundlage für weitere Arbeiten.
-\end{itemize}
+\begin{frame}{Zeitplanung}
+    \centering
+    \begin{figure}
+        \begin{tikzpicture}[month]
+            \draw (0,0) -- (0.4,0);
+            \draw[->] (0.6,0) -- (10,0);
+            %cut marker
+            \draw[decorate, decoration={snake,amplitude=1pt,segment length=5pt}] (0.41, 0.3) -- (0.41, -0.3);
+            \draw[decorate, decoration={snake,amplitude=1pt,segment length=5pt}] (0.62, 0.3) -- (0.62, -0.3);
+            \foreach \x in {0,...,9}
+                \draw (\x,0.1) -- (\x,-0.1);
+
+            \node at (0,-0.5) {\tiny Oktober};
+            \node at (1,-0.5) {\tiny Februar};
+            \node at (2,-0.5) {\tiny März};
+            \node at (3,-0.5) {\tiny April};
+            \node at (4,-0.5) {\tiny Mai};
+            \node at (5,-0.5) {\tiny Juni};
+            \node at (6,-0.5) {\tiny Juli};
+            \node at (7,-0.5) {\tiny August};
+            \node at (8,-0.5) {\tiny September};
+            \node at (9,-0.5) {\tiny Oktober};
+
+            \draw (0,0.7) rectangle (1,0.5);\node () at (0.5,1) {\tiny Vorarbeit}; 
+            \draw (1,0.7) rectangle (3,0.5);\node () at (2,1) {\tiny Implementation}; 
+            \draw (3,0.7) rectangle (3.5,0.5);\node () at (3.25,1) {\tiny Tests};
+            \draw (3.5,0.7) rectangle (4.5,0.5);\node () at (4,1) {\tiny Zus. Feat.}; 
+            \draw (4.5,0.7) rectangle (5,0.5);\node () at (4.75,1) {\tiny Tests};
+            \draw (5,0.7) rectangle (6,0.5);\node () at (5.5,1) {\tiny Arbeit}; 
+            \draw[->] (6,1.5) -- (6,0);\node () at (6,1.7) {\tiny Präsentation};
+        \end{tikzpicture}
+    \end{figure}
+    \vspace{0.3cm}
+    \pause
+    \begin{figure}
+        \begin{tikzpicture}[month]
+            \draw (0,0) -- (0.4,0);
+            \draw[->] (0.6,0) -- (10,0);
+            %cut marker
+            \draw[decorate, decoration={snake,amplitude=1pt,segment length=5pt}] (0.41, 0.3) -- (0.41, -0.3);
+            \draw[decorate, decoration={snake,amplitude=1pt,segment length=5pt}] (0.62, 0.3) -- (0.62, -0.3);
+            \foreach \x in {0,...,9}
+                \draw (\x,0.1) -- (\x,-0.1);
+
+            \node at (0,-0.5) {\tiny Oktober};
+            \node at (1,-0.5) {\tiny Februar};
+            \node at (2,-0.5) {\tiny März};
+            \node at (3,-0.5) {\tiny April};
+            \node at (4,-0.5) {\tiny Mai};
+            \node at (5,-0.5) {\tiny Juni};
+            \node at (6,-0.5) {\tiny Juli};
+            \node at (7,-0.5) {\tiny August};
+            \node at (8,-0.5) {\tiny September};
+            \node at (9,-0.5) {\tiny Oktober};
+
+            \draw (0,0.7) rectangle (1,0.5);\node () at (0.5,1) {\tiny Vorarbeit}; 
+            \draw (1,0.7) rectangle (6,0.5);\node () at (3.5,1) {\tiny STPViz}; 
+            \draw (6,0.7) rectangle (7,0.5);\node () at (6.5,1) {\tiny Soft-Switch};
+            \draw (7,0.7) rectangle (8,0.5);\node () at (7.5,1) {\tiny Testen}; 
+            \draw (8,0.7) rectangle (9.1,0.5);\node () at (8.5,1) {\tiny Arbeit};
+            \draw[->] (9.5,1.5) -- (9.5,0);\node () at (9.5,1.7) {\tiny Präsentation};
+        \end{tikzpicture}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{Ausblick}
+    Sinnvolle nächste Schritte:
+    \begin{enumerate}[<+(1)->]
+        \item Features von STP Erweiterungen nutzen
+        \item Kabeltypen bestimmen
+        \item Nur notwendige Informationen verwerfen
+        \item Topologien direkt aus \textit{.pcapng} Dateien erstellen
+        \item STP Implementation in OpenWrt und dd-wrt verbessern
+        \item Software-Switch voll funktionstüchtig machen
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Code}
+    Code und Arbeit sind verfügbar unter:\\
+    \vspace{0.5cm}
+    https://github.com/alxshine/stp-tree-generator\\
+    https://github.com/alxshine/software-switch
 \end{frame}
 
 \end{document}
