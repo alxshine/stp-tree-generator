@@ -105,7 +105,7 @@
 
 \begin{frame}{Broadcasts mit STP}
     STP deaktiviert doppelte Verbindungen.\\
-    Baum Topologie entsteht.
+    Baumtopologie entsteht
     \pause
     \begin{figure}
         \begin{tikzpicture}
@@ -200,7 +200,7 @@
 
 \begin{frame}{STP Funktionsweise}
     Globale Root wird durch Prioritäten bestimmt.\\
-    Nur kürzester Pfad zur Root bleibt erhalten.
+    Nur kürzester Pfad zur Root bleibt erhalten
     \pause
     \begin{figure}
         \begin{tikzpicture}
@@ -268,12 +268,12 @@
 
 \begin{frame}{Struktur \& Funktion}
     \begin{itemize}[<+->]
-        \item Mehrere Clients senden ihre Daten an einen Server.
-        \item Server kombiniert Daten.
+        \item Mehrere Clients senden ihre Daten an einen Server
+        \item Server kombiniert Daten
         \item Parser erstellt Visualisierung
     \end{itemize}
     \pause
-    Client sammelt Daten aus STP Paketen und kombiniert sie zu einem Pfad zur Root.
+    Client sammelt Daten aus STP Paketen und kombiniert sie zu einem Pfad zur Root
 \end{frame}
 
 \begin{frame}{STP Pakete}
@@ -383,7 +383,7 @@
 
 \begin{frame}{Problem}
     Durch diese Konstruktion können Fehler entstehen.\\
-    Diese müssen korrigiert werden.
+    Diese müssen korrigiert werden
     \pause
     \begin{figure}[h]
         \begin{tikzpicture}[scale=0.8]
@@ -597,24 +597,20 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Ergebnisse}
-    STPViz kann:
+\begin{frame}{Ergebnisse \& Limitationen}
+    STPViz Fähigkeiten:
     \begin{enumerate}[<+(1)->]
-        \item Bridges mit ihrer Entfernung zur Root erkennen
-        \item Lokale Information zu globaler zusammenbauen
-        \item Fehler korrigieren
-        \item Diese Information sinnvoll visualisieren
+        \item Bridges und ihre Entfernung zur Root werden erkannt
+        \item Pfade zur Root werden angenommen
+        \item Fehler werden entfernt
+        \item Ergebnisse werden sinnvoll visualisiert
     \end{enumerate}
     \pause
-    STPViz kann nicht:
+    STPViz Limitationen:
     \begin{enumerate}[<+(1)->]
-        \item Features von STP Erweiterungen nutzen
-        \item Kabeltypen bestimmen
-        \item Nur notwendige Informationen verwerfen
-        \item Topologien direkt aus \textit{.pcapng} Dateien erstellen
+        \item STP Erweiterungen werden nicht genutzt
+        \item Mehr Information als notwendig wird verworfen
     \end{enumerate}
-    \pause
-    \alert{Kann nicht mit kommerziellen Tools mithalten, ist aber auch nicht nutzlos.}
 \end{frame}
 
 \begin{frame}{Zeitplanung}
@@ -687,12 +683,42 @@
     Sinnvolle nächste Schritte:
     \begin{enumerate}[<+(1)->]
         \item Features von STP Erweiterungen nutzen
+        \item Minimale Information verwerfen
         \item Kabeltypen bestimmen
-        \item Nur notwendige Informationen verwerfen
         \item Topologien direkt aus \textit{.pcapng} Dateien erstellen
         \item STP Implementation in OpenWrt und dd-wrt verbessern
         \item Software-Switch voll funktionstüchtig machen
     \end{enumerate}
+\end{frame}
+
+\begin{frame}{Konklusion}
+    Was wurde erreicht?
+    \only<3>{
+        \vspace{0.5cm}
+        \begin{center}
+            \scalebox{0.9}{
+                \input{results/estWorking.tikz}
+            }
+        \end{center}
+    }
+    \onslide<2>{
+        \begin{figure}
+            \centering
+            \includegraphics[width=\textwidth]{physicalSetup.jpg}
+        \end{figure}
+    }
+\end{frame}
+
+\begin{frame}{Konklusion}
+    In Worten:
+    \begin{itemize}[<+(1)->]
+        \item Graphenkonstruktion nur mit lokaler Information ist schwer
+        \item Besonders, da STP keine Information über Nachbarn überträgt
+        \item STPViz schafft dies mit Annahmen
+        \item Billige Fehlerkorrektur mit $\mathcal{O}(n^2)$ Komplexität
+        \item Weniger mächtig als kommerzielle Tools, setzt aber weniger vorraus
+    \end{itemize}
+    \onslide<7>{\alert{STPViz bietet eine Grundlage für zukünftige mächtigere Tools}}
 \end{frame}
 
 \begin{frame}{Code}
