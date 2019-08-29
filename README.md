@@ -17,25 +17,25 @@ After building is complete, the binaries will be in the bin folder.
 The sniffer uses the first named interface.
 Usually deactivating  WI-FI (if it is available) is enough to ensure the correct interface is used.
 
-##Command Line Parameters
+## Command Line Parameters
 The server, client and parser can be called via the following command line parameters respectively.
 ###Server
-####-np
+#### -np
 Do **not** create a PID file. Will create one by default.
-####-of
+#### -of
 Set the file name of the output file **Default: server.log**
-####-p
+#### -p
 Set the port the client will try to connect to. **Default: 80**
-####-t
+#### -t
 Set the timeout for the clients in seconds. **Default: 5s**
 
-###Client
+### Client
 The client needs to be run as root in order to capture on an interface.
-####-h
+#### -h
 Set the host the client will connect to (as URL).
-####-if
+#### -if
 If set, this will specify a __.pcapng__ file to read from. Note that this will disable live capturing on an interface.
-####-of
+#### -of
 Set the name for the outputfile. **Default: client.log**
-####-p
+#### -p
 Set the port the client will try to connect to. **Default: 80**
